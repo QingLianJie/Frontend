@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@sveltejs/adapter-vercel': next
   '@sveltejs/kit': next
   '@typescript-eslint/eslint-plugin': ^4.19.0
   '@typescript-eslint/parser': ^4.19.0
@@ -23,6 +24,7 @@ dependencies:
   sveltestrap: 5.0.0-beta.3-2_svelte@3.38.2
 
 devDependencies:
+  '@sveltejs/adapter-vercel': 1.0.0-next.16_svelte@3.38.2
   '@sveltejs/kit': 1.0.0-next.103_svelte@3.38.2
   '@typescript-eslint/eslint-plugin': 4.22.1_b96c9280c6ac79e4dfcda76a733858e3
   '@typescript-eslint/parser': 4.22.1_eslint@7.26.0+typescript@4.2.4
@@ -108,6 +110,18 @@ packages:
       picomatch: 2.2.3
     dev: true
 
+  /@sveltejs/adapter-vercel/1.0.0-next.16_svelte@3.38.2:
+    resolution: {integrity: sha512-PAIUsg9gCr9BtLA6w6ky3HvqBRVoAzctawcrVR0NFVFAfA4Cjx48xV9uuc1ZqQAIKt8l7S4BmAkqsToVDT88yw==}
+    dependencies:
+      '@sveltejs/kit': 1.0.0-next.98_svelte@3.38.2
+      esbuild: 0.11.20
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - svelte
+      - vite
+    dev: true
+
   /@sveltejs/kit/1.0.0-next.103_svelte@3.38.2:
     resolution: {integrity: sha512-g3Q3AnYloJVpXu83yfQLddYcsTYJ5M/NaoRTyv0qCTMNea1L9HTGrI8grdi5kF8wbPCUcX9fLA9RYRDfEkjF/Q==}
     engines: {node: '>= 12.17.0'}
@@ -120,6 +134,44 @@ packages:
       sade: 1.7.4
       svelte: 3.38.2
       vite: 2.2.4
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
+  /@sveltejs/kit/1.0.0-next.98_svelte@3.38.2:
+    resolution: {integrity: sha512-WAbxMLAmgJ1dwtmRm46dXSYewIIs8ykjl3yWwdqdPrOBY420HQyrvBjMmh9OVyBaCRy/He5blnMWRFDKUqNQng==}
+    engines: {node: '>= 12.17.0'}
+    hasBin: true
+    peerDependencies:
+      svelte: ^3.34.0
+      vite: ^2.2.3
+    dependencies:
+      '@sveltejs/vite-plugin-svelte': 1.0.0-next.9_svelte@3.38.2
+      cheap-watch: 1.0.3
+      sade: 1.7.4
+      svelte: 3.38.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
+  /@sveltejs/vite-plugin-svelte/1.0.0-next.9_svelte@3.38.2:
+    resolution: {integrity: sha512-ySB/GJsZV3h3jqjq5WIiaxVFkJK6vqtG9gS7Iw6SfUH9ZiFNw5JjQF69g68j9cNep3q4yRIYiG5/pI3YIdXEuA==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      svelte: ^3.37.0
+      vite: ^2.2.3
+    dependencies:
+      '@rollup/pluginutils': 4.1.0
+      chalk: 4.1.1
+      debug: 4.3.2
+      hash-sum: 2.0.0
+      require-relative: 0.8.7
+      slash: 4.0.0
+      source-map: 0.7.3
+      svelte: 3.38.2
+      svelte-hmr: 0.14.3_svelte@3.38.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -492,6 +544,12 @@ packages:
     engines: {node: '>=8.6'}
     dependencies:
       ansi-colors: 4.1.1
+    dev: true
+
+  /esbuild/0.11.20:
+    resolution: {integrity: sha512-QOZrVpN/Yz74xfat0H6euSgn3RnwLevY1mJTEXneukz1ln9qB+ieaerRMzSeETpz/UJWsBMzRVR/andBht5WKw==}
+    hasBin: true
+    requiresBuild: true
     dev: true
 
   /esbuild/0.9.7:
