@@ -1,3 +1,3 @@
 #### 清廉街
 
-Powered by Svelte Kit.
+Powered by SvelteKit.
