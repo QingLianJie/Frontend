@@ -1,10 +1,15 @@
 <script lang="ts">
+  import NavBar from '$lib/NavBar.svelte'
+  import { Container } from 'sveltestrap'
+
 </script>
 
 <svelte:head>
   <title>清廉街</title>
 </svelte:head>
 
-<header class="px-4 py-5">
-  <h1 class="fs-4 text-center">清廉街</h1>
-</header>
+<NavBar />
+
+<Container>
+  <h1>123</h1>
+</Container>
