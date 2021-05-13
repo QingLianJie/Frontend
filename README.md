@@ -1,3 +1,3 @@
 #### 清廉街
 
-Powered by SvelteKit.
+MIT Licensed.

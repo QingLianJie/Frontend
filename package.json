@@ -1,33 +1,23 @@
 {
-  "name": "qinglianjie",
-  "version": "0.0.1",
+  "name": "qinglianjie-web",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
-    "preview": "svelte-kit preview",
-    "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --write --plugin-search-dir=. ."
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.6.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^4",
+    "next": "10.2.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "@sveltejs/adapter-vercel": "next",
-    "@sveltejs/kit": "next",
-    "@typescript-eslint/eslint-plugin": "^4.23.0",
-    "@typescript-eslint/parser": "^4.23.0",
-    "eslint": "^7.26.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-svelte3": "^3.2.0",
-    "prettier": "~2.3.0",
-    "prettier-plugin-svelte": "^2.3.0",
-    "svelte": "^3.38.2",
-    "svelte-preprocess": "^4.7.3",
-    "tslib": "^2.2.0",
+    "@types/react": "^17.0.5",
     "typescript": "^4.2.4"
-  },
-  "type": "module",
-  "dependencies": {
-    "bootstrap": "^5.0.0",
-    "bootstrap-icons": "^1.5.0",
-    "chart.js": "^3.2.1",
-    "sveltestrap": "5.0.0-beta.3-2"
   }
 }
