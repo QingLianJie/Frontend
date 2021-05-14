@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { RiMenuFill } from 'react-icons/ri'
-import router from '../data/router'
+import { links } from '../data/meta'
 
 const NavBarLink = ({ href, icon, text, color }) => {
   return (
@@ -27,20 +27,11 @@ const NavBarLink = ({ href, icon, text, color }) => {
         alignItems="center"
         paddingX="3"
         paddingY="1.5"
+        rounded="md"
         _hover={{
           textDecoration: 'none',
           _hover: {
-            _before: {
-              content: '""',
-              position: 'absolute',
-              bottom: '0',
-              left: '50%',
-              width: '75%',
-              height: '2px',
-              rounded: 'full',
-              backgroundColor: color,
-              transform: 'translateX(-50%)',
-            },
+            bg: 'gray.100',
           },
         }}
       >
@@ -60,6 +51,7 @@ const NavBarDrawerLink = ({ href, icon, text, color }) => {
         alignItems="center"
         paddingX="3"
         paddingY="3"
+        rounded="md"
         _hover={{
           textDecoration: 'none',
         }}
@@ -92,13 +84,13 @@ const NavBarDrawer = () => {
             页面
           </DrawerHeader>
           <DrawerBody paddingY="6">
-            {router.map(r => (
+            {links.map(link => (
               <NavBarDrawerLink
-                key={r.name}
-                href={r.href}
-                icon={r.icon}
-                text={r.text}
-                color={r.color}
+                key={link.name}
+                href={link.href}
+                icon={link.icon}
+                text={link.text}
+                color={link.color}
               />
             ))}
           </DrawerBody>
@@ -122,13 +114,13 @@ const NavBar = ({ title }) => {
         paddingX="3"
         display={{ base: 'none', md: 'flex' }}
       >
-        {router.map(r => (
+        {links.map(link => (
           <NavBarLink
-            key={r.name}
-            href={r.href}
-            icon={r.icon}
-            text={r.text}
-            color={r.color}
+            key={link.name}
+            href={link.href}
+            icon={link.icon}
+            text={link.text}
+            color={link.color}
           />
         ))}
       </Flex>

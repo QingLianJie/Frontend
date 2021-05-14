@@ -4,7 +4,7 @@ import { default as NextLink } from 'next/link'
 const LinkTile = ({ href, text, icon, color }) => {
   return (
     <LinkBox
-      margin="3"
+      margin={{ base: '2', lg: '3' }}
       paddingX="4"
       paddingY="4"
       display="flex"
@@ -13,6 +13,13 @@ const LinkTile = ({ href, text, icon, color }) => {
       alignItems="center"
       rounded="md"
       borderWidth="1px"
+      _hover={{
+        textDecoration: 'none',
+        _hover: {
+          bg: 'gray.100',
+        },
+      }}
+      transition="all 0.2s"
     >
       <Flex justifyContent="center" w="100%" margin="2" padding="2">
         <Icon as={icon} w="8" h="8" color={color} />

@@ -3,10 +3,11 @@ import {
   RiBookOpenFill,
   RiDashboardFill,
   RiGalleryUploadFill,
+  RiGithubFill,
   RiTableFill,
 } from 'react-icons/ri'
 
-export default [
+const links = [
   {
     name: 'home',
     href: '/',
@@ -43,3 +44,20 @@ export default [
     color: 'rgba(236,201,75,1)',
   },
 ]
+
+const buttons = [
+  // {
+  //   name: 'feedback',
+  //   text: '反馈',
+  //   color: '#ED8936',
+  //   icon: RiFeedbackFill,
+  // },
+  {
+    name: 'open-source',
+    text: '开源',
+    color: '#000000',
+    icon: RiGithubFill,
+  },
+]
+
+export { links, buttons }
