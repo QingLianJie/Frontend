@@ -72,11 +72,13 @@ const LoginPage = () => {
             />
           </InputRightElement>
         </InputGroup>
+
         <InputGroup size="lg" marginY="6">
           <Button isFullWidth colorScheme="green">
             登录
           </Button>
         </InputGroup>
+
         <HStack divider={<StackDivider />} justify="center">
           <NextLink href="/register" passHref>
             <Link

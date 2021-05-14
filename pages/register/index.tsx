@@ -72,6 +72,7 @@ const RegisterPage = () => {
             />
           </InputRightElement>
         </InputGroup>
+        
         <InputGroup size="lg" marginY="6">
           <InputLeftElement
             pointerEvents="none"
@@ -92,11 +93,13 @@ const RegisterPage = () => {
             />
           </InputRightElement>
         </InputGroup>
+
         <InputGroup size="lg" marginY="6">
           <Button isFullWidth colorScheme="blue">
             注册
           </Button>
         </InputGroup>
+
         <HStack divider={<StackDivider />} justify="center">
           <NextLink href="/login" passHref>
             <Link
