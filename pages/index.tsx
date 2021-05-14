@@ -45,7 +45,6 @@ const Index = () => {
           <Box as="section" display="flex" flexDirection="column">
             <NotificationTile />
             <NotificationTile />
-            <NotificationTile />
           </Box>
         </SimpleGrid>
         <Footer />

@@ -37,7 +37,8 @@ const LoginPage = () => {
           as="h2"
           size="lg"
           fontWeight="normal"
-          marginY="8"
+          marginTop="6"
+          marginBottom="16"
           textAlign="center"
         >
           登录到 <strong>清廉街</strong>
@@ -48,7 +49,7 @@ const LoginPage = () => {
             pointerEvents="none"
             children={<Icon as={RiMailFill} color="gray.300" />}
           />
-          <Input type="email" placeholder="邮箱" />
+          <Input type="email" placeholder="邮箱" isRequired />
         </InputGroup>
 
         <InputGroup size="lg" marginY="6">
@@ -56,7 +57,11 @@ const LoginPage = () => {
             pointerEvents="none"
             children={<Icon as={RiLockPasswordFill} color="gray.300" />}
           />
-          <Input type={show ? 'text' : 'password'} placeholder="密码" />
+          <Input
+            type={show ? 'text' : 'password'}
+            placeholder="密码"
+            isRequired
+          />
           <InputRightElement>
             <IconButton
               aria-label="Show / Hide Password"
