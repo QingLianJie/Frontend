@@ -125,7 +125,7 @@ const NavBar = ({ title }) => {
         ))}
       </Flex>
       <Spacer />
-      <Avatar bg="gray.300" w="8" h="8" marginX="2" marginY="1" />
+      <Avatar bg="teal.500" w="8" h="8" marginX="2" marginY="1" />
     </Flex>
   )
 }
@@ -136,7 +136,6 @@ const HeaderBar = () => {
       as="header"
       flexDirection="column"
       alignItems="center"
-      marginTop="3"
       paddingX="6"
       paddingY="16"
     >

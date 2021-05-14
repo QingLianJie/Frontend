@@ -4,7 +4,7 @@ const ButtonTile = ({ text, icon, color }) => {
   return (
     <Box
       as="button"
-      margin={{ base: '2', lg: '3' }}
+      margin="2"
       paddingX="4"
       paddingY="4"
       display="flex"
@@ -16,7 +16,7 @@ const ButtonTile = ({ text, icon, color }) => {
       _hover={{
         textDecoration: 'none',
         _hover: {
-          bg: 'gray.100',
+          shadow: 'xl',
         },
       }}
       transition="all 0.2s"

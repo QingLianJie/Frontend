@@ -2,7 +2,9 @@ import { Box, Container, Flex, SimpleGrid } from '@chakra-ui/layout'
 import Head from 'next/head'
 import ButtonTile from '../components/dashboard/ButtonTile'
 import LinkTile from '../components/dashboard/LinkTile'
+import NotificationTile from '../components/dashboard/NotificationTile'
 import UserTile from '../components/dashboard/UserTile'
+import Footer from '../components/Footer'
 import { HeaderBar } from '../components/NavBar'
 import { buttons, links } from '../data/meta'
 
@@ -12,12 +14,12 @@ const Index = () => {
       <Head>
         <title>清廉街</title>
       </Head>
-      <Container maxW="container.lg">
+      <Container maxW="container.lg" paddingY="2">
         <HeaderBar />
-        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={4}>
+        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={0}>
           <Box as="section">
             <UserTile />
-            <Flex flexWrap="wrap" justifyContent="center">
+            <SimpleGrid columns={{ base: 3, sm: 4, md: 6, lg: 4 }}>
               {links.map(
                 link =>
                   link.name !== 'home' && (
@@ -38,10 +40,15 @@ const Index = () => {
                   color={button.color}
                 />
               ))}
-            </Flex>
+            </SimpleGrid>
           </Box>
-          <Box as="section"></Box>
+          <Box as="section" display="flex" flexDirection="column">
+            <NotificationTile />
+            <NotificationTile />
+            <NotificationTile />
+          </Box>
         </SimpleGrid>
+        <Footer />
       </Container>
     </>
   )

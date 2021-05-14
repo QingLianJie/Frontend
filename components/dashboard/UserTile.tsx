@@ -13,17 +13,17 @@ const UserTile = () => {
       alignItems="center"
       borderWidth="1px"
       rounded="md"
-      margin={{ base: '2', lg: '3' }}
+      margin="2"
       padding="6"
     >
-      <Avatar bg="gray.300" w="10" h="10" marginRight="6" />
+      <Avatar bg="teal.500" w="10" h="10" marginRight="6" />
       <Flex flexDirection="column" justifyContent="center">
         <Text fontSize="xl" marginY="0.25">
-          未登录用户
+          未登录
         </Text>
       </Flex>
       <Spacer />
-      <ButtonGroup spacing="6">
+      <ButtonGroup spacing="4">
         <Button colorScheme="blue">登录</Button>
         <Button colorScheme="green">注册</Button>
       </ButtonGroup>
