@@ -3,9 +3,12 @@ import {
   Button,
   ButtonGroup,
   Flex,
+  LinkBox,
+  LinkOverlay,
   Spacer,
   Text,
 } from '@chakra-ui/react'
+import { default as NextLink } from 'next/link'
 
 const UserTile = () => {
   return (
@@ -24,8 +27,24 @@ const UserTile = () => {
       </Flex>
       <Spacer />
       <ButtonGroup spacing="4">
-        <Button colorScheme="blue">登录</Button>
-        <Button colorScheme="green">注册</Button>
+        <LinkBox>
+          <Button colorScheme="blue">
+            <NextLink href="/login" passHref>
+              <LinkOverlay>
+                <Text>登录</Text>
+              </LinkOverlay>
+            </NextLink>
+          </Button>
+        </LinkBox>
+        <LinkBox>
+          <Button colorScheme="green">
+            <NextLink href="/register" passHref>
+              <LinkOverlay>
+                <Text>注册</Text>
+              </LinkOverlay>
+            </NextLink>
+          </Button>
+        </LinkBox>
       </ButtonGroup>
     </Flex>
   )

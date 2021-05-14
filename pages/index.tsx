@@ -1,4 +1,4 @@
-import { Box, Container, Flex, SimpleGrid } from '@chakra-ui/layout'
+import { Box, Container, SimpleGrid } from '@chakra-ui/react'
 import Head from 'next/head'
 import ButtonTile from '../components/dashboard/ButtonTile'
 import LinkTile from '../components/dashboard/LinkTile'
