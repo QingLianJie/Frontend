@@ -14,12 +14,16 @@ const LinkTile = ({ href, text, icon, color }) => {
       rounded="md"
       borderWidth="1px"
       _hover={{
-        textDecoration: 'none',
-        _hover: {
-          shadow: 'xl',
-        },
+        bg: 'gray.100',
       }}
-      transition="all 0.2s"
+      _active={{
+        bg: 'gray.200',
+        shadow: 'outline',
+      }}
+      _focus={{
+        shadow: 'outline',
+      }}
+      transition="all 0.25s"
     >
       <Flex justifyContent="center" w="100%" margin="2" padding="2">
         <Icon as={icon} w="8" h="8" color={color} />
