@@ -15,14 +15,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import {
-  RiBarChartBoxFill,
-  RiBookOpenFill,
-  RiDashboardFill,
-  RiGalleryUploadFill,
-  RiMenuFill,
-  RiTableFill,
-} from 'react-icons/ri'
+import { RiMenuFill } from 'react-icons/ri'
+import router from '../data/router'
 
 const NavBarLink = ({ href, icon, text, color }) => {
   return (
@@ -98,36 +92,15 @@ const NavBarDrawer = () => {
             页面
           </DrawerHeader>
           <DrawerBody paddingY="6">
-            <NavBarDrawerLink
-              href="/"
-              icon={RiDashboardFill}
-              text="主页"
-              color="rgba(237,100,166)"
-            />
-            <NavBarDrawerLink
-              href="/scores"
-              icon={RiBarChartBoxFill}
-              text="成绩"
-              color="rgba(72,187,120,1)"
-            />
-            <NavBarDrawerLink
-              href="/timetable"
-              icon={RiTableFill}
-              text="课表"
-              color="rgba(66,153,225,1)"
-            />
-            <NavBarDrawerLink
-              href="/courses"
-              icon={RiBookOpenFill}
-              text="课程"
-              color="rgba(245,101,101,1)"
-            />
-            <NavBarDrawerLink
-              href="/report"
-              icon={RiGalleryUploadFill}
-              text="报备"
-              color="rgba(236,201,75,1)"
-            />
+            {router.map(r => (
+              <NavBarDrawerLink
+                key={r.name}
+                href={r.href}
+                icon={r.icon}
+                text={r.text}
+                color={r.color}
+              />
+            ))}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -149,36 +122,15 @@ const NavBar = ({ title }) => {
         paddingX="3"
         display={{ base: 'none', md: 'flex' }}
       >
-        <NavBarLink
-          href="/"
-          icon={RiDashboardFill}
-          text="主页"
-          color="rgba(237,100,166)"
-        />
-        <NavBarLink
-          href="/scores"
-          icon={RiBarChartBoxFill}
-          text="成绩"
-          color="rgba(72,187,120,1)"
-        />
-        <NavBarLink
-          href="/timetable"
-          icon={RiTableFill}
-          text="课表"
-          color="rgba(66,153,225,1)"
-        />
-        <NavBarLink
-          href="/courses"
-          icon={RiBookOpenFill}
-          text="课程"
-          color="rgba(245,101,101,1)"
-        />
-        <NavBarLink
-          href="/report"
-          icon={RiGalleryUploadFill}
-          text="报备"
-          color="rgba(236,201,75,1)"
-        />
+        {router.map(r => (
+          <NavBarLink
+            key={r.name}
+            href={r.href}
+            icon={r.icon}
+            text={r.text}
+            color={r.color}
+          />
+        ))}
       </Flex>
       <Spacer />
       <Avatar bg="gray.300" w="8" h="8" marginX="2" marginY="1" />
