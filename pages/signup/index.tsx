@@ -21,10 +21,11 @@ import {
   RiEyeOffFill,
   RiLockPasswordFill,
   RiMailFill,
+  RiUserFill,
 } from 'react-icons/ri'
 import { NavBar } from '../../components/NavBar'
 
-const RegisterPage = () => {
+const SignupPage = () => {
   const [show, setShow] = useState(false)
   return (
     <>
@@ -43,6 +44,14 @@ const RegisterPage = () => {
         >
           注册 <strong>清廉街</strong> 账号
         </Heading>
+
+        <InputGroup size="lg" marginY="6">
+          <InputLeftElement
+            pointerEvents="none"
+            children={<Icon as={RiUserFill} color="gray.300" />}
+          />
+          <Input type="text" placeholder="用户名" isRequired />
+        </InputGroup>
 
         <InputGroup size="lg" marginY="6">
           <InputLeftElement
@@ -72,7 +81,7 @@ const RegisterPage = () => {
             />
           </InputRightElement>
         </InputGroup>
-        
+
         <InputGroup size="lg" marginY="6">
           <InputLeftElement
             pointerEvents="none"
@@ -139,4 +148,4 @@ const RegisterPage = () => {
   )
 }
 
-export default RegisterPage
+export default SignupPage

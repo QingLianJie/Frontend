@@ -54,7 +54,7 @@ const ResetPasswordPage = () => {
               <Text fontSize="md">登录</Text>
             </Link>
           </NextLink>
-          <NextLink href="/register" passHref>
+          <NextLink href="/signup" passHref>
             <Link
               position="relative"
               display="flex"

@@ -1,24 +1,36 @@
-import { Box, Container, SimpleGrid } from '@chakra-ui/react'
+import { Box, Container, SimpleGrid, Button } from '@chakra-ui/react'
 import Head from 'next/head'
+import { useState } from 'react'
 import ButtonTile from '../components/dashboard/ButtonTile'
 import LinkTile from '../components/dashboard/LinkTile'
 import NotificationTile from '../components/dashboard/NotificationTile'
-import UserTile from '../components/dashboard/UserTile'
+import { UserTile, UserTileLogged } from '../components/dashboard/UserTile'
 import Footer from '../components/Footer'
 import { HeaderBar } from '../components/NavBar'
 import { buttons, links } from '../data/meta'
 
 const Index = () => {
+  const [logged, setLogged] = useState(false)
+
   return (
     <>
       <Head>
         <title>清廉街</title>
       </Head>
+      <Button
+        position="fixed"
+        left="6"
+        top="6"
+        onClick={() => setLogged(!logged)}
+      >
+        切换登录{' '}
+      </Button>
       <Container maxW="container.lg" paddingY="2">
         <HeaderBar />
         <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={0}>
           <Box as="section">
-            <UserTile />
+            {logged ? <UserTileLogged /> : <UserTile />}
+
             <SimpleGrid columns={{ base: 3, sm: 4, md: 6, lg: 4 }}>
               {links.map(
                 link =>

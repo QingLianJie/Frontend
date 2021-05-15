@@ -80,7 +80,7 @@ const LoginPage = () => {
         </InputGroup>
 
         <HStack divider={<StackDivider />} justify="center">
-          <NextLink href="/register" passHref>
+          <NextLink href="/signup" passHref>
             <Link
               position="relative"
               display="flex"

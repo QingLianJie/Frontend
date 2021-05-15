@@ -1,6 +1,7 @@
 import {
   Avatar,
   Button,
+  Box,
   ButtonGroup,
   Flex,
   LinkBox,
@@ -21,7 +22,7 @@ const UserTile = () => {
     >
       <Avatar bg="teal.500" w="10" h="10" marginRight="6" />
       <Flex flexDirection="column" justifyContent="center">
-        <Text fontSize="xl" marginY="0.25">
+        <Text fontSize="xl" marginY="0.5" fontWeight="bold">
           未登录
         </Text>
       </Flex>
@@ -38,7 +39,7 @@ const UserTile = () => {
         </LinkBox>
         <LinkBox>
           <Button colorScheme="green">
-            <NextLink href="/register" passHref>
+            <NextLink href="/signup" passHref>
               <LinkOverlay>
                 <Text>注册</Text>
               </LinkOverlay>
@@ -50,4 +51,56 @@ const UserTile = () => {
   )
 }
 
-export default UserTile
+const UserTileLogged = () => {
+  return (
+    <Flex
+      flexDirection="column"
+      justifyContent="center"
+      borderWidth="1px"
+      rounded="md"
+      margin="2"
+      padding="6"
+    >
+      <Flex>
+        <Avatar
+          bg="teal.500"
+          w="16"
+          h="16"
+          marginRight="6"
+          src="https://file.lifeni.life/avatar.jpg"
+        />
+        <Flex flexDirection="column" justifyContent="center">
+          <Text fontSize="xl" marginY="0.5" fontWeight="bold">
+            一个用户
+          </Text>
+          <Text fontSize="sm" color="gray.500" marginY="0.5">
+            已绑定：2018XXXXXX
+          </Text>
+        </Flex>
+      </Flex>
+      <Flex
+        flexDirection="column"
+        alignItems="flex-end"
+        justifyContent="center"
+        marginTop="6"
+      >
+        <ButtonGroup spacing="4">
+          <Button>
+            <Text>修改信息</Text>
+          </Button>
+          <Button colorScheme="red">
+            <Text>退出登录</Text>
+          </Button>
+        </ButtonGroup>
+      </Flex>
+      {/*
+      <ButtonGroup spacing="4">
+        <Button colorScheme="red">
+          <Text>退出登录</Text>
+        </Button>
+      </ButtonGroup> */}
+    </Flex>
+  )
+}
+
+export { UserTile, UserTileLogged }
