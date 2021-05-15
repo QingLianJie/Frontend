@@ -1,5 +1,7 @@
 import {
-  Avatar,
+  Box,
+  Button,
+  ButtonGroup,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -10,23 +12,30 @@ import {
   Icon,
   IconButton,
   Link,
+  LinkBox,
+  LinkOverlay,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Spacer,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { RiMenuFill } from 'react-icons/ri'
-import { links } from '../data/meta'
+import meta from '../data/meta'
+import { IHeaderDrawLinkProps, IHeaderProps } from '../next-env'
 
 const HeaderLink = ({ href, icon, text, color }) => {
   return (
     <NextLink href={href} passHref>
       <Link
-        position="relative"
-        display="flex"
+        pos="relative"
+        d="flex"
         alignItems="center"
-        paddingX="3"
-        paddingY="1.5"
+        px="3"
+        py="1.5"
         rounded="md"
         _hover={{
           textDecoration: 'none',
@@ -34,6 +43,7 @@ const HeaderLink = ({ href, icon, text, color }) => {
             bg: 'gray.100',
           },
         }}
+        _focus={{ boxShadow: 'outline' }}
       >
         <Icon as={icon} w="5" h="5" marginRight="3" color={color} />
         <Text fontSize="md">{text}</Text>
@@ -42,19 +52,26 @@ const HeaderLink = ({ href, icon, text, color }) => {
   )
 }
 
-const HeaderDrawerLink = ({ href, icon, text, color }) => {
+const HeaderDrawerLink = ({
+  href,
+  icon,
+  text,
+  color,
+  small,
+}: IHeaderDrawLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
-        position="relative"
-        display="flex"
+        pos="relative"
+        d="flex"
         alignItems="center"
-        paddingX="3"
-        paddingY="3"
+        px={small ? '2' : '3'}
+        py={small ? '1' : '3'}
         rounded="md"
         _hover={{
           textDecoration: 'none',
         }}
+        _focus={{ boxShadow: 'outline' }}
       >
         <Icon as={icon} w="5" h="5" marginRight="4" color={color} />
         <Text fontSize="md">{text}</Text>
@@ -69,13 +86,15 @@ const HeaderDrawer = () => {
   return (
     <>
       <IconButton
-        display={{ base: 'flex', md: 'none' }}
+        d={{ base: 'flex', md: 'none' }}
         alignItems="center"
         justifyContent="center"
         marginRight="2"
         aria-label="Menu"
         icon={<RiMenuFill />}
         onClick={onOpen}
+        variant="outline"
+        size="sm"
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
@@ -83,16 +102,49 @@ const HeaderDrawer = () => {
           <DrawerHeader padding="9" borderBottomWidth="1px">
             页面
           </DrawerHeader>
-          <DrawerBody paddingY="6">
-            {links.map(link => (
-              <HeaderDrawerLink
-                key={link.name}
-                href={link.href}
-                icon={link.icon}
-                text={link.text}
-                color={link.color}
-              />
-            ))}
+          <DrawerBody py="6">
+            <HeaderDrawerLink
+              href="/"
+              icon={meta['home'].icon}
+              text={meta['home'].text}
+              color={meta['home'].color}
+            />
+            <HeaderDrawerLink
+              href="/scores"
+              icon={meta['scores'].icon}
+              text={meta['scores'].text}
+              color={meta['scores'].color}
+            />
+            <HeaderDrawerLink
+              href="/timetable"
+              icon={meta['timetable'].icon}
+              text={meta['timetable'].text}
+              color={meta['timetable'].color}
+            />
+            <HeaderDrawerLink
+              href="/courses"
+              icon={meta['courses'].icon}
+              text={meta['courses'].text}
+              color={meta['courses'].color}
+            />
+            <HeaderDrawerLink
+              href="/report"
+              icon={meta['report'].icon}
+              text={meta['report'].text}
+              color={meta['report'].color}
+            />
+            <HeaderDrawerLink
+              href="/feedback"
+              icon={meta['feedback'].icon}
+              text={meta['feedback'].text}
+              color={meta['feedback'].color}
+            />
+            <HeaderDrawerLink
+              href="/open-source"
+              icon={meta['open-source'].icon}
+              text={meta['open-source'].text}
+              color={meta['open-source'].color}
+            />
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -105,7 +157,7 @@ const Header = ({ title, showNav }: IHeaderProps) => {
     <Flex as="header" padding="6" alignItems="center">
       {showNav && <HeaderDrawer />}
 
-      <Heading as="h1" size="md" paddingX="3">
+      <Heading as="h1" size="md" px="3">
         {title}
       </Heading>
 
@@ -115,24 +167,113 @@ const Header = ({ title, showNav }: IHeaderProps) => {
         <Flex
           as="nav"
           alignItems="center"
-          paddingX="3"
-          display={{ base: 'none', md: 'flex' }}
+          px="3"
+          d={{ base: 'none', md: 'flex' }}
         >
-          {links.map(link => (
-            <HeaderLink
-              key={link.name}
-              href={link.href}
-              icon={link.icon}
-              text={link.text}
-              color={link.color}
-            />
-          ))}
+          <HeaderLink
+            href="/"
+            icon={meta['home'].icon}
+            text={meta['home'].text}
+            color={meta['home'].color}
+          />
+          <HeaderLink
+            href="/scores"
+            icon={meta['scores'].icon}
+            text={meta['scores'].text}
+            color={meta['scores'].color}
+          />
+          <HeaderLink
+            href="/timetable"
+            icon={meta['timetable'].icon}
+            text={meta['timetable'].text}
+            color={meta['timetable'].color}
+          />
+          <HeaderLink
+            href="/courses"
+            icon={meta['courses'].icon}
+            text={meta['courses'].text}
+            color={meta['courses'].color}
+          />
+
+          <Menu>
+            <MenuButton
+              pos="relative"
+              px="3"
+              py="1.5"
+              rounded="md"
+              _hover={{
+                textDecoration: 'none',
+                _hover: {
+                  bg: 'gray.100',
+                },
+              }}
+              _focus={{ boxShadow: 'outline' }}
+              aria-label={meta['more'].text}
+            >
+              <Box d="flex" alignItems="center">
+                <Icon
+                  as={meta['more'].icon}
+                  w="5"
+                  h="5"
+                  color={meta['more'].color}
+                />
+              </Box>
+            </MenuButton>
+            <MenuList>
+              <MenuItem>
+                <HeaderDrawerLink
+                  href="/report"
+                  icon={meta['report'].icon}
+                  text={meta['report'].text}
+                  color={meta['report'].color}
+                  small
+                />
+              </MenuItem>
+              <MenuItem>
+                <HeaderDrawerLink
+                  href="/feedback"
+                  icon={meta['feedback'].icon}
+                  text={meta['feedback'].text}
+                  color={meta['feedback'].color}
+                  small
+                />
+              </MenuItem>
+              <MenuItem>
+                <HeaderDrawerLink
+                  href="/open-source"
+                  icon={meta['open-source'].icon}
+                  text={meta['open-source'].text}
+                  color={meta['open-source'].color}
+                  small
+                />
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </Flex>
       )}
 
       <Spacer />
 
-      <Avatar bg="teal.500" w="8" h="8" marginX="2" marginY="1" />
+      <ButtonGroup px="3" spacing="3" size="sm">
+        <LinkBox>
+          <Button colorScheme="green">
+            <NextLink href="/login" passHref>
+              <LinkOverlay>
+                <Text>登录</Text>
+              </LinkOverlay>
+            </NextLink>
+          </Button>
+        </LinkBox>
+        <LinkBox>
+          <Button colorScheme="blue">
+            <NextLink href="/signup" passHref>
+              <LinkOverlay>
+                <Text>注册</Text>
+              </LinkOverlay>
+            </NextLink>
+          </Button>
+        </LinkBox>
+      </ButtonGroup>
     </Flex>
   )
 }

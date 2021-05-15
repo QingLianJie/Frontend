@@ -1,65 +1,53 @@
 import {
+  RiArrowDownSLine,
   RiBarChartBoxFill,
   RiBookOpenFill,
   RiDashboardFill,
   RiFeedbackFill,
   RiGalleryUploadFill,
-  RiGithubFill,
   RiOpenSourceFill,
   RiTableFill,
 } from 'react-icons/ri'
 
-const links = [
-  {
-    name: 'home',
-    href: '/',
+export default {
+  home: {
     text: '主页',
-    color: 'rgba(237,100,166,1)',
+    color: '#ed64a6',
     icon: RiDashboardFill,
   },
-  {
-    name: 'scores',
-    href: '/scores',
+  scores: {
     icon: RiBarChartBoxFill,
     text: '成绩',
-    color: 'rgba(72,187,120,1)',
+    color: '#48bb78',
   },
-  {
-    name: 'timetable',
-    href: '/timetable',
+  timetable: {
     icon: RiTableFill,
     text: '课表',
-    color: 'rgba(66,153,225,1)',
+    color: '#4299e1',
   },
-  {
-    name: 'courses',
-    href: '/courses',
+  courses: {
     icon: RiBookOpenFill,
     text: '课程',
-    color: 'rgba(245,101,101,1)',
+    color: '#f56565',
   },
-  {
-    name: 'report',
-    href: '/report',
+  report: {
     icon: RiGalleryUploadFill,
     text: '报备',
-    color: 'rgba(236,201,75,1)',
+    color: '#ecc94b',
   },
-]
-
-const buttons = [
-  {
-    name: 'feedback',
+  feedback: {
     text: '反馈',
-    color: '#ED8936',
+    color: '#ed8936',
     icon: RiFeedbackFill,
   },
-  {
-    name: 'open-source',
+  'open-source': {
     text: '开源',
-    color: '#48BB78',
+    color: '#48bb78',
     icon: RiOpenSourceFill,
   },
-]
-
-export { links, buttons }
+  more: {
+    text: '更多',
+    color: '#ed64a6',
+    icon: RiArrowDownSLine,
+  },
+}
