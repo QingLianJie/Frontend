@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import { NavBar } from '../../components/NavBar'
+import Header from '../../components/Header'
+import Main from '../../components/Main'
 
 const Timetable = () => {
   return (
@@ -7,7 +8,9 @@ const Timetable = () => {
       <Head>
         <title>课表 | 清廉街</title>
       </Head>
-      <NavBar title="课表" />
+      <Main>
+        <Header title="课表" showNav />
+      </Main>
     </>
   )
 }

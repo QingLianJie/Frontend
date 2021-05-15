@@ -8,6 +8,8 @@ const Footer = () => {
       paddingY="8"
       flexDirection="column"
       alignItems="center"
+      justifyContent="flex-end"
+      flex="1"
     >
       <Text fontSize="md" color="gray.500" fontWeight="bold">
         Working In Progress

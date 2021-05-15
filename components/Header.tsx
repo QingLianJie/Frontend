@@ -18,7 +18,7 @@ import { default as NextLink } from 'next/link'
 import { RiMenuFill } from 'react-icons/ri'
 import { links } from '../data/meta'
 
-const NavBarLink = ({ href, icon, text, color }) => {
+const HeaderLink = ({ href, icon, text, color }) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -42,7 +42,7 @@ const NavBarLink = ({ href, icon, text, color }) => {
   )
 }
 
-const NavBarDrawerLink = ({ href, icon, text, color }) => {
+const HeaderDrawerLink = ({ href, icon, text, color }) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -63,7 +63,7 @@ const NavBarDrawerLink = ({ href, icon, text, color }) => {
   )
 }
 
-const NavBarDrawer = () => {
+const HeaderDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -85,7 +85,7 @@ const NavBarDrawer = () => {
           </DrawerHeader>
           <DrawerBody paddingY="6">
             {links.map(link => (
-              <NavBarDrawerLink
+              <HeaderDrawerLink
                 key={link.name}
                 href={link.href}
                 icon={link.icon}
@@ -100,50 +100,41 @@ const NavBarDrawer = () => {
   )
 }
 
-const NavBar = ({ title }) => {
+const Header = ({ title, showNav }: IHeaderProps) => {
   return (
     <Flex as="header" padding="6" alignItems="center">
-      <NavBarDrawer />
+      {showNav && <HeaderDrawer />}
+
       <Heading as="h1" size="md" paddingX="3">
         {title}
       </Heading>
+
       <Spacer />
-      <Flex
-        as="nav"
-        alignItems="center"
-        paddingX="3"
-        display={{ base: 'none', md: 'flex' }}
-      >
-        {links.map(link => (
-          <NavBarLink
-            key={link.name}
-            href={link.href}
-            icon={link.icon}
-            text={link.text}
-            color={link.color}
-          />
-        ))}
-      </Flex>
+
+      {showNav && (
+        <Flex
+          as="nav"
+          alignItems="center"
+          paddingX="3"
+          display={{ base: 'none', md: 'flex' }}
+        >
+          {links.map(link => (
+            <HeaderLink
+              key={link.name}
+              href={link.href}
+              icon={link.icon}
+              text={link.text}
+              color={link.color}
+            />
+          ))}
+        </Flex>
+      )}
+
       <Spacer />
+
       <Avatar bg="teal.500" w="8" h="8" marginX="2" marginY="1" />
     </Flex>
   )
 }
 
-const HeaderBar = () => {
-  return (
-    <Flex
-      as="header"
-      flexDirection="column"
-      alignItems="center"
-      paddingX="6"
-      paddingY="16"
-    >
-      <Heading as="h1" size="lg">
-        清廉街
-      </Heading>
-    </Flex>
-  )
-}
-
-export { NavBar, HeaderBar }
+export default Header
