@@ -14,13 +14,20 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
       <Head>
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="还没想好怎么写。" />
+        <meta
+          name="description"
+          content="一个简单的网站，非官方，开放源代码。"
+        />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap"
           rel="stylesheet"
         />
+
+        <link rel="manifest" href="/manifest.webmanifest" />
+        <meta name="theme-color" content="#F687B3"></meta>
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>

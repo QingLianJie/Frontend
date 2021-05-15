@@ -21,13 +21,14 @@ const Index = () => {
         position="fixed"
         left="6"
         top="6"
+        zIndex="1000"
         onClick={() => setLogged(!logged)}
       >
-        切换登录{' '}
+        切换登录
       </Button>
       <Container maxW="container.lg" paddingY="2">
         <HeaderBar />
-        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={0}>
+        <SimpleGrid columns={{ base: 1, lg: 2 }}>
           <Box as="section">
             {logged ? <UserTileLogged /> : <UserTile />}
 
