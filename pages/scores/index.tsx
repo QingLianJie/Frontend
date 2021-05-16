@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../../components/Header'
 import Main from '../../components/Main'
 
-const Scores = () => {
+const ScoresPage = () => {
   return (
     <>
       <Head>
@@ -15,4 +15,4 @@ const Scores = () => {
   )
 }
 
-export default Scores
+export default ScoresPage

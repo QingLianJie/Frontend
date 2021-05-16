@@ -1,15 +1,21 @@
-const homeLink = ['courses', 'scores', 'timetable', 'report', 'open-source']
+const homeLink = [
+  'courses',
+  'scores',
+  'timetable',
+  'auto-report',
+  'open-source',
+]
 
 const drawerLink = [
   'home',
   'courses',
   'scores',
   'timetable',
-  'report',
+  'auto-report',
   'open-source',
 ]
 
-const navLink = ['home', 'courses', 'scores', 'timetable', 'report']
+const navLink = ['home', 'courses', 'scores', 'timetable', 'auto-report']
 
 const menuLink = ['open-source']
 

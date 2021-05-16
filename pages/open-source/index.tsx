@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 import { NormalButtonLink } from '../../components/Link'
 import Main from '../../components/Main'
 
-const OpenSource = () => {
+const OpenSourcePage = () => {
   return (
     <>
       <Head>
@@ -47,4 +47,4 @@ const OpenSource = () => {
   )
 }
 
-export default OpenSource
+export default OpenSourcePage

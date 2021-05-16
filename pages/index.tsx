@@ -22,7 +22,7 @@ const items = Array.from(Array(10), () => {
   }
 })
 
-const Index = () => {
+const IndexPage = () => {
   return (
     <>
       <Head>
@@ -59,4 +59,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default IndexPage

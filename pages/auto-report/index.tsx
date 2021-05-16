@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../../components/Header'
 import Main from '../../components/Main'
 
-const Report = () => {
+const AutoReportPage = () => {
   return (
     <>
       <Head>
@@ -15,4 +15,4 @@ const Report = () => {
   )
 }
 
-export default Report
+export default AutoReportPage

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../../components/Header'
 import Main from '../../components/Main'
 
-const Timetable = () => {
+const TimetablePage = () => {
   return (
     <>
       <Head>
@@ -15,4 +15,4 @@ const Timetable = () => {
   )
 }
 
-export default Timetable
+export default TimetablePage

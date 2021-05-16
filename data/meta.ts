@@ -33,11 +33,11 @@ export default {
     color: '#f56565',
     href: '/courses',
   },
-  report: {
+  'auto-report': {
     icon: RiGalleryUploadFill,
     text: '报备',
     color: '#ecc94b',
-    href: '/report',
+    href: '/auto-report',
   },
   'open-source': {
     text: '开源',
