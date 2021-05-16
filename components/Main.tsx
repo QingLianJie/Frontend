@@ -5,7 +5,6 @@ const Main = ({ children }) => {
     <>
       <Container
         maxW="container.lg"
-        paddingY="2"
         minH="100vh"
         display="flex"
         flexDirection="column"

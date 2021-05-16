@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   ButtonGroup,
@@ -18,6 +19,11 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
   Spacer,
   Text,
   useDisclosure,
@@ -45,8 +51,10 @@ const HeaderLink = ({ href, icon, text, color }) => {
         }}
         _focus={{ boxShadow: 'outline' }}
       >
-        <Icon as={icon} w="5" h="5" marginRight="3" color={color} />
-        <Text fontSize="md">{text}</Text>
+        <Icon as={icon} w="5" h="5" mr="3" color={color} />
+        <Text fontSize="md" mr="1">
+          {text}
+        </Text>
       </Link>
     </NextLink>
   )
@@ -73,7 +81,7 @@ const HeaderDrawerLink = ({
         }}
         _focus={{ boxShadow: 'outline' }}
       >
-        <Icon as={icon} w="5" h="5" marginRight="4" color={color} />
+        <Icon as={icon} w="5" h="5" mr={small ? '3' : '4'} color={color} />
         <Text fontSize="md">{text}</Text>
       </Link>
     </NextLink>
@@ -89,12 +97,10 @@ const HeaderDrawer = () => {
         d={{ base: 'flex', md: 'none' }}
         alignItems="center"
         justifyContent="center"
-        marginRight="2"
+        mr="2"
         aria-label="Menu"
         icon={<RiMenuFill />}
         onClick={onOpen}
-        variant="outline"
-        size="sm"
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
@@ -154,10 +160,10 @@ const HeaderDrawer = () => {
 
 const Header = ({ title, showNav }: IHeaderProps) => {
   return (
-    <Flex as="header" padding="6" alignItems="center">
+    <Flex as="header" px="4" py="6" alignItems="center">
       {showNav && <HeaderDrawer />}
 
-      <Heading as="h1" size="md" px="3">
+      <Heading as="h1" size="md" px="1">
         {title}
       </Heading>
 
@@ -198,8 +204,8 @@ const Header = ({ title, showNav }: IHeaderProps) => {
           <Menu>
             <MenuButton
               pos="relative"
-              px="3"
-              py="1.5"
+              px="4"
+              py="2"
               rounded="md"
               _hover={{
                 textDecoration: 'none',
@@ -219,7 +225,7 @@ const Header = ({ title, showNav }: IHeaderProps) => {
                 />
               </Box>
             </MenuButton>
-            <MenuList>
+            <MenuList minW="unset">
               <MenuItem>
                 <HeaderDrawerLink
                   href="/report"
@@ -254,26 +260,49 @@ const Header = ({ title, showNav }: IHeaderProps) => {
 
       <Spacer />
 
-      <ButtonGroup px="3" spacing="3" size="sm">
-        <LinkBox>
-          <Button colorScheme="green">
-            <NextLink href="/login" passHref>
-              <LinkOverlay>
-                <Text>登录</Text>
-              </LinkOverlay>
-            </NextLink>
-          </Button>
-        </LinkBox>
-        <LinkBox>
-          <Button colorScheme="blue">
-            <NextLink href="/signup" passHref>
-              <LinkOverlay>
-                <Text>注册</Text>
-              </LinkOverlay>
-            </NextLink>
-          </Button>
-        </LinkBox>
-      </ButtonGroup>
+      <Popover placement="bottom-end">
+        <PopoverTrigger>
+          <Avatar bg="gray.300" w="8" h="8" cursor="pointer" />
+        </PopoverTrigger>
+        <PopoverContent minW="unset" w="auto">
+          <PopoverArrow />
+
+          <PopoverBody p="4">
+            <Box mb="3" px="1">
+              <Text>
+                这里是 <strong>清廉街</strong>，
+              </Text>
+              <Text>考虑登录一下吗？</Text>
+            </Box>
+
+            <ButtonGroup
+              spacing="3"
+              d="flex"
+              justifyContent="flex-end"
+              size="sm"
+            >
+              <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
+                <Button colorScheme="green" isFullWidth>
+                  <NextLink href="/login" passHref>
+                    <LinkOverlay>
+                      <Text>登录</Text>
+                    </LinkOverlay>
+                  </NextLink>
+                </Button>
+              </LinkBox>
+              <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
+                <Button colorScheme="blue" isFullWidth>
+                  <NextLink href="/signup" passHref>
+                    <LinkOverlay>
+                      <Text>注册</Text>
+                    </LinkOverlay>
+                  </NextLink>
+                </Button>
+              </LinkBox>
+            </ButtonGroup>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
     </Flex>
   )
 }

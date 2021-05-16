@@ -9,12 +9,9 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Link,
   StackDivider,
-  Text,
 } from '@chakra-ui/react'
 import Head from 'next/head'
-import { default as NextLink } from 'next/link'
 import { useState } from 'react'
 import {
   RiEyeFill,
@@ -23,6 +20,8 @@ import {
   RiMailFill,
   RiUserFill,
 } from 'react-icons/ri'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
 import { NormalLink } from '../../components/Link'
 import Main from '../../components/Main'
 
@@ -34,9 +33,11 @@ const SignupPage = () => {
         <title>注册 | 清廉街</title>
       </Head>
       <Main>
+        <Header title="清廉街" showNav />
+
         <Container
           maxW="sm"
-          py="6"
+          py="4"
           display="flex"
           flex="1"
           flexDirection="column"
@@ -121,6 +122,8 @@ const SignupPage = () => {
             <NormalLink href="/reset-password" text="重置密码" />
           </HStack>
         </Container>
+
+        <Footer />
       </Main>
     </>
   )

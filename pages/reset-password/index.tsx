@@ -4,12 +4,10 @@ import {
   Heading,
   HStack,
   InputGroup,
-  Link,
   StackDivider,
-  Text,
 } from '@chakra-ui/react'
 import Head from 'next/head'
-import { default as NextLink } from 'next/link'
+import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import { NormalLink } from '../../components/Link'
 import Main from '../../components/Main'
@@ -21,9 +19,11 @@ const ResetPasswordPage = () => {
         <title>重置密码 | 清廉街</title>
       </Head>
       <Main>
+        <Header title="清廉街" showNav />
+
         <Container
           maxW="sm"
-          py="6"
+          py="4"
           display="flex"
           flex="1"
           flexDirection="column"
@@ -51,6 +51,8 @@ const ResetPasswordPage = () => {
             <NormalLink href="/signup" text="注册" />
           </HStack>
         </Container>
+
+        <Footer />
       </Main>
     </>
   )

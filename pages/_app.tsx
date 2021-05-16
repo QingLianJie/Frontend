@@ -28,6 +28,9 @@ function MyApp({ Component, pageProps }) {
 
         <link rel="manifest" href="/manifest.webmanifest" />
         <meta name="theme-color" content="#F687B3"></meta>
+
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" type="image/png" href="/logo.png" />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>
