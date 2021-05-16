@@ -37,8 +37,14 @@ const AutoReportPage = () => {
               justifyContent="center"
             >
               自动报备
-              <Badge fontSize="0.75em" ml="4" colorScheme="pink">
-                Beta
+              <Badge
+                py="1.5"
+                px="2"
+                fontSize="0.65em"
+                ml="4"
+                colorScheme="gray"
+              >
+                已关闭
               </Badge>
             </Heading>
             <Text fontSize="md" w="full" textAlign="center" lineHeight="1.75">
@@ -46,10 +52,10 @@ const AutoReportPage = () => {
               <strong>当日 6:00 ~ 22:00</strong>，是否开启？
             </Text>
             <VStack my="6" spacing="4">
-              <Button colorScheme="green" isFullWidth>
+              <Button colorScheme="yellow" isFullWidth>
                 开启
               </Button>
-              <Button isFullWidth>只开启一次试试</Button>
+              <Button isFullWidth>只开启一次</Button>
             </VStack>
           </Container>
         </Flex>

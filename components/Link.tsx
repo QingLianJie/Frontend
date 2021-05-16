@@ -116,7 +116,7 @@ const AppIconLink = ({ href, icon, text, color }) => {
 const NormalButtonLink = ({ href, text, external }: INormalButtonLinkProps) => {
   if (external) {
     return (
-      <LinkBox isExternal>
+      <LinkBox>
         <Button
           as="div"
           rightIcon={external && <RiExternalLinkFill />}
