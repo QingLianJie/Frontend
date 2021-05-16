@@ -34,7 +34,7 @@ const Index = () => {
         <Grid
           templateColumns="repeat(auto-fit, 84px)"
           justifyContent="center"
-          pt={{ base: 0, md: 4, lg: 6 }}
+          pt={{ base: 0, lg: 2 }}
           pb={{ base: 0, md: 8, lg: 12 }}
           gap={{ base: 0, lg: 1 }}
         >
@@ -49,7 +49,7 @@ const Index = () => {
           ))}
         </Grid>
 
-        <Box pt="8" pb={{ base: 0, lg: 8 }}>
+        <Box pt="6" pb={{ base: 0, lg: 6 }}>
           <Masonry items={items} render={PostCard} columnWidth={320} />
         </Box>
 

@@ -98,7 +98,7 @@ const AppIconLink = ({ href, icon, text, color }) => {
         }}
         _focus={{ boxShadow: 'outline' }}
       >
-        <Icon as={icon} w="8" h="8" mb="3" color={color} />
+        <Icon as={icon} w="9" h="9" mb="3" color={color} />
         <Text fontSize="md">{text}</Text>
       </Link>
     </NextLink>

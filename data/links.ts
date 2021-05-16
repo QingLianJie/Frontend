@@ -1,24 +1,16 @@
-const homeLink = [
-  'scores',
-  'timetable',
-  'courses',
-  'report',
-  'feedback',
-  'open-source',
-]
+const homeLink = ['courses', 'scores', 'timetable', 'report', 'open-source']
 
 const drawerLink = [
   'home',
+  'courses',
   'scores',
   'timetable',
-  'courses',
   'report',
-  'feedback',
   'open-source',
 ]
 
-const navLink = ['home', 'scores', 'timetable', 'courses', 'report']
+const navLink = ['home', 'courses', 'scores', 'timetable', 'report']
 
-const menuLink = ['feedback', 'open-source']
+const menuLink = ['open-source']
 
 export { homeLink, drawerLink, navLink, menuLink }
