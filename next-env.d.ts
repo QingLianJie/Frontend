@@ -20,6 +20,12 @@ interface IListIconLinkProps {
   small?: boolean
 }
 
+interface INormalButtonLinkProps {
+  href: string
+  text: string
+  external?: boolean
+}
+
 interface IPostCardProps {
   id: string
   title: string

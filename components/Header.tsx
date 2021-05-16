@@ -147,7 +147,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
 
       <Popover placement="bottom-end" initialFocusRef={initialFocusRef}>
         <PopoverTrigger>
-          <Avatar bg="gray.300" w="8" h="8" cursor="pointer" />
+          <Avatar bg="gray.300" w="9" h="9" cursor="pointer" />
         </PopoverTrigger>
         <PopoverContent minW="unset" w="auto">
           <PopoverArrow />

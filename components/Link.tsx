@@ -1,6 +1,14 @@
-import { Icon, Link, Text } from '@chakra-ui/react'
+import {
+  Button,
+  Icon,
+  Link,
+  LinkBox,
+  LinkOverlay,
+  Text,
+} from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { IListIconLinkProps } from '../next-env'
+import { RiExternalLinkFill } from 'react-icons/ri'
+import { IListIconLinkProps, INormalButtonLinkProps } from '../next-env'
 
 const NormalLink = ({ href, text }) => {
   return (
@@ -105,4 +113,34 @@ const AppIconLink = ({ href, icon, text, color }) => {
   )
 }
 
-export { NormalLink, NormalIconLink, ListIconLink, AppIconLink }
+const NormalButtonLink = ({ href, text, external }: INormalButtonLinkProps) => {
+  if (external) {
+    return (
+      <LinkBox isExternal>
+        <Button
+          as="div"
+          rightIcon={external && <RiExternalLinkFill />}
+          iconSpacing="3"
+        >
+          <LinkOverlay href={href} isExternal>
+            {text}
+          </LinkOverlay>
+        </Button>
+      </LinkBox>
+    )
+  }
+
+  return (
+    <NextLink href={href}>
+      <Button>{text}</Button>
+    </NextLink>
+  )
+}
+
+export {
+  NormalLink,
+  NormalIconLink,
+  ListIconLink,
+  AppIconLink,
+  NormalButtonLink,
+}
