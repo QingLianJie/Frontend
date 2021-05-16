@@ -128,7 +128,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
             </MenuButton>
             <MenuList minW="unset">
               {menuLink.map(link => (
-                <MenuItem key={link}>
+                <MenuItem key={link} p="0">
                   <ListIconLink
                     href={meta[link].href}
                     icon={meta[link].icon}
@@ -154,10 +154,10 @@ const Header = ({ title, nav }: IHeaderProps) => {
 
           <PopoverBody p="5">
             <Box mb="3.5" px="1">
-              <Text>
+              <Text lineHeight="1.75">
                 这里是 <strong>清廉街</strong>，
               </Text>
-              <Text>考虑登录一下吗？</Text>
+              <Text lineHeight="1.75">考虑登录一下吗？</Text>
             </Box>
 
             <ButtonGroup

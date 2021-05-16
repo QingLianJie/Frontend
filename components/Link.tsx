@@ -71,8 +71,8 @@ const ListIconLink = ({
         pos="relative"
         d="flex"
         alignItems="center"
-        px={small ? '2' : '3'}
-        py={small ? '0' : '3'}
+        px={small ? '5' : '3'}
+        py={small ? '1.5' : '3'}
         rounded="md"
         _hover={{
           textDecoration: 'none',
