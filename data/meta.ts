@@ -5,7 +5,7 @@ import {
   RiDashboardFill,
   RiFeedbackFill,
   RiGalleryUploadFill,
-  RiOpenSourceFill,
+  RiGithubFill,
   RiTableFill,
 } from 'react-icons/ri'
 
@@ -48,8 +48,8 @@ export default {
   },
   'open-source': {
     text: '开源',
-    color: '#48bb78',
-    icon: RiOpenSourceFill,
+    color: '#171515',
+    icon: RiGithubFill,
     href: '/open-source',
   },
   more: {

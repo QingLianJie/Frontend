@@ -73,7 +73,7 @@ const HeaderDrawer = () => {
 
 const Header = ({ title, nav }: IHeaderProps) => {
   return (
-    <Flex as="header" px="4" py="6" alignItems="center">
+    <Flex as="header" minH="24" px="4" py="6" alignItems="center">
       {nav && <HeaderDrawer />}
 
       <Heading as="h1" size="md" px="1">

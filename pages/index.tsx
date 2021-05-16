@@ -19,7 +19,7 @@ const Index = () => {
           templateColumns="repeat(auto-fit, 84px)"
           justifyContent="center"
           px="4"
-          py="8"
+          py={{ base: 2, lg: 8 }}
         >
           {homeLink.map(link => (
             <AppIconLink

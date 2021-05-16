@@ -5,6 +5,7 @@ const Footer = ({ fill }: IFooterProps) => {
   return (
     <Flex
       as="footer"
+      minH="24"
       px="4"
       py="6"
       flexDirection="column"
@@ -12,7 +13,7 @@ const Footer = ({ fill }: IFooterProps) => {
       justifyContent="flex-end"
       flex={fill ? '1' : 'initial'}
     >
-      <Text fontSize="md" color="gray.500" fontWeight="bold" py="2">
+      <Text fontSize="md" color="gray.500" fontWeight="bold" py="4">
         Working In Progress
       </Text>
     </Flex>
