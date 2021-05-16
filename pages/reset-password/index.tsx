@@ -19,7 +19,7 @@ const ResetPasswordPage = () => {
         <title>重置密码 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="清廉街" showNav />
+        <Header title="清廉街" nav />
 
         <Container
           maxW="sm"

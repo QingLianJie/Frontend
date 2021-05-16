@@ -5,13 +5,17 @@ import { IconType } from 'react-icons/lib'
 
 interface IHeaderProps {
   title: string
-  showNav?: boolean
+  nav?: boolean
 }
 
-interface IHeaderDrawLinkProps {
+interface IListIconLinkProps {
   href: string
   icon: IconType
   text: string
   color: string
   small?: boolean
+}
+
+interface IFooterProps {
+  fill?: boolean
 }

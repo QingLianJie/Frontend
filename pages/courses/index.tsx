@@ -9,7 +9,7 @@ const Courses = () => {
         <title>课程 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="课程" showNav />
+        <Header title="课程" nav />
       </Main>
     </>
   )

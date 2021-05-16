@@ -9,7 +9,7 @@ const Feedback = () => {
         <title>反馈 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="反馈" showNav />
+        <Header title="反馈" nav />
       </Main>
     </>
   )

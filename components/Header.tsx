@@ -71,10 +71,10 @@ const HeaderDrawer = () => {
   )
 }
 
-const Header = ({ title, showNav }: IHeaderProps) => {
+const Header = ({ title, nav }: IHeaderProps) => {
   return (
     <Flex as="header" px="4" py="6" alignItems="center">
-      {showNav && <HeaderDrawer />}
+      {nav && <HeaderDrawer />}
 
       <Heading as="h1" size="md" px="1">
         {title}
@@ -82,7 +82,7 @@ const Header = ({ title, showNav }: IHeaderProps) => {
 
       <Spacer />
 
-      {showNav && (
+      {nav && (
         <Flex
           as="nav"
           alignItems="center"

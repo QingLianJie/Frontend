@@ -9,7 +9,7 @@ const OpenSource = () => {
         <title>开源 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="开源" showNav />
+        <Header title="开源" nav />
       </Main>
     </>
   )

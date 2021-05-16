@@ -9,7 +9,7 @@ const Timetable = () => {
         <title>课表 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="课表" showNav />
+        <Header title="课表" nav />
       </Main>
     </>
   )

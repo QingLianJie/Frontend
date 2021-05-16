@@ -33,7 +33,7 @@ const SignupPage = () => {
         <title>注册 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="清廉街" showNav />
+        <Header title="清廉街" nav />
 
         <Container
           maxW="sm"

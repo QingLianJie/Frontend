@@ -9,7 +9,7 @@ const Report = () => {
         <title>报备 | 清廉街</title>
       </Head>
       <Main>
-        <Header title="报备" showNav />
+        <Header title="报备" nav />
       </Main>
     </>
   )
