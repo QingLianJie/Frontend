@@ -12,7 +12,6 @@ import {
   Heading,
   Icon,
   IconButton,
-  Link,
   LinkBox,
   LinkOverlay,
   Menu,
@@ -30,63 +29,10 @@ import {
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { RiMenuFill } from 'react-icons/ri'
+import { drawerLink, menuLink, navLink } from '../data/links'
 import meta from '../data/meta'
-import { IHeaderDrawLinkProps, IHeaderProps } from '../next-env'
-
-const HeaderLink = ({ href, icon, text, color }) => {
-  return (
-    <NextLink href={href} passHref>
-      <Link
-        pos="relative"
-        d="flex"
-        alignItems="center"
-        px="3"
-        py="1.5"
-        rounded="md"
-        _hover={{
-          textDecoration: 'none',
-          _hover: {
-            bg: 'gray.100',
-          },
-        }}
-        _focus={{ boxShadow: 'outline' }}
-      >
-        <Icon as={icon} w="5" h="5" mr="3" color={color} />
-        <Text fontSize="md" mr="1">
-          {text}
-        </Text>
-      </Link>
-    </NextLink>
-  )
-}
-
-const HeaderDrawerLink = ({
-  href,
-  icon,
-  text,
-  color,
-  small,
-}: IHeaderDrawLinkProps) => {
-  return (
-    <NextLink href={href} passHref>
-      <Link
-        pos="relative"
-        d="flex"
-        alignItems="center"
-        px={small ? '2' : '3'}
-        py={small ? '1' : '3'}
-        rounded="md"
-        _hover={{
-          textDecoration: 'none',
-        }}
-        _focus={{ boxShadow: 'outline' }}
-      >
-        <Icon as={icon} w="5" h="5" mr={small ? '3' : '4'} color={color} />
-        <Text fontSize="md">{text}</Text>
-      </Link>
-    </NextLink>
-  )
-}
+import { IHeaderProps } from '../next-env'
+import { ListIconLink, NormalIconLink } from './Link'
 
 const HeaderDrawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -97,7 +43,7 @@ const HeaderDrawer = () => {
         d={{ base: 'flex', md: 'none' }}
         alignItems="center"
         justifyContent="center"
-        mr="2"
+        mr="4"
         aria-label="Menu"
         icon={<RiMenuFill />}
         onClick={onOpen}
@@ -109,48 +55,15 @@ const HeaderDrawer = () => {
             页面
           </DrawerHeader>
           <DrawerBody py="6">
-            <HeaderDrawerLink
-              href="/"
-              icon={meta['home'].icon}
-              text={meta['home'].text}
-              color={meta['home'].color}
-            />
-            <HeaderDrawerLink
-              href="/scores"
-              icon={meta['scores'].icon}
-              text={meta['scores'].text}
-              color={meta['scores'].color}
-            />
-            <HeaderDrawerLink
-              href="/timetable"
-              icon={meta['timetable'].icon}
-              text={meta['timetable'].text}
-              color={meta['timetable'].color}
-            />
-            <HeaderDrawerLink
-              href="/courses"
-              icon={meta['courses'].icon}
-              text={meta['courses'].text}
-              color={meta['courses'].color}
-            />
-            <HeaderDrawerLink
-              href="/report"
-              icon={meta['report'].icon}
-              text={meta['report'].text}
-              color={meta['report'].color}
-            />
-            <HeaderDrawerLink
-              href="/feedback"
-              icon={meta['feedback'].icon}
-              text={meta['feedback'].text}
-              color={meta['feedback'].color}
-            />
-            <HeaderDrawerLink
-              href="/open-source"
-              icon={meta['open-source'].icon}
-              text={meta['open-source'].text}
-              color={meta['open-source'].color}
-            />
+            {drawerLink.map(link => (
+              <ListIconLink
+                key={link}
+                href={meta[link].href}
+                icon={meta[link].icon}
+                text={meta[link].text}
+                color={meta[link].color}
+              />
+            ))}
           </DrawerBody>
         </DrawerContent>
       </Drawer>
@@ -176,30 +89,15 @@ const Header = ({ title, showNav }: IHeaderProps) => {
           px="3"
           d={{ base: 'none', md: 'flex' }}
         >
-          <HeaderLink
-            href="/"
-            icon={meta['home'].icon}
-            text={meta['home'].text}
-            color={meta['home'].color}
-          />
-          <HeaderLink
-            href="/scores"
-            icon={meta['scores'].icon}
-            text={meta['scores'].text}
-            color={meta['scores'].color}
-          />
-          <HeaderLink
-            href="/timetable"
-            icon={meta['timetable'].icon}
-            text={meta['timetable'].text}
-            color={meta['timetable'].color}
-          />
-          <HeaderLink
-            href="/courses"
-            icon={meta['courses'].icon}
-            text={meta['courses'].text}
-            color={meta['courses'].color}
-          />
+          {navLink.map(link => (
+            <NormalIconLink
+              key={link}
+              href={meta[link].href}
+              icon={meta[link].icon}
+              text={meta[link].text}
+              color={meta[link].color}
+            />
+          ))}
 
           <Menu>
             <MenuButton
@@ -226,33 +124,17 @@ const Header = ({ title, showNav }: IHeaderProps) => {
               </Box>
             </MenuButton>
             <MenuList minW="unset">
-              <MenuItem>
-                <HeaderDrawerLink
-                  href="/report"
-                  icon={meta['report'].icon}
-                  text={meta['report'].text}
-                  color={meta['report'].color}
-                  small
-                />
-              </MenuItem>
-              <MenuItem>
-                <HeaderDrawerLink
-                  href="/feedback"
-                  icon={meta['feedback'].icon}
-                  text={meta['feedback'].text}
-                  color={meta['feedback'].color}
-                  small
-                />
-              </MenuItem>
-              <MenuItem>
-                <HeaderDrawerLink
-                  href="/open-source"
-                  icon={meta['open-source'].icon}
-                  text={meta['open-source'].text}
-                  color={meta['open-source'].color}
-                  small
-                />
-              </MenuItem>
+              {menuLink.map(link => (
+                <MenuItem key={link}>
+                  <ListIconLink
+                    href={meta[link].href}
+                    icon={meta[link].icon}
+                    text={meta[link].text}
+                    color={meta[link].color}
+                    small
+                  />
+                </MenuItem>
+              ))}
             </MenuList>
           </Menu>
         </Flex>
