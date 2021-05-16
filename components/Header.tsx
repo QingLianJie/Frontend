@@ -152,8 +152,8 @@ const Header = ({ title, nav }: IHeaderProps) => {
         <PopoverContent minW="unset" w="auto">
           <PopoverArrow />
 
-          <PopoverBody p="4">
-            <Box mb="3" px="1">
+          <PopoverBody p="5">
+            <Box mb="3.5" px="1">
               <Text>
                 这里是 <strong>清廉街</strong>，
               </Text>
@@ -161,7 +161,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
             </Box>
 
             <ButtonGroup
-              spacing="3"
+              spacing="4"
               d="flex"
               justifyContent="flex-end"
               size="sm"
