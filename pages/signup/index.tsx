@@ -45,7 +45,7 @@ const SignupPage = () => {
         >
           <Heading
             as="h2"
-            size="lg"
+            fontSize="2xl"
             fontWeight="normal"
             mb="8"
             textAlign="center"
@@ -53,7 +53,7 @@ const SignupPage = () => {
             注册 <strong>清廉街</strong> 账号
           </Heading>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <InputLeftElement
               pointerEvents="none"
               children={<Icon as={RiUserFill} color="gray.300" />}
@@ -61,7 +61,7 @@ const SignupPage = () => {
             <Input type="text" placeholder="用户名" isRequired />
           </InputGroup>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <InputLeftElement
               pointerEvents="none"
               children={<Icon as={RiMailFill} color="gray.300" />}
@@ -69,7 +69,7 @@ const SignupPage = () => {
             <Input type="email" placeholder="邮箱" isRequired />
           </InputGroup>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <InputLeftElement
               pointerEvents="none"
               children={<Icon as={RiLockPasswordFill} color="gray.300" />}
@@ -90,7 +90,7 @@ const SignupPage = () => {
             </InputRightElement>
           </InputGroup>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <InputLeftElement
               pointerEvents="none"
               children={<Icon as={RiLockPasswordFill} color="gray.300" />}
@@ -111,7 +111,7 @@ const SignupPage = () => {
             </InputRightElement>
           </InputGroup>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <Button isFullWidth colorScheme="blue">
               注册
             </Button>

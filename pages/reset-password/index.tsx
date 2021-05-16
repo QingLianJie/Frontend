@@ -31,22 +31,21 @@ const ResetPasswordPage = () => {
         >
           <Heading
             as="h2"
-            size="lg"
+            fontSize="2xl"
             fontWeight="normal"
-            marginTop="6"
-            marginBottom="16"
+            mb="8"
             textAlign="center"
           >
             很遗憾，还没有这项服务
           </Heading>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <Button isFullWidth colorScheme="pink">
               那真是太遗憾了
             </Button>
           </InputGroup>
 
-          <HStack divider={<StackDivider />} justify="center" my="3">
+          <HStack divider={<StackDivider />} justify="center" my="2">
             <NormalLink href="/login" text="登录" />
             <NormalLink href="/signup" text="注册" />
           </HStack>

@@ -44,7 +44,7 @@ const LoginPage = () => {
         >
           <Heading
             as="h2"
-            size="lg"
+            fontSize="2xl"
             fontWeight="normal"
             mb="8"
             textAlign="center"
@@ -52,7 +52,7 @@ const LoginPage = () => {
             登录到 <strong>清廉街</strong>
           </Heading>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <InputLeftElement
               pointerEvents="none"
               children={<Icon as={RiMailFill} color="gray.300" />}
@@ -60,7 +60,7 @@ const LoginPage = () => {
             <Input type="email" placeholder="邮箱" isRequired />
           </InputGroup>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <InputLeftElement
               pointerEvents="none"
               children={<Icon as={RiLockPasswordFill} color="gray.300" />}
@@ -81,7 +81,7 @@ const LoginPage = () => {
             </InputRightElement>
           </InputGroup>
 
-          <InputGroup size="lg" my="3">
+          <InputGroup my="2">
             <Button isFullWidth colorScheme="green">
               登录
             </Button>

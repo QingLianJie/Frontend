@@ -23,8 +23,14 @@ const OpenSourcePage = () => {
           py="6"
         >
           <Img src="/assets/octocat.webp" w="48" maxW="full" mb="6" />
-          <Heading as="h2" fontSize="2xl" textAlign="center" lineHeight="1.75">
-            前后端均开放源代码
+          <Heading
+            as="h2"
+            fontSize="2xl"
+            textAlign="center"
+            fontWeight="normal"
+            lineHeight="1.75"
+          >
+            前后端均 <strong>开放源代码</strong>
             <br />
             代码托管在 GitHub 上
           </Heading>
