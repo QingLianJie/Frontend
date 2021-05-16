@@ -1,6 +1,6 @@
 import { Icon, Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { IHeaderDrawLinkProps } from '../next-env'
+import { IListIconLinkProps } from '../next-env'
 
 const NormalLink = ({ href, text }) => {
   return (
@@ -56,7 +56,7 @@ const ListIconLink = ({
   text,
   color,
   small,
-}: IHeaderDrawLinkProps) => {
+}: IListIconLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -78,4 +78,31 @@ const ListIconLink = ({
   )
 }
 
-export { NormalLink, NormalIconLink, ListIconLink }
+const AppIconLink = ({ href, icon, text, color }) => {
+  return (
+    <NextLink href={href} passHref>
+      <Link
+        pos="relative"
+        d="inline-flex"
+        alignItems="center"
+        flexDir="column"
+        px="5"
+        py="4"
+        mx="1"
+        rounded="md"
+        _hover={{
+          textDecoration: 'none',
+          _hover: {
+            bg: 'gray.100',
+          },
+        }}
+        _focus={{ boxShadow: 'outline' }}
+      >
+        <Icon as={icon} w="8" h="8" mb="3" color={color} />
+        <Text fontSize="md">{text}</Text>
+      </Link>
+    </NextLink>
+  )
+}
+
+export { NormalLink, NormalIconLink, ListIconLink, AppIconLink }
