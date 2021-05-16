@@ -28,6 +28,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
+import { useRef } from 'react'
 import { RiMenuFill } from 'react-icons/ri'
 import { drawerLink, menuLink, navLink } from '../data/links'
 import meta from '../data/meta'
@@ -72,6 +73,8 @@ const HeaderDrawer = () => {
 }
 
 const Header = ({ title, nav }: IHeaderProps) => {
+  const initialFocusRef = useRef()
+
   return (
     <Flex as="header" minH="24" px="4" py="6" alignItems="center">
       {nav && <HeaderDrawer />}
@@ -142,7 +145,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
 
       <Spacer />
 
-      <Popover placement="bottom-end">
+      <Popover placement="bottom-end" initialFocusRef={initialFocusRef}>
         <PopoverTrigger>
           <Avatar bg="gray.300" w="8" h="8" cursor="pointer" />
         </PopoverTrigger>
@@ -164,7 +167,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
               size="sm"
             >
               <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
-                <Button colorScheme="green" isFullWidth>
+                <Button colorScheme="green" isFullWidth ref={initialFocusRef}>
                   <NextLink href="/login" passHref>
                     <LinkOverlay>
                       <Text>登录</Text>

@@ -8,6 +8,10 @@ interface IHeaderProps {
   nav?: boolean
 }
 
+interface IFooterProps {
+  fill?: boolean
+}
+
 interface IListIconLinkProps {
   href: string
   icon: IconType
@@ -16,6 +20,9 @@ interface IListIconLinkProps {
   small?: boolean
 }
 
-interface IFooterProps {
-  fill?: boolean
+interface IPostCardProps {
+  id: string
+  title: string
+  content: string
+  date: string
 }
