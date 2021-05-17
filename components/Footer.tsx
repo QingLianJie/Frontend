@@ -19,6 +19,7 @@ const Footer = ({ fill }: IFooterProps) => {
         fontWeight="bold"
         py="1"
         lineHeight="1.75"
+        mr="4"
       >
         Working In Progress
       </Text>
