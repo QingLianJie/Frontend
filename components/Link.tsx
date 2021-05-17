@@ -71,7 +71,8 @@ const ListIconLink = ({
         pos="relative"
         d="flex"
         alignItems="center"
-        px={small ? '5' : '3'}
+        my="0.5"
+        px={small ? '5' : '4'}
         py={small ? '1.5' : '3'}
         rounded="md"
         _hover={{
@@ -79,7 +80,7 @@ const ListIconLink = ({
         }}
         _focus={{ boxShadow: 'outline' }}
       >
-        <Icon as={icon} w="5" h="5" mr={small ? '3' : '4'} color={color} />
+        <Icon as={icon} w="5" h="5" mr={small ? '3' : '5'} color={color} />
         <Text fontSize="md">{text}</Text>
       </Link>
     </NextLink>

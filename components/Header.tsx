@@ -29,7 +29,7 @@ import {
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { useRef } from 'react'
-import { RiMenuFill } from 'react-icons/ri'
+import { RiMenuFill, RiUserLine } from 'react-icons/ri'
 import { drawerLink, menuLink, navLink } from '../data/links'
 import meta from '../data/meta'
 import { IHeaderProps } from '../next-env'
@@ -52,7 +52,7 @@ const HeaderDrawer = () => {
       <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
-          <DrawerHeader padding="9" borderBottomWidth="1px">
+          <DrawerHeader px="10" py="9" borderBottomWidth="1px">
             页面
           </DrawerHeader>
           <DrawerBody py="6">
@@ -76,7 +76,14 @@ const Header = ({ title, nav }: IHeaderProps) => {
   const initialFocusRef = useRef()
 
   return (
-    <Flex as="header" minH="24" px="4" py="6" alignItems="center">
+    <Flex
+      as="header"
+      mb="6"
+      px={{ base: '5', md: '12' }}
+      py="5"
+      alignItems="center"
+      borderBottomWidth="1px"
+    >
       {nav && <HeaderDrawer />}
 
       <Heading as="h1" size="md" px="1">
@@ -147,7 +154,14 @@ const Header = ({ title, nav }: IHeaderProps) => {
 
       <Popover placement="bottom-end" initialFocusRef={initialFocusRef}>
         <PopoverTrigger>
-          <Avatar bg="gray.300" w="9" h="9" cursor="pointer" />
+          <Avatar
+            bg="gray.100"
+            icon={<RiUserLine />}
+            w="10"
+            h="10"
+            mx="1"
+            cursor="pointer"
+          />
         </PopoverTrigger>
         <PopoverContent minW="unset" w="auto">
           <PopoverArrow />

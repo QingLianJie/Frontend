@@ -1,4 +1,4 @@
-import { Box, Grid } from '@chakra-ui/layout'
+import { Box, Container, Grid } from '@chakra-ui/layout'
 import { Masonry } from 'masonic'
 import Head from 'next/head'
 import { PostCard } from '../components/Card'
@@ -30,28 +30,29 @@ const IndexPage = () => {
       </Head>
       <Main>
         <Header title="清廉街" />
+        <Container maxW="container.lg">
+          <Grid
+            templateColumns="repeat(auto-fit, 84px)"
+            justifyContent="center"
+            pt={{ base: 2, md: 8, lg: 12 }}
+            pb={{ base: 6, md: 12, lg: 16 }}
+            gap={{ base: 0, lg: 1 }}
+          >
+            {homeLink.map(link => (
+              <AppIconLink
+                key={link}
+                href={meta[link].href}
+                icon={meta[link].icon}
+                text={meta[link].text}
+                color={meta[link].color}
+              />
+            ))}
+          </Grid>
 
-        <Grid
-          templateColumns="repeat(auto-fit, 84px)"
-          justifyContent="center"
-          pt={{ base: 0, md: 2, lg: 4 }}
-          pb={{ base: 0, md: 6, lg: 8 }}
-          gap={{ base: 0, lg: 1 }}
-        >
-          {homeLink.map(link => (
-            <AppIconLink
-              key={link}
-              href={meta[link].href}
-              icon={meta[link].icon}
-              text={meta[link].text}
-              color={meta[link].color}
-            />
-          ))}
-        </Grid>
-
-        <Box pt="6" pb={{ base: 0, lg: 6 }}>
-          <Masonry items={items} render={PostCard} columnWidth={320} />
-        </Box>
+          <Box pt="0" pb={{ base: 0, lg: 6 }}>
+            <Masonry items={items} render={PostCard} columnWidth={320} />
+          </Box>
+        </Container>
 
         <Footer fill />
       </Main>

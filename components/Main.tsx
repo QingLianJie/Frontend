@@ -4,10 +4,12 @@ const Main = ({ children }) => {
   return (
     <>
       <Container
-        maxW="container.lg"
+        w="100%"
+        maxW="full"
         minH="100vh"
-        display="flex"
-        flexDirection="column"
+        p="0"
+        d="flex"
+        flexDir="column"
       >
         {children}
       </Container>
