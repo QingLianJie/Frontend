@@ -79,14 +79,19 @@ const Header = ({ title, nav }: IHeaderProps) => {
     <Flex
       as="header"
       mb="6"
-      px={{ base: '5', md: '12' }}
+      px={{ base: '6', md: '12' }}
       py="5"
       alignItems="center"
       borderBottomWidth="1px"
+      pos="sticky"
+      top="0"
+      zIndex="100"
+      bg="whiteAlpha.800"
+      style={{ backdropFilter: 'blur(8px)' }}
     >
       {nav && <HeaderDrawer />}
 
-      <Heading as="h1" size="md" px="1">
+      <Heading as="h1" size="md" px="1.5">
         {title}
       </Heading>
 
