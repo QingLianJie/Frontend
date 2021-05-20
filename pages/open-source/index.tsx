@@ -22,7 +22,7 @@ const OpenSourcePage = () => {
           alignItems="center"
           py="6"
         >
-          <Img src="/assets/octocat.webp" w="48" maxW="full" mb="6" />
+          <Img src="/assets/octocat.webp" w="48" maxW="full" mb="8" />
           <Heading
             as="h2"
             fontSize="2xl"
