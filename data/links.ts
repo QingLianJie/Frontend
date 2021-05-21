@@ -3,6 +3,7 @@ const homeLink = [
   'scores',
   'timetable',
   'auto-report',
+  'feedback',
   'open-source',
 ]
 
@@ -12,11 +13,12 @@ const drawerLink = [
   'scores',
   'timetable',
   'auto-report',
+  'feedback',
   'open-source',
 ]
 
 const navLink = ['home', 'courses', 'scores', 'timetable', 'auto-report']
 
-const menuLink = ['open-source']
+const menuLink = ['feedback', 'open-source']
 
 export { homeLink, drawerLink, navLink, menuLink }

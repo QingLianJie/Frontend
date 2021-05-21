@@ -3,6 +3,7 @@ import {
   RiBarChartBoxFill,
   RiBookOpenFill,
   RiDashboardFill,
+  RiFeedbackFill,
   RiGalleryUploadFill,
   RiGithubFill,
   RiTableFill,
@@ -38,6 +39,12 @@ export default {
     text: '报备',
     color: '#ecc94b',
     href: '/auto-report',
+  },
+  feedback: {
+    text: '反馈',
+    color: '#ed8936',
+    icon: RiFeedbackFill,
+    href: '/feedback',
   },
   'open-source': {
     text: '开源',
