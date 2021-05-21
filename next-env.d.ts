@@ -1,6 +1,7 @@
 /// <reference types="next" />
 /// <reference types="next/types/global" />
 
+import { ColorProps } from '@chakra-ui/styled-system'
 import { ReactChild } from 'react'
 import { IconType } from 'react-icons/lib'
 
@@ -62,4 +63,5 @@ interface ITimetableCellProps {
   bold?: boolean
   rowStart?: number
   colStart?: number
+  bg?: string
 }

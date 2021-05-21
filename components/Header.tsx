@@ -79,7 +79,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
     <Flex
       as="header"
       mb="6"
-      px={{ base: '6', md: '12' }}
+      px={{ base: '6', lg: '12' }}
       py="5"
       alignItems="center"
       borderBottomWidth="1px"

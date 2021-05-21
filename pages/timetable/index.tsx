@@ -1,10 +1,14 @@
 import {
+  Button,
+  ButtonGroup,
   Center,
   Container,
   Flex,
   Grid,
   GridItem,
+  HStack,
   Spinner,
+  Stack,
   Tab,
   TabList,
   TabPanel,
@@ -13,6 +17,8 @@ import {
   Text,
 } from '@chakra-ui/react'
 import Head from 'next/head'
+import React from 'react'
+import { RiBarChartGroupedLine } from 'react-icons/ri'
 import useSWR from 'swr'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
@@ -32,6 +38,7 @@ const TimetableCell = ({
   bold,
   rowStart,
   colStart,
+  bg,
 }: ITimetableCellProps) => {
   return (
     <GridItem
@@ -48,6 +55,7 @@ const TimetableCell = ({
       flexDir="column"
       alignItems="center"
       justifyContent="center"
+      bg={bg}
     >
       {children}
     </GridItem>
@@ -87,6 +95,22 @@ const TimetableAside = () => {
         </TimetableCell>
       ))}
     </>
+  )
+}
+
+const TimetableActions = () => {
+  return (
+    <Stack
+      mt="8"
+      align="center"
+      justify="center"
+      spacing={{ base: '4', sm: '6' }}
+      direction={{ base: 'column', sm: 'row' }}
+    >
+      <Button w={{ base: 'full', sm: 'auto' }}>重新获取数据</Button>
+      <Button w={{ base: 'full', sm: 'auto' }}>导出全部课表</Button>
+      <Button w={{ base: 'full', sm: 'auto' }}>保存本周截图</Button>
+    </Stack>
   )
 }
 
@@ -132,7 +156,7 @@ const TimetableContainer = () => {
   }
 
   return (
-    <Tabs variant="soft-rounded">
+    <Tabs variant="soft-rounded" w="full">
       <TabList w="full" p="2" overflowX="auto">
         <Flex mx="auto">
           {data.weeks.map((week: ITimetableWeekData, index: number) => (
@@ -142,26 +166,34 @@ const TimetableContainer = () => {
       </TabList>
       <TabPanels>
         {data.weeks.map((_: never, index: number) => (
-          <TabPanel px="4" py="6" key={index}>
+          <TabPanel px="2" pt="6" pb="0" key={index}>
             <Grid
               templateRows="repeat(6, auto)"
               templateColumns="repeat(8, 1fr)"
               borderLeftWidth="1px"
               borderTopWidth="1px"
               rounded="md"
+              overflowX="auto"
             >
               <TimetableHeader />
               <TimetableAside />
               {table[index].map((row: Array<ITimetableCourseData>) => {
                 return row.map((col, index) => (
-                  <TimetableCell key={index}>
-                    <Text>{col.title}</Text>
-                    <Text>{col.teacher}</Text>
-                    <Text>{col.location}</Text>
-                  </TimetableCell>
+                  <React.Fragment key={index}>
+                    {col.title ? (
+                      <TimetableCell bg="blue.50">
+                        <Text>{col.title}</Text>
+                        <Text>{col.teacher}</Text>
+                        <Text>{col.location}</Text>
+                      </TimetableCell>
+                    ) : (
+                      <TimetableCell>{''}</TimetableCell>
+                    )}
+                  </React.Fragment>
                 ))
               })}
             </Grid>
+            <TimetableActions />
           </TabPanel>
         ))}
       </TabPanels>
