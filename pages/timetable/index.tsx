@@ -1,12 +1,10 @@
 import {
   Button,
-  ButtonGroup,
   Center,
   Container,
   Flex,
   Grid,
   GridItem,
-  HStack,
   Spinner,
   Stack,
   Tab,
@@ -18,7 +16,6 @@ import {
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import React from 'react'
-import { RiBarChartGroupedLine } from 'react-icons/ri'
 import useSWR from 'swr'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
