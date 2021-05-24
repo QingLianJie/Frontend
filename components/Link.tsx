@@ -38,7 +38,7 @@ const NormalIconLink = ({ href, icon, text, color }) => {
         pos="relative"
         d="flex"
         alignItems="center"
-        px="3"
+        px="2.5"
         py="1.5"
         rounded="md"
         _hover={{

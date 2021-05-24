@@ -36,13 +36,8 @@ const OpenSourcePage = () => {
           </Heading>
           <ButtonGroup pt="6" spacing="4">
             <NormalButtonLink
-              href="https://github.com/Lifeni/qinglianjie-web"
-              text="前端"
-              external
-            />
-            <NormalButtonLink
-              href="https://github.com/bakapiano/qinglianjie"
-              text="后端"
+              href="https://github.com/QingLianJie"
+              text="项目主页"
               external
             />
           </ButtonGroup>
