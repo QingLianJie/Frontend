@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import React from 'react'
+import { RiDownloadLine, RiImageLine, RiRefreshLine } from 'react-icons/ri'
 import useSWR from 'swr'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
@@ -104,9 +105,15 @@ const TimetableActions = () => {
       spacing={{ base: '4', sm: '6' }}
       direction={{ base: 'column', sm: 'row' }}
     >
-      <Button w={{ base: 'full', sm: 'auto' }}>重新获取数据</Button>
-      <Button w={{ base: 'full', sm: 'auto' }}>导出全部课表</Button>
-      <Button w={{ base: 'full', sm: 'auto' }}>保存本周截图</Button>
+      <Button w={{ base: 'full', sm: 'auto' }} leftIcon={<RiRefreshLine />}>
+        重新获取数据
+      </Button>
+      <Button w={{ base: 'full', sm: 'auto' }} leftIcon={<RiDownloadLine />}>
+        导出全部课表
+      </Button>
+      <Button w={{ base: 'full', sm: 'auto' }} leftIcon={<RiImageLine />}>
+        保存本周截图
+      </Button>
     </Stack>
   )
 }

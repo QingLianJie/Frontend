@@ -72,7 +72,7 @@ const AutoReportPage = () => {
                   textAlign="center"
                   lineHeight="1.75"
                 >
-                  系统将在 <strong>明天 0:05</strong> 自动进出校报备，报备时间为
+                  系统将在 <strong>明天 0:05</strong> 自动进出校报备，报备时间为{' '}
                   <strong>当日 6:00 ~ 22:00</strong>。
                 </Text>
               ) : (
@@ -82,13 +82,13 @@ const AutoReportPage = () => {
                   textAlign="center"
                   lineHeight="1.75"
                 >
-                  系统将在 <strong>每天 0:05</strong> 自动进出校报备，报备时间为
+                  系统将在 <strong>每天 0:05</strong> 自动进出校报备，报备时间为{' '}
                   <strong>当日 6:00 ~ 22:00</strong>。
                 </Text>
               )
             ) : (
               <Text fontSize="md" w="full" textAlign="center" lineHeight="1.75">
-                开启后将在 <strong>每天 0:05</strong> 自动进出校报备，报备时间为
+                开启后将在 <strong>每天 0:05</strong> 自动进出校报备，报备时间为{' '}
                 <strong>当日 6:00 ~ 22:00</strong>，是否开启？
               </Text>
             )}

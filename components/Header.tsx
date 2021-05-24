@@ -117,7 +117,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
           <Menu>
             <MenuButton
               pos="relative"
-              px="4"
+              px="3"
               py="2"
               rounded="md"
               _hover={{

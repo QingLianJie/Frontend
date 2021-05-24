@@ -1,6 +1,5 @@
-import { ButtonGroup } from '@chakra-ui/button'
 import { Img } from '@chakra-ui/image'
-import { Flex, Heading } from '@chakra-ui/layout'
+import { Center, Flex, Heading } from '@chakra-ui/layout'
 import Head from 'next/head'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
@@ -20,6 +19,7 @@ const OpenSourcePage = () => {
           flexDir="column"
           justifyContent="center"
           alignItems="center"
+          px="6"
           py="6"
         >
           <Img src="/assets/octocat.webp" w="48" maxW="full" mb="8" />
@@ -34,13 +34,13 @@ const OpenSourcePage = () => {
             <br />
             代码托管在 GitHub 上
           </Heading>
-          <ButtonGroup pt="6" spacing="4">
+          <Center w="full" pt="8" spacing="4">
             <NormalButtonLink
               href="https://github.com/QingLianJie"
               text="项目主页"
               external
             />
-          </ButtonGroup>
+          </Center>
         </Flex>
         <Footer />
       </Main>
