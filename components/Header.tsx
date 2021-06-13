@@ -80,7 +80,7 @@ const Header = ({ title, nav }: IHeaderProps) => {
       as="header"
       mb="6"
       px={{ base: '6', lg: '12' }}
-      py="5"
+      py="4"
       alignItems="center"
       borderBottomWidth="1px"
       pos="sticky"
