@@ -1,15 +1,14 @@
 import Head from 'next/head'
 import Header from '../components/header-bar/Header'
 
-const IndexPage = () => {
+const SignupPage = () => {
   return (
     <>
       <Head>
-        <title>清廉街</title>
+        <title>注册 - 清廉街</title>
       </Head>
-      <Header />
     </>
   )
 }
 
-export default IndexPage
+export default SignupPage
