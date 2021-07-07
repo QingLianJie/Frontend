@@ -1,4 +1,4 @@
-import { Link, Text } from '@chakra-ui/react'
+import { HStack, Link, StackDivider, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 
 interface TextLinkProps {
@@ -27,4 +27,21 @@ const TextLink = ({ href, text }: TextLinkProps) => {
   )
 }
 
-export default TextLink
+interface AuthLinksProps {
+  links: Array<{
+    href: string
+    text: string
+  }>
+}
+
+const AuthLinks = ({ links }: AuthLinksProps) => {
+  return (
+    <HStack divider={<StackDivider />} justify="center" my="3">
+      {links.map(link => (
+        <TextLink {...link} key={link.href} />
+      ))}
+    </HStack>
+  )
+}
+
+export default AuthLinks

@@ -1,106 +1,107 @@
-import {
-  Button,
-  Container,
-  Flex,
-  Heading,
-  HStack,
-  Icon,
-  IconButton,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  StackDivider,
-} from '@chakra-ui/react'
+import { useToast } from '@chakra-ui/react'
 import Head from 'next/head'
-import { useState } from 'react'
-import {
-  RiEyeFill,
-  RiEyeOffFill,
-  RiLockPasswordFill,
-  RiMailFill,
-} from 'react-icons/ri'
-import TextLink from '../components/common/TextLink'
+import { useRouter } from 'next/router'
+import { FormEvent, useEffect, useState } from 'react'
+import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
+import AuthForm from '../components/auth-form/Form'
+import AuthHeading from '../components/auth-form/Heading'
+import AuthInput from '../components/auth-form/Input'
+import AuthLinks from '../components/auth-form/Links'
+import AuthSubmit from '../components/auth-form/Submit'
+import { API_URL_BASE } from '../utils/const'
+
+type NameType = 'username' | 'email'
+const emailRegex =
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false)
+  const toast = useToast()
+  const router = useRouter()
+  const [name, setName] = useState('')
+  const [nameType, setNameType] = useState<NameType>('username')
+  const [password, setPassword] = useState('')
+
+  const isEmail = (name: string) => {
+    if (emailRegex.test(name)) {
+      setNameType('email')
+    } else {
+      setNameType('username')
+    }
+  }
+  useEffect(() => isEmail(name), [name])
+
+  const handleLogin = (e: FormEvent) => {
+    e.preventDefault()
+
+    const formdata = new FormData()
+    formdata.append(nameType, name)
+    formdata.append('password', password)
+
+    fetch(`/rest-auth/login/`, {
+      method: 'POST',
+      body: formdata,
+    })
+      .then(async res => {
+        if (res.status === 200) {
+          router.push('/')
+          toast({
+            title: '登录成功',
+            status: 'success',
+            isClosable: true,
+          })
+        } else {
+          toast({
+            title: '登录失败',
+            description: `${res.status} ${res.statusText}`,
+            status: 'error',
+            isClosable: true,
+          })
+        }
+      })
+      .catch(err => {
+        console.log('Login Error -', err)
+        toast({
+          title: '登录失败',
+          description: err,
+          status: 'error',
+          isClosable: true,
+        })
+      })
+  }
 
   return (
     <>
       <Head>
         <title>登录 - 清廉街</title>
       </Head>
-      <Flex
-        as="main"
-        minH="100vh"
-        flexDir="column"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Container
-          as="form"
-          maxW="sm"
-          px="8"
-          py="12"
-          display="flex"
-          flexDir="column"
-          justifyContent="center"
-          borderWidth="1px"
-          borderRadius="md"
-          onSubmit={e => e.preventDefault()}
-        >
-          <Heading
-            as="h2"
-            fontSize="2xl"
-            fontWeight="normal"
-            mt="4"
-            mb="12"
-            textAlign="center"
-          >
-            登录到 <strong>清廉街</strong>
-          </Heading>
+      <AuthForm action={handleLogin}>
+        <AuthHeading>
+          登录到 <strong>清廉街</strong>
+        </AuthHeading>
 
-          <InputGroup my="2">
-            <InputLeftElement pointerEvents="none">
-              <Icon as={RiMailFill} color="gray.300" />
-            </InputLeftElement>
-            <Input type="text" placeholder="用户名或邮箱" isRequired />
-          </InputGroup>
+        <AuthInput
+          type="text"
+          placeholder="用户名或邮箱"
+          icon={nameType === 'email' ? RiMailFill : RiUserFill}
+          action={e => setName(e.target.value)}
+        />
 
-          <InputGroup my="2">
-            <InputLeftElement pointerEvents="none">
-              <Icon as={RiLockPasswordFill} color="gray.300" />
-            </InputLeftElement>
+        <AuthInput
+          type="password"
+          placeholder="密码"
+          icon={RiLockPasswordFill}
+          action={e => setPassword(e.target.value)}
+        />
 
-            <Input
-              type={showPassword ? 'text' : 'password'}
-              placeholder="密码"
-              isRequired
-            />
-            <InputRightElement>
-              <IconButton
-                aria-label="显示 / 隐藏密码"
-                icon={showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
-                onClick={() => setShowPassword(!showPassword)}
-                color="gray.300"
-                variant="ghost"
-                borderRadius="md"
-              />
-            </InputRightElement>
-          </InputGroup>
+        <AuthSubmit color="green" text="登录" />
 
-          <InputGroup my="2">
-            <Button type="submit" isFullWidth colorScheme="green">
-              登录
-            </Button>
-          </InputGroup>
-
-          <HStack divider={<StackDivider />} justify="center" mt="2">
-            <TextLink href="/signup" text="注册" />
-            <TextLink href="/reset-password" text="重置密码" />
-          </HStack>
-        </Container>
-      </Flex>
+        <AuthLinks
+          links={[
+            { href: '/signup', text: '注册' },
+            { href: '/reset-password', text: '重置密码' },
+          ]}
+        />
+      </AuthForm>
     </>
   )
 }
