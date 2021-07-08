@@ -8,7 +8,7 @@ import AuthInput from '../components/auth-form/Input'
 import AuthLinks from '../components/auth-form/Links'
 import AuthSubmit from '../components/auth-form/Submit'
 import { useLoginToast } from '../hooks/useToast'
-import { emailRegex } from '../libs/regex'
+import { emailRegex } from '../utils/regex'
 
 type NameType = 'username' | 'email'
 

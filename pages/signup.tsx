@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
 import AuthForm from '../components/auth-form/Form'
 import AuthHeading from '../components/auth-form/Heading'
@@ -9,7 +8,7 @@ import AuthInput from '../components/auth-form/Input'
 import AuthLinks from '../components/auth-form/Links'
 import AuthSubmit from '../components/auth-form/Submit'
 import { useSignupToast } from '../hooks/useToast'
-import { nameRegex, passwordRegex } from '../libs/regex'
+import { nameRegex, passwordRegex } from '../utils/regex'
 
 const SignupPage = () => {
   const toast = useSignupToast()
