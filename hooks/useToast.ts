@@ -9,9 +9,53 @@ export const useLoginToast = () => {
         status: 'success',
         isClosable: true,
       }),
+
     error: (description: string) =>
       toast({
         title: '登录失败',
+        description: description,
+        status: 'error',
+        isClosable: true,
+      }),
+  }
+}
+
+export const useSignupToast = () => {
+  const toast = useToast()
+  return {
+    ok: () =>
+      toast({
+        title: '注册成功',
+        status: 'success',
+        isClosable: true,
+      }),
+
+    name: () =>
+      toast({
+        title: '用户名不合适',
+        description: '只能包含英文字母、数字、特殊字符（. - _）',
+        status: 'warning',
+        isClosable: true,
+      }),
+
+    password: () =>
+      toast({
+        title: '密码不合适',
+        description: '必须包含至少 8 个字符，并且不能是纯数字',
+        status: 'warning',
+        isClosable: true,
+      }),
+
+    diff: () =>
+      toast({
+        title: '两次密码不一致',
+        status: 'warning',
+        isClosable: true,
+      }),
+
+    error: (description: string) =>
+      toast({
+        title: '注册失败',
         description: description,
         status: 'error',
         isClosable: true,

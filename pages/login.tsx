@@ -8,25 +8,19 @@ import AuthInput from '../components/auth-form/Input'
 import AuthLinks from '../components/auth-form/Links'
 import AuthSubmit from '../components/auth-form/Submit'
 import { useLoginToast } from '../hooks/useToast'
+import { emailRegex } from '../libs/regex'
 
 type NameType = 'username' | 'email'
-const emailRegex =
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const LoginPage = () => {
-  const router = useRouter()
-  const [name, setName] = useState('')
-  const [nameType, setNameType] = useState<NameType>('username')
-  const [password, setPassword] = useState('')
   const toast = useLoginToast()
+  const router = useRouter()
+  const [nameType, setNameType] = useState<NameType>('username')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
 
-  const isEmail = (name: string) => {
-    if (emailRegex.test(name)) {
-      setNameType('email')
-    } else {
-      setNameType('username')
-    }
-  }
+  const isEmail = (name: string) =>
+    setNameType(emailRegex.test(name) ? 'email' : 'username')
   useEffect(() => isEmail(name), [name])
 
   const handleLogin = (e: FormEvent) => {
