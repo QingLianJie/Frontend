@@ -51,6 +51,7 @@ const SignupPage = () => {
           links={[
             { href: '/login', text: '登录' },
             { href: '/reset-password', text: '重置密码' },
+            { href: '/', text: '主页' },
           ]}
         />
       </AuthForm>

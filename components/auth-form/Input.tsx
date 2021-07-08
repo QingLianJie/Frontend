@@ -21,7 +21,13 @@ const AuthInput = ({ type, placeholder, icon, action }: AuthInputProps) => {
   return (
     <InputGroup my="2">
       <InputLeftElement pointerEvents="none">
-        <Icon as={icon} color="gray.300" />
+        <Icon
+          as={icon}
+          color="gray.300"
+          _dark={{
+            color: 'gray.600',
+          }}
+        />
       </InputLeftElement>
       <Input
         type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
@@ -39,6 +45,9 @@ const AuthInput = ({ type, placeholder, icon, action }: AuthInputProps) => {
             color="gray.300"
             variant="ghost"
             borderRadius="md"
+            _dark={{
+              color: 'gray.600',
+            }}
           />
         </InputRightElement>
       )}

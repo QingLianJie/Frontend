@@ -17,8 +17,15 @@ const TextLink = ({ href, text }: TextLinkProps) => {
         paddingY="1"
         rounded="md"
         color="purple.500"
+        _dark={{
+          color: 'purple.300',
+        }}
         _hover={{
           textDecoration: 'none',
+          color: 'purple.700',
+          _dark: {
+            color: 'purple.200',
+          },
         }}
       >
         <Text fontSize="md">{text}</Text>

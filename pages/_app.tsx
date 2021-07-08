@@ -9,6 +9,8 @@ const theme = extendTheme({
     body: fontFamily,
     heading: fontFamily,
   },
+  initialColorMode: 'light',
+  useSystemColorMode: true,
 })
 
 function MyApp({ Component, pageProps }: AppProps) {

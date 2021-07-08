@@ -19,7 +19,10 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
       top="0"
       zIndex="100"
       bg="whiteAlpha.800"
-      style={{ backdropFilter: 'blur(8px)' }}
+      style={{ backdropFilter: 'blur(12px)' }}
+      _dark={{
+        bg: 'blackAlpha.200',
+      }}
     >
       <Heading as="h1" size="md">
         {title}

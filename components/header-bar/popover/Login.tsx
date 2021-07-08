@@ -29,6 +29,10 @@ const LoginPopover = () => {
           h="10"
           mx="1"
           cursor="pointer"
+          _dark={{
+            color: 'white',
+            bg: 'gray.700',
+          }}
         />
       </PopoverTrigger>
       <PopoverContent minW="unset" w="auto">

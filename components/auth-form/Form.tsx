@@ -23,7 +23,7 @@ const AuthForm = ({ action, children }: AuthFormProps) => {
         display="flex"
         flexDir="column"
         justifyContent="center"
-        borderWidth="1px"
+        borderWidth={{ base: 'none', sm: '1px' }}
         borderRadius="md"
         onSubmit={action}
       >
