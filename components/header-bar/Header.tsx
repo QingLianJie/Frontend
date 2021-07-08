@@ -1,12 +1,15 @@
 import { Flex, Heading, Spacer } from '@chakra-ui/react'
+import useUser from '../../hooks/useUser'
 import LoginPopover from './popover/Login'
-import { Badge } from '@chakra-ui/react'
+import UserPopover from './popover/User'
 
 interface HeaderProps {
   title?: string
 }
 
 const Header = ({ title = '清廉街' }: HeaderProps) => {
+  const { isFinished } = useUser()
+
   return (
     <Flex
       as="header"
@@ -28,7 +31,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
         {title}
       </Heading>
       <Spacer />
-      <LoginPopover />
+      {isFinished ? <UserPopover /> : <LoginPopover />}
     </Flex>
   )
 }

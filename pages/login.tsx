@@ -2,12 +2,14 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
+import { mutate } from 'swr'
 import AuthForm from '../components/auth-form/Form'
 import AuthHeading from '../components/auth-form/Heading'
 import AuthInput from '../components/auth-form/Input'
 import AuthLinks from '../components/auth-form/Links'
 import AuthSubmit from '../components/auth-form/Submit'
 import { useLoginToast } from '../hooks/useToast'
+import { API_URL_BASE } from '../utils/const'
 import { emailRegex } from '../utils/regex'
 
 type NameType = 'username' | 'email'
@@ -30,21 +32,24 @@ const LoginPage = () => {
     formdata.append(nameType, name)
     formdata.append('password', password)
 
-    fetch(`/rest-auth/login/`, {
+    fetch(`${API_URL_BASE}/rest-auth/login/`, {
       method: 'POST',
       body: formdata,
+      mode: 'cors',
+      credentials: 'include',
     })
       .then(async res => {
-        if (res.status === 200) {
+        if (res.ok) {
           toast.ok()
+          mutate(`${API_URL_BASE}/rest-auth/user/`)
           router.push('/')
         } else {
           toast.error(`${res.status} ${res.statusText}`)
         }
       })
-      .catch(err => {
+      .catch((err: Error) => {
         console.log('Login Error -', err)
-        toast.error(err)
+        toast.error(err.toString())
       })
   }
 

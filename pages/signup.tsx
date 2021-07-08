@@ -8,6 +8,7 @@ import AuthInput from '../components/auth-form/Input'
 import AuthLinks from '../components/auth-form/Links'
 import AuthSubmit from '../components/auth-form/Submit'
 import { useSignupToast } from '../hooks/useToast'
+import { API_URL_BASE } from '../utils/const'
 import { nameRegex, passwordRegex } from '../utils/regex'
 
 const SignupPage = () => {
@@ -47,9 +48,11 @@ const SignupPage = () => {
       formdata.append('password1', password)
       formdata.append('password2', passwordAgain)
 
-      fetch(`/rest-auth/signup/`, {
+      fetch(`${API_URL_BASE}/rest-auth/signup/`, {
         method: 'POST',
         body: formdata,
+        mode: 'cors',
+        credentials: 'include',
       })
         .then(async res => {
           if (res.status === 200) {
@@ -59,9 +62,9 @@ const SignupPage = () => {
             toast.error(`${res.status} ${res.statusText}`)
           }
         })
-        .catch(err => {
+        .catch((err: Error) => {
           console.log('Signup Error -', err)
-          toast.error(err)
+          toast.error(err.toString())
         })
     }
   }
