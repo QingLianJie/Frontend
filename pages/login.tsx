@@ -1,4 +1,3 @@
-import { useToast } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
@@ -8,18 +7,18 @@ import AuthHeading from '../components/auth-form/Heading'
 import AuthInput from '../components/auth-form/Input'
 import AuthLinks from '../components/auth-form/Links'
 import AuthSubmit from '../components/auth-form/Submit'
-import { API_URL_BASE } from '../utils/const'
+import { useLoginToast } from '../hooks/useToast'
 
 type NameType = 'username' | 'email'
 const emailRegex =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
 const LoginPage = () => {
-  const toast = useToast()
   const router = useRouter()
   const [name, setName] = useState('')
   const [nameType, setNameType] = useState<NameType>('username')
   const [password, setPassword] = useState('')
+  const toast = useLoginToast()
 
   const isEmail = (name: string) => {
     if (emailRegex.test(name)) {
@@ -43,29 +42,15 @@ const LoginPage = () => {
     })
       .then(async res => {
         if (res.status === 200) {
+          toast.ok()
           router.push('/')
-          toast({
-            title: '登录成功',
-            status: 'success',
-            isClosable: true,
-          })
         } else {
-          toast({
-            title: '登录失败',
-            description: `${res.status} ${res.statusText}`,
-            status: 'error',
-            isClosable: true,
-          })
+          toast.error(`${res.status} ${res.statusText}`)
         }
       })
       .catch(err => {
         console.log('Login Error -', err)
-        toast({
-          title: '登录失败',
-          description: err,
-          status: 'error',
-          isClosable: true,
-        })
+        toast.error(err)
       })
   }
 
