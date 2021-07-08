@@ -12,7 +12,7 @@ const SignupPage = () => {
       <Head>
         <title>注册 - 清廉街</title>
       </Head>
-      <AuthForm action={() => {}}>
+      <AuthForm action={e => e.preventDefault()}>
         <AuthHeading>
           注册 <strong>清廉街</strong> 账号
         </AuthHeading>
