@@ -1,11 +1,15 @@
 import {
   Avatar,
+  Box,
   Button,
+  ButtonGroup,
   Popover,
   PopoverArrow,
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
+  Text,
+  VStack,
 } from '@chakra-ui/react'
 import { ReactElement, useRef } from 'react'
 import { RiUserLine } from 'react-icons/ri'
@@ -49,8 +53,19 @@ const UserPopover = () => {
   const { user } = useUser()
   return (
     <PopoverWrapper user={user}>
-      {user.email}
-      <Button>退出登录</Button>
+      <VStack mb="4" spacing="1" align="start">
+        <Text fontSize="lg" fontWeight="bold">
+          {user.username}
+        </Text>
+        <Text fontSize="sm" color="gray.500">
+          {user.email}
+        </Text>
+      </VStack>
+
+      <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
+        <Button>个人主页</Button>
+        <Button colorScheme="red">退出登录</Button>
+      </ButtonGroup>
     </PopoverWrapper>
   )
 }

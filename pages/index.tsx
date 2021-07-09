@@ -1,4 +1,4 @@
-import { Container, SimpleGrid, Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Container, Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import Header from '../components/header-bar/Header'
 

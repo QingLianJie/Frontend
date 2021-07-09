@@ -13,8 +13,29 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { useRef } from 'react'
+import { RefObject, useRef } from 'react'
 import { RiUserLine } from 'react-icons/ri'
+
+interface ButtonLinkProps {
+  text: string
+  href: string
+  color: string
+  ref?: RefObject<HTMLButtonElement>
+}
+
+const ButtonLink = ({ text, href, color, ref }: ButtonLinkProps) => {
+  return (
+    <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
+      <Button colorScheme={color} isFullWidth ref={ref}>
+        <NextLink href={href} passHref>
+          <LinkOverlay>
+            <Text>{text}</Text>
+          </LinkOverlay>
+        </NextLink>
+      </Button>
+    </LinkBox>
+  )
+}
 
 const LoginPopover = () => {
   const initialFocusRef = useRef<HTMLButtonElement>(null)
@@ -47,24 +68,13 @@ const LoginPopover = () => {
           </Box>
 
           <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
-            <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
-              <Button colorScheme="green" isFullWidth ref={initialFocusRef}>
-                <NextLink href="/login" passHref>
-                  <LinkOverlay>
-                    <Text>登录</Text>
-                  </LinkOverlay>
-                </NextLink>
-              </Button>
-            </LinkBox>
-            <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
-              <Button colorScheme="blue" isFullWidth>
-                <NextLink href="/signup" passHref>
-                  <LinkOverlay>
-                    <Text>注册</Text>
-                  </LinkOverlay>
-                </NextLink>
-              </Button>
-            </LinkBox>
+            <ButtonLink
+              text="登录"
+              href="/login"
+              color="green"
+              ref={initialFocusRef}
+            />
+            <ButtonLink text="注册" href="/signup" color="blue" />
           </ButtonGroup>
         </PopoverBody>
       </PopoverContent>

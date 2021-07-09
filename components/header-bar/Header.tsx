@@ -1,14 +1,15 @@
-import { Flex, Heading, Spacer } from '@chakra-ui/react'
+import { Fade, Flex, Heading, SkeletonCircle, Spacer } from '@chakra-ui/react'
 import useUser from '../../hooks/useUser'
 import LoginPopover from './popover/Login'
 import UserPopover from './popover/User'
 
 interface HeaderProps {
   title?: string
+  data?: IUser
 }
 
 const Header = ({ title = '清廉街' }: HeaderProps) => {
-  const { isFinished } = useUser()
+  const { isLoading, isError } = useUser()
 
   return (
     <Flex
@@ -31,7 +32,17 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
         {title}
       </Heading>
       <Spacer />
-      {isFinished ? <UserPopover /> : <LoginPopover />}
+      {isLoading ? (
+        <SkeletonCircle size="10" mx="1" />
+      ) : isError ? (
+        <Fade in>
+          <LoginPopover />
+        </Fade>
+      ) : (
+        <Fade in>
+          <UserPopover />
+        </Fade>
+      )}
     </Flex>
   )
 }
