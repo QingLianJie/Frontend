@@ -1,1 +1,1 @@
-export const API_URL_BASE = 'https://qinglianjie.cn'
+export const API_URL_BASE = 'https://dev.qinglianjie.cn'

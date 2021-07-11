@@ -21,10 +21,8 @@ interface PopoverWrapperProps {
 }
 
 const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
-  const initialFocusRef = useRef<HTMLButtonElement>(null)
-
   return (
-    <Popover placement="bottom-end" initialFocusRef={initialFocusRef}>
+    <Popover placement="bottom-end">
       <PopoverTrigger>
         <Avatar
           bg="gray.100"
@@ -53,17 +51,17 @@ const UserPopover = () => {
   const { user } = useUser()
   return (
     <PopoverWrapper user={user}>
-      <VStack mb="4" spacing="1" align="start">
+      <VStack mb="4" spacing="1" align="start" px="1">
         <Text fontSize="lg" fontWeight="bold">
           {user.username}
         </Text>
         <Text fontSize="sm" color="gray.500">
-          {user.email}
+          {user.email || '无邮箱'}
         </Text>
       </VStack>
 
       <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
-        <Button>个人主页</Button>
+        <Button>个人空间</Button>
         <Button colorScheme="red">退出登录</Button>
       </ButtonGroup>
     </PopoverWrapper>
