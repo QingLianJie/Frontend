@@ -42,7 +42,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
 
         <Skeleton isLoaded={!isLoading} px="4">
           <Text fontSize="lg" textAlign="center">
-            {user?.email || '登录后查看邮箱'}
+            {(!isError && user?.email) || '登录后查看邮箱'}
           </Text>
         </Skeleton>
       </VStack>

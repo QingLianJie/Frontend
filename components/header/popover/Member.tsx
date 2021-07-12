@@ -2,11 +2,13 @@ import { Button, ButtonGroup, Text, VStack } from '@chakra-ui/react'
 import router from 'next/router'
 import { MouseEvent } from 'react'
 import { mutate } from 'swr'
+import useLogoutToast from '../../../hooks/useToast/useLogoutToast'
 import useUser from '../../../hooks/useUser'
 import ButtonLink from '../../ui/link/ButtonLink'
 import PopoverWrapper from './Container'
 
 const MemberPopover = () => {
+  const toast = useLogoutToast()
   const { user } = useUser()
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
@@ -20,11 +22,22 @@ const MemberPopover = () => {
       credentials: 'include',
     })
       .then(async res => {
-        if (res.ok) mutate(`${baseURL}/rest-auth/user/`)
+        if (res.ok) {
+          toast.ok()
+          mutate(`${baseURL}/rest-auth/user/`)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            const t = d as string
+            toast.error(t)
+          })
+        }
+
         router.push('/login')
       })
       .catch((err: Error) => {
         console.log('Logout Error -', err)
+        toast.error(err.toString())
       })
   }
 
