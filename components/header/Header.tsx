@@ -1,5 +1,6 @@
 import { Fade, Flex, Heading, SkeletonCircle, Spacer } from '@chakra-ui/react'
 import useUser from '../../hooks/useUser'
+import HeaderNav from './nav/Nav'
 import LoginPopover from './popover/Login'
 import MemberPopover from './popover/Member'
 
@@ -31,7 +32,10 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
       <Heading as="h1" size="md">
         {title}
       </Heading>
+
+      <HeaderNav />
       <Spacer />
+
       {isLoading ? (
         <SkeletonCircle size="10" mx="1" />
       ) : isError ? (

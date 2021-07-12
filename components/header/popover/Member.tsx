@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Text, VStack } from '@chakra-ui/react'
+import { Button, ButtonGroup, HStack, Text, VStack } from '@chakra-ui/react'
 import router from 'next/router'
 import { MouseEvent } from 'react'
 import { mutate } from 'swr'
@@ -45,18 +45,20 @@ const MemberPopover = () => {
     <PopoverWrapper user={user}>
       <VStack mb="3.5" spacing="1" align="start" px="1">
         <Text fontSize="lg" fontWeight="bold">
-          {user.username}
+          欢迎回来，{user.username}
         </Text>
-        <Text fontSize="sm" color="gray.500">
+        <Text fontSize="md" color="gray.500">
           {user.email || '无邮箱'}
         </Text>
       </VStack>
 
-      <ButtonGroup spacing="3" d="flex" justifyContent="flex-end" size="sm">
-        <ButtonLink href={`/member/${user.username}`}>个人空间</ButtonLink>
-        <Button isFullWidth colorScheme="red" onClick={handleLogout}>
-          退出登录
-        </Button>
+      <ButtonGroup size="sm">
+        <HStack spacing="3">
+          <ButtonLink href={`/member/${user.username}`}>个人主页</ButtonLink>
+          <Button isFullWidth colorScheme="red" onClick={handleLogout}>
+            退出登录
+          </Button>
+        </HStack>
       </ButtonGroup>
     </PopoverWrapper>
   )

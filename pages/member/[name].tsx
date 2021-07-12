@@ -16,7 +16,7 @@ const MemberPage = () => {
       </Head>
       <Container minH="100vh" maxW="unset" p="0">
         <Header />
-        <Container width="full" maxW="container.xl" p={{ base: 4, md: 8 }}>
+        <Container width="full" maxW="container.xl" p="8">
           <Grid
             templateColumns="repeat(4, 1fr)"
             gap={{ base: 8, md: 12, lg: 16 }}

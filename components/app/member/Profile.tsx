@@ -33,7 +33,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         />
       </AspectRatio>
 
-      <VStack py="8" spacing="2.5">
+      <VStack py="10" spacing="2.5">
         <Skeleton isLoaded={!isLoading} px="4">
           <Heading size="lg" textAlign="center">
             {name}
@@ -50,7 +50,10 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
       {isLoading ? null : isError ? (
         <Button isFullWidth>这里也许有一个功能</Button>
       ) : (
-        <Button isFullWidth>编辑资料（还没做）</Button>
+        <VStack spacing="3">
+          <Button isFullWidth>编辑资料（还没做）</Button>
+          <Button isFullWidth>绑定学号（也还没做）</Button>
+        </VStack>
       )}
     </>
   )
