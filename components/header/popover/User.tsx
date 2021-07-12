@@ -1,57 +1,36 @@
-import {
-  Avatar,
-  Button,
-  ButtonGroup,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
-import { ReactElement } from 'react'
-import { RiUserLine } from 'react-icons/ri'
+import { Button, ButtonGroup, Text, VStack } from '@chakra-ui/react'
+import router from 'next/router'
+import { MouseEvent } from 'react'
+import { mutate } from 'swr'
 import useUser from '../../../hooks/useUser'
 import ButtonLink from '../../ui/link/ButtonLink'
-
-interface PopoverWrapperProps {
-  user: IUser
-  children: Array<ReactElement | string> | ReactElement | string
-}
-
-const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
-  return (
-    <Popover placement="bottom-end">
-      <PopoverTrigger>
-        <Avatar
-          bg="gray.100"
-          name={user ? user.username : undefined}
-          icon={!user ? <RiUserLine /> : undefined}
-          w="10"
-          h="10"
-          mx="1"
-          cursor="pointer"
-          color="gray.400"
-          _dark={{
-            color: 'white',
-            bg: 'gray.700',
-          }}
-        />
-      </PopoverTrigger>
-      <PopoverContent minW="unset" w="auto">
-        <PopoverArrow />
-        <PopoverBody p="5">{children}</PopoverBody>
-      </PopoverContent>
-    </Popover>
-  )
-}
+import PopoverWrapper from './Wrapper'
 
 const UserPopover = () => {
   const { user } = useUser()
+
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+
+  const handleLogout = (e: MouseEvent) => {
+    e.preventDefault()
+
+    fetch(`${baseURL}/rest-auth/logout/`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then(async res => {
+        if (res.ok) mutate(`${baseURL}/rest-auth/user/`)
+        router.push('/login')
+      })
+      .catch((err: Error) => {
+        console.log('Logout Error -', err)
+      })
+  }
+
   return (
     <PopoverWrapper user={user}>
-      <VStack mb="4" spacing="1" align="start" px="1">
+      <VStack mb="3.5" spacing="1" align="start" px="1">
         <Text fontSize="lg" fontWeight="bold">
           {user.username}
         </Text>
@@ -60,9 +39,9 @@ const UserPopover = () => {
         </Text>
       </VStack>
 
-      <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
+      <ButtonGroup spacing="3" d="flex" justifyContent="flex-end" size="sm">
         <ButtonLink href={`/member/${user.username}`}>个人空间</ButtonLink>
-        <Button isFullWidth colorScheme="red">
+        <Button isFullWidth colorScheme="red" onClick={handleLogout}>
           退出登录
         </Button>
       </ButtonGroup>

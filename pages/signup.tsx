@@ -9,7 +9,7 @@ import SubmitButton from '../components/ui/button/SubmitButton'
 import CardForm from '../components/ui/form/CardForm'
 import Input from '../components/ui/form/input/FormInput'
 import TextLink from '../components/ui/link/TextLink'
-import { useSignupToast } from '../hooks/useToast'
+import useSignupToast from '../hooks/useToast/useSignupToast'
 import { nameRegex, passwordRegex } from '../utils/regex'
 
 const links: Links = [

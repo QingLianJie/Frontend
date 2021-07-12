@@ -9,7 +9,7 @@ import SubmitButton from '../components/ui/button/SubmitButton'
 import CardForm from '../components/ui/form/CardForm'
 import Input from '../components/ui/form/input/FormInput'
 import TextLink from '../components/ui/link/TextLink'
-import { useLoginToast } from '../hooks/useToast'
+import useLoginToast from '../hooks/useToast/useLoginToast'
 import { emailRegex } from '../utils/regex'
 
 type NameType = 'username' | 'email'
