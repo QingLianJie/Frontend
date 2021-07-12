@@ -50,7 +50,12 @@ const LoginPage = () => {
         if (res.ok) {
           toast.ok()
           mutate(`${baseURL}/rest-auth/user/`)
-          router.push('/')
+
+          if (router.query.from) {
+            router.push(router.query.from as string)
+          } else {
+            router.push('/')
+          }
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {

@@ -1,8 +1,11 @@
 import { Box, ButtonGroup, Text } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import ButtonLink from '../../ui/link/ButtonLink'
 import PopoverWrapper from './Container'
 
 const LoginPopover = () => {
+  const router = useRouter()
+
   return (
     <PopoverWrapper>
       <Box mb="3" px="1">
@@ -13,10 +16,10 @@ const LoginPopover = () => {
       </Box>
 
       <ButtonGroup spacing="3" d="flex" justifyContent="flex-end" size="sm">
-        <ButtonLink href="/login" color="green">
+        <ButtonLink href={`/login?from=${router.asPath}`} color="green">
           登录
         </ButtonLink>
-        <ButtonLink href="/signup" color="blue">
+        <ButtonLink href={`/signup?from=${router.asPath}`} color="blue">
           注册
         </ButtonLink>
       </ButtonGroup>
