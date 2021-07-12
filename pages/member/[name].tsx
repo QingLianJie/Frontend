@@ -22,7 +22,7 @@ const MemberPage = () => {
             gap={{ base: 8, md: 12, lg: 16 }}
           >
             <GridItem colSpan={{ base: 4, md: 1 }}>
-              <MemberProfile name={name} />
+              {name && <MemberProfile name={name} />}
             </GridItem>
             <GridItem colSpan={{ base: 4, md: 3 }}>
               <MemberTabs />

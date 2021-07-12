@@ -8,14 +8,15 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
-import useUser from '../../../hooks/useUser'
+import useProfile from '../../../hooks/useProfile'
 
 interface MemberProfileProps {
   name: string | string[] | undefined
 }
 
 const MemberProfile = ({ name }: MemberProfileProps) => {
-  const { user, isLoading, isError } = useUser()
+  const username = name as string
+  const { profile, isLoading, isMe } = useProfile(username)
 
   return (
     <>
@@ -42,12 +43,12 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
 
         <Skeleton isLoaded={!isLoading} px="4">
           <Text fontSize="md" textAlign="center">
-            {(!isError && user?.email) || '登录后查看邮箱'}
+            {(isMe && profile?.email) || '登录后查看邮箱'}
           </Text>
         </Skeleton>
       </VStack>
 
-      {isLoading ? null : isError ? (
+      {isLoading ? null : !isMe ? (
         <Button isFullWidth>这里也许有一个功能</Button>
       ) : (
         <VStack spacing="4">

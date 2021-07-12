@@ -6,6 +6,12 @@ interface IUser {
   last_name: string
 }
 
+interface IProfile {
+  pk: number
+  username: string
+  email?: string
+}
+
 type Link = {
   href: string
   text: string
