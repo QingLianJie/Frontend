@@ -2,11 +2,12 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
+import { mutate } from 'swr'
 import CenterBox from '../components/ui/box/CenterBox'
 import HorizontalBox from '../components/ui/box/HorizontalBox'
 import SubmitButton from '../components/ui/button/SubmitButton'
 import CardForm from '../components/ui/form/CardForm'
-import FormInput from '../components/ui/form/input/FormInput'
+import Input from '../components/ui/form/input/FormInput'
 import TextLink from '../components/ui/link/TextLink'
 import { useSignupToast } from '../hooks/useToast'
 import { nameRegex, passwordRegex } from '../utils/regex'
@@ -51,23 +52,28 @@ const SignupPage = () => {
 
     if (checkName() && checkPassword()) {
       const formdata = new FormData()
-      formdata.append('usename', name)
+      formdata.append('username', name)
       formdata.append('email', email)
       formdata.append('password1', password)
       formdata.append('password2', passwordAgain)
 
-      fetch(`${baseURL}/rest-auth/signup/`, {
+      fetch(`${baseURL}/rest-auth/registration/`, {
         method: 'POST',
         body: formdata,
         mode: 'cors',
         credentials: 'include',
       })
         .then(async res => {
-          if (res.status === 200) {
+          if (res.ok) {
             toast.ok()
+            mutate(`${baseURL}/rest-auth/user/`)
             router.push('/')
           } else {
-            toast.error(`${res.status} ${res.statusText}`)
+            const data = await res.json()
+            Object.values(data).forEach(d => {
+              const t = d as string
+              toast.error(t)
+            })
           }
         })
         .catch((err: Error) => {
@@ -90,28 +96,30 @@ const SignupPage = () => {
         }
         action={handleSignup}
       >
-        <FormInput
+        <Input
           type="text"
           placeholder="用户名"
           icon={RiUserFill}
+          help="只能用英文字母、数字、横线、下划线和小数点"
           action={e => setName(e.target.value)}
         />
 
-        <FormInput
+        <Input
           type="email"
           placeholder="邮箱"
           icon={RiMailFill}
           action={e => setEmail(e.target.value)}
         />
 
-        <FormInput
+        <Input
           type="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
+          help="至少 8 个字符，且不能为纯数字"
           action={e => setPassword(e.target.value)}
         />
 
-        <FormInput
+        <Input
           type="password"
           placeholder="再次输入密码"
           icon={RiLockPasswordFill}
@@ -122,7 +130,9 @@ const SignupPage = () => {
 
         <HorizontalBox center divider>
           {links.map(link => (
-            <TextLink {...link} key={link.href} />
+            <TextLink href={link.href} key={link.href}>
+              {link.text}
+            </TextLink>
           ))}
         </HorizontalBox>
       </CardForm>

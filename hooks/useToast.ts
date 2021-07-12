@@ -33,7 +33,7 @@ export const useSignupToast = () => {
     name: () =>
       toast({
         title: '用户名不合适',
-        description: '只能包含英文字母、数字、特殊字符（. - _）',
+        description: '用户名只能包含英文字母、数字、横线、下划线和小数点',
         status: 'warning',
         isClosable: true,
       }),
@@ -41,7 +41,7 @@ export const useSignupToast = () => {
     password: () =>
       toast({
         title: '密码不合适',
-        description: '必须包含至少 8 个字符，并且不能是纯数字',
+        description: '密码需要包含至少 8 个字符，并且不能是纯数字',
         status: 'warning',
         isClosable: true,
       }),

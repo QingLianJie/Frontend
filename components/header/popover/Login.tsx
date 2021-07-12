@@ -1,10 +1,7 @@
 import {
   Avatar,
   Box,
-  Button,
   ButtonGroup,
-  LinkBox,
-  LinkOverlay,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -12,28 +9,8 @@ import {
   PopoverTrigger,
   Text,
 } from '@chakra-ui/react'
-import { default as NextLink } from 'next/link'
 import { RiUserLine } from 'react-icons/ri'
-
-interface ButtonLinkProps {
-  text: string
-  href: string
-  color: string
-}
-
-const ButtonLink = ({ text, href, color }: ButtonLinkProps) => {
-  return (
-    <LinkBox w="full" _focus={{ boxShadow: 'outline' }}>
-      <Button colorScheme={color} isFullWidth>
-        <NextLink href={href} passHref>
-          <LinkOverlay>
-            <Text>{text}</Text>
-          </LinkOverlay>
-        </NextLink>
-      </Button>
-    </LinkBox>
-  )
-}
+import ButtonLink from '../../ui/link/ButtonLink'
 
 const LoginPopover = () => {
   return (
@@ -64,8 +41,12 @@ const LoginPopover = () => {
           </Box>
 
           <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
-            <ButtonLink text="登录" href="/login" color="green" />
-            <ButtonLink text="注册" href="/signup" color="blue" />
+            <ButtonLink href="/login" color="green">
+              登录
+            </ButtonLink>
+            <ButtonLink href="/signup" color="blue">
+              注册
+            </ButtonLink>
           </ButtonGroup>
         </PopoverBody>
       </PopoverContent>

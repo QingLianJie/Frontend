@@ -22,7 +22,9 @@ const ResetPasswordPage = () => {
 
         <HorizontalBox center divider>
           {links.map(link => (
-            <TextLink {...link} key={link.href} />
+            <TextLink href={link.href} key={link.href}>
+              {link.text}
+            </TextLink>
           ))}
         </HorizontalBox>
       </CardForm>

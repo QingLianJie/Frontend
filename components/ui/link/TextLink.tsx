@@ -1,12 +1,13 @@
-import { HStack, Link, StackDivider, Text } from '@chakra-ui/react'
+import { Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
+import { ReactNode, ReactNodeArray } from 'react'
 
 interface TextLinkProps {
   href: string
-  text: string
+  children: ReactNode | ReactNodeArray
 }
 
-const TextLink = ({ href, text }: TextLinkProps) => {
+const TextLink = ({ href, children }: TextLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -28,7 +29,7 @@ const TextLink = ({ href, text }: TextLinkProps) => {
           },
         }}
       >
-        <Text fontSize="md">{text}</Text>
+        <Text fontSize="md">{children}</Text>
       </Link>
     </NextLink>
   )

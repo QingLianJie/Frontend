@@ -7,7 +7,7 @@ import CenterBox from '../components/ui/box/CenterBox'
 import HorizontalBox from '../components/ui/box/HorizontalBox'
 import SubmitButton from '../components/ui/button/SubmitButton'
 import CardForm from '../components/ui/form/CardForm'
-import FormInput from '../components/ui/form/input/FormInput'
+import Input from '../components/ui/form/input/FormInput'
 import TextLink from '../components/ui/link/TextLink'
 import { useLoginToast } from '../hooks/useToast'
 import { emailRegex } from '../utils/regex'
@@ -52,7 +52,11 @@ const LoginPage = () => {
           mutate(`${baseURL}/rest-auth/user/`)
           router.push('/')
         } else {
-          toast.error(`${res.status} ${res.statusText}`)
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            const t = d as string
+            toast.error(t)
+          })
         }
       })
       .catch((err: Error) => {
@@ -74,14 +78,14 @@ const LoginPage = () => {
         }
         action={handleLogin}
       >
-        <FormInput
+        <Input
           type="text"
           placeholder="用户名或邮箱"
           icon={nameType === 'email' ? RiMailFill : RiUserFill}
           action={e => setName(e.target.value)}
         />
 
-        <FormInput
+        <Input
           type="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
@@ -92,7 +96,9 @@ const LoginPage = () => {
 
         <HorizontalBox center divider>
           {links.map(link => (
-            <TextLink {...link} key={link.href} />
+            <TextLink href={link.href} key={link.href}>
+              {link.text}
+            </TextLink>
           ))}
         </HorizontalBox>
       </CardForm>

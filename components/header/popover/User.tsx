@@ -13,6 +13,7 @@ import {
 import { ReactElement } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import useUser from '../../../hooks/useUser'
+import ButtonLink from '../../ui/link/ButtonLink'
 
 interface PopoverWrapperProps {
   user: IUser
@@ -60,8 +61,10 @@ const UserPopover = () => {
       </VStack>
 
       <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
-        <Button>个人空间</Button>
-        <Button colorScheme="red">退出登录</Button>
+        <ButtonLink href={`/member/${user.username}`}>个人空间</ButtonLink>
+        <Button isFullWidth colorScheme="red">
+          退出登录
+        </Button>
       </ButtonGroup>
     </PopoverWrapper>
   )
