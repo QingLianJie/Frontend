@@ -1,12 +1,4 @@
-import {
-  HStack,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-} from '@chakra-ui/react'
+import { TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import {
   RiDiscussFill,
   RiQuestionAnswerFill,
@@ -15,32 +7,16 @@ import {
 import MemberAnswer from './Answer'
 import MemberComment from './Comment'
 import MemberQuestion from './Question'
+import MemberTab from './Tab'
 
 const MemberTabs = () => {
   return (
     <>
-      <Tabs isLazy size="lg">
+      <Tabs isLazy>
         <TabList>
-          <Tab>
-            <HStack spacing="4">
-              <RiDiscussFill style={{ minWidth: '1em' }} />
-              <Text fontWeight="bold">课程评论</Text>
-            </HStack>
-          </Tab>
-
-          <Tab>
-            <HStack spacing="4">
-              <RiQuestionFill style={{ minWidth: '1em' }} />
-              <Text fontWeight="bold">提问</Text>
-            </HStack>
-          </Tab>
-
-          <Tab>
-            <HStack spacing="4">
-              <RiQuestionAnswerFill style={{ minWidth: '1em' }} />
-              <Text fontWeight="bold">回答</Text>
-            </HStack>
-          </Tab>
+          <MemberTab icon={RiDiscussFill}>课程评论</MemberTab>
+          <MemberTab icon={RiQuestionFill}>提问</MemberTab>
+          <MemberTab icon={RiQuestionAnswerFill}>回答</MemberTab>
         </TabList>
 
         <TabPanels>

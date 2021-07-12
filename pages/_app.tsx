@@ -2,7 +2,7 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
 import Head from 'next/head'
 
-const fontFamily = `"Inter", "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
+const fontFamily = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont, Roboto, "Microsoft Yahei UI", "Noto Sans SC", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`
 
 const theme = extendTheme({
   fonts: {

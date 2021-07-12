@@ -6,16 +6,15 @@ import {
   Input as ChakraInput,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
-  Tooltip,
+  InputRightElement
 } from '@chakra-ui/react'
-import { ChangeEvent, FunctionComponent, useState } from 'react'
+import { ChangeEvent, FC, useState } from 'react'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri'
 
 interface FormInputProps {
   type: string
   placeholder: string
-  icon: FunctionComponent
+  icon: FC
   help?: string
   action: (e: ChangeEvent<HTMLInputElement>) => void
 }
@@ -60,6 +59,7 @@ const FormInput = ({
               color="gray.300"
               variant="ghost"
               borderRadius="md"
+              tabIndex={-1}
               _dark={{
                 color: 'gray.600',
               }}
