@@ -2,14 +2,20 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
-import AuthForm from '../components/auth-form/Form'
-import AuthHeading from '../components/auth-form/Heading'
-import AuthInput from '../components/auth-form/Input'
-import AuthLinks from '../components/auth-form/Links'
-import AuthSubmit from '../components/auth-form/Submit'
+import CenterBox from '../components/ui/box/CenterBox'
+import HorizontalBox from '../components/ui/box/HorizontalBox'
+import SubmitButton from '../components/ui/button/SubmitButton'
+import CardForm from '../components/ui/form/CardForm'
+import FormInput from '../components/ui/form/input/FormInput'
+import TextLink from '../components/ui/link/TextLink'
 import { useSignupToast } from '../hooks/useToast'
-import { API_URL_BASE } from '../utils/const'
 import { nameRegex, passwordRegex } from '../utils/regex'
+
+const links: Links = [
+  { href: '/login', text: '登录' },
+  { href: '/reset-password', text: '重置密码' },
+  { href: '/', text: '主页' },
+]
 
 const SignupPage = () => {
   const toast = useSignupToast()
@@ -18,6 +24,8 @@ const SignupPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordAgain, setPasswordAgain] = useState('')
+
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   const checkName = () => {
     if (!nameRegex.test(name)) {
@@ -48,7 +56,7 @@ const SignupPage = () => {
       formdata.append('password1', password)
       formdata.append('password2', passwordAgain)
 
-      fetch(`${API_URL_BASE}/rest-auth/signup/`, {
+      fetch(`${baseURL}/rest-auth/signup/`, {
         method: 'POST',
         body: formdata,
         mode: 'cors',
@@ -70,54 +78,55 @@ const SignupPage = () => {
   }
 
   return (
-    <>
+    <CenterBox screen>
       <Head>
         <title>注册 - 清廉街</title>
       </Head>
-      <AuthForm action={handleSignup}>
-        <AuthHeading>
-          注册 <strong>清廉街</strong> 账号
-        </AuthHeading>
-
-        <AuthInput
+      <CardForm
+        heading={
+          <span>
+            注册 <strong>清廉街</strong> 账号
+          </span>
+        }
+        action={handleSignup}
+      >
+        <FormInput
           type="text"
           placeholder="用户名"
           icon={RiUserFill}
           action={e => setName(e.target.value)}
         />
 
-        <AuthInput
+        <FormInput
           type="email"
           placeholder="邮箱"
           icon={RiMailFill}
           action={e => setEmail(e.target.value)}
         />
 
-        <AuthInput
+        <FormInput
           type="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
           action={e => setPassword(e.target.value)}
         />
 
-        <AuthInput
+        <FormInput
           type="password"
           placeholder="再次输入密码"
           icon={RiLockPasswordFill}
           action={e => setPasswordAgain(e.target.value)}
         />
 
-        <AuthSubmit color="blue" text="注册" />
+        <SubmitButton color="blue" text="注册" />
 
-        <AuthLinks
-          links={[
-            { href: '/login', text: '登录' },
-            { href: '/reset-password', text: '重置密码' },
-            { href: '/', text: '主页' },
-          ]}
-        />
-      </AuthForm>
-    </>
+        <HorizontalBox center divider>
+          {links.map(link => (
+            <TextLink {...link} key={link.href} />
+          ))}
+        </HorizontalBox>
+      </CardForm>
+    </CenterBox>
   )
 }
 

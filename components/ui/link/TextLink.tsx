@@ -34,21 +34,4 @@ const TextLink = ({ href, text }: TextLinkProps) => {
   )
 }
 
-interface AuthLinksProps {
-  links: Array<{
-    href: string
-    text: string
-  }>
-}
-
-const AuthLinks = ({ links }: AuthLinksProps) => {
-  return (
-    <HStack divider={<StackDivider />} justify="center" my="3">
-      {links.map(link => (
-        <TextLink {...link} key={link.href} />
-      ))}
-    </HStack>
-  )
-}
-
-export default AuthLinks
+export default TextLink

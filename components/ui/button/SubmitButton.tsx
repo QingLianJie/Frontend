@@ -1,11 +1,11 @@
 import { Button, InputGroup } from '@chakra-ui/react'
 
-interface AuthSubmitProps {
+interface SubmitButtonProps {
   color: string
   text: string
 }
 
-const AuthSubmit = ({ color, text }: AuthSubmitProps) => {
+const SubmitButton = ({ color, text }: SubmitButtonProps) => {
   return (
     <InputGroup my="2">
       <Button type="submit" isFullWidth colorScheme={color}>
@@ -15,4 +15,4 @@ const AuthSubmit = ({ color, text }: AuthSubmitProps) => {
   )
 }
 
-export default AuthSubmit
+export default SubmitButton

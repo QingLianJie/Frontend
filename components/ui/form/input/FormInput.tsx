@@ -1,7 +1,7 @@
 import {
   Icon,
   IconButton,
-  Input,
+  Input as ChakraInput,
   InputGroup,
   InputLeftElement,
   InputRightElement,
@@ -9,14 +9,14 @@ import {
 import { ChangeEvent, FunctionComponent, useState } from 'react'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri'
 
-interface AuthInputProps {
+interface FormInputProps {
   type: string
   placeholder: string
   icon: FunctionComponent
   action: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const AuthInput = ({ type, placeholder, icon, action }: AuthInputProps) => {
+const FormInput = ({ type, placeholder, icon, action }: FormInputProps) => {
   const [showPassword, setShowPassword] = useState(false)
   return (
     <InputGroup my="2">
@@ -29,7 +29,8 @@ const AuthInput = ({ type, placeholder, icon, action }: AuthInputProps) => {
           }}
         />
       </InputLeftElement>
-      <Input
+
+      <ChakraInput
         type={type === 'password' ? (showPassword ? 'text' : 'password') : type}
         placeholder={placeholder}
         isRequired
@@ -55,4 +56,4 @@ const AuthInput = ({ type, placeholder, icon, action }: AuthInputProps) => {
   )
 }
 
-export default AuthInput
+export default FormInput

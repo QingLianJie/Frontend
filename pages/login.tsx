@@ -3,16 +3,22 @@ import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
 import { mutate } from 'swr'
-import AuthForm from '../components/auth-form/Form'
-import AuthHeading from '../components/auth-form/Heading'
-import AuthInput from '../components/auth-form/Input'
-import AuthLinks from '../components/auth-form/Links'
-import AuthSubmit from '../components/auth-form/Submit'
+import CenterBox from '../components/ui/box/CenterBox'
+import HorizontalBox from '../components/ui/box/HorizontalBox'
+import SubmitButton from '../components/ui/button/SubmitButton'
+import CardForm from '../components/ui/form/CardForm'
+import FormInput from '../components/ui/form/input/FormInput'
+import TextLink from '../components/ui/link/TextLink'
 import { useLoginToast } from '../hooks/useToast'
-import { API_URL_BASE } from '../utils/const'
 import { emailRegex } from '../utils/regex'
 
 type NameType = 'username' | 'email'
+
+const links: Links = [
+  { href: '/signup', text: '注册' },
+  { href: '/reset-password', text: '重置密码' },
+  { href: '/', text: '主页' },
+]
 
 const LoginPage = () => {
   const toast = useLoginToast()
@@ -20,6 +26,8 @@ const LoginPage = () => {
   const [nameType, setNameType] = useState<NameType>('username')
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
+
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   const isEmail = (name: string) =>
     setNameType(emailRegex.test(name) ? 'email' : 'username')
@@ -32,7 +40,7 @@ const LoginPage = () => {
     formdata.append(nameType, name)
     formdata.append('password', password)
 
-    fetch(`${API_URL_BASE}/rest-auth/login/`, {
+    fetch(`${baseURL}/rest-auth/login/`, {
       method: 'POST',
       body: formdata,
       mode: 'cors',
@@ -41,7 +49,7 @@ const LoginPage = () => {
       .then(async res => {
         if (res.ok) {
           toast.ok()
-          mutate(`${API_URL_BASE}/rest-auth/user/`)
+          mutate(`${baseURL}/rest-auth/user/`)
           router.push('/')
         } else {
           toast.error(`${res.status} ${res.statusText}`)
@@ -54,40 +62,41 @@ const LoginPage = () => {
   }
 
   return (
-    <>
+    <CenterBox screen>
       <Head>
         <title>登录 - 清廉街</title>
       </Head>
-      <AuthForm action={handleLogin}>
-        <AuthHeading>
-          登录到 <strong>清廉街</strong>
-        </AuthHeading>
-
-        <AuthInput
+      <CardForm
+        heading={
+          <span>
+            登录到 <strong>清廉街</strong>
+          </span>
+        }
+        action={handleLogin}
+      >
+        <FormInput
           type="text"
           placeholder="用户名或邮箱"
           icon={nameType === 'email' ? RiMailFill : RiUserFill}
           action={e => setName(e.target.value)}
         />
 
-        <AuthInput
+        <FormInput
           type="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
           action={e => setPassword(e.target.value)}
         />
 
-        <AuthSubmit color="green" text="登录" />
+        <SubmitButton color="green" text="登录" />
 
-        <AuthLinks
-          links={[
-            { href: '/signup', text: '注册' },
-            { href: '/reset-password', text: '重置密码' },
-            { href: '/', text: '主页' },
-          ]}
-        />
-      </AuthForm>
-    </>
+        <HorizontalBox center divider>
+          {links.map(link => (
+            <TextLink {...link} key={link.href} />
+          ))}
+        </HorizontalBox>
+      </CardForm>
+    </CenterBox>
   )
 }
 

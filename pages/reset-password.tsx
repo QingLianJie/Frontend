@@ -1,31 +1,32 @@
 import Head from 'next/head'
-import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
-import AuthForm from '../components/auth-form/Form'
-import AuthHeading from '../components/auth-form/Heading'
-import AuthInput from '../components/auth-form/Input'
-import AuthLinks from '../components/auth-form/Links'
-import AuthSubmit from '../components/auth-form/Submit'
+import CenterBox from '../components/ui/box/CenterBox'
+import HorizontalBox from '../components/ui/box/HorizontalBox'
+import SubmitButton from '../components/ui/button/SubmitButton'
+import CardForm from '../components/ui/form/CardForm'
+import TextLink from '../components/ui/link/TextLink'
+
+const links: Links = [
+  { href: '/login', text: '登录' },
+  { href: '/signup', text: '注册' },
+  { href: '/', text: '主页' },
+]
 
 const ResetPasswordPage = () => {
   return (
-    <>
+    <CenterBox screen>
       <Head>
         <title>重置密码 - 清廉街</title>
       </Head>
-      <AuthForm action={e => e.preventDefault()}>
-        <AuthHeading>重置密码</AuthHeading>
+      <CardForm heading={'重置密码'} action={e => e.preventDefault()}>
+        <SubmitButton color="teal" text="还没有这个功能" />
 
-        <AuthSubmit color="teal" text="还没有这个功能" />
-
-        <AuthLinks
-          links={[
-            { href: '/login', text: '登录' },
-            { href: '/signup', text: '注册' },
-            { href: '/', text: '主页' },
-          ]}
-        />
-      </AuthForm>
-    </>
+        <HorizontalBox center divider>
+          {links.map(link => (
+            <TextLink {...link} key={link.href} />
+          ))}
+        </HorizontalBox>
+      </CardForm>
+    </CenterBox>
   )
 }
 

@@ -1,6 +1,6 @@
 import { Container, Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
-import Header from '../components/header-bar/Header'
+import Header from '../components/header/Header'
 
 const IndexPage = () => {
   return (

@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Box,
   Button,
   ButtonGroup,
   Popover,
@@ -11,7 +10,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { ReactElement, useRef } from 'react'
+import { ReactElement } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import useUser from '../../../hooks/useUser'
 

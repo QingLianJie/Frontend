@@ -1,9 +1,10 @@
 import useSWR from 'swr'
-import { API_URL_BASE } from '../utils/const'
 import fetcher from '../utils/fetcher'
 
 const useUser = (initialData?: any) => {
-  const { data, error } = useSWR(`${API_URL_BASE}/rest-auth/user/`, fetcher, {
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+
+  const { data, error } = useSWR(`${baseURL}/rest-auth/user/`, fetcher, {
     initialData: initialData,
   })
 
