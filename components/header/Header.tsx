@@ -1,7 +1,7 @@
 import { Fade, Flex, Heading, SkeletonCircle, Spacer } from '@chakra-ui/react'
 import useUser from '../../hooks/useUser'
 import LoginPopover from './popover/Login'
-import UserPopover from './popover/User'
+import MemberPopover from './popover/Member'
 
 interface HeaderProps {
   title?: string
@@ -40,7 +40,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
         </Fade>
       ) : (
         <Fade in>
-          <UserPopover />
+          <MemberPopover />
         </Fade>
       )}
     </Flex>

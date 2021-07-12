@@ -4,9 +4,9 @@ import { MouseEvent } from 'react'
 import { mutate } from 'swr'
 import useUser from '../../../hooks/useUser'
 import ButtonLink from '../../ui/link/ButtonLink'
-import PopoverWrapper from './Wrapper'
+import PopoverWrapper from './Container'
 
-const UserPopover = () => {
+const MemberPopover = () => {
   const { user } = useUser()
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
@@ -49,4 +49,4 @@ const UserPopover = () => {
   )
 }
 
-export default UserPopover
+export default MemberPopover

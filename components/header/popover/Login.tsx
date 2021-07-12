@@ -1,6 +1,6 @@
 import { Box, ButtonGroup, Text } from '@chakra-ui/react'
 import ButtonLink from '../../ui/link/ButtonLink'
-import PopoverWrapper from './Wrapper'
+import PopoverWrapper from './Container'
 
 const LoginPopover = () => {
   return (
