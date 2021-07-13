@@ -16,7 +16,7 @@ interface PopoverWrapperProps {
 
 const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
   return (
-    <Popover placement="bottom-end">
+    <Popover autoFocus placement="bottom-end">
       <PopoverTrigger>
         <Avatar
           bg="gray.100"

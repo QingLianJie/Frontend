@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FC, ReactNode, ReactNodeArray } from 'react'
-import NavMenuLink from './MenuLink'
+import NavMenuLink from './Link'
 
 interface NavMenuLinkProps {
   text: string

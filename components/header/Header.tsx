@@ -1,5 +1,13 @@
-import { Fade, Flex, Heading, SkeletonCircle, Spacer } from '@chakra-ui/react'
+import {
+  Box,
+  Fade,
+  Flex,
+  Heading,
+  SkeletonCircle,
+  Spacer,
+} from '@chakra-ui/react'
 import useUser from '../../hooks/useUser'
+import HeaderDrawer from './drawer/Drawer'
 import HeaderNav from './nav/Nav'
 import LoginPopover from './popover/Login'
 import MemberPopover from './popover/Member'
@@ -16,7 +24,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
     <Flex
       as="header"
       mb="6"
-      px={{ base: '6', md: '12' }}
+      px={{ base: '6', md: '8', lg: '12' }}
       py="4"
       alignItems="center"
       borderBottomWidth="1px"
@@ -29,11 +37,18 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
         bg: 'blackAlpha.200',
       }}
     >
+      <Box d={{ base: 'flex', lg: 'none' }}>
+        <HeaderDrawer />
+      </Box>
+
       <Heading as="h1" size="md">
         {title}
       </Heading>
 
-      <HeaderNav />
+      <Box d={{ base: 'none', lg: 'flex' }}>
+        <HeaderNav />
+      </Box>
+
       <Spacer />
 
       {isLoading ? (

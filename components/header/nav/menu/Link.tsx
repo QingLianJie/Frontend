@@ -18,8 +18,7 @@ const NavMenuLink = ({ href, icon, color, children }: NavMenuLinkProps) => {
         w="full"
         d="flex"
         py="2.5"
-        ps="5"
-        pe="6"
+        px="6"
         alignItems="center"
         rounded="md"
         _hover={{
@@ -30,7 +29,7 @@ const NavMenuLink = ({ href, icon, color, children }: NavMenuLinkProps) => {
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
         {icon ? (
-          <Icon as={icon} me="3" minW="1.125em" minH="1.125em" color={color} />
+          <Icon as={icon} ms="-0.5" me="3" w="5" h="5" color={color} />
         ) : null}
         <Text>{children}</Text>
       </Link>
