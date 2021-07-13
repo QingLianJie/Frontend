@@ -14,21 +14,19 @@ const MemberPage = () => {
       <Head>
         <title>{name ? `${name} 的个人主页` : `个人主页`} - 清廉街</title>
       </Head>
-      <Container minH="100vh" maxW="unset" p="0">
-        <Header />
-        <Container width="full" maxW="container.xl" p="8">
-          <Grid
-            templateColumns="repeat(4, 1fr)"
-            gap={{ base: 8, md: 12, lg: 16 }}
-          >
-            <GridItem colSpan={{ base: 4, md: 1 }}>
-              {name && <MemberProfile name={name} />}
-            </GridItem>
-            <GridItem colSpan={{ base: 4, md: 3 }}>
-              <MemberTabs />
-            </GridItem>
-          </Grid>
-        </Container>
+      <Header />
+      <Container width="full" maxW="container.xl" py="4" px="8">
+        <Grid
+          templateColumns="repeat(4, 1fr)"
+          gap={{ base: 8, md: 12, lg: 16 }}
+        >
+          <GridItem colSpan={{ base: 4, md: 1 }}>
+            {name && <MemberProfile name={name} />}
+          </GridItem>
+          <GridItem colSpan={{ base: 4, md: 3 }}>
+            <MemberTabs />
+          </GridItem>
+        </Grid>
       </Container>
     </>
   )

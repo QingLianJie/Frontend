@@ -16,10 +16,10 @@ const LoginPopover = () => {
       </Box>
 
       <ButtonGroup spacing="3" d="flex" justifyContent="flex-end" size="sm">
-        <ButtonLink href={`/login?from=${router.asPath}`} color="green">
+        <ButtonLink href={`/login?from=${router.asPath}`} color="green" full>
           登录
         </ButtonLink>
-        <ButtonLink href={`/signup?from=${router.asPath}`} color="blue">
+        <ButtonLink href={`/signup?from=${router.asPath}`} color="blue" full>
           注册
         </ButtonLink>
       </ButtonGroup>

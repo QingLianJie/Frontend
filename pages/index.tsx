@@ -1,4 +1,4 @@
-import { Container, Grid, GridItem, Heading } from '@chakra-ui/react'
+import { Container, Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import Header from '../components/header/Header'
 
@@ -9,7 +9,7 @@ const IndexPage = () => {
         <title>清廉街</title>
       </Head>
       <Header />
-      <Container maxW="container.xl">
+      <Container width="full" maxW="container.xl" py="4" px="8">
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={{ base: 8, md: 12, lg: 16 }}

@@ -54,7 +54,9 @@ const MemberPopover = () => {
 
       <ButtonGroup size="sm">
         <HStack spacing="3">
-          <ButtonLink href={`/member/${user.username}`}>个人主页</ButtonLink>
+          <ButtonLink href={`/member/${user.username}`} full>
+            个人主页
+          </ButtonLink>
           <Button isFullWidth colorScheme="red" onClick={handleLogout}>
             退出登录
           </Button>
