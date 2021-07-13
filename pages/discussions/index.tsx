@@ -11,8 +11,8 @@ import {
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { default as NextLink } from 'next/link'
-import Header from '../../components/header/Header'
-import ButtonLink from '../../components/ui/link/ButtonLink'
+import Header from '../../components/layout/header/Header'
+import ButtonLink from '../../components/common/link/ButtonLink'
 import ColorfulBalls from '../../components/widget/background/ColorfulBalls'
 
 const DiscussionsPage = () => {

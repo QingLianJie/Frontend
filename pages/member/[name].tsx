@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import MemberProfile from '../../components/app/member/Profile'
 import MemberTabs from '../../components/app/member/tabs/Tabs'
-import Header from '../../components/header/Header'
+import Header from '../../components/layout/header/Header'
 
 const MemberPage = () => {
   const router = useRouter()

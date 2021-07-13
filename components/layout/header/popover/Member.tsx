@@ -2,9 +2,9 @@ import { Button, ButtonGroup, HStack, Text, VStack } from '@chakra-ui/react'
 import router from 'next/router'
 import { MouseEvent } from 'react'
 import { mutate } from 'swr'
-import useLogoutToast from '../../../hooks/useToast/useLogoutToast'
-import useUser from '../../../hooks/useUser'
-import ButtonLink from '../../ui/link/ButtonLink'
+import useLogoutToast from '../../../../hooks/useToast/useLogoutToast'
+import useUser from '../../../../hooks/useUser'
+import ButtonLink from '../../../common/link/ButtonLink'
 import PopoverWrapper from './Container'
 
 const MemberPopover = () => {

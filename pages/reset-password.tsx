@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import CenterBox from '../components/ui/box/CenterBox'
-import HorizontalBox from '../components/ui/box/HorizontalBox'
-import SubmitButton from '../components/ui/button/SubmitButton'
-import CardForm from '../components/ui/form/CardForm'
-import TextLink from '../components/ui/link/TextLink'
+import CenterBox from '../components/common/box/CenterBox'
+import HorizontalBox from '../components/common/box/HorizontalBox'
+import SubmitButton from '../components/common/button/SubmitButton'
+import CardForm from '../components/common/form/CardForm'
+import TextLink from '../components/common/link/TextLink'
 
 const links: Links = [
   { href: '/login', text: '登录' },

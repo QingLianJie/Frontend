@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import BackgroundBox from '../../ui/box/BackgroundBox'
+import BackgroundBox from '../../common/box/BackgroundBox'
 
 const ColorfulBalls = () => {
   const ref = useRef<HTMLDivElement>(null)

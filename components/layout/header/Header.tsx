@@ -6,7 +6,7 @@ import {
   SkeletonCircle,
   Spacer,
 } from '@chakra-ui/react'
-import useUser from '../../hooks/useUser'
+import useUser from '../../../hooks/useUser'
 import HeaderDrawer from './drawer/Drawer'
 import HeaderNav from './nav/Nav'
 import LoginPopover from './popover/Login'
