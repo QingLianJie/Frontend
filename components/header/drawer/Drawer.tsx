@@ -125,7 +125,7 @@ const HeaderDrawer = () => {
               </DrawerAccordion>
 
               <DrawerLink
-                href="/ask"
+                href="/discussions"
                 color="yellow.500"
                 icon={RiQuestionAnswerFill}
               >

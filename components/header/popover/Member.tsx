@@ -44,7 +44,7 @@ const MemberPopover = () => {
   return (
     <PopoverWrapper user={user}>
       <VStack mb="3.5" spacing="1" align="start" px="1">
-        <Text fontSize="lg" fontWeight="bold">
+        <Text fontSize="lg" fontWeight="600">
           欢迎回来，{user.username}
         </Text>
         <Text fontSize="md" color="gray.500">

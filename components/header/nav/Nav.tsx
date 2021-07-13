@@ -86,7 +86,11 @@ const HeaderNav = () => {
         学校
       </NavMenu>
 
-      <NavLink href="/ask" color="yellow.500" icon={RiQuestionAnswerFill}>
+      <NavLink
+        href="/discussions"
+        color="yellow.500"
+        icon={RiQuestionAnswerFill}
+      >
         问大家
       </NavLink>
 

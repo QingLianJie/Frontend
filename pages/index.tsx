@@ -1,4 +1,4 @@
-import { Container, Grid, GridItem } from '@chakra-ui/react'
+import { Container, Grid, GridItem, Heading } from '@chakra-ui/react'
 import Head from 'next/head'
 import Header from '../components/header/Header'
 
@@ -10,10 +10,13 @@ const IndexPage = () => {
       </Head>
       <Header />
       <Container maxW="container.xl">
-        <Grid templateColumns="repeat(24, 1fr)">
-          <GridItem colSpan={4}>1</GridItem>
-          <GridItem colSpan={12}>2</GridItem>
-          <GridItem colSpan={6}>3</GridItem>
+        <Grid
+          templateColumns="repeat(4, 1fr)"
+          gap={{ base: 8, md: 12, lg: 16 }}
+        >
+          <GridItem colSpan={{ base: 4, md: 1 }}>快捷方式</GridItem>
+          <GridItem colSpan={{ base: 4, md: 3, lg: 2 }}>时间线</GridItem>
+          <GridItem colSpan={{ base: 4, lg: 1 }}>公告板</GridItem>
         </Grid>
       </Container>
     </>

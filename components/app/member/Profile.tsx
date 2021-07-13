@@ -36,7 +36,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
 
       <VStack py="10" spacing="2.5">
         <Skeleton isLoaded={!isLoading} px="4">
-          <Heading size="lg" textAlign="center">
+          <Heading size="lg" textAlign="center" fontWeight="600">
             {name}
           </Heading>
         </Skeleton>
