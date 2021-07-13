@@ -1,7 +1,7 @@
-import { Button, InputGroup } from '@chakra-ui/react'
+import { Button, InputGroup, ThemeTypings } from '@chakra-ui/react'
 
 interface SubmitButtonProps {
-  color: string
+  color: ThemeTypings['colors']
   text: string
 }
 

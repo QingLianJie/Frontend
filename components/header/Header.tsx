@@ -16,7 +16,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
     <Flex
       as="header"
       mb="6"
-      px={{ base: '6', lg: '12' }}
+      px={{ base: '6', md: '12' }}
       py="4"
       alignItems="center"
       borderBottomWidth="1px"

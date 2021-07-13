@@ -12,7 +12,7 @@ import MemberTab from './Tab'
 const MemberTabs = () => {
   return (
     <>
-      <Tabs isLazy>
+      <Tabs isLazy variant="soft-rounded">
         <TabList>
           <MemberTab icon={RiDiscussFill}>课程评论</MemberTab>
           <MemberTab icon={RiQuestionFill}>提问</MemberTab>

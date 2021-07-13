@@ -9,7 +9,7 @@ interface MemberTabProps {
 const MemberTab = ({ icon, children }: MemberTabProps) => {
   return (
     <Tab>
-      <HStack px={{ base: 0, md: 0.5 }} py={{ base: 0, md: 1 }} spacing="4">
+      <HStack p={{ base: 0, md: 0.5 }} spacing="3">
         <Icon as={icon} style={{ minWidth: '1em' }} />
         <Text fontWeight="bold">{children}</Text>
       </HStack>
