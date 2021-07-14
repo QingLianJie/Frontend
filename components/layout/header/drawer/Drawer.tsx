@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { FC } from 'react'
 import { RiMenuFill } from 'react-icons/ri'
-import { routerLinks } from '../../../../data/routerLinks'
+import { routerLinks } from '../../../../data/router-links'
 import DrawerAccordion from './Accordion'
 import DrawerLink from './Link'
 

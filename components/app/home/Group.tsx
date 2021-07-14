@@ -17,7 +17,6 @@ const HomeGroup = ({ title, icon, children }: HomeGroupProps) => {
           {title}
         </Text>
       </HStack>
-
       <Box w="full">{children}</Box>
     </VStack>
   )

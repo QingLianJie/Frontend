@@ -1,6 +1,6 @@
 import { HStack } from '@chakra-ui/react'
 import { FC } from 'react'
-import { routerLinks } from '../../../../data/routerLinks'
+import { routerLinks } from '../../../../data/router-links'
 import NavLink from './Link'
 import NavMenu from './menu/Menu'
 

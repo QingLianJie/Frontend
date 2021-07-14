@@ -1,11 +1,9 @@
-import { Container, Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
-import NoticeBoard from '../components/app/home/NoticeBoard'
+import Notices from '../components/app/home/notices/Notices'
 import Shortcuts from '../components/app/home/shortcuts/Shortcuts'
 import Timeline from '../components/app/home/timeline/Timeline'
 import MainBox from '../components/common/box/MainBox'
-import ScreenBox from '../components/common/box/ScreenBox'
-import Header from '../components/layout/header/Header'
 
 const IndexPage = () => {
   return (
@@ -22,7 +20,7 @@ const IndexPage = () => {
             <Timeline />
           </GridItem>
           <GridItem colSpan={{ base: 4, lg: 1 }}>
-            <NoticeBoard />
+            <Notices />
           </GridItem>
         </Grid>
       </MainBox>

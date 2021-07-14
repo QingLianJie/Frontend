@@ -28,7 +28,7 @@ type RouterMenu = {
   children?: RouterLink[]
 }
 
-type RouterLinks = Array<RouterLink | RouterMenu>
+type RouterLinks = (RouterLink | RouterMenu)[]
 
 type ShortcutLink = {
   text: string
@@ -37,7 +37,7 @@ type ShortcutLink = {
   icon?: FC
 }
 
-type ShortcutLinks = Array<ShortcutLink>
+type ShortcutLinks = ShortcutLink[]
 
 type Link = {
   href: string
@@ -45,3 +45,11 @@ type Link = {
 }
 
 type Links = Link[]
+
+type Notice = {
+  title: string
+  date: string
+  content: string
+}
+
+type Notices = Notice[]
