@@ -1,6 +1,7 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Grid, GridItem, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import Notices from '../components/app/home/notices/Notices'
+import Overview from '../components/app/home/Overview'
 import Shortcuts from '../components/app/home/shortcuts/Shortcuts'
 import Timeline from '../components/app/home/timeline/Timeline'
 import MainBox from '../components/common/box/MainBox'
@@ -12,8 +13,11 @@ const IndexPage = () => {
         <title>清廉街</title>
       </Head>
       <MainBox>
-        <Grid templateColumns="repeat(4, 1fr)" gap="8">
+        <Grid templateColumns="repeat(4, 1fr)" gap="12">
           <GridItem colSpan={{ base: 4, md: 2, lg: 1 }}>
+            <Box d={{ base: 'none', md: 'initial' }}>
+              <Overview />
+            </Box>
             <Shortcuts />
           </GridItem>
           <GridItem colSpan={{ base: 4, md: 4, lg: 2 }}>

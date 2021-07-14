@@ -7,12 +7,15 @@ import ShortcutLink from './Link'
 
 const Shortcuts = () => {
   return (
-    <HomeGroup title={'快捷方式'} icon={RiLinksLine}>
+    <HomeGroup>
       <Grid
         templateColumns="repeat(auto-fit, 4.5rem)"
-        justifyContent={{ base: 'center', lg: 'flex-start' }}
-        gap={{ base: 1, lg: 3 }}
+        justifyContent="center"
+        gap={{ base: 1, md: 0 }}
         w="full"
+        p={{ base: 2, md: 4 }}
+        rounded="md"
+        borderWidth={{ base: 'none', md: '1px' }}
       >
         {shortcutLinks.map((link, index) => (
           <ShortcutLink

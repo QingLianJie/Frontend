@@ -21,6 +21,10 @@ interface ICourseComment {
   anonymous: boolean
 }
 
+interface IStudent {
+  heu_username: string
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string

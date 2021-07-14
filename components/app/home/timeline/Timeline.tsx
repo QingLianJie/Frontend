@@ -15,14 +15,14 @@ const Timeline = () => {
 
   return (
     <HomeGroup title={'时间线'} icon={RiTimeLine}>
-      <VStack spacing="3" w="full">
+      <VStack spacing="3" w="full" my="-2">
         {isError ? (
           <Alert status="error" rounded="md">
             <AlertIcon />
             获取课程评论失败
           </Alert>
         ) : isLoading ? (
-          <CircularProgress isIndeterminate color="pink.400" />
+          <CircularProgress isIndeterminate color="pink.400" my="16" />
         ) : (
           comments.map((comment, index) => (
             <>

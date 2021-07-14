@@ -21,7 +21,7 @@ const CourseCommentCard = ({
   anonymous,
 }: CourseCommentCardProps) => {
   return (
-    <VStack align="start" w="full" px="0.5" py="1">
+    <VStack align="start" w="full" px="0" py="1">
       <HStack w="full" py="1" spacing="3">
         <Avatar
           size="xs"

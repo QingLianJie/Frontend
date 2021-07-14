@@ -31,10 +31,10 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
       pos="sticky"
       top="0"
       zIndex="100"
-      bg="whiteAlpha.800"
+      bg="whiteAlpha.700"
       style={{ backdropFilter: 'blur(12px)' }}
       _dark={{
-        bg: 'blackAlpha.200',
+        bg: '#1a202ccc',
       }}
     >
       <Box d={{ base: 'flex', lg: 'none' }}>

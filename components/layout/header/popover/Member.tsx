@@ -47,7 +47,7 @@ const MemberPopover = () => {
         <Text fontSize="lg" fontWeight="600">
           欢迎回来，{user?.username}
         </Text>
-        <Text fontSize="md" color="gray.500">
+        <Text fontSize="sm" color="gray.500">
           {user?.email || '无邮箱'}
         </Text>
       </VStack>
