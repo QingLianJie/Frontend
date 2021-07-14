@@ -21,7 +21,6 @@ const ShortcutLink = ({ icon, color, href, children }: ShortcutLinkProps) => {
         px="3"
         pt="4"
         pb="3"
-        borderWidth={{ base: 'none', lg: '1px' }}
         rounded="md"
         _hover={{
           textDecor: 'none',

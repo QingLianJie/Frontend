@@ -6,9 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
 import { ReactElement } from 'react'
-import { RiUserLine } from 'react-icons/ri'
 
 interface PopoverWrapperProps {
   user?: IUser
@@ -20,23 +18,22 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
     <Popover placement="bottom-end" trigger="hover">
       <PopoverTrigger>
         <Avatar
-          bg="gray.100"
           name={user ? user.username : undefined}
-          icon={!user ? <RiUserLine /> : undefined}
           w="10"
           h="10"
           mx="1"
           cursor="pointer"
           color="gray.400"
+          bg="gray.200"
           _dark={{
             color: 'white',
-            bg: 'gray.700',
+            bg: 'gray.600',
           }}
         />
       </PopoverTrigger>
       <PopoverContent minW="unset" w="auto">
         <PopoverArrow />
-        <PopoverBody p="4">{children}</PopoverBody>
+        <PopoverBody p="5">{children}</PopoverBody>
       </PopoverContent>
     </Popover>
   )

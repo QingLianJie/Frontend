@@ -7,7 +7,7 @@ import NoticeCard from './Card'
 const Notices = () => {
   return (
     <HomeGroup title={'公告板'} icon={RiNotificationBadgeLine}>
-      <VStack spacing="3">
+      <VStack spacing="4">
         {noticesMock.map((notice, index) => (
           <NoticeCard
             key={index}

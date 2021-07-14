@@ -3,7 +3,7 @@ import CenterBox from '../components/common/box/CenterBox'
 import HorizontalBox from '../components/common/box/HorizontalBox'
 import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
-import TextLink from '../components/common/link/TextLink'
+import BlockLink from '../components/common/link/BlockLink'
 
 const links: Links = [
   { href: '/login', text: '登录' },
@@ -22,9 +22,9 @@ const ResetPasswordPage = () => {
 
         <HorizontalBox center divider>
           {links.map(link => (
-            <TextLink href={link.href} key={link.href}>
+            <BlockLink href={link.href} key={link.href}>
               {link.text}
-            </TextLink>
+            </BlockLink>
           ))}
         </HorizontalBox>
       </CardForm>

@@ -12,6 +12,15 @@ interface IProfile {
   email?: string
 }
 
+interface ICourseComment {
+  username: string
+  course_name: string
+  course_id: string
+  content: string
+  created: string
+  anonymous: boolean
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string

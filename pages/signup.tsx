@@ -8,7 +8,7 @@ import HorizontalBox from '../components/common/box/HorizontalBox'
 import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
-import TextLink from '../components/common/link/TextLink'
+import BlockLink from '../components/common/link/BlockLink'
 import useSignupToast from '../hooks/useToast/useSignupToast'
 import { nameRegex, passwordRegex } from '../utils/regex'
 
@@ -135,9 +135,9 @@ const SignupPage = () => {
 
         <HorizontalBox center divider>
           {links.map(link => (
-            <TextLink href={link.href} key={link.href}>
+            <BlockLink href={link.href} key={link.href}>
               {link.text}
-            </TextLink>
+            </BlockLink>
           ))}
         </HorizontalBox>
       </CardForm>

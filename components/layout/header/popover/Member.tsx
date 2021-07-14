@@ -53,7 +53,7 @@ const MemberPopover = () => {
       </VStack>
 
       <ButtonGroup size="sm">
-        <HStack spacing="3">
+        <HStack spacing="4">
           <ButtonLink href={`/@${user?.username}`} full>
             个人主页
           </ButtonLink>
