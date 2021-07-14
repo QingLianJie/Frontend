@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import CenterBox from '../components/common/box/CenterBox'
 import HorizontalBox from '../components/common/box/HorizontalBox'
-import SubmitButton from '../components/common/button/SubmitButton'
+import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import TextLink from '../components/common/link/TextLink'
 

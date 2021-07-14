@@ -17,7 +17,6 @@ interface MemberProfileProps {
 const MemberProfile = ({ name }: MemberProfileProps) => {
   const username = name as string
   const { profile, isLoading, isMe } = useProfile(username)
-  console.log(isMe)
 
   return (
     <>

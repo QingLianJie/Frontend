@@ -29,3 +29,19 @@ type RouterMenu = {
 }
 
 type RouterLinks = Array<RouterLink | RouterMenu>
+
+type ShortcutLink = {
+  text: string
+  href: string
+  color?: ColorProps['color']
+  icon?: FC
+}
+
+type ShortcutLinks = Array<ShortcutLink>
+
+type Link = {
+  href: string
+  text: string
+}
+
+type Links = Link[]
