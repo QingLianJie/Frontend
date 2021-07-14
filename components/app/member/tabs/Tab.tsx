@@ -1,9 +1,9 @@
 import { HStack, Icon, Tab, Text } from '@chakra-ui/react'
-import { FC, ReactNode, ReactNodeArray } from 'react'
+import { FC, ReactNode } from 'react'
 
 interface MemberTabProps {
   icon: FC
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const MemberTab = ({ icon, children }: MemberTabProps) => {

@@ -1,12 +1,12 @@
 import { Container, useMediaQuery } from '@chakra-ui/react'
 import Head from 'next/head'
-import { ReactNode, ReactNodeArray } from 'react'
+import { ReactNode } from 'react'
 import Header from '../../components/layout/header/Header'
 import ColorfulBalls from '../../components/widget/background/ColorfulBalls'
 
 interface PlaceholderPageProps {
   title: string
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const PlaceholderPage = ({ title, children }: PlaceholderPageProps) => {

@@ -1,10 +1,10 @@
 import { HStack, StackDivider } from '@chakra-ui/react'
-import { ReactNode, ReactNodeArray } from 'react'
+import { ReactNode } from 'react'
 
 interface HorizontalBoxProps {
   center?: boolean
   divider?: boolean
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const HorizontalBox = ({ center, divider, children }: HorizontalBoxProps) => {

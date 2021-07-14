@@ -1,9 +1,9 @@
 import { Button, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { ReactNode, ReactNodeArray } from 'react'
+import { ReactNode } from 'react'
 
 interface ButtonLinkProps {
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
   full?: boolean
   href: string
   color?: string

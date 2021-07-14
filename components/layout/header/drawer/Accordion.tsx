@@ -8,7 +8,7 @@ import {
   Icon,
   Text,
 } from '@chakra-ui/react'
-import { FC, ReactNode, ReactNodeArray } from 'react'
+import { FC, ReactNode } from 'react'
 import DrawerLink from './Link'
 
 interface DrawerAccordionItemProps {
@@ -22,7 +22,7 @@ interface DrawerAccordionProps {
   icon?: FC
   links: DrawerAccordionItemProps[]
   color?: ColorProps['color']
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const DrawerAccordion = ({

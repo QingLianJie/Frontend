@@ -1,10 +1,10 @@
 import { Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { ReactNode, ReactNodeArray } from 'react'
+import { ReactNode } from 'react'
 
 interface TextLinkProps {
   href: string
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const TextLink = ({ href, children }: TextLinkProps) => {

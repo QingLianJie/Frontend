@@ -1,8 +1,8 @@
 import { Container, Heading } from '@chakra-ui/react'
-import { FormEvent, ReactNode, ReactNodeArray } from 'react'
+import { FormEvent, ReactNode } from 'react'
 
 interface FormHeadingProps {
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const FormHeading = ({ children }: FormHeadingProps) => {
@@ -22,8 +22,8 @@ const FormHeading = ({ children }: FormHeadingProps) => {
 
 interface CardFormProps {
   action: (e: FormEvent) => void
-  heading?: ReactNode | ReactNodeArray
-  children: ReactNode | ReactNodeArray
+  heading?: ReactNode | ReactNode[]
+  children: ReactNode | ReactNode[]
 }
 
 const CardForm = ({ action, heading, children }: CardFormProps) => {

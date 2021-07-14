@@ -8,7 +8,7 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import { FC, ReactNode, ReactNodeArray } from 'react'
+import { FC, ReactNode } from 'react'
 import NavMenuLink from './Link'
 
 interface NavMenuLinkProps {
@@ -22,7 +22,7 @@ interface NavMenuProps {
   icon: FC
   links: NavMenuLinkProps[]
   color?: ColorProps['color']
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const NavMenu = ({ icon, links, color = 'black', children }: NavMenuProps) => {

@@ -1,12 +1,12 @@
 import { ColorProps, HStack, Icon, Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { FC, ReactNode, ReactNodeArray } from 'react'
+import { FC, ReactNode } from 'react'
 
 interface NavLinkProps {
   icon?: FC
   color?: ColorProps['color']
   href: string
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const DrawerLink = ({ icon, color, href, children }: NavLinkProps) => {

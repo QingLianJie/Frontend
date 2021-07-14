@@ -1,8 +1,8 @@
 import { Flex } from '@chakra-ui/react'
-import { forwardRef, ReactNode, ReactNodeArray } from 'react'
+import { forwardRef, ReactNode } from 'react'
 
 interface BackgroundBoxProps {
-  children?: ReactNode | ReactNodeArray
+  children?: ReactNode | ReactNode[]
 }
 
 const BackgroundBox = ({ children }: BackgroundBoxProps, ref: any) => {

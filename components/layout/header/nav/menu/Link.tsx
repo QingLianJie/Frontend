@@ -1,13 +1,12 @@
 import { ColorProps, Icon, Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { FC } from 'react'
-import { ReactNode, ReactNodeArray } from 'react'
+import { FC, ReactNode } from 'react'
 
 interface NavMenuLinkProps {
   href: string
   icon?: FC
   color?: ColorProps['color']
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const NavMenuLink = ({ href, icon, color, children }: NavMenuLinkProps) => {

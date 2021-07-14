@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
-import { ReactNode, ReactNodeArray } from 'react'
+import { ReactNode } from 'react'
 
 interface CenterBoxProps {
   screen?: boolean
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const CenterBox = ({ screen, children }: CenterBoxProps) => {

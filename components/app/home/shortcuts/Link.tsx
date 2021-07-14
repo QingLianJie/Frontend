@@ -1,12 +1,12 @@
 import { ColorProps, HStack, Icon, Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import { FC, ReactNode, ReactNodeArray } from 'react'
+import { FC, ReactNode } from 'react'
 
 interface ShortcutLinkProps {
   icon?: FC
   color?: ColorProps['color']
   href: string
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const ShortcutLink = ({ icon, color, href, children }: ShortcutLinkProps) => {

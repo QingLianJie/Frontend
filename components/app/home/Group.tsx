@@ -1,9 +1,9 @@
 import { Box, Text, VStack } from '@chakra-ui/react'
-import { ReactNode, ReactNodeArray } from 'react'
+import { ReactNode } from 'react'
 
 interface HomeGroupProps {
   title: string
-  children: ReactNode | ReactNodeArray
+  children: ReactNode | ReactNode[]
 }
 
 const HomeGroup = ({ title, children }: HomeGroupProps) => {
