@@ -6,6 +6,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@chakra-ui/react'
+import { useRef } from 'react'
 import { ReactElement } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 
@@ -16,7 +17,7 @@ interface PopoverWrapperProps {
 
 const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
   return (
-    <Popover autoFocus placement="bottom-end">
+    <Popover placement="bottom-end" trigger="hover">
       <PopoverTrigger>
         <Avatar
           bg="gray.100"
