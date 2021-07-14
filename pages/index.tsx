@@ -3,6 +3,8 @@ import Head from 'next/head'
 import NoticeBoard from '../components/app/home/NoticeBoard'
 import Shortcuts from '../components/app/home/shortcuts/Shortcuts'
 import Timeline from '../components/app/home/timeline/Timeline'
+import MainBox from '../components/common/box/MainBox'
+import ScreenBox from '../components/common/box/ScreenBox'
 import Header from '../components/layout/header/Header'
 
 const IndexPage = () => {
@@ -11,13 +13,7 @@ const IndexPage = () => {
       <Head>
         <title>清廉街</title>
       </Head>
-      <Header />
-      <Container
-        width="full"
-        maxW="container.xl"
-        py="4"
-        px={{ base: 8, md: 12 }}
-      >
+      <MainBox>
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={{ base: 8, md: 12, lg: 16 }}
@@ -32,7 +28,7 @@ const IndexPage = () => {
             <NoticeBoard />
           </GridItem>
         </Grid>
-      </Container>
+      </MainBox>
     </>
   )
 }

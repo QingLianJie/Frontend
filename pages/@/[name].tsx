@@ -1,10 +1,9 @@
-import { Container, Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import MemberProfile from '../../components/app/member/Profile'
 import MemberTabs from '../../components/app/member/tabs/Tabs'
-import Header from '../../components/layout/header/Header'
-import useProfile from '../../hooks/useProfile'
+import MainBox from '../../components/common/box/MainBox'
 
 const MemberPage = () => {
   const router = useRouter()
@@ -17,13 +16,7 @@ const MemberPage = () => {
           {router.isReady && name ? `${name} 的个人主页` : `个人主页`} - 清廉街
         </title>
       </Head>
-      <Header />
-      <Container
-        width="full"
-        maxW="container.xl"
-        py="4"
-        px={{ base: 8, md: 12 }}
-      >
+      <MainBox>
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={{ base: 8, md: 12, lg: 16 }}
@@ -35,7 +28,7 @@ const MemberPage = () => {
             <MemberTabs />
           </GridItem>
         </Grid>
-      </Container>
+      </MainBox>
     </>
   )
 }
