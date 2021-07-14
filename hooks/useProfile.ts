@@ -11,7 +11,7 @@ const useProfile = (name: string) => {
   const { data, error } = useSWR(`${baseURL}/api/user/${name}`, fetcher)
 
   if (isNotFound || (error && error.status === 404)) {
-    router.push('/404')
+    router.push(`/404?from=${router.asPath}`)
     return { isLoading: true, isMe: false }
   }
 
