@@ -1,5 +1,6 @@
 import { Container } from '@chakra-ui/react'
 import { ReactNode } from 'react'
+import Footer from '../../layout/Footer'
 import Header from '../../layout/header/Header'
 import ScreenBox from './ScreenBox'
 
@@ -19,6 +20,7 @@ const MainBox = ({ children }: MainBox) => {
       >
         {children}
       </Container>
+      <Footer />
     </ScreenBox>
   )
 }

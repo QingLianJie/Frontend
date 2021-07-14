@@ -1,6 +1,5 @@
 import { Grid } from '@chakra-ui/react'
 import { FC } from 'react'
-import { RiLinksLine } from 'react-icons/ri'
 import { shortcutLinks } from '../../../../data/shortcut-links'
 import HomeGroup from '../Group'
 import ShortcutLink from './Link'
