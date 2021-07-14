@@ -12,9 +12,20 @@ interface IProfile {
   email?: string
 }
 
-type Link = {
-  href: string
+type RouterLink = {
+  type: 'LINK'
   text: string
+  href: string
+  color?: ColorProps['color']
+  icon?: FC
 }
 
-type Links = Link[]
+type RouterMenu = {
+  type: 'MENU'
+  text: string
+  color?: ColorProps['color']
+  icon?: FC
+  children?: RouterLink[]
+}
+
+type RouterLinks = Array<RouterLink | RouterMenu>
