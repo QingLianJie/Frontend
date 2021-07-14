@@ -13,13 +13,17 @@ const IndexPage = () => {
       </Head>
       <MainBox>
         <Grid templateColumns="repeat(4, 1fr)" gap="12">
-          <GridItem colSpan={{ base: 4, md: 1 }}>
+          <GridItem colSpan={{ base: 4, md: 2, lg: 1 }}>
             <Shortcuts />
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 3, lg: 2 }}>
+          <GridItem colSpan={{ base: 4, md: 4, lg: 2 }}>
             <Timeline />
           </GridItem>
-          <GridItem colSpan={{ base: 4, lg: 1 }}>
+          <GridItem
+            colSpan={{ base: 4, md: 2, lg: 1 }}
+            rowStart={{ base: 'auto', md: 1, lg: 'auto' }}
+            colStart={{ base: 'auto', md: 3, lg: 'auto' }}
+          >
             <Notices />
           </GridItem>
         </Grid>
