@@ -45,16 +45,16 @@ const MemberPopover = () => {
     <PopoverWrapper user={user}>
       <VStack mb="3.5" spacing="1" align="start" px="1">
         <Text fontSize="lg" fontWeight="600">
-          欢迎回来，{user.username}
+          欢迎回来，{user?.username}
         </Text>
         <Text fontSize="md" color="gray.500">
-          {user.email || '无邮箱'}
+          {user?.email || '无邮箱'}
         </Text>
       </VStack>
 
       <ButtonGroup size="sm">
         <HStack spacing="3">
-          <ButtonLink href={`/@${user.username}`} full>
+          <ButtonLink href={`/@${user?.username}`} full>
             个人主页
           </ButtonLink>
           <Button isFullWidth colorScheme="red" onClick={handleLogout}>
