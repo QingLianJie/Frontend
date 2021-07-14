@@ -15,7 +15,7 @@ interface PopoverWrapperProps {
 
 const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
   return (
-    <Popover placement="bottom-end" trigger="hover">
+    <Popover placement="bottom-end">
       <PopoverTrigger>
         <Avatar
           name={user ? user.username : undefined}

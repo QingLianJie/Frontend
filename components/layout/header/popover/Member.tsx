@@ -25,6 +25,8 @@ const MemberPopover = () => {
         if (res.ok) {
           toast.ok()
           mutate(`${baseURL}/rest-auth/user/`)
+          mutate(`${baseURL}/api/user/`)
+          mutate(`${baseURL}/api/HEUAccount`)
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
