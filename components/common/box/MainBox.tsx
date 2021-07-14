@@ -15,7 +15,7 @@ const MainBox = ({ children }: MainBox) => {
         width="full"
         maxW="container.xl"
         py="4"
-        px={{ base: 8, md: 12 }}
+        px={{ base: 6, sm: 8, md: 12 }}
       >
         {children}
       </Container>
