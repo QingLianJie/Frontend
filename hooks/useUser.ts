@@ -8,6 +8,10 @@ const useUser = (initialData?: any) => {
     initialData: initialData,
   })
 
+  if (error && error.status === 404) {
+    return { isNotFound: true }
+  }
+
   return {
     user: data as IUser,
     isLoading: !error && !data,

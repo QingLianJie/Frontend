@@ -17,6 +17,7 @@ interface MemberProfileProps {
 const MemberProfile = ({ name }: MemberProfileProps) => {
   const username = name as string
   const { profile, isLoading, isMe } = useProfile(username)
+  console.log(isMe)
 
   return (
     <>
@@ -48,16 +49,18 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         </Skeleton>
       </VStack>
 
-      {isLoading ? null : !isMe ? (
-        <Button isFullWidth>这里也许有一个功能</Button>
-      ) : (
-        <VStack spacing="4">
-          <Button isFullWidth colorScheme="blue">
-            编辑资料（还没做）
-          </Button>
-          <Button isFullWidth>绑定学号（也还没做）</Button>
-        </VStack>
-      )}
+      <Skeleton isLoaded={!isLoading}>
+        {!isMe ? (
+          <Button isFullWidth>这里也许有一个功能</Button>
+        ) : (
+          <VStack spacing="4">
+            <Button isFullWidth colorScheme="blue">
+              编辑资料（还没做）
+            </Button>
+            <Button isFullWidth>绑定学号（也还没做）</Button>
+          </VStack>
+        )}
+      </Skeleton>
     </>
   )
 }

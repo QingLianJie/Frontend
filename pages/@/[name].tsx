@@ -4,15 +4,18 @@ import { useRouter } from 'next/router'
 import MemberProfile from '../../components/app/member/Profile'
 import MemberTabs from '../../components/app/member/tabs/Tabs'
 import Header from '../../components/layout/header/Header'
+import useProfile from '../../hooks/useProfile'
 
 const MemberPage = () => {
   const router = useRouter()
-  const { name } = router.query
+  const name = router.asPath.replace(/[\/@]|[\/@\/]/g, '')
 
   return (
     <>
       <Head>
-        <title>{name ? `${name} 的个人主页` : `个人主页`} - 清廉街</title>
+        <title>
+          {router.isReady && name ? `${name} 的个人主页` : `个人主页`} - 清廉街
+        </title>
       </Head>
       <Header />
       <Container width="full" maxW="container.xl" py="4" px="8">
@@ -21,7 +24,7 @@ const MemberPage = () => {
           gap={{ base: 8, md: 12, lg: 16 }}
         >
           <GridItem colSpan={{ base: 4, md: 1 }}>
-            {name && <MemberProfile name={name} />}
+            {router.isReady && name && <MemberProfile name={name} />}
           </GridItem>
           <GridItem colSpan={{ base: 4, md: 3 }}>
             <MemberTabs />

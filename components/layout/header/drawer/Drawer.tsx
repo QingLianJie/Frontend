@@ -9,7 +9,6 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import {
-  RiArticleFill,
   RiBarChartBoxFill,
   RiBookOpenFill,
   RiBuildingFill,
@@ -21,6 +20,7 @@ import {
   RiMenuFill,
   RiProfileFill,
   RiQuestionAnswerFill,
+  RiQuestionFill,
   RiQuillPenFill,
   RiTableFill,
 } from 'react-icons/ri'
@@ -137,16 +137,16 @@ const HeaderDrawer = () => {
                 icon={RiInformationFill}
                 links={[
                   {
-                    text: '博客',
-                    href: '/blog',
-                    icon: RiArticleFill,
-                    color: 'purple.500',
-                  },
-                  {
                     text: '反馈',
                     href: '/feedback',
                     icon: RiFeedbackFill,
                     color: 'orange.500',
+                  },
+                  {
+                    text: '常见问题',
+                    href: '/faq',
+                    icon: RiQuestionFill,
+                    color: 'purple.500',
                   },
                   {
                     text: 'GitHub',
