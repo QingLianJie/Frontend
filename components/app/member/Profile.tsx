@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
+import { md5 } from '../../../utils/md5'
 
 interface MemberProfileProps {
   name: string | string[] | undefined
@@ -24,6 +25,13 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         <Avatar
           bg="gray.100"
           icon={<RiUserLine size="50%" />}
+          src={
+            profile?.email
+              ? `https://www.gravatar.com/avatar/${md5(
+                  profile.email
+                )}?d=404&s=512`
+              : undefined
+          }
           size="full"
           mx="1"
           color="gray.400"

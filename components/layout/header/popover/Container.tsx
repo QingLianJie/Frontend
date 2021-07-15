@@ -7,6 +7,7 @@ import {
   PopoverTrigger,
 } from '@chakra-ui/react'
 import { ReactElement } from 'react'
+import { md5 } from '../../../../utils/md5'
 
 interface PopoverWrapperProps {
   user?: IUser
@@ -19,6 +20,11 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
       <PopoverTrigger>
         <Avatar
           name={user ? user.username : undefined}
+          src={
+            user
+              ? `https://www.gravatar.com/avatar/${md5(user.email)}?d=404`
+              : undefined
+          }
           w="10"
           h="10"
           mx="1"
