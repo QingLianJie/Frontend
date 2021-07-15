@@ -11,6 +11,13 @@ const theme = extendTheme({
   },
   initialColorMode: 'light',
   useSystemColorMode: true,
+  styles: {
+    global: {
+      '.chakra-toast__inner': {
+        margin: '1.5rem !important',
+      },
+    },
+  },
 })
 
 function MyApp({ Component, pageProps }: AppProps) {

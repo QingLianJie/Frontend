@@ -2,14 +2,19 @@ import { ColorProps, VStack, Icon, Link, Text } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { FC, ReactNode } from 'react'
 
-interface ShortcutLinkProps {
+interface ShortcutIconLinkProps {
   icon?: FC
   color?: ColorProps['color']
   href: string
   children: ReactNode | ReactNode[]
 }
 
-const ShortcutLink = ({ icon, color, href, children }: ShortcutLinkProps) => {
+const ShortcutIconLink = ({
+  icon,
+  color,
+  href,
+  children,
+}: ShortcutIconLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -32,6 +37,7 @@ const ShortcutLink = ({ icon, color, href, children }: ShortcutLinkProps) => {
             bg: 'gray.700',
           },
         }}
+        borderWidth={{ base: 'none', md: '1px' }}
       >
         <VStack spacing="3">
           <Icon as={icon} w="7" h="7" color={color} />
@@ -42,4 +48,4 @@ const ShortcutLink = ({ icon, color, href, children }: ShortcutLinkProps) => {
   )
 }
 
-export default ShortcutLink
+export default ShortcutIconLink

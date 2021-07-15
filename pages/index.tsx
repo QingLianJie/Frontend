@@ -1,7 +1,6 @@
-import { Box, Grid, GridItem, VStack } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import Notices from '../components/app/home/notices/Notices'
-import Overview from '../components/app/home/Overview'
 import Shortcuts from '../components/app/home/shortcuts/Shortcuts'
 import Timeline from '../components/app/home/timeline/Timeline'
 import MainContainer from '../components/common/container/Main'
@@ -13,18 +12,18 @@ const IndexPage = () => {
         <title>清廉街</title>
       </Head>
       <MainContainer>
-        <Grid templateColumns="repeat(4, 1fr)" gap="12">
-          <GridItem colSpan={{ base: 4, md: 2, lg: 1 }}>
-            <Box d={{ base: 'none', md: 'initial' }}>
-              <Overview />
-            </Box>
+        <Grid
+          templateColumns={{ base: 'repeat(4, 1fr)', lg: 'repeat(11, 1fr)' }}
+          gap="12"
+        >
+          <GridItem colSpan={{ base: 4, md: 2, lg: 2 }}>
             <Shortcuts />
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 4, lg: 2 }}>
+          <GridItem colSpan={{ base: 4, md: 4, lg: 6 }}>
             <Timeline />
           </GridItem>
           <GridItem
-            colSpan={{ base: 4, md: 2, lg: 1 }}
+            colSpan={{ base: 4, md: 2, lg: 3 }}
             rowStart={{ base: 'auto', md: 1, lg: 'auto' }}
             colStart={{ base: 'auto', md: 3, lg: 'auto' }}
           >

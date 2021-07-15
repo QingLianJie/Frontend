@@ -45,6 +45,7 @@ type RouterLinks = (RouterLink | RouterMenu)[]
 
 type ShortcutLink = {
   text: string
+  long: string
   href: string
   color?: ColorProps['color']
   icon?: FC
