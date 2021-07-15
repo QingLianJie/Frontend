@@ -5,13 +5,14 @@ import Header from '../../layout/header/Header'
 import ScreenContainer from './Screen'
 
 interface MainContainer {
+  gray?: boolean
   title?: string
   children: ReactNode | ReactNode[]
 }
 
-const MainContainer = ({ title, children }: MainContainer) => {
+const MainContainer = ({ gray, title, children }: MainContainer) => {
   return (
-    <ScreenContainer>
+    <ScreenContainer gray={gray}>
       <Header title={title} />
       <Container
         width="full"

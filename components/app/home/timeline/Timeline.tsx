@@ -15,7 +15,7 @@ const Timeline = () => {
 
   return (
     <HomeGroup title={'时间线'} icon={RiTimeLine}>
-      <VStack spacing="3" w="full" my="-2">
+      <VStack spacing="3" w="full" my="-2" ms="1.5">
         {isError ? (
           <Alert status="error" rounded="md">
             <AlertIcon />

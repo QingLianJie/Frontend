@@ -31,7 +31,7 @@ const Shortcuts = () => {
           ))}
         </Grid>
       ) : (
-        <VStack align="start" spacing="0" my="-2.5">
+        <VStack align="start" spacing="0" my="-2.5" mx="-2">
           {shortcutLinks.map((link, index) => (
             <ShortcutListLink
               href={link.href as string}

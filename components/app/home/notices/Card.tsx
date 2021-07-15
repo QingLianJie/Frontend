@@ -8,7 +8,18 @@ interface NoticeCardProps {
 
 const NoticeCard = ({ title, date, content }: NoticeCardProps) => {
   return (
-    <Box as="article" borderWidth="1px" rounded="md" py="4" px="6" w="full">
+    <Box
+      as="article"
+      borderWidth="1px"
+      rounded="md"
+      py="4"
+      px="6"
+      w="full"
+      bg="white"
+      _dark={{
+        bg: 'gray.800',
+      }}
+    >
       <Text as="h1" d="flex" fontSize="lg" fontWeight="600" py="1">
         {title}
       </Text>

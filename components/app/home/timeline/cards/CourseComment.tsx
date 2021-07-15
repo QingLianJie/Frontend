@@ -51,7 +51,17 @@ const CourseCommentCard = ({
         </Flex>
       </HStack>
       <Box w="full" ps="8">
-        <Box borderWidth="1px" rounded="md" p="4" px="6" w="full">
+        <Box
+          borderWidth="1px"
+          rounded="md"
+          p="4"
+          px="6"
+          w="full"
+          bg="white"
+          _dark={{
+            bg: 'gray.800',
+          }}
+        >
           <Text fontSize="lg" pt="0.5" pb="2">
             {content}
           </Text>

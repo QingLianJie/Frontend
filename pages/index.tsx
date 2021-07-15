@@ -11,10 +11,10 @@ const IndexPage = () => {
       <Head>
         <title>清廉街</title>
       </Head>
-      <MainContainer>
+      <MainContainer gray>
         <Grid
           templateColumns={{ base: 'repeat(4, 1fr)', lg: 'repeat(11, 1fr)' }}
-          gap="12"
+          gap={{ base: 8, md: 12, lg: 14 }}
         >
           <GridItem colSpan={{ base: 4, md: 2, lg: 2 }}>
             <Shortcuts />
