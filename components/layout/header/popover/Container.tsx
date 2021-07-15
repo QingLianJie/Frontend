@@ -22,7 +22,9 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
           name={user ? user.username : undefined}
           src={
             user
-              ? `https://www.gravatar.com/avatar/${md5(user.email)}?d=404`
+              ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
+                  user.email
+                )}?d=retro`
               : undefined
           }
           w="10"

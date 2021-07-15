@@ -5,6 +5,8 @@ import {
   ButtonGroup,
   HStack,
   Skeleton,
+  SkeletonCircle,
+  SkeletonText,
   Text,
   VStack,
 } from '@chakra-ui/react'
@@ -25,15 +27,17 @@ const Overview = () => {
 
   return (
     <HomeGroup title="快捷方式" icon={RiLinksLine}>
-      <Box w="full" mb="4" p="4" rounded="md" borderWidth="1px">
-        <HStack align="center" spacing="4" p="1" w="full">
-          <Skeleton isLoaded={!isUserLoading}>
+      <Skeleton isLoaded={!(isUserLoading || isStudentLoading)}>
+        <Box w="full" mb="4" p="4" rounded="md" borderWidth="1px">
+          <HStack align="center" spacing="4" p="1" w="full">
             <Avatar
               size="md"
               name={!isUserError ? user?.username : ''}
               src={
                 user && !isUserError
-                  ? `https://www.gravatar.com/avatar/${md5(user.email)}?d=404`
+                  ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
+                      user.email
+                    )}?d=retro`
                   : undefined
               }
               color="gray.400"
@@ -43,9 +47,8 @@ const Overview = () => {
                 bg: 'gray.600',
               }}
             />
-          </Skeleton>
-          <VStack align="start" justify="start" spacing="0.5">
-            <Skeleton isLoaded={!isUserLoading}>
+
+            <VStack align="start" justify="start" spacing="0.5">
               <Text d="flex" alignItems="center" fontSize="lg" fontWeight="600">
                 {!isUserError ? user?.username : '未登录'}
                 {!isStudentError && student?.heu_username ? (
@@ -54,16 +57,15 @@ const Overview = () => {
                   </Badge>
                 ) : null}
               </Text>
-            </Skeleton>
-            <Skeleton isLoaded={!isStudentLoading}>
-              <Text color="gray.500" fontSize="sm">
-                {!isStudentError ? student?.heu_username : '未绑定 HEU 账号'}
-              </Text>
-            </Skeleton>
-          </VStack>
-        </HStack>
 
-        <Skeleton isLoaded={!isUserLoading}>
+              <Text color="gray.500" fontSize="sm">
+                {!isStudentError && student?.heu_username
+                  ? student.heu_username
+                  : '未绑定 HEU 账号'}
+              </Text>
+            </VStack>
+          </HStack>
+
           <ButtonGroup w="full" mt="4" size="sm">
             {!isUserError && user ? (
               <ButtonLink href={`/@${user?.username}`} full color="blue">
@@ -75,8 +77,8 @@ const Overview = () => {
               </ButtonLink>
             )}
           </ButtonGroup>
-        </Skeleton>
-      </Box>
+        </Box>
+      </Skeleton>
     </HomeGroup>
   )
 }

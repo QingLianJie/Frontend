@@ -27,9 +27,9 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
           icon={<RiUserLine size="50%" />}
           src={
             profile?.email
-              ? `https://www.gravatar.com/avatar/${md5(
+              ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
                   profile.email
-                )}?d=404&s=512`
+                )}?d=retro&s=512`
               : undefined
           }
           size="full"
