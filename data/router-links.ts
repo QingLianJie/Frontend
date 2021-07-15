@@ -111,7 +111,7 @@ export const routerLinks: RouterLinks = [
   },
   {
     type: 'LINK',
-    text: '问大家',
+    text: '唠唠',
     href: '/discussions',
     color: 'yellow.500',
     icon: RiQuestionAnswerFill,
