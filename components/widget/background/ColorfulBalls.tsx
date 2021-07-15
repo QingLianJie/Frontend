@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import BackgroundBox from '../../common/box/BackgroundBox'
+import BackgroundContainer from '../../common/container/Background'
 
 const ColorfulBalls = () => {
   const ref = useRef<HTMLDivElement>(null)
@@ -63,7 +63,7 @@ const ColorfulBalls = () => {
     }
   }, [ref])
 
-  return <BackgroundBox ref={ref}></BackgroundBox>
+  return <BackgroundContainer ref={ref}></BackgroundContainer>
 }
 
 export default ColorfulBalls

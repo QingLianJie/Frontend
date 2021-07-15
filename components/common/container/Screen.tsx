@@ -1,11 +1,11 @@
 import { Flex } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
-interface ScreenBoxProps {
+interface ScreenContainerProps {
   children: ReactNode | ReactNode[]
 }
 
-const ScreenBox = ({ children }: ScreenBoxProps) => {
+const ScreenContainer = ({ children }: ScreenContainerProps) => {
   return (
     <Flex minH="100vh" flexDir="column">
       {children}
@@ -13,4 +13,4 @@ const ScreenBox = ({ children }: ScreenBoxProps) => {
   )
 }
 
-export default ScreenBox
+export default ScreenContainer

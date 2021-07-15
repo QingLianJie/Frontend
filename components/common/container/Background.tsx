@@ -1,11 +1,14 @@
 import { Flex } from '@chakra-ui/react'
 import { forwardRef, ReactNode } from 'react'
 
-interface BackgroundBoxProps {
+interface BackgroundContainerProps {
   children?: ReactNode | ReactNode[]
 }
 
-const BackgroundBox = ({ children }: BackgroundBoxProps, ref: any) => {
+const BackgroundContainer = (
+  { children }: BackgroundContainerProps,
+  ref: any
+) => {
   return (
     <Flex
       as="div"
@@ -23,4 +26,4 @@ const BackgroundBox = ({ children }: BackgroundBoxProps, ref: any) => {
   )
 }
 
-export default forwardRef(BackgroundBox)
+export default forwardRef(BackgroundContainer)

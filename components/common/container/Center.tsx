@@ -1,12 +1,12 @@
 import { Flex } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
-interface CenterBoxProps {
+interface CenterContainerProps {
   screen?: boolean
   children: ReactNode | ReactNode[]
 }
 
-const CenterBox = ({ screen, children }: CenterBoxProps) => {
+const CenterContainer = ({ screen, children }: CenterContainerProps) => {
   return (
     <Flex
       as="main"
@@ -20,4 +20,4 @@ const CenterBox = ({ screen, children }: CenterBoxProps) => {
   )
 }
 
-export default CenterBox
+export default CenterContainer

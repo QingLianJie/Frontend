@@ -1,13 +1,17 @@
 import { HStack, StackDivider } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
-interface HorizontalBoxProps {
+interface HorizontalContainerProps {
   center?: boolean
   divider?: boolean
   children: ReactNode | ReactNode[]
 }
 
-const HorizontalBox = ({ center, divider, children }: HorizontalBoxProps) => {
+const HorizontalContainer = ({
+  center,
+  divider,
+  children,
+}: HorizontalContainerProps) => {
   return (
     <HStack
       divider={divider ? <StackDivider /> : undefined}
@@ -19,4 +23,4 @@ const HorizontalBox = ({ center, divider, children }: HorizontalBoxProps) => {
   )
 }
 
-export default HorizontalBox
+export default HorizontalContainer

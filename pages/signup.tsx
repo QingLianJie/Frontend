@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
 import { mutate } from 'swr'
-import CenterBox from '../components/common/box/CenterBox'
-import HorizontalBox from '../components/common/box/HorizontalBox'
+import CenterContainer from '../components/common/container/Center'
+import HorizontalContainer from '../components/common/container/Horizontal'
 import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
@@ -89,7 +89,7 @@ const SignupPage = () => {
   }
 
   return (
-    <CenterBox screen>
+    <CenterContainer screen>
       <Head>
         <title>注册 - 清廉街</title>
       </Head>
@@ -133,15 +133,15 @@ const SignupPage = () => {
 
         <SubmitButton color="blue" text="注册" />
 
-        <HorizontalBox center divider>
+        <HorizontalContainer center divider>
           {links.map(link => (
             <BlockLink href={link.href} key={link.href}>
               {link.text}
             </BlockLink>
           ))}
-        </HorizontalBox>
+        </HorizontalContainer>
       </CardForm>
-    </CenterBox>
+    </CenterContainer>
   )
 }
 

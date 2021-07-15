@@ -2,16 +2,17 @@ import { Container } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import Footer from '../../layout/Footer'
 import Header from '../../layout/header/Header'
-import ScreenBox from './ScreenBox'
+import ScreenContainer from './Screen'
 
-interface MainBox {
+interface MainContainer {
+  title?: string
   children: ReactNode | ReactNode[]
 }
 
-const MainBox = ({ children }: MainBox) => {
+const MainContainer = ({ title, children }: MainContainer) => {
   return (
-    <ScreenBox>
-      <Header />
+    <ScreenContainer>
+      <Header title={title} />
       <Container
         width="full"
         maxW="container.xl"
@@ -21,8 +22,8 @@ const MainBox = ({ children }: MainBox) => {
         {children}
       </Container>
       <Footer />
-    </ScreenBox>
+    </ScreenContainer>
   )
 }
 
-export default MainBox
+export default MainContainer

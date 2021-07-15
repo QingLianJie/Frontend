@@ -4,7 +4,7 @@ import Notices from '../components/app/home/notices/Notices'
 import Overview from '../components/app/home/Overview'
 import Shortcuts from '../components/app/home/shortcuts/Shortcuts'
 import Timeline from '../components/app/home/timeline/Timeline'
-import MainBox from '../components/common/box/MainBox'
+import MainContainer from '../components/common/container/Main'
 
 const IndexPage = () => {
   return (
@@ -12,7 +12,7 @@ const IndexPage = () => {
       <Head>
         <title>清廉街</title>
       </Head>
-      <MainBox>
+      <MainContainer>
         <Grid templateColumns="repeat(4, 1fr)" gap="12">
           <GridItem colSpan={{ base: 4, md: 2, lg: 1 }}>
             <Box d={{ base: 'none', md: 'initial' }}>
@@ -31,7 +31,7 @@ const IndexPage = () => {
             <Notices />
           </GridItem>
         </Grid>
-      </MainBox>
+      </MainContainer>
     </>
   )
 }

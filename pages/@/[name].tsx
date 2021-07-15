@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import MemberProfile from '../../components/app/member/Profile'
 import MemberTabs from '../../components/app/member/tabs/Tabs'
-import MainBox from '../../components/common/box/MainBox'
+import MainContainer from '../../components/common/container/Main'
 
 const MemberPage = () => {
   const router = useRouter()
@@ -16,7 +16,7 @@ const MemberPage = () => {
           {router.isReady && name ? `${name} 的个人主页` : `个人主页`} - 清廉街
         </title>
       </Head>
-      <MainBox>
+      <MainContainer title="个人主页">
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={{ base: 8, md: 12, lg: 16 }}
@@ -28,7 +28,7 @@ const MemberPage = () => {
             <MemberTabs />
           </GridItem>
         </Grid>
-      </MainBox>
+      </MainContainer>
     </>
   )
 }
