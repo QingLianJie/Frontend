@@ -79,3 +79,10 @@ type Notice = {
 }
 
 type Notices = Notice[]
+
+type FAQ = {
+  title: string
+  content: string
+}
+
+type FAQs = FAQ[]

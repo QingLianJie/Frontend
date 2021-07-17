@@ -6,6 +6,7 @@ import {
   RiQuestionAnswerFill,
   RiQuestionFill,
   RiQuillPenFill,
+  RiServerFill,
   RiTableFill,
 } from 'react-icons/ri'
 
@@ -65,5 +66,12 @@ export const shortcutLinks: ShortcutLinks = [
     href: '/faq',
     icon: RiQuestionFill,
     color: 'purple.500',
+  },
+  {
+    text: '状态',
+    long: '服务状态',
+    href: '/service-status',
+    icon: RiServerFill,
+    color: 'green.500',
   },
 ]

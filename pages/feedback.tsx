@@ -1,10 +1,7 @@
 import {
-  Button,
   Divider,
   Grid,
   GridItem,
-  HStack,
-  Text,
   useBreakpointValue,
   VStack,
 } from '@chakra-ui/react'
@@ -48,15 +45,13 @@ const FeedbackPage = () => {
                 description="群号是 498047164 ，欢迎加入。"
                 recommend
               >
-                <CopyButton text="498047164" color="blue">
-                  复制群号
-                </CopyButton>
                 <ButtonLink
                   href="https://jq.qq.com/?_wv=1027&k=Fj4xfeQE"
                   color="green"
                 >
                   一键加入
                 </ButtonLink>
+                <CopyButton text="498047164">复制群号</CopyButton>
               </FeedbackGroup>
               <Divider />
 
@@ -66,10 +61,16 @@ const FeedbackPage = () => {
                 description="如果你会写程序，而且有一个 GitHub 账号的话，欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
                 recommend
               >
-                <ButtonLink href="https://github.com/QingLianJie/Frontend">
+                <ButtonLink
+                  href="https://github.com/QingLianJie/Frontend"
+                  color="blue"
+                >
                   前端仓库
                 </ButtonLink>
-                <ButtonLink href="https://github.com/QingLianJie/Backend">
+                <ButtonLink
+                  href="https://github.com/QingLianJie/Backend"
+                  color="blue"
+                >
                   后端仓库
                 </ButtonLink>
               </FeedbackGroup>

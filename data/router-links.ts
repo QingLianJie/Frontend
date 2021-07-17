@@ -11,6 +11,7 @@ import {
   RiQuestionAnswerFill,
   RiQuestionFill,
   RiQuillPenFill,
+  RiServerFill,
   RiTableFill,
 } from 'react-icons/ri'
 
@@ -123,6 +124,13 @@ export const routerLinks: RouterLinks = [
     color: 'cyan.500',
     icon: RiInformationFill,
     children: [
+      {
+        type: 'LINK',
+        text: '服务状态',
+        href: '/service-status',
+        icon: RiServerFill,
+        color: 'green.500',
+      },
       {
         type: 'LINK',
         text: '反馈',
