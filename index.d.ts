@@ -1,9 +1,9 @@
 interface IUser {
   pk: number
   username: string
-  email: string
-  first_name: string
-  last_name: string
+  heu_username?: string
+  email?: string
+  image: string | null
 }
 
 interface IProfile {
@@ -12,13 +12,25 @@ interface IProfile {
   email?: string
 }
 
-interface ICourseComment {
-  username: string
-  course_name: string
+interface ICourse {
+  id: number
   course_id: string
+  name: string
+  credit: string
+  total_time: string
+  assessment_method: string
+  attributes: string
+  kind: string
+  general_category: string
+  count: number
+}
+
+interface ICourseComment {
   content: string
   created: string
   anonymous: boolean
+  user: IUser
+  course: ICourse
 }
 
 interface IStudent {

@@ -1,4 +1,11 @@
-import { Button, Icon, LinkBox, LinkOverlay, Text } from '@chakra-ui/react'
+import {
+  Button,
+  Icon,
+  LinkBox,
+  LinkOverlay,
+  Text,
+  ThemeTypings,
+} from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { FC, ReactNode } from 'react'
 
@@ -6,7 +13,7 @@ interface ButtonLinkProps {
   children: ReactNode | ReactNode[]
   full?: boolean
   href: string
-  color?: string
+  color?: ThemeTypings['colorSchemes']
   icon?: FC
 }
 

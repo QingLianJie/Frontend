@@ -3,29 +3,23 @@ import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/link/TextLink'
 
 interface CourseCommentCardProps {
-  author: string
-  course: {
-    name: string
-    id: string
-  }
-  content: string
-  date: string
-  anonymous: boolean
+  comment: ICourseComment
 }
 
-const CourseCommentCard = ({
-  author,
-  date,
-  content,
-  course,
-  anonymous,
-}: CourseCommentCardProps) => {
+const CourseCommentCard = ({ comment }: CourseCommentCardProps) => {
   return (
     <VStack align="start" w="full" px="0" py="1">
       <HStack w="full" py="1" spacing="3">
         <Avatar
           size="xs"
-          name={anonymous ? undefined : author}
+          name={comment.anonymous ? undefined : comment.user.username}
+          src={
+            comment.anonymous
+              ? undefined
+              : comment.user.image
+              ? comment.user.image
+              : undefined
+          }
           color="gray.600"
           bg="gray.300"
           _dark={{
@@ -35,7 +29,7 @@ const CourseCommentCard = ({
         />
         <Flex align="start" wrap="wrap" w="full">
           <Text whiteSpace="nowrap" me="2">
-            {author}
+            {comment.user.username}
           </Text>
           <Text
             whiteSpace="nowrap"
@@ -47,7 +41,9 @@ const CourseCommentCard = ({
           >
             评论了课程
           </Text>
-          <TextLink href={`/courses/${course.id}`}>{course.name}</TextLink>
+          <TextLink href={`/courses/${comment.course.course_id}`}>
+            {comment.course.name}
+          </TextLink>
         </Flex>
       </HStack>
       <Box w="full" ps="8">
@@ -63,10 +59,10 @@ const CourseCommentCard = ({
           }}
         >
           <Text fontSize="lg" pt="0.5" pb="2">
-            {content}
+            {comment.content}
           </Text>
           <Text as="time" fontSize="sm" color="gray.500">
-            {dateFormatter(date)}
+            {dateFormatter(comment.created)}
           </Text>
         </Box>
       </Box>

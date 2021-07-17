@@ -5,8 +5,6 @@ import {
   ButtonGroup,
   HStack,
   Skeleton,
-  SkeletonCircle,
-  SkeletonText,
   Text,
   VStack,
 } from '@chakra-ui/react'
@@ -34,7 +32,7 @@ const Overview = () => {
               size="md"
               name={!isUserError ? user?.username : ''}
               src={
-                user && !isUserError
+                user?.email && !isUserError
                   ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
                       user.email
                     )}?d=retro`

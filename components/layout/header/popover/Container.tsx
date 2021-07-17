@@ -21,7 +21,7 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
         <Avatar
           name={user ? user.username : undefined}
           src={
-            user
+            user?.email
               ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
                   user.email
                 )}?d=retro`

@@ -29,11 +29,7 @@ const Timeline = () => {
               {index !== 0 && <Divider />}
               <CourseCommentCard
                 key={index}
-                author={comment.username}
-                course={{ id: comment.course_id, name: comment.course_name }}
-                content={comment.content}
-                date={comment.created}
-                anonymous={comment.anonymous}
+                comment={comment}
               />
             </>
           ))
