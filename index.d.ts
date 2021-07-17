@@ -6,12 +6,6 @@ interface IUser {
   image: string | null
 }
 
-interface IProfile {
-  pk: number
-  username: string
-  email?: string
-}
-
 interface ICourse {
   id: number
   course_id: string
@@ -36,10 +30,6 @@ interface ICourseComment {
 interface IRecentCourseGrade {
   created: string
   course: ICourse
-}
-
-interface IStudent {
-  heu_username: string
 }
 
 type RouterLink = {
@@ -87,7 +77,7 @@ type Notices = Notice[]
 
 type FAQ = {
   title: string
-  content: string
+  content: ReactNode | ReactNode[] | string
 }
 
 type FAQs = FAQ[]
