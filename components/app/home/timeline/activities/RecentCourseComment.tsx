@@ -1,18 +1,18 @@
-import { Avatar, Box, Flex, HStack, Text, VStack } from '@chakra-ui/react'
+import { Avatar, Box, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
+import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/link/TextLink'
 
-interface CourseCommentCardProps {
+interface RecentCourseCommentProps {
   comment: ICourseComment
 }
 
-const CourseCommentCard = ({ comment }: CourseCommentCardProps) => {
+const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
   return (
-    <VStack align="start" w="full" px="0" py="1">
-      <HStack w="full" py="1" spacing="3">
+    <VStack align="start" w="full" p="0" spacing="3">
+      <HStack w="full" py="0.5" spacing="3">
         <Avatar
           size="xs"
-          name={comment.anonymous ? undefined : comment.user.username}
           src={
             comment.anonymous
               ? undefined
@@ -20,11 +20,18 @@ const CourseCommentCard = ({ comment }: CourseCommentCardProps) => {
               ? comment.user.image
               : undefined
           }
+          icon={
+            comment.anonymous ? (
+              <Icon as={RiSpyLine} w="3.5" h="3.5" />
+            ) : (
+              <Icon as={RiUserLine} w="3.5" h="3.5" />
+            )
+          }
           color="gray.600"
-          bg="gray.300"
+          bg="gray.200"
           _dark={{
-            color: 'gray.300',
-            bg: 'gray.600',
+            color: 'gray.400',
+            bg: 'gray.700',
           }}
         />
         <Flex align="start" wrap="wrap" w="full">
@@ -50,7 +57,7 @@ const CourseCommentCard = ({ comment }: CourseCommentCardProps) => {
         <Box
           borderWidth="1px"
           rounded="md"
-          p="4"
+          py="4"
           px="6"
           w="full"
           bg="white"
@@ -61,7 +68,13 @@ const CourseCommentCard = ({ comment }: CourseCommentCardProps) => {
           <Text fontSize="lg" pt="0.5" pb="2">
             {comment.content}
           </Text>
-          <Text as="time" fontSize="sm" color="gray.500">
+          <Text
+            as="time"
+            fontSize="sm"
+            color="gray.500"
+            d="inline-block"
+            pb="0.5"
+          >
             {dateFormatter(comment.created)}
           </Text>
         </Box>
@@ -70,4 +83,4 @@ const CourseCommentCard = ({ comment }: CourseCommentCardProps) => {
   )
 }
 
-export default CourseCommentCard
+export default RecentCourseComment

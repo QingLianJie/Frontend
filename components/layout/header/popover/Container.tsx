@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Icon,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -7,6 +8,7 @@ import {
   PopoverTrigger,
 } from '@chakra-ui/react'
 import { ReactElement } from 'react'
+import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { md5 } from '../../../../utils/md5'
 
 interface PopoverWrapperProps {
@@ -19,7 +21,6 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
     <Popover placement="bottom-end">
       <PopoverTrigger>
         <Avatar
-          name={user ? user.username : undefined}
           src={
             user?.email
               ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
@@ -27,15 +28,22 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
                 )}?d=retro`
               : undefined
           }
+          icon={
+            !user ? (
+              <Icon as={RiSpyLine} w="3.5" h="3.5" />
+            ) : (
+              <Icon as={RiUserLine} w="3.5" h="3.5" />
+            )
+          }
           w="10"
           h="10"
           mx="1"
           cursor="pointer"
-          color="gray.400"
+          color="gray.600"
           bg="gray.200"
           _dark={{
-            color: 'white',
-            bg: 'gray.600',
+            color: 'gray.400',
+            bg: 'gray.700',
           }}
         />
       </PopoverTrigger>

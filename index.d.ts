@@ -33,6 +33,11 @@ interface ICourseComment {
   course: ICourse
 }
 
+interface IRecentCourseGrade {
+  created: string
+  course: ICourse
+}
+
 interface IStudent {
   heu_username: string
 }
