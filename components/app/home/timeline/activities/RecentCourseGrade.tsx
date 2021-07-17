@@ -14,7 +14,7 @@ const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
       <Avatar
         size="xs"
         icon={<Icon as={RiBookLine} w="3.5" h="3.5" />}
-        color="gray.600"
+        color="gray.500"
         bg="gray.200"
         _dark={{
           color: 'gray.400',

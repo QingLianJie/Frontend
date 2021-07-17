@@ -1,6 +1,7 @@
 import {
   AspectRatio,
   Avatar,
+  Badge,
   Button,
   Heading,
   Skeleton,
@@ -8,8 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
-import useProfile from '../../../hooks/useProfile'
-import { md5 } from '../../../utils/md5'
+import useUser from '../../../hooks/useUser'
 
 interface MemberProfileProps {
   name: string | string[] | undefined
@@ -17,7 +17,7 @@ interface MemberProfileProps {
 
 const MemberProfile = ({ name }: MemberProfileProps) => {
   const username = name as string
-  const { profile, isLoading, isMe } = useProfile(username)
+  const { user, isLoading, isError, isNotFound } = useUser(username)
 
   return (
     <>
@@ -25,13 +25,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         <Avatar
           bg="gray.100"
           icon={<RiUserLine size="50%" />}
-          src={
-            profile?.email
-              ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
-                  profile.email
-                )}?d=retro&s=512`
-              : undefined
-          }
+          src={user?.image ? user.image : undefined}
           size="full"
           mx="1"
           color="gray.400"
@@ -42,32 +36,56 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         />
       </AspectRatio>
 
-      <VStack py="10" spacing="2.5">
-        <Skeleton isLoaded={!isLoading} px="4">
+      <VStack py="8" spacing="2.5">
+        <Skeleton isLoaded={!isLoading} px="4" mb="3">
           <Heading size="lg" textAlign="center" fontWeight="600">
-            {name}
+            {isError ? (isNotFound ? '用户不存在' : '获取信息失败') : name}
           </Heading>
         </Skeleton>
 
-        <Skeleton isLoaded={!isLoading} px="4">
-          <Text fontSize="md" textAlign="center">
-            {(isMe && profile?.email) || '登录后查看邮箱'}
-          </Text>
-        </Skeleton>
-      </VStack>
-
-      <Skeleton isLoaded={!isLoading}>
-        {!isMe ? (
-          <Button isFullWidth>这里也许有一个功能</Button>
-        ) : (
-          <VStack spacing="4">
-            <Button isFullWidth colorScheme="blue">
-              编辑资料（还没做）
-            </Button>
-            <Button isFullWidth>绑定学号（也还没做）</Button>
-          </VStack>
+        {user?.email && (
+          <>
+            <Skeleton isLoaded={!isLoading} px="4">
+              <Text
+                textAlign="center"
+                fontSize="lg"
+                d="flex"
+                alignItems="center"
+              >
+                {user?.heu_username ? (
+                  <>
+                    <Badge me="2" colorScheme="green">
+                      已绑定 HEU
+                    </Badge>
+                    {user.heu_username}
+                  </>
+                ) : (
+                  '未绑定 HEU 账号'
+                )}
+              </Text>
+            </Skeleton>
+            <Skeleton isLoaded={!isLoading} px="4">
+              <Text textAlign="center">{user?.email || '登录后查看邮箱'}</Text>
+            </Skeleton>
+            <Skeleton isLoaded={!isLoading} w="full">
+              <VStack spacing="3" w="full" mt="3">
+                <Button isFullWidth colorScheme="blue">
+                  编辑资料
+                </Button>
+                {user?.heu_username ? (
+                  <Button isFullWidth colorScheme="red">
+                    解绑 HEU 账号
+                  </Button>
+                ) : (
+                  <Button isFullWidth colorScheme="green">
+                    绑定 HEU 账号
+                  </Button>
+                )}
+              </VStack>
+            </Skeleton>
+          </>
         )}
-      </Skeleton>
+      </VStack>
     </>
   )
 }

@@ -14,7 +14,7 @@ const theme = extendTheme({
   styles: {
     global: {
       '.chakra-toast__inner': {
-        margin: '1.5rem !important',
+        margin: '-0.5rem 1.5rem 1.5rem 1.5rem !important',
       },
     },
   },

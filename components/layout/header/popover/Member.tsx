@@ -1,4 +1,11 @@
-import { Button, ButtonGroup, HStack, Text, VStack } from '@chakra-ui/react'
+import {
+  Badge,
+  Button,
+  ButtonGroup,
+  HStack,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 import router from 'next/router'
 import { MouseEvent } from 'react'
 import { mutate } from 'swr'
@@ -24,9 +31,7 @@ const MemberPopover = () => {
       .then(async res => {
         if (res.ok) {
           toast.ok()
-          mutate(`${baseURL}/rest-auth/user/`)
           mutate(`${baseURL}/api/user/`)
-          mutate(`${baseURL}/api/HEUAccount`)
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
@@ -49,8 +54,13 @@ const MemberPopover = () => {
         <Text fontSize="lg" fontWeight="600">
           欢迎回来，{user?.username}
         </Text>
-        <Text fontSize="sm" color="gray.500">
-          {user?.email || '无邮箱'}
+        <Text d="flex" alignItems="center" color="gray.500" fontSize="sm">
+          {user?.heu_username && (
+            <Badge me="2" colorScheme="green">
+              HEU
+            </Badge>
+          )}
+          {user?.heu_username ? user.heu_username : '未绑定 HEU 账号'}
         </Text>
       </VStack>
 

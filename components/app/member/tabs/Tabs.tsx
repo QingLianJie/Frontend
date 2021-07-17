@@ -1,38 +1,38 @@
 import { TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
-import {
-  RiDiscussFill,
-  RiQuestionAnswerFill,
-  RiQuestionFill,
-} from 'react-icons/ri'
-import MemberAnswer from './Answer'
-import MemberComment from './Comment'
-import MemberQuestion from './Question'
+import { RiDiscussFill, RiQuestionAnswerFill } from 'react-icons/ri'
+import useUser from '../../../../hooks/useUser'
+import MemberComments from './Comments'
+import MemberDiscussions from './Discussions'
 import MemberTab from './Tab'
 
-const MemberTabs = () => {
+interface MemberTabsProps {
+  name: string | string[] | undefined
+}
+
+const MemberTabs = ({ name }: MemberTabsProps) => {
+  const username = name as string
+  const { isNotFound } = useUser(username)
+
   return (
     <>
-      <Tabs isLazy variant="soft-rounded">
-        <TabList>
-          <MemberTab icon={RiDiscussFill}>课程评论</MemberTab>
-          <MemberTab icon={RiQuestionFill}>提问</MemberTab>
-          <MemberTab icon={RiQuestionAnswerFill}>回答</MemberTab>
-        </TabList>
+      {isNotFound ? null : (
+        <Tabs isLazy variant="soft-rounded">
+          <TabList>
+            <MemberTab icon={RiDiscussFill}>课程评论</MemberTab>
+            <MemberTab icon={RiQuestionAnswerFill}>唠唠</MemberTab>
+          </TabList>
 
-        <TabPanels>
-          <TabPanel>
-            <MemberComment />
-          </TabPanel>
+          <TabPanels>
+            <TabPanel>
+              <MemberComments />
+            </TabPanel>
 
-          <TabPanel>
-            <MemberQuestion />
-          </TabPanel>
-
-          <TabPanel>
-            <MemberAnswer />
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
+            <TabPanel>
+              <MemberDiscussions />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      )}
     </>
   )
 }

@@ -34,6 +34,10 @@ export const faqs: FAQs = [
     content: '用爱发电。',
   },
   {
+    title: '研究生可以用吗？',
+    content: '暂时还不行。',
+  },
+  {
     title: '这个网站和「腐败街」有什么关系？',
     content: '没有关系。',
   },

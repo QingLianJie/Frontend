@@ -21,25 +21,19 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
     <Popover placement="bottom-end">
       <PopoverTrigger>
         <Avatar
-          src={
-            user?.email
-              ? `${process.env.NEXT_PUBLIC_BASE_GRAVATAR_URL}${md5(
-                  user.email
-                )}?d=retro`
-              : undefined
-          }
+          src={user?.image ? user.image : undefined}
           icon={
             !user ? (
-              <Icon as={RiSpyLine} w="3.5" h="3.5" />
+              <Icon as={RiSpyLine} w="5" h="5" />
             ) : (
-              <Icon as={RiUserLine} w="3.5" h="3.5" />
+              <Icon as={RiUserLine} w="5" h="5" />
             )
           }
           w="10"
           h="10"
           mx="1"
           cursor="pointer"
-          color="gray.600"
+          color="gray.500"
           bg="gray.200"
           _dark={{
             color: 'gray.400',

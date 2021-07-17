@@ -25,7 +25,7 @@ const MemberPage = () => {
             {router.isReady && name && <MemberProfile name={name} />}
           </GridItem>
           <GridItem colSpan={{ base: 4, md: 3 }}>
-            <MemberTabs />
+            {router.isReady && name && <MemberTabs name={name} />}
           </GridItem>
         </Grid>
       </MainContainer>

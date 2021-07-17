@@ -51,26 +51,25 @@ const FeedbackPage = () => {
                 >
                   一键加入
                 </ButtonLink>
-                <CopyButton text="498047164">复制群号</CopyButton>
+                <CopyButton text="498047164" color="blue">
+                  复制群号
+                </CopyButton>
               </FeedbackGroup>
               <Divider />
 
               <FeedbackGroup
                 index="2"
-                title="给程序提 Issue"
+                title="去 GitHub 提 Issue"
                 description="如果你会写程序，而且有一个 GitHub 账号的话，欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
                 recommend
               >
-                <ButtonLink
-                  href="https://github.com/QingLianJie/Frontend"
-                  color="blue"
-                >
+                <ButtonLink href="https://github.com/QingLianJie">
+                  主页
+                </ButtonLink>
+                <ButtonLink href="https://github.com/QingLianJie/Frontend">
                   前端仓库
                 </ButtonLink>
-                <ButtonLink
-                  href="https://github.com/QingLianJie/Backend"
-                  color="blue"
-                >
+                <ButtonLink href="https://github.com/QingLianJie/Backend">
                   后端仓库
                 </ButtonLink>
               </FeedbackGroup>
