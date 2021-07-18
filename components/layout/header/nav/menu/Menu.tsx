@@ -15,17 +15,23 @@ interface NavMenuLinkProps {
   text: string
   href: string
   icon?: FC
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
 }
 
 interface NavMenuProps {
   icon: FC
   links: NavMenuLinkProps[]
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   children: ReactNode | ReactNode[]
 }
 
-const NavMenu = ({ icon, links, color = 'black', children }: NavMenuProps) => {
+const NavMenu = ({ icon, links, color, children }: NavMenuProps) => {
   return (
     <Menu>
       <MenuButton
@@ -45,7 +51,13 @@ const NavMenu = ({ icon, links, color = 'black', children }: NavMenuProps) => {
         }}
       >
         <HStack spacing="3">
-          <Icon as={icon} w="5" h="5" color={color} />
+          <Icon
+            as={icon}
+            w="5"
+            h="5"
+            color={color?.light}
+            _dark={{ color: color?.dark }}
+          />
           <Text>{children}</Text>
         </HStack>
       </MenuButton>

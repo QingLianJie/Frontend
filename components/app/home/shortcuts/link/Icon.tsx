@@ -4,7 +4,10 @@ import { FC, ReactNode } from 'react'
 
 interface ShortcutIconLinkProps {
   icon?: FC
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   href: string
   children: ReactNode | ReactNode[]
 }
@@ -40,7 +43,13 @@ const ShortcutIconLink = ({
         borderWidth={{ base: 'none', md: '1px' }}
       >
         <VStack spacing="3">
-          <Icon as={icon} w="7" h="7" color={color} />
+          <Icon
+            as={icon}
+            w="7"
+            h="7"
+            color={color?.light}
+            _dark={{ color: color?.dark }}
+          />
           <Text textAlign="center">{children}</Text>
         </VStack>
       </Link>

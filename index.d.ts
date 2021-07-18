@@ -36,14 +36,20 @@ type RouterLink = {
   type: 'LINK'
   text: string
   href: string
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   icon?: FC
 }
 
 type RouterMenu = {
   type: 'MENU'
   text: string
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   icon?: FC
   children?: RouterLink[]
 }
@@ -54,7 +60,10 @@ type ShortcutLink = {
   text: string
   long: string
   href: string
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   icon?: FC
 }
 

@@ -15,27 +15,42 @@ interface DrawerAccordionItemProps {
   text: string
   href: string
   icon?: FC
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
 }
 
 interface DrawerAccordionProps {
   icon?: FC
   links: DrawerAccordionItemProps[]
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   children: ReactNode | ReactNode[]
 }
 
 const DrawerAccordion = ({
   icon,
   links,
-  color = 'black',
+  color,
   children,
 }: DrawerAccordionProps) => {
   return (
     <Accordion allowToggle allowMultiple w="full">
       <AccordionItem border="none">
         <AccordionButton py="2.5" rounded="md">
-          {icon ? <Icon as={icon} me="3" w="5" h="5" color={color} /> : null}
+          {icon ? (
+            <Icon
+              as={icon}
+              me="3"
+              w="5"
+              h="5"
+              color={color?.light}
+              _dark={{ color: color?.dark }}
+            />
+          ) : null}
           <Text>{children}</Text>
           <AccordionIcon ms="auto" />
         </AccordionButton>

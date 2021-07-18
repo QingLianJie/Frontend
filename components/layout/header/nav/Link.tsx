@@ -4,7 +4,10 @@ import { FC, ReactNode } from 'react'
 
 interface NavLinkProps {
   icon: FC
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   href: string
   children: ReactNode | ReactNode[]
 }
@@ -31,7 +34,13 @@ const NavLink = ({ icon, color, href, children }: NavLinkProps) => {
         }}
       >
         <HStack spacing="3">
-          <Icon as={icon} w="5" h="5" color={color} />
+          <Icon
+            as={icon}
+            w="5"
+            h="5"
+            color={color?.light}
+            _dark={{ color: color?.dark }}
+          />
           <Text fontSize="md">{children}</Text>
         </HStack>
       </Link>

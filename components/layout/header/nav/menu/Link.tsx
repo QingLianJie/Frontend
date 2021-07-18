@@ -5,7 +5,10 @@ import { FC, ReactNode } from 'react'
 interface NavMenuLinkProps {
   href: string
   icon?: FC
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   children: ReactNode | ReactNode[]
 }
 
@@ -28,7 +31,15 @@ const NavMenuLink = ({ href, icon, color, children }: NavMenuLinkProps) => {
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
         {icon ? (
-          <Icon as={icon} ms="-0.5" me="3" w="5" h="5" color={color} />
+          <Icon
+            as={icon}
+            ms="-0.5"
+            me="3"
+            w="5"
+            h="5"
+            color={color?.light}
+            _dark={{ color: color?.dark }}
+          />
         ) : null}
         <Text>{children}</Text>
       </Link>

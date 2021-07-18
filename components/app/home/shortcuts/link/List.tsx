@@ -4,7 +4,10 @@ import { FC, ReactNode } from 'react'
 
 interface ShortcutListLinkProps {
   icon?: FC
-  color?: ColorProps['color']
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
   href: string
   children: ReactNode | ReactNode[]
 }
@@ -37,7 +40,13 @@ const ShortcutListLink = ({
         }}
       >
         <HStack spacing="3">
-          <Icon as={icon} w="5" h="5" color={color} />
+          <Icon
+            as={icon}
+            w="5"
+            h="5"
+            color={color?.light}
+            _dark={{ color: color?.dark }}
+          />
           <Text textAlign="center" w="full" whiteSpace="nowrap" isTruncated>
             {children}
           </Text>

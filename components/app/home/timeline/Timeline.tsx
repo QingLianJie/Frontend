@@ -17,7 +17,7 @@ const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()
 
   return (
-    <HomeGroup title={'时间线'} icon={RiTimeLine}>
+    <HomeGroup title="最近" icon={RiTimeLine}>
       <VStack spacing="4" w="full" ms="1.5">
         {isError ? (
           <Alert status="error" rounded="md">
