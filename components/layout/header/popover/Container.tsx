@@ -20,7 +20,11 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
     <Popover placement="bottom-end">
       <PopoverTrigger>
         <Avatar
-          src={user?.image ? user.image : undefined}
+          src={
+            user?.image
+              ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${user.image}`
+              : undefined
+          }
           icon={
             !user ? (
               <Icon as={RiSpyLine} w="5" h="5" />

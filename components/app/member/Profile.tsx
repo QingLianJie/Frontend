@@ -25,7 +25,11 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         <Avatar
           bg="gray.100"
           icon={<RiUserLine size="50%" />}
-          src={user?.image ? user.image : undefined}
+          src={
+            user?.image
+              ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${user.image}`
+              : undefined
+          }
           size="full"
           mx="1"
           color="gray.400"
@@ -36,26 +40,31 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         />
       </AspectRatio>
 
-      <VStack py="8" spacing="2.5">
-        <Skeleton isLoaded={!isLoading} px="4" mb="3">
-          <Heading size="lg" textAlign="center" fontWeight="600">
-            {isError ? (isNotFound ? '用户不存在' : '获取信息失败') : name}
+      <VStack py="8" spacing="3" align="start">
+        <Skeleton isLoaded={!isLoading} px="4" w="full">
+          <Heading size="lg" fontWeight="600" textAlign="center">
+            {isError
+              ? isNotFound
+                ? '用户不存在'
+                : '获取信息失败'
+              : decodeURIComponent(name as string)}
           </Heading>
         </Skeleton>
 
         {user?.email && (
           <>
-            <Skeleton isLoaded={!isLoading} px="4">
+            <Skeleton isLoaded={!isLoading} px="4" w="full">
               <Text
-                textAlign="center"
                 fontSize="lg"
+                w="full"
                 d="flex"
                 alignItems="center"
+                justifyContent="center"
               >
                 {user?.heu_username ? (
                   <>
-                    <Badge me="2" colorScheme="green">
-                      已绑定 HEU
+                    <Badge me="2" colorScheme="green" fontSize="md">
+                      HEU
                     </Badge>
                     {user.heu_username}
                   </>
@@ -63,9 +72,6 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
                   '未绑定 HEU 账号'
                 )}
               </Text>
-            </Skeleton>
-            <Skeleton isLoaded={!isLoading} px="4">
-              <Text textAlign="center">{user?.email || '登录后查看邮箱'}</Text>
             </Skeleton>
             <Skeleton isLoaded={!isLoading} w="full">
               <VStack spacing="3" w="full" mt="3">

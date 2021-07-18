@@ -14,7 +14,7 @@ const useSignupToast = () => {
     name: () =>
       toast({
         title: '用户名不合适',
-        description: '用户名只能包含英文字母、数字、横线、下划线和小数点',
+        description: '用户名只能包含 3 到 16 个字符',
         status: 'warning',
         isClosable: true,
       }),

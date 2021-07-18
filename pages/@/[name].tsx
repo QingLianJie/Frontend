@@ -13,7 +13,10 @@ const MemberPage = () => {
     <>
       <Head>
         <title>
-          {router.isReady && name ? `${name} 的个人主页` : `个人主页`} - 清廉街
+          {router.isReady && name
+            ? `${decodeURIComponent(name)} 的个人主页`
+            : `个人主页`}{' '}
+          - 清廉街
         </title>
       </Head>
       <MainContainer title="个人主页">

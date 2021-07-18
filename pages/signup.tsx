@@ -105,7 +105,7 @@ const SignupPage = () => {
           type="text"
           placeholder="用户名"
           icon={RiUserFill}
-          help="只能用英文字母、数字、横线、下划线和小数点"
+          help="独一无二的名字，3 到 16 个字符"
           action={e => setName(e.target.value)}
         />
 
@@ -120,7 +120,7 @@ const SignupPage = () => {
           type="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
-          help="至少 8 个字符，且不能为纯数字"
+          help="8 到 24 个字符，且不能为纯数字"
           action={e => setPassword(e.target.value)}
         />
 
