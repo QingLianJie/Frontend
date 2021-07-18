@@ -66,7 +66,7 @@ const SignupPage = () => {
         .then(async res => {
           if (res.ok) {
             toast.ok()
-            mutate(`${baseURL}/rest-auth/user/`)
+            mutate(`${baseURL}/api/user`)
 
             if (router.query.from) {
               router.push(router.query.from as string)
@@ -105,6 +105,7 @@ const SignupPage = () => {
           type="text"
           placeholder="用户名"
           icon={RiUserFill}
+          name="username"
           help="独一无二的名字，3 到 16 个字符"
           action={e => setName(e.target.value)}
         />
@@ -113,6 +114,7 @@ const SignupPage = () => {
           type="email"
           placeholder="邮箱"
           icon={RiMailFill}
+          name="email"
           action={e => setEmail(e.target.value)}
         />
 
@@ -120,6 +122,7 @@ const SignupPage = () => {
           type="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
+          name="password"
           help="8 到 24 个字符，且不能为纯数字"
           action={e => setPassword(e.target.value)}
         />
@@ -128,6 +131,7 @@ const SignupPage = () => {
           type="password"
           placeholder="再次输入密码"
           icon={RiLockPasswordFill}
+          name="password-again"
           action={e => setPasswordAgain(e.target.value)}
         />
 

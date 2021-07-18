@@ -10,6 +10,8 @@ import {
 } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
 import useUser from '../../../hooks/useUser'
+import ProfileBind from './modals/Bind'
+import ProfileUnbind from './modals/Unbind'
 
 interface MemberProfileProps {
   name: string | string[] | undefined
@@ -55,7 +57,6 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
           <>
             <Skeleton isLoaded={!isLoading} px="4" w="full">
               <Text
-                fontSize="lg"
                 w="full"
                 d="flex"
                 alignItems="center"
@@ -63,7 +64,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
               >
                 {user?.heu_username ? (
                   <>
-                    <Badge me="2" colorScheme="green" fontSize="md">
+                    <Badge me="2" colorScheme="green" fontSize="sm">
                       HEU
                     </Badge>
                     {user.heu_username}
@@ -78,15 +79,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
                 <Button isFullWidth colorScheme="blue">
                   编辑资料
                 </Button>
-                {user?.heu_username ? (
-                  <Button isFullWidth colorScheme="red">
-                    解绑 HEU 账号
-                  </Button>
-                ) : (
-                  <Button isFullWidth colorScheme="green">
-                    绑定 HEU 账号
-                  </Button>
-                )}
+                {user?.heu_username ? <ProfileUnbind /> : <ProfileBind />}
               </VStack>
             </Skeleton>
           </>

@@ -49,7 +49,7 @@ const LoginPage = () => {
       .then(async res => {
         if (res.ok) {
           toast.ok()
-          mutate(`${baseURL}/rest-auth/user/`)
+          mutate(`${baseURL}/api/user`)
 
           if (router.query.from) {
             router.push(router.query.from as string)
@@ -85,6 +85,7 @@ const LoginPage = () => {
       >
         <Input
           type="text"
+          name="username"
           placeholder="用户名或邮箱"
           icon={nameType === 'email' ? RiMailFill : RiUserFill}
           action={e => setName(e.target.value)}
@@ -92,6 +93,7 @@ const LoginPage = () => {
 
         <Input
           type="password"
+          name="password"
           placeholder="密码"
           icon={RiLockPasswordFill}
           action={e => setPassword(e.target.value)}

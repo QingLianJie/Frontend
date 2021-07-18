@@ -6,7 +6,7 @@ import {
   Input as ChakraInput,
   InputGroup,
   InputLeftElement,
-  InputRightElement
+  InputRightElement,
 } from '@chakra-ui/react'
 import { ChangeEvent, FC, useState } from 'react'
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri'
@@ -16,6 +16,8 @@ interface FormInputProps {
   placeholder: string
   icon: FC
   help?: string
+  name: string
+  disabled?: boolean
   action: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -24,12 +26,14 @@ const FormInput = ({
   placeholder,
   icon,
   help,
+  name,
+  disabled,
   action,
 }: FormInputProps) => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <FormControl my="2">
+    <FormControl my="2" isDisabled={disabled}>
       <InputGroup>
         <InputLeftElement pointerEvents="none">
           <Icon
@@ -42,12 +46,14 @@ const FormInput = ({
         </InputLeftElement>
 
         <ChakraInput
+          id={name}
           type={
             type === 'password' ? (showPassword ? 'text' : 'password') : type
           }
           placeholder={placeholder}
           isRequired
           onChange={action}
+          name={name}
         />
 
         {type === 'password' && (
