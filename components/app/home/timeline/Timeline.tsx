@@ -5,6 +5,7 @@ import {
   Divider,
   VStack,
 } from '@chakra-ui/react'
+import { Fragment } from 'react'
 import { RiTimeLine } from 'react-icons/ri'
 
 import useTimeline from '../../../../hooks/useTimeline/useTimeline'
@@ -17,7 +18,7 @@ const Timeline = () => {
 
   return (
     <HomeGroup title={'时间线'} icon={RiTimeLine}>
-      <VStack spacing="4" w="full" my="-2" ms="1.5">
+      <VStack spacing="4" w="full" ms="1.5">
         {isError ? (
           <Alert status="error" rounded="md">
             <AlertIcon />
@@ -27,21 +28,17 @@ const Timeline = () => {
           <CircularProgress isIndeterminate color="pink.400" my="16" />
         ) : (
           timeline.map((item, index) => (
-            <>
+            <Fragment key={index}>
               {index !== 0 && <Divider />}
               {item.hasOwnProperty('user') ? (
-                <RecentCourseComment
-                  key={index}
-                  comment={item as ICourseComment}
-                />
+                <RecentCourseComment comment={item as ICourseComment} />
               ) : (
                 <RecentCourseGrade
-                  key={index}
                   created={item.created}
                   course={item.course}
                 />
               )}
-            </>
+            </Fragment>
           ))
         )}
       </VStack>

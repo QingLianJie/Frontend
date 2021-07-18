@@ -16,8 +16,8 @@ const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
           src={
             comment.anonymous
               ? undefined
-              : comment.user.image
-              ? comment.user.image
+              : `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${comment.user.image}`
+              ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${comment.user.image}`
               : undefined
           }
           icon={

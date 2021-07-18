@@ -5,7 +5,8 @@ const useUser = (username?: string) => {
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
   const { data, error } = useSWR(
     `${baseURL}/api/user${username ? `/${username}` : ''}`,
-    fetcher
+    fetcher,
+    { shouldRetryOnError: false }
   )
 
   if (error && error.status === 404) {
