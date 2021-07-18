@@ -1,6 +1,7 @@
 import { Avatar, Box, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
 import { RiBookLine, RiBookOpenFill } from 'react-icons/ri'
 import { dateFormatter } from '../../../../../utils/formatter'
+import InlineLink from '../../../../common/link/InlineLink'
 import TextLink from '../../../../common/link/TextLink'
 
 interface RecentCourseCommentProps {
@@ -10,7 +11,7 @@ interface RecentCourseCommentProps {
 
 const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
   return (
-    <HStack w="full" py="0" spacing="3">
+    <HStack w="full" py="0" spacing="3" alignItems="flex-start">
       <Avatar
         size="xs"
         icon={<Icon as={RiBookLine} w="3.5" h="3.5" />}
@@ -21,22 +22,27 @@ const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
           bg: 'gray.700',
         }}
       />
-      <Flex align="start" wrap="wrap" w="full">
+      <Text w="full">
         <Text
+          as="span"
           whiteSpace="nowrap"
-          me="2"
           color="gray.600"
           _dark={{
             color: 'gray.500',
           }}
+          title={dateFormatter({ date: created })}
         >
-          {dateFormatter(created)}
+          {dateFormatter({ date: created, calendar: true })}
         </Text>
-        <TextLink href={`/courses/${course.course_id}`}>{course.name}</TextLink>
-        <Text whiteSpace="nowrap" ms="2">
+        <Text px="2" as="span">
+          <InlineLink href={`/courses/${course.course_id}`}>
+            {course.name}
+          </InlineLink>
+        </Text>
+        <Text as="span" whiteSpace="nowrap">
           出分了
         </Text>
-      </Flex>
+      </Text>
     </HStack>
   )
 }

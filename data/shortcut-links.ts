@@ -14,7 +14,7 @@ export const shortcutLinks: ShortcutLinks = [
     text: '课程',
     long: '所有课程',
     href: '/courses',
-    color: 'green.500',
+    color: 'red.500',
     icon: RiBookOpenFill,
   },
   {

@@ -10,7 +10,7 @@ interface HomeGroupProps {
 
 const HomeGroup = ({ title, icon, children }: HomeGroupProps) => {
   return (
-    <VStack align="start" w="full" spacing={{ base: 6, lg: 10 }}>
+    <VStack align="start" w="full" spacing={{ base: 8, md: 10 }}>
       {title && (
         <HStack spacing="3">
           {icon && <Icon ms="2" w="5" h="5" as={icon} />}

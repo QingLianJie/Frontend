@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react'
 import { ReactElement } from 'react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
-import { md5 } from '../../../../utils/md5'
 
 interface PopoverWrapperProps {
   user?: IUser

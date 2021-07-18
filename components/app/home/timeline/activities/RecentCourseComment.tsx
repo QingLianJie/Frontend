@@ -1,6 +1,7 @@
 import { Avatar, Box, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { dateFormatter } from '../../../../../utils/formatter'
+import InlineLink from '../../../../common/link/InlineLink'
 import TextLink from '../../../../common/link/TextLink'
 
 interface RecentCourseCommentProps {
@@ -10,7 +11,7 @@ interface RecentCourseCommentProps {
 const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
   return (
     <VStack align="start" w="full" p="0" spacing="3">
-      <HStack w="full" py="0.5" spacing="3">
+      <HStack w="full" py="0.5" spacing="3" alignItems="flex-start">
         <Avatar
           size="xs"
           src={
@@ -34,11 +35,12 @@ const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
             bg: 'gray.700',
           }}
         />
-        <Flex align="start" wrap="wrap" w="full">
-          <Text whiteSpace="nowrap" me="2">
+        <Text w="full">
+          <Text as="span" whiteSpace="nowrap" me="2">
             {comment.user.username}
           </Text>
           <Text
+            as="span"
             whiteSpace="nowrap"
             me="2"
             color="gray.600"
@@ -48,12 +50,12 @@ const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
           >
             评论了课程
           </Text>
-          <TextLink href={`/courses/${comment.course.course_id}`}>
+          <InlineLink href={`/courses/${comment.course.course_id}`}>
             {comment.course.name}
-          </TextLink>
-        </Flex>
+          </InlineLink>
+        </Text>
       </HStack>
-      <Box w="full" ps="8">
+      <Box w="full" ps={{ base: 0, md: 8 }}>
         <Box
           borderWidth="1px"
           rounded="md"
@@ -74,8 +76,9 @@ const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
             color="gray.500"
             d="inline-block"
             pb="0.5"
+            title={dateFormatter({ date: comment.created })}
           >
-            {dateFormatter(comment.created)}
+            {dateFormatter({ date: comment.created, calendar: true })}
           </Text>
         </Box>
       </Box>

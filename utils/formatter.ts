@@ -1,13 +1,32 @@
-export const dateFormatter = (date: string): string => {
-  try {
-    const obj = new Date(date)
-    return `${obj.getFullYear()} 年 ${
-      obj.getMonth() + 1
-    } 月 ${obj.getDate()} 日 - ${obj.toLocaleTimeString('zh-hans', {
-      hour12: false,
-    })}`
-  } catch (error) {
-    console.log(error)
-    return ''
+import dayjs from 'dayjs'
+import calendar from 'dayjs/plugin/calendar'
+import 'dayjs/locale/zh-cn'
+
+dayjs.locale('zh-cn')
+dayjs.extend(calendar)
+
+interface DateFormatterProps {
+  date: string
+  relative?: boolean
+  calendar?: boolean
+}
+
+export const dateFormatter = ({
+  date,
+  relative,
+  calendar,
+}: DateFormatterProps): string => {
+  if (calendar) {
+    return dayjs(date).calendar(dayjs(), {
+      sameDay: '[今天] HH:mm',
+      nextDay: '[明天] HH:mm',
+      nextWeek: 'YYYY 年 M 月 D 日 - HH:mm',
+      lastDay: '[昨天] HH:mm',
+      lastWeek: 'YYYY 年 M 月 D 日 - HH:mm',
+      sameElse: 'YYYY 年 M 月 D 日 HH:mm',
+    })
+  } else if (relative) {
   }
+
+  return dayjs(date).format('YYYY 年 M 月 D 日 - HH:mm')
 }

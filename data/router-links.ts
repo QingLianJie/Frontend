@@ -20,14 +20,14 @@ export const routerLinks: RouterLinks = [
     type: 'LINK',
     text: '主页',
     href: '/',
-    color: 'pink.500',
+    color: 'pink.400',
     icon: RiLayoutMasonryFill,
   },
   {
     type: 'LINK',
     text: '课程',
     href: '/courses',
-    color: 'green.500',
+    color: 'red.500',
     icon: RiBookOpenFill,
   },
   {
@@ -70,7 +70,7 @@ export const routerLinks: RouterLinks = [
   {
     type: 'MENU',
     text: '学校',
-    color: 'red.500',
+    color: 'green.500',
     icon: RiBuildingFill,
     children: [
       {

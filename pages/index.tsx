@@ -24,8 +24,8 @@ const IndexPage = () => {
           </GridItem>
           <GridItem
             colSpan={{ base: 4, md: 2, lg: 3 }}
-            rowStart={{ base: 'auto', md: 1, lg: 'auto' }}
-            colStart={{ base: 'auto', md: 3, lg: 'auto' }}
+            rowStart={{ base: 2, md: 1, lg: 'auto' }}
+            colStart={{ base: 1, md: 3, lg: 'auto' }}
           >
             <Notices />
           </GridItem>
