@@ -65,7 +65,7 @@ const ProfileUnbind = () => {
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            <AlertDialogHeader fontSize="lg" fontWeight="bold" pt="5" pb="3">
               解除绑定 HEU 账号
             </AlertDialogHeader>
 
@@ -73,7 +73,7 @@ const ProfileUnbind = () => {
               解除绑定 HEU 账号同时将删除服务器储存的相关账号信息。
             </AlertDialogBody>
 
-            <AlertDialogFooter>
+            <AlertDialogFooter pt="2" pb="6">
               <Button ref={cancelRef} onClick={onClose}>
                 取消
               </Button>

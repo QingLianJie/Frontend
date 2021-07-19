@@ -81,7 +81,9 @@ const ProfileBind = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>绑定 HEU 账号</ModalHeader>
+          <ModalHeader pt="5" pb="3">
+            绑定 HEU 账号
+          </ModalHeader>
           <ModalCloseButton />
 
           <ModalBody>
@@ -121,22 +123,18 @@ const ProfileBind = () => {
             </Box>
           </ModalBody>
 
-          <ModalFooter>
+          <ModalFooter pt="2" pb="6">
             <Button
-              colorScheme="green"
               mr={3}
-              onClick={handleBind}
-              disabled={!isRead}
-            >
-              绑定
-            </Button>
-            <Button
               onClick={() => {
                 onClose()
                 setRead.off()
               }}
             >
               取消
+            </Button>
+            <Button colorScheme="green" onClick={handleBind} disabled={!isRead}>
+              绑定
             </Button>
           </ModalFooter>
         </ModalContent>

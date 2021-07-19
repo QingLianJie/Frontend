@@ -16,6 +16,9 @@ const theme = extendTheme({
       '.chakra-toast__inner': {
         margin: '-0.5rem 1.5rem 1.5rem 1.5rem !important',
       },
+      '.cropper-view-box,.cropper-face ': {
+        borderRadius: '50%',
+      },
     },
   },
 })

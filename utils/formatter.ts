@@ -30,3 +30,14 @@ export const dateFormatter = ({
 
   return dayjs(date).format('YYYY 年 M 月 D 日 - HH:mm')
 }
+
+export const sizeFormatter = (size: number) => {
+  let i = -1
+  const byteUnits = [' KB', ' MB', ' GB', ' TB', 'PB', 'EB', 'ZB', 'YB']
+  do {
+    size = size / 1024
+    i++
+  } while (size > 1024)
+
+  return Math.max(size, 0.1).toFixed(1) + byteUnits[i]
+}
