@@ -96,7 +96,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
               }
             })
             .catch((err: Error) => {
-              console.log('HEU Bind Error -', err)
+              console.log('Upload Avatar Error -', err)
               toast.error(err.toString())
             })
         }
