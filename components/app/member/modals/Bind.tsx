@@ -85,7 +85,7 @@ const ProfileBind = () => {
           <ModalHeader pt="5" pb="3">
             绑定 HEU 账号
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
           <ModalBody>
             <Text mb="3">

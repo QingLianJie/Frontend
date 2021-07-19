@@ -62,7 +62,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
     }
   }
 
-  const verifyFileSize = (size: number) => size <= 2 * 1024 * 1024
+  const verifyFileSize = (size: number) => size <= 10 * 1024 * 1024
   const verifyFileType = (type: string) => fileType.includes(type)
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
@@ -171,7 +171,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
           <ModalHeader pt="5" pb="3">
             编辑头像
           </ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
           <ModalBody>
             <VStack align="start" spacing="3">
@@ -214,8 +214,8 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
                           textAlign="center"
                           userSelect="none"
                         >
-                          支持 JPG | PNG | WebP 格式，最大大小为
-                          2MB，不合适的图片会被删除
+                          支持 JPG | PNG | WebP 格式，建议选择不超过 10MB
+                          的图片，上传后图片会被压缩，上传不合适的图片会被删除账号。
                         </Text>
                       </VStack>
                     </Box>
@@ -300,11 +300,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
             <Button
               onClick={handleAvatarUpload}
               colorScheme="blue"
-              disabled={
-                !image ||
-                !verifyFileSize(imageInfo.size) ||
-                !verifyFileType(imageInfo.type)
-              }
+              disabled={!image || !verifyFileType(imageInfo.type)}
             >
               保存
             </Button>

@@ -2,11 +2,9 @@ import {
   AspectRatio,
   Avatar,
   Badge,
-  Button,
   Heading,
   Skeleton,
   Text,
-  Tooltip,
   VStack,
 } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
