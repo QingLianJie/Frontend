@@ -62,6 +62,7 @@ const ProfileUnbind = () => {
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
         onClose={onClose}
+        motionPreset="slideInBottom"
       >
         <AlertDialogOverlay>
           <AlertDialogContent>

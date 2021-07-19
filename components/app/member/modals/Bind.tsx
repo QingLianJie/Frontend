@@ -78,6 +78,7 @@ const ProfileBind = () => {
           onClose()
           setRead.off()
         }}
+        motionPreset="slideInBottom"
       >
         <ModalOverlay />
         <ModalContent>

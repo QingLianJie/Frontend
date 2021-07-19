@@ -15,6 +15,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spacer,
   Stat,
   StatHelpText,
   StatLabel,
@@ -68,10 +69,22 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
 
   const handleAvatarUpload = () => {
     if (cropper) {
-      cropper.getCroppedCanvas().toBlob(blob => {
+      const canvas = cropper.getCroppedCanvas({
+        maxWidth: 512,
+        maxHeight: 512,
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high',
+        fillColor: '#ffffff',
+      })
+
+      canvas.toBlob(blob => {
         if (blob) {
           const formdata = new FormData()
-          formdata.append('image', blob)
+          formdata.append(
+            'image',
+            blob,
+            `user-avatar-${user.pk}-${new Date().getTime()}.jpeg`
+          )
 
           fetch(`${baseURL}/api/user/profile/photo`, {
             method: 'POST',
@@ -100,7 +113,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
               toast.error(err.toString())
             })
         }
-      })
+      }, 'image/jpeg')
     }
   }
 
@@ -151,6 +164,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
           setImage(null)
           setCropper(null)
         }}
+        motionPreset="slideInBottom"
       >
         <ModalOverlay />
         <ModalContent>
@@ -272,6 +286,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
           </ModalBody>
 
           <ModalFooter pt="2" pb="6">
+            <Spacer />
             <Button
               onClick={() => {
                 onClose()
