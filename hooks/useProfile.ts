@@ -10,7 +10,7 @@ const useProfile = (username: string) => {
   }
 
   return {
-    profile: data as IUser,
+    profile: data as IProfile,
     isLoading: !error && !data,
     isError: !!error,
   }

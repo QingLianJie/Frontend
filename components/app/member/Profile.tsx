@@ -9,7 +9,6 @@ import {
 } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
-import useUser from '../../../hooks/useUser'
 import ProfileBind from './modals/Bind'
 import ProfileEditAvatar from './modals/EditAvatar'
 import ProfileEdit from './modals/EditProfile'
@@ -82,7 +81,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
             </Skeleton>
             <Skeleton isLoaded={!isLoading} w="full">
               <VStack spacing="3" w="full" mt="3">
-                <ProfileEdit />
+                <ProfileEdit profile={profile} />
                 {profile?.heu_username ? <ProfileUnbind /> : <ProfileBind />}
               </VStack>
             </Skeleton>

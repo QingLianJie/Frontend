@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Modal,
   ModalBody,
@@ -7,10 +8,18 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Table,
+  Tbody,
+  Td,
+  Tr,
   useDisclosure,
 } from '@chakra-ui/react'
 
-const ProfileEdit = () => {
+interface ProfileEditProps {
+  profile: IProfile
+}
+
+const ProfileEdit = ({ profile }: ProfileEditProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -20,7 +29,7 @@ const ProfileEdit = () => {
       </Button>
       <Modal
         isCentered
-        size="xs"
+        size="sm"
         isOpen={isOpen}
         onClose={onClose}
         motionPreset="slideInBottom"
@@ -32,7 +41,34 @@ const ProfileEdit = () => {
           </ModalHeader>
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
-          <ModalBody></ModalBody>
+          <ModalBody>
+            <Box overflowX="auto">
+              <Table>
+                <Tbody>
+                  <Tr>
+                    <Td px="4" whiteSpace="nowrap">
+                      用户 ID
+                    </Td>
+                    <Td px="4">{profile.pk}</Td>
+                  </Tr>
+                  <Tr>
+                    <Td px="4" whiteSpace="nowrap">
+                      用户邮箱
+                    </Td>
+                    <Td px="4">{profile.email || '未绑定邮箱'}</Td>
+                  </Tr>
+                  <Tr>
+                    <Td px="4" border="none" whiteSpace="nowrap">
+                      HEU 账号
+                    </Td>
+                    <Td px="4" border="none">
+                      {profile.heu_username || '未绑定 HEU'}
+                    </Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </Box>
+          </ModalBody>
 
           <ModalFooter pt="2" pb="6">
             <Button onClick={onClose}>取消</Button>

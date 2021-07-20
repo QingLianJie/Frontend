@@ -15,7 +15,7 @@ const LoginPopover = () => {
         <Text lineHeight="1.75">考虑登录一下吗？</Text>
       </Box>
 
-      <ButtonGroup spacing="4" d="flex" justifyContent="flex-end" size="sm">
+      <ButtonGroup spacing="3" d="flex" justifyContent="flex-end" size="sm">
         <ButtonLink href={`/login?from=${router.asPath}`} color="green" full>
           登录
         </ButtonLink>

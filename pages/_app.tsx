@@ -19,6 +19,12 @@ const theme = extendTheme({
       '.cropper-view-box,.cropper-face ': {
         borderRadius: '50%',
       },
+      '.chakra-table': {
+        fontVariantNumeric: 'normal !important',
+      },
+      '.chakra-modal__content-container': {
+        padding: '0 1rem',
+      },
     },
   },
 })

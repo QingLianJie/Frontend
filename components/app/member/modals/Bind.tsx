@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { MouseEvent, useState } from 'react'
-import { RiLockPasswordFill, RiUserFill } from 'react-icons/ri'
+import { RiBookFill, RiLockPasswordFill } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useHEUBindToast from '../../../../hooks/useToast/useHEUBindToast'
 import FormInput from '../../../common/form/input/FormInput'
@@ -109,7 +109,7 @@ const ProfileBind = () => {
               <FormInput
                 placeholder="HEU 账号（学号）"
                 type="text"
-                icon={RiUserFill}
+                icon={RiBookFill}
                 name="heu-username"
                 action={e => setName(e.target.value)}
                 disabled={!isRead}
