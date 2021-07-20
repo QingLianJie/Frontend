@@ -34,7 +34,8 @@ const ProfileUnbind = () => {
       .then(async res => {
         if (res.ok) {
           toast.ok()
-          mutate(`${baseURL}/api/user/${name}`)
+          mutate(`${baseURL}/api/user`)
+          mutate(`${baseURL}/api/profile/${name}`)
           onClose()
         } else {
           const data = await res.json()

@@ -32,6 +32,9 @@ const MemberPopover = () => {
         if (res.ok) {
           toast.ok()
           mutate(`${baseURL}/api/user`)
+          if (user?.username) {
+            mutate(`${baseURL}/api/profile/${user.username}`)
+          }
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {

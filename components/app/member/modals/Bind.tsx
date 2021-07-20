@@ -48,7 +48,8 @@ const ProfileBind = () => {
       .then(async res => {
         if (res.ok) {
           toast.ok()
-          mutate(`${baseURL}/api/user/${username}`)
+          mutate(`${baseURL}/api/user`)
+          mutate(`${baseURL}/api/profile/${username}`)
           onClose()
           setRead.off()
         } else {

@@ -96,7 +96,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
               if (res.ok) {
                 toast.ok()
                 mutate(`${baseURL}/api/user`)
-                mutate(`${baseURL}/api/user/${user.username}`)
+                mutate(`${baseURL}/api/profile/${user.username}`)
                 onClose()
                 setImage(null)
                 setCropper(null)

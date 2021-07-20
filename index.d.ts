@@ -4,6 +4,17 @@ interface IUser {
   heu_username?: string
   email?: string
   image: string | null
+  self?: boolean
+}
+
+interface IProfile {
+  pk: number
+  username: string
+  heu_username?: string
+  email?: string
+  image: string | null
+  self?: boolean
+  comments: ICourseComment[]
 }
 
 interface ICourse {
