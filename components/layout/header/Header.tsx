@@ -5,6 +5,7 @@ import {
   Heading,
   SkeletonCircle,
   Spacer,
+  Text,
 } from '@chakra-ui/react'
 import useUser from '../../../hooks/useUser'
 import HeaderDrawer from './drawer/Drawer'
@@ -25,7 +26,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
       as="header"
       mb="6"
       px={{ base: '6', md: '8', lg: '12' }}
-      py="3"
+      py="3.5"
       alignItems="center"
       borderBottomWidth="1px"
       pos="sticky"
@@ -41,9 +42,9 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
         <HeaderDrawer />
       </Box>
 
-      <Heading as="h1" fontWeight="600" ms={{ base: 2, lg: 0 }} size="md">
+      <Text as="h1" fontWeight="600" ms={{ base: 2, lg: 0 }} fontSize="lg">
         {title}
-      </Heading>
+      </Text>
 
       <Box d={{ base: 'none', lg: 'flex' }}>
         <HeaderNav />

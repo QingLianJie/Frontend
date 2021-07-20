@@ -3,16 +3,17 @@ import {
   RiBookOpenFill,
   RiBuildingFill,
   RiFeedbackFill,
+  RiFileListFill,
   RiGalleryUploadFill,
   RiGithubFill,
   RiInformationFill,
   RiLayoutMasonryFill,
   RiProfileFill,
-  RiQuestionAnswerFill,
   RiQuestionFill,
   RiQuillPenFill,
   RiServerFill,
   RiTableFill,
+  RiTaskFill,
 } from 'react-icons/ri'
 
 export const routerLinks: RouterLinks = [
@@ -49,20 +50,6 @@ export const routerLinks: RouterLinks = [
         href: '/scores',
         icon: RiBarChartBoxFill,
         color: { light: 'green.500', dark: 'green.400' },
-      },
-      {
-        type: 'LINK',
-        text: '一键评教',
-        href: '/tasks/teaching-evaluation',
-        icon: RiQuillPenFill,
-        color: { light: 'orange.500', dark: 'orange.400' },
-      },
-      {
-        type: 'LINK',
-        text: '每日报备',
-        href: '/tasks/daily-report',
-        icon: RiGalleryUploadFill,
-        color: { light: 'yellow.500', dark: 'yellow.400' },
       },
     ],
   },
@@ -111,11 +98,33 @@ export const routerLinks: RouterLinks = [
     ],
   },
   {
-    type: 'LINK',
-    text: '唠唠',
-    href: '/discussions',
+    type: 'MENU',
+    text: '任务',
     color: { light: 'yellow.500', dark: 'yellow.400' },
-    icon: RiQuestionAnswerFill,
+    icon: RiTaskFill,
+    children: [
+      {
+        type: 'LINK',
+        text: '任务列表',
+        href: '/tasks',
+        icon: RiFileListFill,
+        color: { light: 'blue.500', dark: 'blue.400' },
+      },
+      {
+        type: 'LINK',
+        text: '一键评教',
+        href: '/tasks/teaching-evaluation',
+        icon: RiQuillPenFill,
+        color: { light: 'orange.500', dark: 'orange.400' },
+      },
+      {
+        type: 'LINK',
+        text: '每日报备',
+        href: '/tasks/daily-report',
+        icon: RiGalleryUploadFill,
+        color: { light: 'yellow.500', dark: 'yellow.400' },
+      },
+    ],
   },
 
   {

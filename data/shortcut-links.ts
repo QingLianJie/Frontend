@@ -3,10 +3,10 @@ import {
   RiBookOpenFill,
   RiFeedbackFill,
   RiGalleryUploadFill,
-  RiQuestionAnswerFill,
   RiQuestionFill,
   RiQuillPenFill,
   RiTableFill,
+  RiTaskFill,
 } from 'react-icons/ri'
 
 export const shortcutLinks: ShortcutLinks = [
@@ -32,10 +32,10 @@ export const shortcutLinks: ShortcutLinks = [
     color: { light: 'green.500', dark: 'green.400' },
   },
   {
-    text: '唠唠',
-    long: '唠唠',
-    href: '/discussions',
-    icon: RiQuestionAnswerFill,
+    text: '任务',
+    long: '任务',
+    href: '/tasks',
+    icon: RiTaskFill,
     color: { light: 'yellow.500', dark: 'yellow.400' },
   },
   {
