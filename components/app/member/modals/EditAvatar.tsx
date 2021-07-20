@@ -151,7 +151,7 @@ const ProfileEditAvatar = ({ profile }: ProfileEditProps) => {
                       cursor="pointer"
                     >
                       <Icon as={RiRefreshLine} w="5" h="5" me="3" />
-                      重新上传图片
+                      重新选择图片
                     </Button>
                   ) : (
                     <Box

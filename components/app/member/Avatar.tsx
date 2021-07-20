@@ -19,7 +19,11 @@ const ProfileAvatar = ({ profile, action }: ProfileAvatarProps) => {
       arrowSize={15}
       gutter={15}
     >
-      <AspectRatio ratio={1} maxW="65vw" mx="auto">
+      <AspectRatio
+        ratio={1}
+        maxW={{ base: '50vw', sm: '65vw' }}
+        mx={{ base: 0, sm: 'auto' }}
+      >
         <Avatar
           bg="gray.100"
           icon={<RiUserLine size="50%" />}
