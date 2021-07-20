@@ -3,17 +3,49 @@ import {
   Box,
   Grid,
   Heading,
+  HStack,
   Icon,
   Skeleton,
   Text,
   VStack,
 } from '@chakra-ui/react'
-import { RiBookOpenLine, RiMailLine } from 'react-icons/ri'
+import { FC, ReactNode } from 'react'
+import {
+  RiBookOpenLine,
+  RiDiscussLine,
+  RiMailLine,
+  RiProfileLine,
+} from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import ProfileAvatar from './Avatar'
 import ProfileBind from './modals/Bind'
 import ProfileEditAvatar from './modals/EditAvatar'
 import ProfileUnbind from './modals/Unbind'
+
+interface InfoItemProps {
+  isLoading: boolean | undefined
+  icon: FC
+  children: ReactNode | ReactNode[]
+}
+
+const InfoItem = ({ isLoading, icon, children }: InfoItemProps) => {
+  return (
+    <Skeleton isLoaded={!isLoading} px="4" w="full">
+      <HStack spacing="3">
+        <Icon as={icon} color="gray.500" w="5" h="5" />
+        <Text
+          w="full"
+          d="flex"
+          alignItems="center"
+          color="gray.600"
+          _dark={{ color: 'gray.400' }}
+        >
+          {children}
+        </Text>
+      </HStack>
+    </Skeleton>
+  )
+}
 
 interface MemberProfileProps {
   name: string | string[] | undefined
@@ -48,49 +80,43 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
           </Heading>
         </Skeleton>
 
-        {profile?.self && (
+        {profile?.self ? (
           <>
-            <Skeleton isLoaded={!isLoading} px="4" w="full">
-              <Text w="full" d="flex" alignItems="center">
-                {profile?.email ? (
-                  <>
-                    <Icon as={RiMailLine} color="gray.500" me="2" w="5" h="5" />
-                    {profile.email}
-                  </>
-                ) : (
-                  '未绑定邮箱'
-                )}
-              </Text>
-            </Skeleton>
+            <InfoItem isLoading={isLoading} icon={RiBookOpenLine}>
+              {profile?.heu_username ? (
+                <>
+                  <Badge me="2" colorScheme="green" fontSize="sm">
+                    HEU
+                  </Badge>
+                  {profile.heu_username}
+                </>
+              ) : (
+                '未绑定 HEU 账号'
+              )}
+            </InfoItem>
 
-            <Skeleton isLoaded={!isLoading} px="4" w="full">
-              <Text w="full" d="flex" alignItems="center">
-                {profile?.heu_username ? (
-                  <>
-                    <Icon
-                      as={RiBookOpenLine}
-                      color="gray.500"
-                      me="2"
-                      w="5"
-                      h="5"
-                    />
-
-                    <Badge me="2" colorScheme="green" fontSize="sm">
-                      HEU
-                    </Badge>
-                    {profile.heu_username}
-                  </>
-                ) : (
-                  '未绑定 HEU 账号'
-                )}
-              </Text>
-            </Skeleton>
-            <Skeleton isLoaded={!isLoading} w="full">
-              <VStack spacing="3" w="full" mt="4">
-                {profile?.heu_username ? <ProfileUnbind /> : <ProfileBind />}
-              </VStack>
-            </Skeleton>
+            <InfoItem isLoading={isLoading} icon={RiMailLine}>
+              {profile?.email ? profile.email : '未绑定邮箱'}
+            </InfoItem>
           </>
+        ) : (
+          <InfoItem isLoading={isLoading} icon={RiDiscussLine}>
+            {profile?.comments && profile?.comments.length !== 0
+              ? `发布过 ${profile.comments.length} 个课程评论`
+              : '未发布过课程评论'}
+          </InfoItem>
+        )}
+
+        <InfoItem isLoading={isLoading} icon={RiProfileLine}>
+          UID {profile?.pk}
+        </InfoItem>
+
+        {profile?.self && (
+          <Skeleton isLoaded={!isLoading} w="full">
+            <VStack spacing="3" w="full" mt="4">
+              {profile?.heu_username ? <ProfileUnbind /> : <ProfileBind />}
+            </VStack>
+          </Skeleton>
         )}
       </VStack>
     </Grid>

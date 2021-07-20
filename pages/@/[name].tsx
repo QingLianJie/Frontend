@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import MemberComments from '../../components/app/member/Comments'
+import MemberComments from '../../components/app/member/comments/Comments'
 import MemberProfile from '../../components/app/member/Profile'
 import MainContainer from '../../components/common/container/Main'
 
@@ -19,10 +19,10 @@ const MemberPage = () => {
           - 清廉街
         </title>
       </Head>
-      <MainContainer title="个人主页">
+      <MainContainer gray title="个人主页">
         <Grid
           templateColumns="repeat(4, 1fr)"
-          gap={{ base: 8, md: 12, lg: 16 }}
+          gap={{ base: 4, sm: 8, md: 12, lg: 16 }}
         >
           <GridItem colSpan={{ base: 4, md: 1 }}>
             {router.isReady && name && <MemberProfile name={name} />}

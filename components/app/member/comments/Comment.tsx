@@ -1,13 +1,13 @@
 import { Avatar, Box, HStack, Icon, Text, VStack } from '@chakra-ui/react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
-import { dateFormatter } from '../../../../../utils/formatter'
-import InlineLink from '../../../../common/link/InlineLink'
+import { dateFormatter } from '../../../../utils/formatter'
+import InlineLink from '../../../common/link/InlineLink'
 
 interface RecentCourseCommentProps {
   comment: ICourseComment
 }
 
-const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
+const ProfileCourseComment = ({ comment }: RecentCourseCommentProps) => {
   return (
     <VStack align="start" w="full" p="0" spacing="3">
       <HStack w="full" py="0.5" spacing="3" alignItems="flex-start">
@@ -92,4 +92,4 @@ const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
   )
 }
 
-export default RecentCourseComment
+export default ProfileCourseComment
