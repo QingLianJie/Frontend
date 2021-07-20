@@ -25,7 +25,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
       as="header"
       mb="6"
       px={{ base: '6', md: '8', lg: '12' }}
-      py="4"
+      py="3"
       alignItems="center"
       borderBottomWidth="1px"
       pos="sticky"

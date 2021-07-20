@@ -36,13 +36,20 @@ const RecentCourseComment = ({ comment }: RecentCourseCommentProps) => {
           }}
         />
         <Text w="full">
-          <Text as="span" whiteSpace="nowrap" me="2">
-            {comment.user.username}
-          </Text>
+          {comment.anonymous ? (
+            <Text as="span" whiteSpace="nowrap">
+              {comment.user.username}
+            </Text>
+          ) : (
+            <InlineLink href={`/@${comment.user.username}`}>
+              {comment.user.username}
+            </InlineLink>
+          )}
+
           <Text
             as="span"
             whiteSpace="nowrap"
-            me="2"
+            mx="2"
             color="gray.600"
             _dark={{
               color: 'gray.500',

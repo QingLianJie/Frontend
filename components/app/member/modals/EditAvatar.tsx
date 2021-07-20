@@ -1,6 +1,4 @@
 import {
-  AspectRatio,
-  Avatar,
   Box,
   Button,
   FormControl,
@@ -21,27 +19,27 @@ import {
   StatLabel,
   StatNumber,
   Text,
-  Tooltip,
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
 import 'cropperjs/dist/cropper.css'
 import { ChangeEvent, useState } from 'react'
 import Cropper from 'react-cropper'
-import { RiRefreshLine, RiUserLine } from 'react-icons/ri'
+import { RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useAvatarToast from '../../../../hooks/useToast/useAvatarToast'
 import { sizeFormatter } from '../../../../utils/formatter'
+import ProfileAvatar from '../Avatar'
 
 interface ProfileEditProps {
-  user: IUser
+  profile: IProfile
 }
 
 type ImageInfo = { size: number; type: string }
 
 const fileType = ['image/jpeg', 'image/png', 'image/webp']
 
-const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
+const ProfileEditAvatar = ({ profile }: ProfileEditProps) => {
   const toast = useAvatarToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [image, setImage] = useState<string | ArrayBuffer | null>(null)
@@ -83,7 +81,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
           formdata.append(
             'image',
             blob,
-            `user-avatar-${user.pk}-${new Date().getTime()}.jpeg`
+            `user-avatar-${profile.pk}-${new Date().getTime()}.jpeg`
           )
 
           fetch(`${baseURL}/api/user/profile/photo`, {
@@ -96,7 +94,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
               if (res.ok) {
                 toast.ok()
                 mutate(`${baseURL}/api/user`)
-                mutate(`${baseURL}/api/profile/${user.username}`)
+                mutate(`${baseURL}/api/profile/${profile.username}`)
                 onClose()
                 setImage(null)
                 setCropper(null)
@@ -119,42 +117,7 @@ const ProfileEditAvatar = ({ user }: ProfileEditProps) => {
 
   return (
     <>
-      <Tooltip
-        hasArrow
-        label="编辑头像"
-        aria-label="编辑头像"
-        fontSize="md"
-        px="3"
-        py="1.5"
-        rounded="md"
-        arrowSize={15}
-        gutter={15}
-      >
-        <AspectRatio
-          ratio={1}
-          maxW="65vw"
-          mx="auto"
-          cursor="pointer"
-          onClick={onOpen}
-        >
-          <Avatar
-            bg="gray.100"
-            icon={<RiUserLine size="50%" />}
-            src={
-              user?.image
-                ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${user.image}`
-                : undefined
-            }
-            size="full"
-            mx="1"
-            color="gray.400"
-            _dark={{
-              color: 'white',
-              bg: 'gray.700',
-            }}
-          />
-        </AspectRatio>
-      </Tooltip>
+      <ProfileAvatar profile={profile} action={onOpen} />
       <Modal
         isCentered
         size="sm"

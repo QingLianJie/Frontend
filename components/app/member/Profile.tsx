@@ -1,14 +1,6 @@
-import {
-  AspectRatio,
-  Avatar,
-  Badge,
-  Heading,
-  Skeleton,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
-import { RiUserLine } from 'react-icons/ri'
+import { Badge, Heading, Skeleton, Text, VStack } from '@chakra-ui/react'
 import useProfile from '../../../hooks/useProfile'
+import ProfileAvatar from './Avatar'
 import ProfileBind from './modals/Bind'
 import ProfileEditAvatar from './modals/EditAvatar'
 import ProfileEdit from './modals/EditProfile'
@@ -25,26 +17,9 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
   return (
     <>
       {profile?.self ? (
-        <ProfileEditAvatar user={profile} />
+        <ProfileEditAvatar profile={profile} />
       ) : (
-        <AspectRatio ratio={1} maxW="65vw" mx="auto">
-          <Avatar
-            bg="gray.100"
-            icon={<RiUserLine size="50%" />}
-            src={
-              profile?.image
-                ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${profile.image}`
-                : undefined
-            }
-            size="full"
-            mx="1"
-            color="gray.400"
-            _dark={{
-              color: 'white',
-              bg: 'gray.700',
-            }}
-          />
-        </AspectRatio>
+        <ProfileAvatar profile={profile} />
       )}
 
       <VStack py="8" spacing="3" align="start">
