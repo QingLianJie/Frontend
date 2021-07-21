@@ -2,13 +2,13 @@ import { Box, Icon, Text, VStack, HStack } from '@chakra-ui/react'
 import { FC } from 'react'
 import { ReactNode } from 'react'
 
-interface HomeGroupProps {
+interface GroupContainerProps {
   title?: string
   icon?: FC
   children: ReactNode | ReactNode[]
 }
 
-const HomeGroup = ({ title, icon, children }: HomeGroupProps) => {
+const GroupContainer = ({ title, icon, children }: GroupContainerProps) => {
   return (
     <VStack align="start" w="full" spacing={{ base: 8, md: 10 }}>
       {title && (
@@ -25,4 +25,4 @@ const HomeGroup = ({ title, icon, children }: HomeGroupProps) => {
   )
 }
 
-export default HomeGroup
+export default GroupContainer

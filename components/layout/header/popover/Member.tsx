@@ -11,7 +11,7 @@ import { MouseEvent } from 'react'
 import { mutate } from 'swr'
 import useLogoutToast from '../../../../hooks/useToast/useLogoutToast'
 import useUser from '../../../../hooks/useUser'
-import ButtonLink from '../../../common/link/ButtonLink'
+import ButtonLink from '../../../common/action/link/ButtonLink'
 import PopoverWrapper from './Container'
 
 const MemberPopover = () => {

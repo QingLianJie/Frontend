@@ -1,4 +1,4 @@
-import ErrorPage from '../components/template/ErrorPage'
+import ErrorPage from '../components/layout/template/ErrorPage'
 
 const ServerErrorPage = () => {
   return (

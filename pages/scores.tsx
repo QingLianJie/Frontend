@@ -1,4 +1,4 @@
-import DevelopmentPage from '../components/template/DevelopmentPage'
+import DevelopmentPage from '../components/layout/template/DevelopmentPage'
 
 const ScoresPage = () => {
   return <DevelopmentPage title="成绩" href="/scores" />

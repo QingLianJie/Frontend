@@ -1,13 +1,13 @@
 import { Avatar, Box, HStack, Icon, Text, VStack } from '@chakra-ui/react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
-import { dateFormatter } from '../../../../utils/formatter'
-import InlineLink from '../../../common/link/InlineLink'
+import { dateFormatter } from '../../../utils/formatter'
+import TextLink from '../../common/action/link/TextLink'
 
-interface RecentCourseCommentProps {
+interface CourseCommentProps {
   comment: ICourseComment
 }
 
-const ProfileCourseComment = ({ comment }: RecentCourseCommentProps) => {
+const CourseComment = ({ comment }: CourseCommentProps) => {
   return (
     <VStack align="start" w="full" p="0" spacing="3">
       <HStack w="full" py="0.5" spacing="3" alignItems="flex-start">
@@ -40,9 +40,9 @@ const ProfileCourseComment = ({ comment }: RecentCourseCommentProps) => {
               {comment.user.username}
             </Text>
           ) : (
-            <InlineLink href={`/@${comment.user.username}`}>
+            <TextLink href={`/@${comment.user.username}`}>
               {comment.user.username}
-            </InlineLink>
+            </TextLink>
           )}
 
           <Text
@@ -56,9 +56,9 @@ const ProfileCourseComment = ({ comment }: RecentCourseCommentProps) => {
           >
             评论了课程
           </Text>
-          <InlineLink href={`/courses/${comment.course.course_id}`}>
+          <TextLink href={`/courses/${comment.course.course_id}`}>
             {comment.course.name}
-          </InlineLink>
+          </TextLink>
         </Text>
       </HStack>
       <Box w="full" ps={{ base: 0, md: 8 }}>
@@ -92,4 +92,4 @@ const ProfileCourseComment = ({ comment }: RecentCourseCommentProps) => {
   )
 }
 
-export default ProfileCourseComment
+export default CourseComment

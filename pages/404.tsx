@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import ErrorPage from '../components/template/ErrorPage'
+import ErrorPage from '../components/layout/template/ErrorPage'
 
 const NotFoundPage = () => {
   const router = useRouter()

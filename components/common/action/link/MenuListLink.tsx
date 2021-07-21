@@ -1,8 +1,8 @@
-import { ColorProps, VStack, Icon, Link, Text } from '@chakra-ui/react'
+import { ColorProps, VStack, Icon, Link, Text, HStack } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { FC, ReactNode } from 'react'
 
-interface ShortcutIconLinkProps {
+interface MenuListLinkProps {
   icon?: FC
   color?: {
     light: ColorProps['color']
@@ -12,23 +12,21 @@ interface ShortcutIconLinkProps {
   children: ReactNode | ReactNode[]
 }
 
-const ShortcutIconLink = ({
+const MenuListLink = ({
   icon,
   color,
   href,
   children,
-}: ShortcutIconLinkProps) => {
+}: MenuListLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
         position="relative"
         display="flex"
         alignItems="center"
-        justifyContent="center"
         w="full"
-        px="3"
-        pt="4"
-        pb="3"
+        px="4"
+        py="3"
         rounded="md"
         _hover={{
           textDecor: 'none',
@@ -40,21 +38,22 @@ const ShortcutIconLink = ({
             bg: 'gray.700',
           },
         }}
-        borderWidth={{ base: 'none', md: '1px' }}
       >
-        <VStack spacing="3">
+        <HStack spacing="3">
           <Icon
             as={icon}
-            w="7"
-            h="7"
+            w="5"
+            h="5"
             color={color?.light}
             _dark={{ color: color?.dark }}
           />
-          <Text textAlign="center">{children}</Text>
-        </VStack>
+          <Text textAlign="center" w="full" whiteSpace="nowrap" isTruncated>
+            {children}
+          </Text>
+        </HStack>
       </Link>
     </NextLink>
   )
 }
 
-export default ShortcutIconLink
+export default MenuListLink

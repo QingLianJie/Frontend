@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import MemberComments from '../../components/app/member/comments/Comments'
+import MemberComments from '../../components/app/member/Comments'
 import MemberProfile from '../../components/app/member/Profile'
 import MainContainer from '../../components/common/container/Main'
 

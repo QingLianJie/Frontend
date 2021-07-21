@@ -11,6 +11,7 @@ const TextLink = ({ href, children }: TextLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
+        w="fit-content"
         color="purple.500"
         _dark={{
           color: 'purple.300',
@@ -23,7 +24,9 @@ const TextLink = ({ href, children }: TextLinkProps) => {
           },
         }}
       >
-        <Text w="fit-content">{children}</Text>
+        <Text as="span" w="fit-content">
+          {children}
+        </Text>
       </Link>
     </NextLink>
   )

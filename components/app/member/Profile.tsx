@@ -18,9 +18,9 @@ import {
 } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import ProfileAvatar from './Avatar'
-import ProfileBind from './modals/Bind'
-import ProfileEditAvatar from './modals/EditAvatar'
-import ProfileUnbind from './modals/Unbind'
+import ProfileBind from './modal/Bind'
+import ProfileEditAvatar from './modal/EditAvatar'
+import ProfileUnbind from './modal/Unbind'
 
 interface InfoItemProps {
   isLoading: boolean | undefined

@@ -8,7 +8,7 @@ import HorizontalContainer from '../components/common/container/Horizontal'
 import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
-import BlockLink from '../components/common/link/BlockLink'
+import BlockLink from '../components/common/action/link/BlockLink'
 import useSignupToast from '../hooks/useToast/useSignupToast'
 import { nameRegex, passwordRegex } from '../utils/regex'
 

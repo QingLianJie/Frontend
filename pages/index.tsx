@@ -1,8 +1,8 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
-import Notices from '../components/app/home/notices/Notices'
-import Shortcuts from '../components/app/home/shortcuts/Shortcuts'
-import Timeline from '../components/app/home/timeline/Timeline'
+import Notices from '../components/app/home/Notices'
+import Shortcuts from '../components/app/home/Shortcuts'
+import Timeline from '../components/app/home/Timeline'
 import MainContainer from '../components/common/container/Main'
 
 const IndexPage = () => {

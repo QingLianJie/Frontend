@@ -1,4 +1,4 @@
-import PlaceholderHeading from '../../components/common/heading/Placeholder'
+import PlaceholderHeading from '../../common/typography/Placeholder'
 import PlaceholderPage from './PlaceholderPage'
 
 interface DevelopmentPageProps {

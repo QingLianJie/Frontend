@@ -1,8 +1,7 @@
-import { Avatar, Box, Flex, HStack, Icon, Text, VStack } from '@chakra-ui/react'
-import { RiBookLine, RiBookOpenFill } from 'react-icons/ri'
-import { dateFormatter } from '../../../../../utils/formatter'
-import InlineLink from '../../../../common/link/InlineLink'
-import TextLink from '../../../../common/link/TextLink'
+import { Avatar, HStack, Icon, Text } from '@chakra-ui/react'
+import { RiBookLine } from 'react-icons/ri'
+import { dateFormatter } from '../../../utils/formatter'
+import TextLink from '../../common/action/link/TextLink'
 
 interface RecentCourseCommentProps {
   created: string
@@ -35,9 +34,9 @@ const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
           {dateFormatter({ date: created, calendar: true })}
         </Text>
         <Text px="2" as="span">
-          <InlineLink href={`/courses/${course.course_id}`}>
+          <TextLink href={`/courses/${course.course_id}`}>
             {course.name}
-          </InlineLink>
+          </TextLink>
         </Text>
         <Text as="span" whiteSpace="nowrap">
           出分了

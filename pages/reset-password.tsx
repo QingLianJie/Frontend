@@ -3,7 +3,7 @@ import CenterContainer from '../components/common/container/Center'
 import HorizontalContainer from '../components/common/container/Horizontal'
 import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
-import BlockLink from '../components/common/link/BlockLink'
+import BlockLink from '../components/common/action/link/BlockLink'
 
 const links: Links = [
   { href: '/login', text: '登录' },

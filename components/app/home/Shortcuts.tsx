@@ -1,16 +1,16 @@
 import { Grid, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { FC } from 'react'
 import { RiLinksLine } from 'react-icons/ri'
-import { shortcutLinks } from '../../../../data/shortcut-links'
-import HomeGroup from '../Group'
-import ShortcutIconLink from './link/Icon'
-import ShortcutListLink from './link/List'
+import { shortcutLinks } from '../../../data/shortcut-links'
+import GroupContainer from '../../common/container/Group'
+import IconLink from '../../common/action/link/IconLink'
+import MenuListLink from '../../common/action/link/MenuListLink'
 
 const Shortcuts = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false })
 
   return (
-    <HomeGroup title="常用" icon={RiLinksLine}>
+    <GroupContainer title="常用" icon={RiLinksLine}>
       {isMobile ? (
         <Grid
           templateColumns="repeat(auto-fit, 4.5rem)"
@@ -22,31 +22,31 @@ const Shortcuts = () => {
           rounded="md"
         >
           {shortcutLinks.map((link, index) => (
-            <ShortcutIconLink
+            <IconLink
               href={link.href as string}
               color={link.color}
               icon={link.icon as FC}
               key={index}
             >
               {link.text}
-            </ShortcutIconLink>
+            </IconLink>
           ))}
         </Grid>
       ) : (
         <VStack align="start" spacing="0" my="-3" mx="-2">
           {shortcutLinks.map((link, index) => (
-            <ShortcutListLink
+            <MenuListLink
               href={link.href as string}
               color={link.color}
               icon={link.icon as FC}
               key={index}
             >
               {link.long}
-            </ShortcutListLink>
+            </MenuListLink>
           ))}
         </VStack>
       )}
-    </HomeGroup>
+    </GroupContainer>
   )
 }
 

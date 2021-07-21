@@ -1,7 +1,7 @@
 import DevelopmentPage from '../../components/layout/template/DevelopmentPage'
 
-const CoursesPage = () => {
+const CoursePage = () => {
   return <DevelopmentPage title="课程" href="/courses" />
 }
 
-export default CoursesPage
+export default CoursePage

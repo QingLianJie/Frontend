@@ -1,19 +1,8 @@
-import {
-  Box,
-  Center,
-  Grid,
-  GridItem,
-  Heading,
-  HStack,
-  Icon,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { Center, Grid, GridItem, HStack, Icon, Text } from '@chakra-ui/react'
 import { RiDiscussLine, RiFilterLine } from 'react-icons/ri'
-import useProfile from '../../../../hooks/useProfile'
-import { dateFormatter } from '../../../../utils/formatter'
-import ProfileCourseComment from './Comment'
-import ProfileCommentFilter from './Filter'
+import useProfile from '../../../hooks/useProfile'
+import CommentList from '../../widget/comment/List'
+import ProfileCommentFilter from '../../widget/comment/Filter'
 
 interface MemberCommentsProps {
   name: string | string[] | undefined
@@ -36,7 +25,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
         h="full"
         colSpan={{ base: 1, md: hasComment() ? 2 : 3 }}
       >
-        {hasComment() ? (
+        {profile && hasComment() ? (
           <>
             <HStack spacing="3">
               <Icon as={RiDiscussLine} w="5" h="5" ms="2" />
@@ -44,12 +33,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
                 {profile?.comments.length} 个课程评论
               </Text>
             </HStack>
-
-            <VStack mt="8">
-              {profile?.comments.map((comment, index) => (
-                <ProfileCourseComment comment={comment} key={index} />
-              ))}
-            </VStack>
+            <CommentList comments={profile?.comments} />
           </>
         ) : (
           <Center w="full" h="full">

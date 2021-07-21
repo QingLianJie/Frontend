@@ -7,17 +7,16 @@ import {
 } from '@chakra-ui/react'
 import { Fragment } from 'react'
 import { RiTimeLine } from 'react-icons/ri'
-
-import useTimeline from '../../../../hooks/useTimeline/useTimeline'
-import HomeGroup from '../Group'
-import RecentCourseComment from './activities/RecentCourseComment'
-import RecentCourseGrade from './activities/RecentCourseGrade'
+import useTimeline from '../../../hooks/useTimeline/useTimeline'
+import CourseComment from '../../widget/comment/Comment'
+import GroupContainer from '../../common/container/Group'
+import RecentCourseGrade from '../../widget/grade/RecentCourseGrade'
 
 const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()
 
   return (
-    <HomeGroup title="最近" icon={RiTimeLine}>
+    <GroupContainer title="最近" icon={RiTimeLine}>
       <VStack spacing="4" w="full" ms="1.5">
         {isError ? (
           <Alert status="error" rounded="md">
@@ -31,7 +30,7 @@ const Timeline = () => {
             <Fragment key={index}>
               {index !== 0 && <Divider />}
               {item.hasOwnProperty('user') ? (
-                <RecentCourseComment comment={item as ICourseComment} />
+                <CourseComment comment={item as ICourseComment} />
               ) : (
                 <RecentCourseGrade
                   created={item.created}
@@ -42,7 +41,7 @@ const Timeline = () => {
           ))
         )}
       </VStack>
-    </HomeGroup>
+    </GroupContainer>
   )
 }
 

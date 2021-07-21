@@ -1,8 +1,8 @@
 import { Container, useMediaQuery } from '@chakra-ui/react'
 import Head from 'next/head'
 import { ReactNode } from 'react'
-import Header from '../../components/layout/header/Header'
-import ColorfulBalls from '../../components/widget/background/ColorfulBalls'
+import Header from '../header/Header'
+import ColorfulBalls from '../../common/background/ColorfulBalls'
 
 interface PlaceholderPageProps {
   title: string

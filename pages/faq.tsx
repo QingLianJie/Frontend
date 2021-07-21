@@ -1,20 +1,18 @@
-import DevelopmentPage from '../components/template/DevelopmentPage'
 import {
   Accordion,
-  Divider,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Grid,
   GridItem,
-  useBreakpointValue,
-  VStack,
+  Text,
 } from '@chakra-ui/react'
 import Head from 'next/head'
-import FeedbackGroup from '../components/app/feedback/Group'
-import CopyButton from '../components/common/button/CopyButton'
+import { ReactNode } from 'react'
 import MainContainer from '../components/common/container/Main'
-import PlaceholderHeading from '../components/common/heading/Placeholder'
-import ButtonLink from '../components/common/link/ButtonLink'
+import PlaceholderHeading from '../components/common/typography/Placeholder'
 import { faqs } from '../data/frequently-asked-questions'
-import FAQItem from '../components/app/faq/Item'
 
 const FAQPage = () => {
   return (
@@ -56,3 +54,24 @@ const FAQPage = () => {
 }
 
 export default FAQPage
+
+interface FAQItemProps {
+  title: string
+  children: ReactNode | ReactNode[]
+}
+
+const FAQItem = ({ title, children }: FAQItemProps) => {
+  return (
+    <AccordionItem>
+      <AccordionButton _expanded={{ fontWeight: '600' }}>
+        <Text textAlign="left" fontSize="lg" p="2">
+          {title}
+        </Text>
+        <AccordionIcon ms="auto" />
+      </AccordionButton>
+      <AccordionPanel py="4" px="6">
+        <Text as="span">{children}</Text>
+      </AccordionPanel>
+    </AccordionItem>
+  )
+}

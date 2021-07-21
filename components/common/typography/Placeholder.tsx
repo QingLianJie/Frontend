@@ -8,7 +8,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
-import ButtonLink from '../../../components/common/link/ButtonLink'
+import ButtonLink from '../action/link/ButtonLink'
 
 interface PlaceholderHeadingProps {
   href: string

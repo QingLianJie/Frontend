@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import BackgroundContainer from '../../common/container/Background'
+import BackgroundContainer from '../container/Background'
 
 const ColorfulBalls = () => {
   const ref = useRef<HTMLDivElement>(null)
