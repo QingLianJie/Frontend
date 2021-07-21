@@ -1,23 +1,18 @@
-import {
-  Alert,
-  AlertIcon,
-  CircularProgress,
-  Divider,
-  VStack,
-} from '@chakra-ui/react'
+import { Alert, AlertIcon, CircularProgress } from '@chakra-ui/react'
 import { Fragment } from 'react'
 import { RiTimeLine } from 'react-icons/ri'
 import useTimeline from '../../../hooks/useTimeline/useTimeline'
-import CourseComment from '../../widget/comment/Comment'
 import GroupContainer from '../../common/container/Group'
-import RecentCourseGrade from '../../widget/grade/RecentCourseGrade'
+import ListContainer from '../../common/container/List'
+import CourseComment from '../widget/course/comment/Card'
+import RecentCourseGrade from '../widget/course/grade/Message'
 
 const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()
 
   return (
     <GroupContainer title="最近" icon={RiTimeLine}>
-      <VStack spacing="4" w="full" ms="1.5">
+      <ListContainer divider>
         {isError ? (
           <Alert status="error" rounded="md">
             <AlertIcon />
@@ -28,7 +23,6 @@ const Timeline = () => {
         ) : (
           timeline.map((item, index) => (
             <Fragment key={index}>
-              {index !== 0 && <Divider />}
               {item.hasOwnProperty('user') ? (
                 <CourseComment comment={item as ICourseComment} />
               ) : (
@@ -40,7 +34,7 @@ const Timeline = () => {
             </Fragment>
           ))
         )}
-      </VStack>
+      </ListContainer>
     </GroupContainer>
   )
 }

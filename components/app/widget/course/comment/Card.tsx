@@ -1,7 +1,7 @@
 import { Avatar, Box, HStack, Icon, Text, VStack } from '@chakra-ui/react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
-import { dateFormatter } from '../../../utils/formatter'
-import TextLink from '../../common/action/link/TextLink'
+import { dateFormatter } from '../../../../../utils/formatter'
+import TextLink from '../../../../common/action/link/TextLink'
 
 interface CourseCommentProps {
   comment: ICourseComment

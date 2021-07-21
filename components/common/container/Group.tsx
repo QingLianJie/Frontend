@@ -10,7 +10,7 @@ interface GroupContainerProps {
 
 const GroupContainer = ({ title, icon, children }: GroupContainerProps) => {
   return (
-    <VStack align="start" w="full" spacing={{ base: 8, md: 10 }}>
+    <VStack align="start" w="full" spacing={{ base: 6, md: 8 }}>
       {title && (
         <HStack spacing="3">
           {icon && <Icon ms="2" w="5" h="5" as={icon} />}

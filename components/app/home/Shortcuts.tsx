@@ -16,7 +16,7 @@ const Shortcuts = () => {
           templateColumns="repeat(auto-fit, 4.5rem)"
           justifyContent={{ base: 'center', md: 'flex-start' }}
           gap={{ base: 1, md: 4, lg: 0 }}
-          mt="-3"
+          mt="-1"
           mb="-1.5"
           w="full"
           rounded="md"
@@ -33,7 +33,7 @@ const Shortcuts = () => {
           ))}
         </Grid>
       ) : (
-        <VStack align="start" spacing="0" my="-3" mx="-2">
+        <VStack align="start" spacing="0" my="-2" mx="-2">
           {shortcutLinks.map((link, index) => (
             <MenuListLink
               href={link.href as string}

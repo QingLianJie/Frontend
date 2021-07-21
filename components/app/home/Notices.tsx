@@ -7,7 +7,7 @@ import GroupContainer from '../../common/container/Group'
 const Notices = () => {
   return (
     <GroupContainer title={'公告板'} icon={RiNotificationBadgeLine}>
-      <VStack spacing="4">
+      <VStack spacing="4" py="1">
         {noticesMock.map((notice, index) => (
           <NoticeCard
             key={index}

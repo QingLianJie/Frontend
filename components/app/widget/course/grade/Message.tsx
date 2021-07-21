@@ -1,7 +1,7 @@
 import { Avatar, HStack, Icon, Text } from '@chakra-ui/react'
 import { RiBookLine } from 'react-icons/ri'
-import { dateFormatter } from '../../../utils/formatter'
-import TextLink from '../../common/action/link/TextLink'
+import { dateFormatter } from '../../../../../utils/formatter'
+import TextLink from '../../../../common/action/link/TextLink'
 
 interface RecentCourseCommentProps {
   created: string
@@ -10,7 +10,7 @@ interface RecentCourseCommentProps {
 
 const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
   return (
-    <HStack w="full" py="0" spacing="3" alignItems="flex-start">
+    <HStack w="full" py="0.5" spacing="3" alignItems="flex-start">
       <Avatar
         size="xs"
         icon={<Icon as={RiBookLine} w="3.5" h="3.5" />}
