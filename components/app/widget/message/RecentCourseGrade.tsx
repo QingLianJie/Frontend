@@ -1,14 +1,14 @@
 import { Avatar, HStack, Icon, Text } from '@chakra-ui/react'
 import { RiBookLine } from 'react-icons/ri'
-import { dateFormatter } from '../../../../../utils/formatter'
-import TextLink from '../../../../common/action/link/TextLink'
+import { dateFormatter } from '../../../../utils/formatter'
+import TextLink from '../../../common/action/link/TextLink'
 
-interface RecentCourseCommentProps {
+interface RecentCourseGradeProps {
   created: string
   course: ICourse
 }
 
-const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
+const RecentCourseGrade = ({ course, created }: RecentCourseGradeProps) => {
   return (
     <HStack w="full" spacing="3" alignItems="flex-start">
       <Avatar
@@ -46,4 +46,4 @@ const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
   )
 }
 
-export default RecentCourseComment
+export default RecentCourseGrade

@@ -30,6 +30,13 @@ interface ICourse {
   count: number
 }
 
+interface ICourseList {
+  count: number
+  next: string | null
+  previous: string | null
+  results: ICourse[]
+}
+
 interface ICourseComment {
   content: string
   created: string

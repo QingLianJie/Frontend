@@ -1,4 +1,4 @@
-import { Center, Fade, Grid, GridItem, Text } from '@chakra-ui/react'
+import { Box, Center, Fade, Grid, GridItem, Text } from '@chakra-ui/react'
 import { RiDiscussLine, RiFilterLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import GroupContainer from '../../common/container/Group'
@@ -12,7 +12,7 @@ interface MemberCommentsProps {
 
 const MemberComments = ({ name }: MemberCommentsProps) => {
   const username = name as string
-  const { profile, isLoading, isError, isNotFound } = useProfile(username)
+  const { profile, isLoading, isError } = useProfile(username)
 
   const hasComment = () => profile?.comments && profile?.comments.length !== 0
 
@@ -41,11 +41,13 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
               title={`${profile?.comments.length} 个课程评论`}
               icon={RiDiscussLine}
             >
-              <ListContainer divider>
-                {profile?.comments.map((comment, index) => (
-                  <CourseComment comment={comment} key={index} />
-                ))}
-              </ListContainer>
+              <Box ps="1.5">
+                <ListContainer divider>
+                  {profile?.comments.map((comment, index) => (
+                    <CourseComment comment={comment} key={index} />
+                  ))}
+                </ListContainer>
+              </Box>
             </GroupContainer>
           </Fade>
         ) : (

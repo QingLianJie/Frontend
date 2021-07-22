@@ -2,16 +2,20 @@ import { Divider, VStack } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 
 interface ListContainerProps {
+  spacing?: number | string
   divider?: boolean
   children: ReactNode | ReactNode[]
 }
 
-const ListContainer = ({ divider, children }: ListContainerProps) => {
+const ListContainer = ({
+  spacing = 4,
+  divider,
+  children,
+}: ListContainerProps) => {
   return (
     <VStack
-      spacing="4"
+      spacing={spacing}
       w="full"
-      ms="1.5"
       py="1"
       divider={divider ? <Divider /> : undefined}
     >
