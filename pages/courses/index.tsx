@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack } from '@chakra-ui/react'
+import { Grid, GridItem, HStack, useBreakpointValue } from '@chakra-ui/react'
 import {
   Next,
   PageGroup,
@@ -7,9 +7,8 @@ import {
   usePaginator,
 } from 'chakra-paginator'
 import Head from 'next/head'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { RiBookOpenLine, RiFilterLine } from 'react-icons/ri'
+import { useEffect, useState } from 'react'
+import { RiBookOpenLine, RiSearchLine } from 'react-icons/ri'
 import CourseListFilter from '../../components/app/widget/course/list/Filter'
 import CourseListItem from '../../components/app/widget/course/list/Item'
 import GroupContainer from '../../components/common/container/Group'
@@ -24,6 +23,9 @@ const CoursesPage = () => {
   const [pageCount, setPageCount] = useState(0)
   const [courseCount, setCourseCount] = useState(0)
   const { courseList, isLoading, isError } = useCourseList(currentPage)
+
+  const outerLimit = useBreakpointValue({ base: 1, sm: 1, md: 2, lg: 3 })
+  const innerLimit = useBreakpointValue({ base: -1, sm: 1, md: 1, lg: 2 })
 
   useEffect(() => {
     if (!isLoading && !isError) {
@@ -41,11 +43,11 @@ const CoursesPage = () => {
         {isError ? null : isLoading ? null : (
           <Grid
             templateColumns="repeat(4, 1fr)"
-            gap={{ base: 4, sm: 8, md: 12, lg: 16 }}
+            gap={{ base: 6, sm: 8, md: 12, lg: 16 }}
             h="full"
           >
             <GridItem colSpan={{ base: 4, md: 1 }} h="full">
-              <GroupContainer title="筛选" icon={RiFilterLine}>
+              <GroupContainer title="课程搜索" icon={RiSearchLine}>
                 <CourseListFilter />
               </GroupContainer>
             </GridItem>
@@ -61,8 +63,8 @@ const CoursesPage = () => {
                     pagesQuantity={Math.floor(courseCount / pageCount)}
                     currentPage={currentPage}
                     onPageChange={setCurrentPage}
-                    outerLimit={3}
-                    innerLimit={3}
+                    outerLimit={outerLimit}
+                    innerLimit={innerLimit}
                     activeStyles={{
                       minW: '8',
                       colorScheme: 'blue',

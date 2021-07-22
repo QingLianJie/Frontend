@@ -1,5 +1,5 @@
 import { Box, Center, Fade, Grid, GridItem, Text } from '@chakra-ui/react'
-import { RiDiscussLine, RiFilterLine } from 'react-icons/ri'
+import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import GroupContainer from '../../common/container/Group'
 import ListContainer from '../../common/container/List'
@@ -60,7 +60,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
       </GridItem>
       {hasComment() && (
         <GridItem colSpan={{ base: 1, md: 1 }}>
-          <GroupContainer title="筛选" icon={RiFilterLine}>
+          <GroupContainer title="搜索" icon={RiSearchLine}>
             <CourseCommentFilter />
           </GroupContainer>
         </GridItem>
