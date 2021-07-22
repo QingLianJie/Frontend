@@ -32,10 +32,19 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
       pos="sticky"
       top="0"
       zIndex="100"
-      bg="whiteAlpha.700"
-      style={{ backdropFilter: 'blur(12px)' }}
+      backdropFilter="blur(12px)"
+      sx={{
+        bg: 'white',
+        '@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) ':
+          {
+            bg: 'whiteAlpha.700',
+            _dark: {
+              bg: '#1a202c88',
+            },
+          },
+      }}
       _dark={{
-        bg: '#1a202ccc',
+        bg: 'gray.800',
       }}
     >
       <Box d={{ base: 'flex', lg: 'none' }}>

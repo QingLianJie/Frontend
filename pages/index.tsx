@@ -4,8 +4,14 @@ import Notices from '../components/app/home/Notices'
 import Shortcuts from '../components/app/home/Shortcuts'
 import Timeline from '../components/app/home/Timeline'
 import MainContainer from '../components/common/container/Main'
+import fetcher from '../utils/fetcher'
+import { timelineMerge } from '../utils/merge'
 
-const IndexPage = () => {
+interface IndexPageProps {
+  timeline: (ICourseComment | IRecentCourseGrade)[]
+}
+
+const IndexPage = ({ timeline }: IndexPageProps) => {
   return (
     <>
       <Head>
@@ -20,7 +26,7 @@ const IndexPage = () => {
             <Shortcuts />
           </GridItem>
           <GridItem colSpan={{ base: 4, md: 4, lg: 6 }}>
-            <Timeline />
+            <Timeline timeline={timeline} />
           </GridItem>
           <GridItem
             colSpan={{ base: 4, md: 2, lg: 3 }}
@@ -36,3 +42,10 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export async function getServerSideProps() {
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const grades = await fetcher(`${baseURL}/api/recent/grade/courses`)
+  const comments = await fetcher(`${baseURL}/api/recent/comments`)
+  return { props: { timeline: timelineMerge(comments, grades) } }
+}
