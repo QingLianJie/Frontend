@@ -9,7 +9,7 @@ interface CourseCommentProps {
 
 const CourseComment = ({ comment }: CourseCommentProps) => {
   return (
-    <VStack align="start" w="full" p="0" spacing="3">
+    <VStack align="start" w="full" p="0" spacing="3.5">
       <HStack w="full" py="0.5" spacing="3" alignItems="flex-start">
         <Avatar
           size="xs"

@@ -8,7 +8,6 @@ const Footer = () => {
       py="8"
       justify="space-between"
       align="flex-end"
-      flex="1"
     >
       <Text fontSize="sm" color="gray.500">
         清廉街 © 2021

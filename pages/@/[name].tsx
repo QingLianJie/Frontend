@@ -23,11 +23,12 @@ const MemberPage = () => {
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={{ base: 4, sm: 8, md: 12, lg: 16 }}
+          h="full"
         >
-          <GridItem colSpan={{ base: 4, md: 1 }}>
+          <GridItem colSpan={{ base: 4, md: 1 }} h="full">
             {router.isReady && name && <MemberProfile name={name} />}
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 3 }}>
+          <GridItem colSpan={{ base: 4, md: 3 }} h="full">
             {router.isReady && name && <MemberComments name={name} />}
           </GridItem>
         </Grid>

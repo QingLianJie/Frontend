@@ -19,6 +19,7 @@ const MainContainer = ({ gray, title, children }: MainContainer) => {
         maxW="container.xl"
         py={{ base: 2, md: 4 }}
         px={{ base: 6, sm: 8, md: 12 }}
+        flex="1"
       >
         {children}
       </Container>

@@ -25,7 +25,6 @@ const ProfileAvatar = ({ profile, action }: ProfileAvatarProps) => {
         mx={{ base: 0, sm: 'auto' }}
       >
         <Avatar
-          bg="gray.100"
           icon={<RiUserLine size="50%" />}
           src={
             profile?.image
@@ -37,8 +36,9 @@ const ProfileAvatar = ({ profile, action }: ProfileAvatarProps) => {
           borderWidth="1px"
           borderColor="gray.200"
           color="gray.400"
+          bg="gray.100"
           _dark={{
-            color: 'white',
+            color: 'gray.400',
             bg: 'gray.700',
             borderColor: 'whiteAlpha.300',
           }}

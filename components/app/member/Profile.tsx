@@ -101,14 +101,16 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
           </>
         ) : (
           <InfoItem isLoading={isLoading} icon={RiDiscussLine}>
-            {profile?.comments && profile?.comments.length !== 0
+            {isNotFound
+              ? '不存在的用户不能评论'
+              : profile?.comments && profile?.comments.length !== 0
               ? `发布过 ${profile.comments.length} 个课程评论`
               : '未发布过课程评论'}
           </InfoItem>
         )}
 
         <InfoItem isLoading={isLoading} icon={RiProfileLine}>
-          UID {profile?.pk}
+          UID {profile?.pk || '未知'}
         </InfoItem>
 
         {profile?.self && (

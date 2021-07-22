@@ -36,11 +36,14 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
           h="10"
           mx="1"
           cursor="pointer"
-          color="gray.500"
-          bg="gray.200"
+          color="gray.400"
+          bg="gray.100"
+          borderWidth="1px"
+          borderColor="gray.200"
           _dark={{
             color: 'gray.400',
             bg: 'gray.700',
+            borderColor: 'whiteAlpha.300',
           }}
         />
       </PopoverTrigger>
