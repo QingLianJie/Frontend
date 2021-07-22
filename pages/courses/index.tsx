@@ -42,11 +42,11 @@ const CoursesPage = () => {
       <MainContainer gray title="课程">
         {isError ? null : isLoading ? null : (
           <Grid
-            templateColumns="repeat(11, 1fr)"
+            templateColumns="repeat(3, 1fr)"
             gap={{ base: 6, sm: 8, md: 12, lg: 16 }}
             h="full"
           >
-            <GridItem colSpan={{ base: 11, md: 8 }} h="full">
+            <GridItem colSpan={{ base: 3, md: 2 }} h="full">
               <GroupContainer title="所有课程" icon={RiBookOpenLine}>
                 <ListContainer spacing="3">
                   {courseList.results.map((course, index) => (
@@ -78,7 +78,7 @@ const CoursesPage = () => {
                 </HStack>
               </GroupContainer>
             </GridItem>
-            <GridItem colSpan={{ base: 11, md: 3 }} h="full">
+            <GridItem colSpan={{ base: 3, md: 1 }} h="full">
               <GroupContainer title="课程搜索" icon={RiSearchLine}>
                 <CourseListFilter />
               </GroupContainer>

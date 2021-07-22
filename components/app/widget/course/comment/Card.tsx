@@ -4,10 +4,11 @@ import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/action/link/TextLink'
 
 interface CourseCommentProps {
+  lite?: boolean
   comment: ICourseComment
 }
 
-const CourseComment = ({ comment }: CourseCommentProps) => {
+const CourseComment = ({ lite, comment }: CourseCommentProps) => {
   return (
     <VStack align="start" w="full" p="0" spacing="3.5">
       <HStack w="full" spacing="3" alignItems="flex-start">
@@ -44,24 +45,27 @@ const CourseComment = ({ comment }: CourseCommentProps) => {
               {comment.user.username}
             </TextLink>
           )}
-
-          <Text
-            as="span"
-            whiteSpace="nowrap"
-            mx="2"
-            color="gray.600"
-            _dark={{
-              color: 'gray.500',
-            }}
-          >
-            评论了课程
-          </Text>
-          <TextLink href={`/courses/${comment.course.course_id}`}>
-            {comment.course.name}
-          </TextLink>
+          {!lite && (
+            <>
+              <Text
+                as="span"
+                whiteSpace="nowrap"
+                mx="2"
+                color="gray.600"
+                _dark={{
+                  color: 'gray.500',
+                }}
+              >
+                评论了课程
+              </Text>
+              <TextLink href={`/courses/${comment.course?.course_id}`}>
+                {comment.course?.name}
+              </TextLink>
+            </>
+          )}
         </Text>
       </HStack>
-      <Box w="full" ps={{ base: 0, md: 8 }}>
+      <Box w="full" ps={lite ? '0' : { base: 0, md: 8 }}>
         <Box
           borderWidth="1px"
           rounded="md"
