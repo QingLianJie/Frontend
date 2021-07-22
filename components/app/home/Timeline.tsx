@@ -22,7 +22,7 @@ const Timeline = ({ timeline }: TimelineProps) => {
               ) : (
                 <RecentCourseGrade
                   created={item.created}
-                  course={item.course}
+                  course={item.course as ICourse}
                 />
               )}
             </Fragment>
