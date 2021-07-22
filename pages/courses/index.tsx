@@ -46,11 +46,6 @@ const CoursesPage = () => {
             gap={{ base: 6, sm: 8, md: 12, lg: 16 }}
             h="full"
           >
-            <GridItem colSpan={{ base: 4, md: 1 }} h="full">
-              <GroupContainer title="课程搜索" icon={RiSearchLine}>
-                <CourseListFilter />
-              </GroupContainer>
-            </GridItem>
             <GridItem colSpan={{ base: 4, md: 3 }} h="full">
               <GroupContainer title="所有课程" icon={RiBookOpenLine}>
                 <ListContainer spacing="3">
@@ -73,13 +68,19 @@ const CoursesPage = () => {
                     normalStyles={{
                       minW: '8',
                       px: '2',
+                      _dark: { bg: 'gray.700' },
                     }}
                   >
-                    <Previous>上一页</Previous>
+                    <Previous _dark={{ bg: 'gray.700' }}>上一页</Previous>
                     <PageGroup isInline spacing="2" />
-                    <Next>下一页</Next>
+                    <Next _dark={{ bg: 'gray.700' }}>下一页</Next>
                   </Paginator>
                 </HStack>
+              </GroupContainer>
+            </GridItem>
+            <GridItem colSpan={{ base: 4, md: 1 }} h="full">
+              <GroupContainer title="课程搜索" icon={RiSearchLine}>
+                <CourseListFilter />
               </GroupContainer>
             </GridItem>
           </Grid>

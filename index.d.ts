@@ -37,12 +37,37 @@ interface ICourseList {
   results: ICourse[]
 }
 
+interface ICourseInfo extends ICourse {
+  comments: ICourseComment[]
+  more_comments: string
+  statistics: {
+    all: {
+      total: number
+      exam: {
+        [key: string]: [value: number]
+      }
+      test: {
+        [key: string]: [value: number]
+      }
+    }
+    [key: string]: {
+      total: number
+      exam: {
+        [key: string]: [value: number]
+      }
+      test: {
+        [key: string]: [value: number]
+      }
+    }
+  }
+}
+
 interface ICourseComment {
   content: string
   created: string
   anonymous: boolean
   user: IUser
-  course: ICourse
+  course?: ICourse
 }
 
 interface IRecentCourseGrade {

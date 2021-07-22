@@ -15,7 +15,7 @@ export const faqs: FAQs = [
     ),
   },
   {
-    title: 'HEU 账号和成绩信息如何存储在数据库，是否有泄露的风险？',
+    title: 'HEU 账号和成绩信息如何存储，是否有泄露的风险？',
     content: (
       <span>
         由于统计需要，用户所绑定的 HEU 账号和密码会以&nbsp;<strong>明文</strong>
