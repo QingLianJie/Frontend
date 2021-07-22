@@ -75,6 +75,9 @@ const FAQItem = ({ title, children }: FAQItemProps) => {
       borderRightWidth="1px"
       _first={{ roundedTop: 'md' }}
       _last={{ roundedBottom: 'md', borderBottomWidth: '1px' }}
+      _dark={{
+        bg: 'gray.800',
+      }}
     >
       <AccordionButton _expanded={{ fontWeight: '600' }}>
         <Text textAlign="left" fontSize="lg" p="2">
