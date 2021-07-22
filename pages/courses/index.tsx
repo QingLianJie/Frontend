@@ -1,4 +1,12 @@
-import { Grid, GridItem, HStack, useBreakpointValue } from '@chakra-ui/react'
+import {
+  Fade,
+  Grid,
+  GridItem,
+  HStack,
+  Skeleton,
+  useBreakpointValue,
+  VStack,
+} from '@chakra-ui/react'
 import {
   Next,
   PageGroup,
@@ -8,7 +16,8 @@ import {
 } from 'chakra-paginator'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { RiBookOpenLine, RiSearchLine } from 'react-icons/ri'
+import { RiSearchLine } from 'react-icons/ri'
+import CoursePaginator from '../../components/app/course/Paginator'
 import CourseListFilter from '../../components/app/widget/course/list/Filter'
 import CourseListItem from '../../components/app/widget/course/list/Item'
 import GroupContainer from '../../components/common/container/Group'
@@ -40,42 +49,40 @@ const CoursesPage = () => {
         <title>课程 - 清廉街</title>
       </Head>
       <MainContainer gray title="课程">
-        {isError ? null : isLoading ? null : (
+        {isError ? null : (
           <Grid
             templateColumns="repeat(3, 1fr)"
             gap={{ base: 6, sm: 8, md: 12, lg: 16 }}
             h="full"
           >
             <GridItem colSpan={{ base: 3, md: 2 }} h="full">
-              <GroupContainer title="所有课程" icon={RiBookOpenLine}>
-                <ListContainer spacing="3">
-                  {courseList.results.map((course, index) => (
-                    <CourseListItem key={index} course={course} />
-                  ))}
-                </ListContainer>
-                <HStack w="full" justify="space-between" spacing="4" py="4">
-                  <Paginator
+              <GroupContainer>
+                <VStack align="start" spacing="4">
+                  <CoursePaginator
                     pagesQuantity={Math.floor(courseCount / pageCount)}
                     currentPage={currentPage}
-                    onPageChange={setCurrentPage}
+                    setCurrentPage={setCurrentPage}
                     outerLimit={outerLimit}
                     innerLimit={innerLimit}
-                    activeStyles={{
-                      minW: '8',
-                      colorScheme: 'blue',
-                      px: '2',
-                    }}
-                    normalStyles={{
-                      minW: '8',
-                      px: '2',
-                      _dark: { bg: 'gray.700' },
-                    }}
-                  >
-                    <Previous _dark={{ bg: 'gray.700' }}>上一页</Previous>
-                    <PageGroup isInline spacing="2" />
-                    <Next _dark={{ bg: 'gray.700' }}>下一页</Next>
-                  </Paginator>
-                </HStack>
+                  />
+                  <ListContainer spacing="3">
+                    {!isLoading ? (
+                      courseList?.results.map((course, index) => (
+                        <CourseListItem key={index} course={course} />
+                      ))
+                    ) : (
+                      <Skeleton w="0" height="100vh" />
+                    )}
+                  </ListContainer>
+                  )
+                  <CoursePaginator
+                    pagesQuantity={Math.floor(courseCount / pageCount)}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    outerLimit={outerLimit}
+                    innerLimit={innerLimit}
+                  />
+                </VStack>
               </GroupContainer>
             </GridItem>
             <GridItem colSpan={{ base: 3, md: 1 }} h="full">

@@ -44,19 +44,19 @@ interface ICourseInfo extends ICourse {
     all: {
       total: number
       exam: {
-        [key: string]: [value: number]
+        [key: string]: number
       }
       test: {
-        [key: string]: [value: number]
+        [key: string]: number
       }
     }
     [key: string]: {
       total: number
       exam: {
-        [key: string]: [value: number]
+        [key: string]: number
       }
       test: {
-        [key: string]: [value: number]
+        [key: string]: number
       }
     }
   }

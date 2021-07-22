@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Text, VStack } from '@chakra-ui/react'
 import { RiDiscussLine } from 'react-icons/ri'
 import useCourse from '../../../hooks/useCourse'
 import GroupContainer from '../../common/container/Group'
@@ -15,7 +15,11 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
       {isError ? null : isLoading ? null : courseInfo.comments.length === 0 ? (
-        <Text>暂无评论</Text>
+        <VStack align="start" px="2" py="0.5">
+          <Text color="gray.500">这个课程还没有评论，</Text>
+          <Text color="gray.500">有什么想说的吗，</Text>
+          <Text color="gray.500">欢迎写一些有帮助的评论。</Text>
+        </VStack>
       ) : (
         <ListContainer divider>
           {courseInfo.comments.map((comment, index) => (
