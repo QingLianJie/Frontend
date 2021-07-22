@@ -11,7 +11,7 @@ const Shortcuts = () => {
 
   return (
     <GroupContainer title="常用" icon={RiLinksLine}>
-      {isMobile ? (
+      {isMobile === undefined ? null : isMobile ? (
         <Grid
           templateColumns="repeat(auto-fit, 4.5rem)"
           justifyContent={{ base: 'center', md: 'flex-start' }}

@@ -10,7 +10,7 @@ interface RecentCourseCommentProps {
 
 const RecentCourseComment = ({ course, created }: RecentCourseCommentProps) => {
   return (
-    <HStack w="full" py="0.5" spacing="3" alignItems="flex-start">
+    <HStack w="full" spacing="3" alignItems="flex-start">
       <Avatar
         size="xs"
         icon={<Icon as={RiBookLine} w="3.5" h="3.5" />}

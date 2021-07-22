@@ -12,6 +12,7 @@ const ListContainer = ({ divider, children }: ListContainerProps) => {
       spacing="4"
       w="full"
       ms="1.5"
+      py="1"
       divider={divider ? <Divider /> : undefined}
     >
       {children}
