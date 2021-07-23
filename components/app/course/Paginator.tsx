@@ -1,28 +1,26 @@
-import { HStack } from '@chakra-ui/react'
+import { HStack, useBreakpointValue } from '@chakra-ui/react'
 import { Next, PageGroup, Paginator, Previous } from 'chakra-paginator'
-import { Dispatch, SetStateAction } from 'react'
 
 interface CoursePaginatorProps {
   pagesQuantity: number
   currentPage: number
-  setCurrentPage: Dispatch<SetStateAction<number>>
-  outerLimit: number | undefined
-  innerLimit: number | undefined
+  onPageChange: (page: number) => void
 }
 
 const CoursePaginator = ({
   pagesQuantity,
   currentPage,
-  setCurrentPage,
-  outerLimit,
-  innerLimit,
+  onPageChange,
 }: CoursePaginatorProps) => {
+  const outerLimit = useBreakpointValue({ base: 1, sm: 1, md: 1, lg: 2, xl: 3 })
+  const innerLimit = useBreakpointValue({ base: -1, sm: 1, md: 1, lg: 2 })
+
   return (
     <HStack w="full" justify="space-between" spacing="4">
       <Paginator
         pagesQuantity={pagesQuantity}
         currentPage={currentPage}
-        onPageChange={setCurrentPage}
+        onPageChange={onPageChange}
         outerLimit={outerLimit}
         innerLimit={innerLimit}
         activeStyles={{

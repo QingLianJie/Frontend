@@ -5,7 +5,7 @@ export const calcRate = (info: ICourseInfo): CourseInfoRate => {
     fail: { rate: null, count: null },
   }
 
-  if (!info) return defaultResult
+  if (!info || info.statistics.all.total === 0) return defaultResult
 
   const type = info.assessment_method
   const data = info.statistics.all

@@ -1,14 +1,7 @@
-import {
-  Box,
-  Grid,
-  GridItem,
-  Skeleton,
-  useBreakpointValue,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, Fade, Grid, GridItem, Skeleton, VStack } from '@chakra-ui/react'
 import { usePaginator } from 'chakra-paginator'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { RiBookOpenLine, RiSearchLine } from 'react-icons/ri'
 import CoursePaginator from '../../components/app/course/Paginator'
 import CourseListFilter from '../../components/app/widget/course/list/Filter'
@@ -19,22 +12,23 @@ import MainContainer from '../../components/common/container/Main'
 import useCourseList from '../../hooks/useCourseList'
 
 const CoursesPage = () => {
+  const router = useRouter()
   const { currentPage, setCurrentPage } = usePaginator({
-    initialState: { currentPage: 1 },
+    initialState: { currentPage: Number(router.query.page) || 1 },
   })
-  const [pageCount, setPageCount] = useState(0)
-  const [courseCount, setCourseCount] = useState(0)
-  const { courseList, isLoading, isError } = useCourseList(currentPage)
 
-  const outerLimit = useBreakpointValue({ base: 1, sm: 1, md: 2, lg: 3 })
-  const innerLimit = useBreakpointValue({ base: -1, sm: 1, md: 1, lg: 2 })
+  const { courseList, isLoading, isError } = useCourseList(
+    Number(router.query.page) || currentPage
+  )
 
-  useEffect(() => {
-    if (!isLoading && !isError) {
-      setPageCount(courseList.results.length)
-      setCourseCount(courseList.count)
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page)
+    if (page !== 1) {
+      router.push(`/courses?page=${page}`, undefined, { shallow: true })
+    } else {
+      router.push(`/courses`, undefined, { shallow: true })
     }
-  }, [courseList, isError, isLoading])
+  }
 
   return (
     <>
@@ -67,23 +61,40 @@ const CoursesPage = () => {
                     overflow="hidden"
                   >
                     <ListContainer spacing="0" divider>
-                      {!isLoading ? (
-                        courseList?.results.map((course, index) => (
-                          <CourseListItem key={index} course={course} />
-                        ))
-                      ) : (
-                        <Skeleton w="0" height="100vh" />
-                      )}
+                      {!isLoading
+                        ? courseList?.results.map((course, index) => (
+                            <Fade key={index} in style={{ width: '100%' }}>
+                              <CourseListItem key={index} course={course} />
+                            </Fade>
+                          ))
+                        : new Array(10).fill('').map((_, index) => (
+                            <Skeleton
+                              w="full"
+                              key={index}
+                              startColor="transparent"
+                              endColor="transparent"
+                            >
+                              <CourseListItem />
+                            </Skeleton>
+                          ))}
                     </ListContainer>
                   </Box>
 
-                  <CoursePaginator
-                    pagesQuantity={Math.floor(courseCount / pageCount)}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    outerLimit={outerLimit}
-                    innerLimit={innerLimit}
-                  />
+                  <Skeleton
+                    w="full"
+                    rounded="md"
+                    isLoaded={!isLoading && !!courseList?.count}
+                  >
+                    <CoursePaginator
+                      pagesQuantity={
+                        courseList
+                          ? Math.floor(courseList.count / 10) + 1
+                          : 1000
+                      }
+                      currentPage={Number(router.query.page) || currentPage}
+                      onPageChange={handlePageChange}
+                    />
+                  </Skeleton>
                 </VStack>
               </GroupContainer>
             </GridItem>
