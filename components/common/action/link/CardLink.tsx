@@ -10,11 +10,9 @@ interface CardLinkProps {
 const CardLink = ({ href, children }: CardLinkProps) => {
   return (
     <LinkBox
-      // borderWidth="1px"
-      // rounded="md"
+      w="full"
       py="4"
       px="6"
-      w="full"
       bg="white"
       _dark={{
         bg: 'gray.800',

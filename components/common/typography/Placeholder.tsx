@@ -1,13 +1,5 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  Button,
-  Heading,
-  HStack,
-  VStack,
-} from '@chakra-ui/react'
-import { default as NextLink } from 'next/link'
+import { Button, Heading, HStack, VStack } from '@chakra-ui/react'
+import BreadcrumbLink from '../action/link/BreadcrumbLink'
 import ButtonLink from '../action/link/ButtonLink'
 
 interface PlaceholderHeadingProps {
@@ -30,18 +22,7 @@ const PlaceholderHeading = ({
   return (
     <>
       <VStack my="4" spacing="4" align="start">
-        <Breadcrumb>
-          <BreadcrumbItem>
-            <NextLink href="/" passHref>
-              <BreadcrumbLink>清廉街</BreadcrumbLink>
-            </NextLink>
-          </BreadcrumbItem>
-          <BreadcrumbItem>
-            <NextLink href={href} passHref>
-              <BreadcrumbLink>{title}</BreadcrumbLink>
-            </NextLink>
-          </BreadcrumbItem>
-        </Breadcrumb>
+        <BreadcrumbLink href={href}>{title}</BreadcrumbLink>
         {messages.map((message, index) => (
           <Heading as="p" size="lg" fontWeight="600" key={index}>
             {message}

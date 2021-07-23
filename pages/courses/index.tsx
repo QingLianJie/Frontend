@@ -44,13 +44,18 @@ const CoursesPage = () => {
       <MainContainer gray title="课程">
         {isError ? null : (
           <Grid
-            templateColumns="repeat(16, 1fr)"
+            templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(16, 1fr)' }}
             gap={{ base: 8, md: 12 }}
+            w="full"
             h="full"
           >
-            <GridItem colSpan={{ base: 16, md: 12 }} h="full">
+            <GridItem
+              colSpan={{ base: 2, md: 10, lg: 12 }}
+              maxW="full"
+              h="full"
+            >
               <GroupContainer title="课程列表" icon={RiBookOpenLine}>
-                <VStack align="start" spacing="4">
+                <VStack align="start" spacing="4" w="full">
                   <Box
                     bg="white"
                     _dark={{
@@ -83,7 +88,7 @@ const CoursesPage = () => {
               </GroupContainer>
             </GridItem>
 
-            <GridItem colSpan={{ base: 16, md: 4 }} h="full">
+            <GridItem colSpan={{ base: 2, md: 6, lg: 4 }} h="full">
               <GroupContainer title="课程搜索" icon={RiSearchLine}>
                 <CourseListFilter />
               </GroupContainer>

@@ -133,3 +133,9 @@ type FAQ = {
 }
 
 type FAQs = FAQ[]
+
+interface CourseInfoRate {
+  excellent: { rate: string | null; count: number | null }
+  pass: { rate: string | null; count: number | null }
+  fail: { rate: string | null; count: number | null }
+}

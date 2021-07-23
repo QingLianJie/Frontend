@@ -8,7 +8,7 @@ import ListContainer from '../../common/container/List'
 const Notices = () => {
   return (
     <GroupContainer title={'公告板'} icon={RiNotificationBadgeLine}>
-      <ListContainer divider>
+      <ListContainer>
         {noticesMock.map((notice, index) => (
           <NoticeCard
             key={index}

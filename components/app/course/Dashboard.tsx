@@ -10,64 +10,22 @@ import {
   WrapItem,
 } from '@chakra-ui/react'
 import Head from 'next/head'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import useCourse from '../../../hooks/useCourse'
+import { calcRate } from '../../../utils/calc/course-statistics'
+import BreadcrumbLink from '../../common/action/link/BreadcrumbLink'
 import GroupContainer from '../../common/container/Group'
 
 interface CourseDashboardProps {
   id: string
 }
 
-type Rate = {
-  good: { rate: string; count: null | number }
-  bad: { rate: string; count: null | number }
-}
-
 const CourseDashboard = ({ id }: CourseDashboardProps) => {
   const { courseInfo, isLoading, isError } = useCourse(id)
-  const defaultRate = useMemo<Rate>(
-    () => ({
-      good: { rate: '无数据', count: null },
-      bad: { rate: '无数据', count: null },
-    }),
-    []
-  )
-  const [rate, setRate] = useState<Rate>(defaultRate)
-
+  const [rate, setRate] = useState<CourseInfoRate | null>(null)
   useEffect(() => {
-    const calcRate = () => {
-      if (!courseInfo) return defaultRate
-
-      const type = courseInfo.assessment_method
-      const data = courseInfo.statistics.all
-      const total = data.total
-
-      let good = 0
-      let bad = 0
-
-      if (type === '考试') {
-        for (const [score, count] of Object.entries(data.exam)) {
-          console.log(score, count)
-
-          if (Number(score) < 60) {
-            bad += count
-          } else if (Number(score) >= 90) {
-            good += count
-          }
-        }
-      } else if (type === '考查') {
-        good = data.test['优秀'] || 0
-        bad = data.test['不及格'] || 0
-      }
-
-      return {
-        good: { rate: ((good / total) * 100).toFixed(2) + '%', count: good },
-        bad: { rate: ((bad / total) * 100).toFixed(2) + '%', count: bad },
-      }
-    }
-
-    setRate(calcRate())
-  }, [courseInfo, defaultRate])
+    setRate(calcRate(courseInfo))
+  }, [courseInfo])
 
   return (
     <>
@@ -80,6 +38,7 @@ const CourseDashboard = ({ id }: CourseDashboardProps) => {
       <GroupContainer>
         {isError ? null : isLoading ? null : (
           <VStack align="start" spacing="4">
+            <BreadcrumbLink href={`/courses`}>课程列表</BreadcrumbLink>
             <Wrap spacing="3" alignItems="center" pb="4">
               <Heading as="h2" fontSize="2xl" fontWeight="600">
                 {courseInfo.name}
@@ -108,23 +67,28 @@ const CourseDashboard = ({ id }: CourseDashboardProps) => {
                 number={courseInfo.kind || '无数据'}
               />
             </Wrap>
-
-            <Wrap spacing="4">
-              <CourseStat
-                label="挂科率"
-                number={rate.bad.rate}
-                help={`${rate.bad.count} 人`}
-              />
-              <CourseStat
-                label="优秀率"
-                number={rate.good.rate}
-                help={`${rate.good.count} 人`}
-              />
-              <CourseStat
-                label="统计人数"
-                number={`${courseInfo.statistics.all.total} 人`}
-              />
-            </Wrap>
+            {rate && (
+              <Wrap spacing="4">
+                <CourseStat
+                  label="挂科率"
+                  number={rate.fail.rate || '无数据'}
+                  help={rate.fail.count ? `${rate.fail.count} 人` : undefined}
+                />
+                <CourseStat
+                  label="优秀率"
+                  number={rate.excellent.rate || '无数据'}
+                  help={
+                    rate.excellent.count
+                      ? `${rate.excellent.count} 人`
+                      : undefined
+                  }
+                />
+                <CourseStat
+                  label="统计人数"
+                  number={`${courseInfo.statistics.all.total} 人`}
+                />
+              </Wrap>
+            )}
           </VStack>
         )}
       </GroupContainer>
