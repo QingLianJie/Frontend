@@ -14,7 +14,7 @@ const CoursePage = () => {
         {router.isReady && (
           <Grid
             templateColumns="repeat(3, 1fr)"
-            gap={{ base: 6, sm: 8, md: 12, lg: 16 }}
+            gap={{ base: 8, md: 12 }}
             h="full"
           >
             <GridItem colSpan={{ base: 3, md: 2 }} h="full">

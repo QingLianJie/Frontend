@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem, Spacer } from '@chakra-ui/react'
 import Head from 'next/head'
 import Notices from '../components/app/home/Notices'
 import Shortcuts from '../components/app/home/Shortcuts'
@@ -19,17 +19,17 @@ const IndexPage = ({ timeline }: IndexPageProps) => {
       </Head>
       <MainContainer gray>
         <Grid
-          templateColumns={{ base: 'repeat(4, 1fr)', lg: 'repeat(11, 1fr)' }}
+          templateColumns={{ base: 'repeat(4, 1fr)', lg: 'repeat(16, 1fr)' }}
           gap={{ base: 8, md: 12 }}
         >
-          <GridItem colSpan={{ base: 4, md: 2, lg: 2 }}>
+          <GridItem colSpan={{ base: 4, md: 2, lg: 3 }}>
             <Shortcuts />
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 4, lg: 6 }}>
+          <GridItem colSpan={{ base: 4, md: 4, lg: 9 }}>
             <Timeline timeline={timeline} />
           </GridItem>
           <GridItem
-            colSpan={{ base: 4, md: 2, lg: 3 }}
+            colSpan={{ base: 4, md: 2, lg: 4 }}
             rowStart={{ base: 2, md: 1, lg: 'auto' }}
             colStart={{ base: 1, md: 3, lg: 'auto' }}
           >

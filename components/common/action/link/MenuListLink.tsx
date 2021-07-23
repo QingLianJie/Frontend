@@ -12,12 +12,7 @@ interface MenuListLinkProps {
   children: ReactNode | ReactNode[]
 }
 
-const MenuListLink = ({
-  icon,
-  color,
-  href,
-  children,
-}: MenuListLinkProps) => {
+const MenuListLink = ({ icon, color, href, children }: MenuListLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -28,12 +23,14 @@ const MenuListLink = ({
         px="4"
         py="3"
         rounded="md"
+        bg={{ base: 'transparent', md: 'white', lg: 'transparent' }}
         _hover={{
           textDecor: 'none',
           bg: 'gray.100',
         }}
         _focus={{ boxShadow: 'outline' }}
         _dark={{
+          bg: { base: 'transparent', md: 'gray.800', lg: 'transparent' },
           _hover: {
             bg: 'gray.700',
           },

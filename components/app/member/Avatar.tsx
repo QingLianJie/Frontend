@@ -31,8 +31,6 @@ const ProfileAvatar = ({ profile, action }: ProfileAvatarProps) => {
               ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${profile.image}`
               : undefined
           }
-          size="full"
-          mx="1"
           borderWidth="1px"
           borderColor="gray.200"
           color="gray.400"

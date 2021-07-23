@@ -37,7 +37,14 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
         />
         <Text w="full">
           {comment.anonymous ? (
-            <Text as="span" whiteSpace="nowrap">
+            <Text
+              as="span"
+              whiteSpace="nowrap"
+              color="gray.600"
+              _dark={{
+                color: 'gray.500',
+              }}
+            >
               {comment.user.username}
             </Text>
           ) : (

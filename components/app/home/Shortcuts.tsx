@@ -1,4 +1,4 @@
-import { Grid, useBreakpointValue, VStack } from '@chakra-ui/react'
+import { Divider, Grid, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { FC } from 'react'
 import { RiLinksLine } from 'react-icons/ri'
 import { shortcutLinks } from '../../../data/shortcut-links'
@@ -15,9 +15,8 @@ const Shortcuts = () => {
         <Grid
           templateColumns="repeat(auto-fit, 4.5rem)"
           justifyContent={{ base: 'center', md: 'flex-start' }}
-          gap={{ base: 1, md: 4, lg: 0 }}
-          mt="-1"
-          mb="-1.5"
+          gap={{ base: 1, md: 4 }}
+          py="1"
           w="full"
           rounded="md"
         >
@@ -33,7 +32,7 @@ const Shortcuts = () => {
           ))}
         </Grid>
       ) : (
-        <VStack align="start" spacing="0" my="-2" mx="-2">
+        <VStack align="start" spacing="0" ms="-3" my="-2.5">
           {shortcutLinks.map((link, index) => (
             <MenuListLink
               href={link.href as string}

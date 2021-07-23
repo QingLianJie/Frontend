@@ -28,7 +28,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
     <Grid
       h="full"
       gridTemplateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
-      gap={{ base: 4, sm: 8, md: 12, lg: 16 }}
+      gap={{ base: 4, sm: 8, md: 12 }}
     >
       <GridItem
         w="full"

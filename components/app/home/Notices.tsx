@@ -1,13 +1,14 @@
-import { Text, VStack } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { RiNotificationBadgeLine } from 'react-icons/ri'
 import { noticesMock } from '../../../data/mock/mock-notices'
 import CardContainer from '../../common/container/Card'
 import GroupContainer from '../../common/container/Group'
+import ListContainer from '../../common/container/List'
 
 const Notices = () => {
   return (
     <GroupContainer title={'公告板'} icon={RiNotificationBadgeLine}>
-      <VStack spacing="4" py="1">
+      <ListContainer divider>
         {noticesMock.map((notice, index) => (
           <NoticeCard
             key={index}
@@ -16,7 +17,7 @@ const Notices = () => {
             content={notice.content}
           />
         ))}
-      </VStack>
+      </ListContainer>
     </GroupContainer>
   )
 }

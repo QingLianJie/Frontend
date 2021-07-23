@@ -80,22 +80,33 @@ const CourseDashboard = ({ id }: CourseDashboardProps) => {
       <GroupContainer>
         {isError ? null : isLoading ? null : (
           <VStack align="start" spacing="4">
-            <Heading as="h2" fontSize="2xl" d="flex" alignItems="center" pb="5">
-              {courseInfo.name}
-              <Badge fontSize="0.5em" ms="3" px="1.5" py="1">
+            <Wrap spacing="3" alignItems="center" pb="4">
+              <Heading as="h2" fontSize="2xl" fontWeight="600">
+                {courseInfo.name}
+              </Heading>
+              <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
                 {courseInfo.course_id}
               </Badge>
-            </Heading>
+            </Wrap>
 
             <Wrap spacing="4">
-              <CourseStat label="课程信息" number={courseInfo.attributes} />
-              <CourseStat label="学分" number={courseInfo.credit} />
-              <CourseStat label="学时" number={courseInfo.total_time} />
+              <CourseStat
+                label="课程信息"
+                number={courseInfo.attributes || '无数据'}
+              />
+              <CourseStat label="学分" number={courseInfo.credit || '无数据'} />
+              <CourseStat
+                label="学时"
+                number={courseInfo.total_time || '无数据'}
+              />
               <CourseStat
                 label="考核方式"
-                number={courseInfo.assessment_method}
+                number={courseInfo.assessment_method || '无数据'}
               />
-              <CourseStat label="课程类型" number={courseInfo.kind} />
+              <CourseStat
+                label="课程类型"
+                number={courseInfo.kind || '无数据'}
+              />
             </Wrap>
 
             <Wrap spacing="4">
@@ -134,7 +145,7 @@ const CourseStat = ({ label, number, help }: CourseStatProps) => {
     <WrapItem>
       <Stat me="4">
         <StatLabel whiteSpace="nowrap">{label}</StatLabel>
-        <StatNumber fontSize="xl" whiteSpace="nowrap">
+        <StatNumber fontSize="xl" whiteSpace="nowrap" fontWeight="600">
           {number}
         </StatNumber>
         {help && <StatHelpText>{help}</StatHelpText>}

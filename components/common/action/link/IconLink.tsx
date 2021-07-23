@@ -22,15 +22,17 @@ const IconLink = ({ icon, color, href, children }: IconLinkProps) => {
         justifyContent="center"
         w="full"
         px="3"
-        pt="4"
-        pb="3"
+        pt="5"
+        pb="3.5"
         rounded="md"
         _hover={{
           textDecor: 'none',
           bg: 'gray.100',
         }}
+        bg={{ base: 'transparent', md: 'white' }}
         _focus={{ boxShadow: 'outline' }}
         _dark={{
+          bg: { base: 'transparent', md: 'gray.800' },
           _hover: {
             bg: 'gray.700',
           },

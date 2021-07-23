@@ -22,7 +22,7 @@ const MemberPage = () => {
       <MainContainer gray title="个人主页">
         <Grid
           templateColumns="repeat(4, 1fr)"
-          gap={{ base: 4, sm: 8, md: 12, lg: 16 }}
+          gap={{ base: 8, md: 12 }}
           h="full"
         >
           <GridItem colSpan={{ base: 4, md: 1 }} h="full">

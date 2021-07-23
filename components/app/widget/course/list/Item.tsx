@@ -11,7 +11,7 @@ const CourseListItem = ({ course }: CourseListItemProps) => {
     <CardLink href={`/courses/${course.course_id}`}>
       <Wrap spacing="2" align="center">
         <WrapItem pe="2">
-          <Text fontWeight="600">{course.name}</Text>
+          <Text>{course.name}</Text>
         </WrapItem>
 
         <WrapItem pe="2">

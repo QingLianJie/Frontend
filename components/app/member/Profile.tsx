@@ -22,31 +22,6 @@ import ProfileBind from './modal/Bind'
 import ProfileEditAvatar from './modal/EditAvatar'
 import ProfileUnbind from './modal/Unbind'
 
-interface InfoItemProps {
-  isLoading: boolean | undefined
-  icon: FC
-  children: ReactNode | ReactNode[]
-}
-
-const InfoItem = ({ isLoading, icon, children }: InfoItemProps) => {
-  return (
-    <Skeleton isLoaded={!isLoading} px="4" w="full">
-      <HStack spacing="3">
-        <Icon as={icon} color="gray.500" w="5" h="5" />
-        <Text
-          w="full"
-          d="flex"
-          alignItems="center"
-          color="gray.600"
-          _dark={{ color: 'gray.400' }}
-        >
-          {children}
-        </Text>
-      </HStack>
-    </Skeleton>
-  )
-}
-
 interface MemberProfileProps {
   name: string | string[] | undefined
 }
@@ -69,7 +44,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         )}
       </Box>
 
-      <VStack py="8" spacing="2" align="start">
+      <VStack py="4" spacing="2" align="start">
         <Skeleton isLoaded={!isLoading} px="4" pb="3" w="full">
           <Heading size="lg" fontWeight="600">
             {isError
@@ -126,3 +101,28 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
 }
 
 export default MemberProfile
+
+interface InfoItemProps {
+  isLoading: boolean | undefined
+  icon: FC
+  children: ReactNode | ReactNode[]
+}
+
+const InfoItem = ({ isLoading, icon, children }: InfoItemProps) => {
+  return (
+    <Skeleton isLoaded={!isLoading} px="4" w="full">
+      <HStack spacing="3">
+        <Icon as={icon} color="gray.500" w="5" h="5" />
+        <Text
+          w="full"
+          d="flex"
+          alignItems="center"
+          color="gray.600"
+          _dark={{ color: 'gray.400' }}
+        >
+          {children}
+        </Text>
+      </HStack>
+    </Skeleton>
+  )
+}

@@ -1,5 +1,6 @@
 import {
   Box,
+  Container,
   Fade,
   Flex,
   Heading,
@@ -47,31 +48,39 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
         bg: 'gray.800',
       }}
     >
-      <Box d={{ base: 'flex', lg: 'none' }}>
-        <HeaderDrawer />
-      </Box>
+      <Container
+        w="full"
+        maxW="container.xl"
+        mx="auto"
+        d="flex"
+        alignItems="center"
+      >
+        <Box d={{ base: 'flex', lg: 'none' }}>
+          <HeaderDrawer />
+        </Box>
 
-      <Text as="h1" fontWeight="600" ms={{ base: 2, lg: 0 }} fontSize="lg">
-        {title}
-      </Text>
+        <Text as="h1" fontWeight="600" ms={{ base: 2, lg: 0 }} fontSize="lg">
+          {title}
+        </Text>
 
-      <Box d={{ base: 'none', lg: 'flex' }}>
-        <HeaderNav />
-      </Box>
+        <Box d={{ base: 'none', lg: 'flex' }}>
+          <HeaderNav />
+        </Box>
 
-      <Spacer />
+        <Spacer />
 
-      {isLoading ? (
-        <SkeletonCircle size="10" mx="1" />
-      ) : isError ? (
-        <Fade in>
-          <LoginPopover />
-        </Fade>
-      ) : (
-        <Fade in>
-          <MemberPopover />
-        </Fade>
-      )}
+        {isLoading ? (
+          <SkeletonCircle size="10" mx="1" />
+        ) : isError ? (
+          <Fade in>
+            <LoginPopover />
+          </Fade>
+        ) : (
+          <Fade in>
+            <MemberPopover />
+          </Fade>
+        )}
+      </Container>
     </Flex>
   )
 }

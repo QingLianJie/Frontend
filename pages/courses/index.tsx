@@ -1,22 +1,15 @@
 import {
-  Fade,
+  Box,
   Grid,
   GridItem,
-  HStack,
   Skeleton,
   useBreakpointValue,
   VStack,
 } from '@chakra-ui/react'
-import {
-  Next,
-  PageGroup,
-  Paginator,
-  Previous,
-  usePaginator,
-} from 'chakra-paginator'
+import { usePaginator } from 'chakra-paginator'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { RiSearchLine } from 'react-icons/ri'
+import { RiBookOpenLine, RiSearchLine } from 'react-icons/ri'
 import CoursePaginator from '../../components/app/course/Paginator'
 import CourseListFilter from '../../components/app/widget/course/list/Filter'
 import CourseListItem from '../../components/app/widget/course/list/Item'
@@ -51,30 +44,34 @@ const CoursesPage = () => {
       <MainContainer gray title="课程">
         {isError ? null : (
           <Grid
-            templateColumns="repeat(3, 1fr)"
-            gap={{ base: 6, sm: 8, md: 12, lg: 16 }}
+            templateColumns="repeat(16, 1fr)"
+            gap={{ base: 8, md: 12 }}
             h="full"
           >
-            <GridItem colSpan={{ base: 3, md: 2 }} h="full">
-              <GroupContainer>
+            <GridItem colSpan={{ base: 16, md: 12 }} h="full">
+              <GroupContainer title="课程列表" icon={RiBookOpenLine}>
                 <VStack align="start" spacing="4">
-                  <CoursePaginator
-                    pagesQuantity={Math.floor(courseCount / pageCount)}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    outerLimit={outerLimit}
-                    innerLimit={innerLimit}
-                  />
-                  <ListContainer spacing="3">
-                    {!isLoading ? (
-                      courseList?.results.map((course, index) => (
-                        <CourseListItem key={index} course={course} />
-                      ))
-                    ) : (
-                      <Skeleton w="0" height="100vh" />
-                    )}
-                  </ListContainer>
-                  )
+                  <Box
+                    bg="white"
+                    _dark={{
+                      bg: 'gray.800',
+                    }}
+                    borderWidth="1px"
+                    rounded="md"
+                    w="full"
+                    overflow="hidden"
+                  >
+                    <ListContainer spacing="0" divider>
+                      {!isLoading ? (
+                        courseList?.results.map((course, index) => (
+                          <CourseListItem key={index} course={course} />
+                        ))
+                      ) : (
+                        <Skeleton w="0" height="100vh" />
+                      )}
+                    </ListContainer>
+                  </Box>
+
                   <CoursePaginator
                     pagesQuantity={Math.floor(courseCount / pageCount)}
                     currentPage={currentPage}
@@ -85,7 +82,8 @@ const CoursesPage = () => {
                 </VStack>
               </GroupContainer>
             </GridItem>
-            <GridItem colSpan={{ base: 3, md: 1 }} h="full">
+
+            <GridItem colSpan={{ base: 16, md: 4 }} h="full">
               <GroupContainer title="课程搜索" icon={RiSearchLine}>
                 <CourseListFilter />
               </GroupContainer>

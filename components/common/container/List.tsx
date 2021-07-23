@@ -16,7 +16,6 @@ const ListContainer = ({
     <VStack
       spacing={spacing}
       w="full"
-      py="1"
       divider={divider ? <Divider /> : undefined}
     >
       {children}

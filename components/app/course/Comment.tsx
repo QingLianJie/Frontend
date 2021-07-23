@@ -15,9 +15,9 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
       {isError ? null : isLoading ? null : courseInfo.comments.length === 0 ? (
-        <VStack align="start" px="2" py="0.5">
+        <VStack align="start" px="1" mt="-0.5">
           <Text color="gray.500">这个课程还没有评论，</Text>
-          <Text color="gray.500">有什么想说的吗，</Text>
+          <Text color="gray.500">有什么想说的吗？</Text>
           <Text color="gray.500">欢迎写一些有帮助的评论。</Text>
         </VStack>
       ) : (

@@ -13,7 +13,7 @@ interface TimelineProps {
 const Timeline = ({ timeline }: TimelineProps) => {
   return (
     <GroupContainer title="最近" icon={RiTimeLine}>
-      <Box ps="1.5">
+      <Box>
         <ListContainer divider>
           {timeline.map((item, index) => (
             <Fragment key={index}>
