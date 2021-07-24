@@ -59,13 +59,15 @@ const CourseChart = ({ id }: CourseChartProps) => {
                   onChange={handleSelectChange}
                 >
                   {courseInfo &&
-                    Object.keys(courseInfo.statistics).map((key, index) =>
-                      key === 'all' ? null : (
-                        <option key={index} value={key}>
-                          {key}
-                        </option>
-                      )
-                    )}
+                    Object.keys(courseInfo.statistics)
+                      .reverse()
+                      .map((key, index) =>
+                        key === 'all' ? null : (
+                          <option key={index} value={key}>
+                            {key}
+                          </option>
+                        )
+                      )}
                 </Select>
               </WrapItem>
             </Wrap>
