@@ -1,17 +1,11 @@
-import { Grid, GridItem, Spacer } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import Head from 'next/head'
 import Notices from '../components/app/home/Notices'
 import Shortcuts from '../components/app/home/Shortcuts'
 import Timeline from '../components/app/home/Timeline'
 import MainContainer from '../components/common/container/Main'
-import fetcher from '../utils/fetcher'
-import { timelineMerge } from '../utils/merge'
 
-interface IndexPageProps {
-  timeline: (ICourseComment | IRecentCourseGrade)[]
-}
-
-const IndexPage = ({ timeline }: IndexPageProps) => {
+const IndexPage = () => {
   return (
     <>
       <Head>
@@ -26,7 +20,7 @@ const IndexPage = ({ timeline }: IndexPageProps) => {
             <Shortcuts />
           </GridItem>
           <GridItem colSpan={{ base: 4, md: 4, lg: 9 }}>
-            <Timeline timeline={timeline} />
+            <Timeline />
           </GridItem>
           <GridItem
             colSpan={{ base: 4, md: 2, lg: 4 }}
@@ -42,10 +36,3 @@ const IndexPage = ({ timeline }: IndexPageProps) => {
 }
 
 export default IndexPage
-
-export async function getServerSideProps() {
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
-  const grades = await fetcher(`${baseURL}/api/recent/grade/courses`)
-  const comments = await fetcher(`${baseURL}/api/recent/comments`)
-  return { props: { timeline: timelineMerge(comments, grades) } }
-}

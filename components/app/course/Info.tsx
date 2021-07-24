@@ -1,28 +1,20 @@
-import {
-  Badge,
-  Heading,
-  Stat,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
-  VStack,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react'
+import { Badge, Heading, VStack, Wrap } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useCourse from '../../../hooks/useCourse'
 import { calcRate } from '../../../utils/calc/course-statistics'
 import BreadcrumbLink from '../../common/action/link/BreadcrumbLink'
 import GroupContainer from '../../common/container/Group'
+import CourseStat from '../widget/course/dashboard/Stat'
 
-interface CourseDashboardProps {
+interface CourseInfoProps {
   id: string
 }
 
-const CourseDashboard = ({ id }: CourseDashboardProps) => {
+const CourseInfo = ({ id }: CourseInfoProps) => {
   const { courseInfo, isLoading, isError } = useCourse(id)
   const [rate, setRate] = useState<CourseInfoRate | null>(null)
+
   useEffect(() => {
     setRate(calcRate(courseInfo))
   }, [courseInfo])
@@ -37,7 +29,7 @@ const CourseDashboard = ({ id }: CourseDashboardProps) => {
       </Head>
       <GroupContainer>
         {isError ? null : isLoading ? null : (
-          <VStack align="start" spacing="4">
+          <VStack align="start" spacing="4" px="1">
             <BreadcrumbLink href={`/courses`}>课程列表</BreadcrumbLink>
             <Wrap spacing="3" alignItems="center" pb="4">
               <Heading as="h2" fontSize="2xl" fontWeight="600">
@@ -96,24 +88,4 @@ const CourseDashboard = ({ id }: CourseDashboardProps) => {
   )
 }
 
-export default CourseDashboard
-
-interface CourseStatProps {
-  label: string
-  number: string
-  help?: string
-}
-
-const CourseStat = ({ label, number, help }: CourseStatProps) => {
-  return (
-    <WrapItem>
-      <Stat me="4">
-        <StatLabel whiteSpace="nowrap">{label}</StatLabel>
-        <StatNumber fontSize="xl" whiteSpace="nowrap" fontWeight="600">
-          {number}
-        </StatNumber>
-        {help && <StatHelpText>{help}</StatHelpText>}
-      </Stat>
-    </WrapItem>
-  )
-}
+export default CourseInfo

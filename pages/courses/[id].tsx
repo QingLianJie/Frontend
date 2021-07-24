@@ -1,7 +1,8 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem, Spacer } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import CourseChart from '../../components/app/course/Chart'
 import CourseCommentList from '../../components/app/course/Comment'
-import CourseDashboard from '../../components/app/course/Dashboard'
+import CourseInfo from '../../components/app/course/Info'
 import MainContainer from '../../components/common/container/Main'
 
 const CoursePage = () => {
@@ -18,7 +19,9 @@ const CoursePage = () => {
             h="full"
           >
             <GridItem colSpan={{ base: 3, md: 2 }} h="full">
-              <CourseDashboard id={id} />
+              <CourseInfo id={id} />
+              <Spacer h={{ base: 6, md: 9 }} />
+              <CourseChart id={id} />
             </GridItem>
             <GridItem colSpan={{ base: 3, md: 1 }} h="full">
               <CourseCommentList id={id} />
