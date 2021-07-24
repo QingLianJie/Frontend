@@ -1,4 +1,13 @@
-import { Box, Fade, Grid, GridItem, Skeleton, VStack } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Fade,
+  Grid,
+  GridItem,
+  Skeleton,
+  VStack,
+} from '@chakra-ui/react'
 import { usePaginator } from 'chakra-paginator'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -36,7 +45,12 @@ const CoursesPage = () => {
         <title>课程 - 清廉街</title>
       </Head>
       <MainContainer gray title="课程">
-        {isError ? null : (
+        {isError ? (
+          <Alert status="error" rounded="md">
+            <AlertIcon />
+            获取数据失败，请稍后再试
+          </Alert>
+        ) : (
           <Grid
             templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(16, 1fr)' }}
             gap={{ base: 8, md: 12 }}

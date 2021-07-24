@@ -12,6 +12,7 @@
     "@chakra-ui/react": "^1.6.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "bizcharts": "^4.1.11",
     "chakra-paginator": "^0.7.2",
     "dayjs": "^1.10.6",
     "framer-motion": "^4",
@@ -20,7 +21,6 @@
     "react-cropper": "^2.1.8",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
-    "recharts": "^2.0.10",
     "swr": "^0.5.6",
     "ts-md5": "^1.2.9"
   },

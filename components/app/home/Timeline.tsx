@@ -21,7 +21,7 @@ const Timeline = () => {
       {isError ? (
         <Alert status="error" rounded="md">
           <AlertIcon />
-          获取数据失败
+          获取数据失败，请稍后再试
         </Alert>
       ) : isLoading ? (
         <Fade in>

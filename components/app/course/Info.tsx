@@ -1,4 +1,14 @@
-import { Badge, Heading, VStack, Wrap } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertIcon,
+  Badge,
+  Center,
+  CircularProgress,
+  Fade,
+  Heading,
+  VStack,
+  Wrap,
+} from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import useCourse from '../../../hooks/useCourse'
@@ -28,60 +38,76 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
         </title>
       </Head>
       <GroupContainer>
-        {isError ? null : isLoading ? null : (
-          <VStack align="start" spacing="4" px="1">
-            <BreadcrumbLink href={`/courses`}>课程列表</BreadcrumbLink>
-            <Wrap spacing="3" alignItems="center" pb="4">
-              <Heading as="h2" fontSize="2xl" fontWeight="600">
-                {courseInfo.name}
-              </Heading>
-              <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
-                {courseInfo.course_id}
-              </Badge>
-            </Wrap>
+        {isError ? (
+          <Alert status="error" rounded="md">
+            <AlertIcon />
+            获取数据失败，请稍后再试
+          </Alert>
+        ) : isLoading ? (
+          <Fade in>
+            <Center w="full" h="full">
+              <CircularProgress isIndeterminate color="pink.400" my="16" />
+            </Center>
+          </Fade>
+        ) : (
+          <Fade in>
+            <VStack align="start" spacing="4" px="4">
+              <BreadcrumbLink href={`/courses`}>课程列表</BreadcrumbLink>
+              <Wrap spacing="3" alignItems="center" pb="4">
+                <Heading as="h2" fontSize="2xl" fontWeight="600">
+                  {courseInfo.name}
+                </Heading>
+                <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
+                  {courseInfo.course_id}
+                </Badge>
+              </Wrap>
 
-            <Wrap spacing="4">
-              <CourseStat
-                label="课程信息"
-                number={courseInfo.attributes || '无数据'}
-              />
-              <CourseStat label="学分" number={courseInfo.credit || '无数据'} />
-              <CourseStat
-                label="学时"
-                number={courseInfo.total_time || '无数据'}
-              />
-              <CourseStat
-                label="考核方式"
-                number={courseInfo.assessment_method || '无数据'}
-              />
-              <CourseStat
-                label="课程类型"
-                number={courseInfo.kind || '无数据'}
-              />
-            </Wrap>
-            {rate && (
               <Wrap spacing="4">
                 <CourseStat
-                  label="挂科率"
-                  number={rate.fail.rate || '无数据'}
-                  help={rate.fail.count ? `${rate.fail.count} 人` : undefined}
+                  label="课程信息"
+                  number={courseInfo.attributes || '无数据'}
                 />
                 <CourseStat
-                  label="优秀率"
-                  number={rate.excellent.rate || '无数据'}
-                  help={
-                    rate.excellent.count
-                      ? `${rate.excellent.count} 人`
-                      : undefined
-                  }
+                  label="学分"
+                  number={courseInfo.credit || '无数据'}
                 />
                 <CourseStat
-                  label="统计人数"
-                  number={`${courseInfo.statistics.all.total} 人`}
+                  label="学时"
+                  number={courseInfo.total_time || '无数据'}
+                />
+                <CourseStat
+                  label="考核方式"
+                  number={courseInfo.assessment_method || '无数据'}
+                />
+                <CourseStat
+                  label="课程类型"
+                  number={courseInfo.kind || '无数据'}
                 />
               </Wrap>
-            )}
-          </VStack>
+              {rate && (
+                <Wrap spacing="4">
+                  <CourseStat
+                    label="挂科率"
+                    number={rate.fail.rate || '无数据'}
+                    help={rate.fail.count ? `${rate.fail.count} 人` : undefined}
+                  />
+                  <CourseStat
+                    label="优秀率"
+                    number={rate.excellent.rate || '无数据'}
+                    help={
+                      rate.excellent.count
+                        ? `${rate.excellent.count} 人`
+                        : undefined
+                    }
+                  />
+                  <CourseStat
+                    label="统计人数"
+                    number={`${courseInfo.statistics.all.total} 人`}
+                  />
+                </Wrap>
+              )}
+            </VStack>
+          </Fade>
         )}
       </GroupContainer>
     </>

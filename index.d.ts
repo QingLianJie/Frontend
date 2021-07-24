@@ -139,3 +139,8 @@ interface CourseInfoRate {
   pass: { rate: string | null; count: number | null }
   fail: { rate: string | null; count: number | null }
 }
+
+type CourseStatChartData = {
+  score: string
+  count: number
+}

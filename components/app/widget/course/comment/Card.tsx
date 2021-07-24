@@ -17,7 +17,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
           src={
             comment.anonymous
               ? undefined
-              : `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${comment.user.image}`
+              : comment.user.image
               ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${comment.user.image}`
               : undefined
           }
