@@ -63,7 +63,13 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
   }
 
   return (
-    <VStack align="start" spacing="3">
+    <VStack
+      as="form"
+      name="comment-input"
+      align="start"
+      spacing="3"
+      onSubmit={e => e.preventDefault()}
+    >
       <Textarea
         resize="vertical"
         placeholder="在此输入评论"
@@ -73,12 +79,14 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
         px="4"
         minH="6rem"
         onChange={e => setComment(e.target.value)}
+        required
       />
       <HStack w="full" spacing="3">
         <Select
           placeholder={courseInfo?.my_scores ? '不展示成绩' : '无成绩'}
           maxW="44"
           onChange={e => setScore(e.target.value)}
+          disabled={!courseInfo?.my_scores}
         >
           {courseInfo?.my_scores?.map((score, index) => (
             <option key={index} value={score}>
@@ -90,7 +98,8 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
         <ButtonGroup isAttached>
           <Button
             colorScheme="blue"
-            disabled={!comment}
+            type="submit"
+            name="comment-input"
             onClick={() => handlePostComment(false)}
           >
             发布评论
@@ -110,7 +119,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
               aria-label="匿名发布"
               colorScheme="facebook"
               icon={<Icon as={RiSpyLine} w="50%" h="50%" />}
-              disabled={!comment}
+              type="submit"
               onClick={() => handlePostComment(true)}
             />
           </Tooltip>

@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Spacer, Text, VStack } from '@chakra-ui/react'
+import { Alert, AlertIcon, Spacer, Text } from '@chakra-ui/react'
 import { RiDiscussLine } from 'react-icons/ri'
 import useCourse from '../../../../hooks/useCourse'
 import useUser from '../../../../hooks/useUser'
