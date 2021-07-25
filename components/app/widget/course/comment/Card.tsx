@@ -1,4 +1,12 @@
-import { Avatar, Box, HStack, Icon, Text, VStack } from '@chakra-ui/react'
+import {
+  Avatar,
+  Badge,
+  Box,
+  HStack,
+  Icon,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/action/link/TextLink'
@@ -52,6 +60,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
               {comment.user.username}
             </TextLink>
           )}
+
           {!lite && (
             <>
               <Text
@@ -71,6 +80,11 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
             </>
           )}
         </Text>
+        {comment.show && (
+          <Badge px="1.5" py="0.5" ms="3" color="gray.500">
+            成绩 {comment.score}
+          </Badge>
+        )}
       </HStack>
       <Box w="full" ps={lite ? '0' : { base: 0, md: 8 }}>
         <Box

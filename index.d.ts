@@ -69,6 +69,8 @@ interface ICourseComment {
   anonymous: boolean
   user: IUser
   course?: ICourse
+  score: string
+  show: boolean
 }
 
 interface IRecentCourseGrade {

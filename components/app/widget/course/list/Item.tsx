@@ -49,7 +49,7 @@ const CourseListItem = ({ course }: CourseListItemProps) => {
         </WrapItem>
 
         <WrapItem flex="1" justifyContent="flex-end">
-          <Badge my="1" px="1.5" py="0.5">
+          <Badge my="1" px="1.5" py="0.5" color="gray.500">
             {course?.count} 人学过
           </Badge>
         </WrapItem>
