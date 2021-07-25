@@ -1,10 +1,4 @@
-import {
-  Alert,
-  AlertIcon,
-  Center,
-  CircularProgress,
-  Fade,
-} from '@chakra-ui/react'
+import { Alert, AlertIcon, Center, Spinner } from '@chakra-ui/react'
 import { Fragment } from 'react'
 import { RiTimeLine } from 'react-icons/ri'
 import useTimeline from '../../../hooks/useTimeline'
@@ -24,28 +18,24 @@ const Timeline = () => {
           获取数据失败，请稍后再试
         </Alert>
       ) : isLoading ? (
-        <Fade in>
-          <Center w="full" h="full">
-            <CircularProgress isIndeterminate color="pink.400" my="16" />
-          </Center>
-        </Fade>
+        <Center w="full" h="full" maxH="80vh">
+          <Spinner thickness="4px" color="pink.400" size="xl" />
+        </Center>
       ) : (
-        <Fade in>
-          <ListContainer divider>
-            {timeline.map((item, index) => (
-              <Fragment key={index}>
-                {item.hasOwnProperty('user') ? (
-                  <CourseComment comment={item as ICourseComment} />
-                ) : (
-                  <RecentCourseGrade
-                    created={item.created}
-                    course={item.course as ICourse}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </ListContainer>
-        </Fade>
+        <ListContainer divider>
+          {timeline.map((item, index) => (
+            <Fragment key={index}>
+              {item.hasOwnProperty('user') ? (
+                <CourseComment comment={item as ICourseComment} />
+              ) : (
+                <RecentCourseGrade
+                  created={item.created}
+                  course={item.course as ICourse}
+                />
+              )}
+            </Fragment>
+          ))}
+        </ListContainer>
       )}
     </GroupContainer>
   )
