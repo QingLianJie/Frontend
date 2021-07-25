@@ -1,7 +1,7 @@
 import { Grid, GridItem, Spacer } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import CourseChart from '../../components/app/course/Chart'
-import CourseCommentList from '../../components/app/course/Comment'
+import CourseCommentList from '../../components/app/course/comment/List'
 import CourseInfo from '../../components/app/course/Info'
 import MainContainer from '../../components/common/container/Main'
 

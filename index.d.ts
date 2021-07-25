@@ -40,6 +40,7 @@ interface ICourseList {
 interface ICourseInfo extends ICourse {
   comments: ICourseComment[]
   more_comments: string
+  my_scores: null | string[]
   statistics: {
     all: {
       total: number

@@ -23,9 +23,9 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
           }
           icon={
             comment.anonymous ? (
-              <Icon as={RiSpyLine} w="3.5" h="3.5" />
+              <Icon as={RiSpyLine} w="60%" h="60%" />
             ) : (
-              <Icon as={RiUserLine} w="3.5" h="3.5" />
+              <Icon as={RiUserLine} w="60%" h="60%" />
             )
           }
           color="gray.500"

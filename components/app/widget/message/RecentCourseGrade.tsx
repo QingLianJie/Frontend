@@ -13,7 +13,7 @@ const RecentCourseGrade = ({ course, created }: RecentCourseGradeProps) => {
     <HStack w="full" spacing="3" alignItems="flex-start">
       <Avatar
         size="xs"
-        icon={<Icon as={RiBookLine} w="3.5" h="3.5" />}
+        icon={<Icon as={RiBookLine} w="60%" h="60%" />}
         color="gray.500"
         bg="gray.200"
         _dark={{

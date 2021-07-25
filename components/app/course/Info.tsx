@@ -96,6 +96,13 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
                   label="统计人数"
                   number={`${courseInfo.statistics.all.total} 人`}
                 />
+                {courseInfo.my_scores?.map((score, index) => (
+                  <CourseStat
+                    label="我的成绩"
+                    number={score || '无数据'}
+                    key={index}
+                  />
+                ))}
               </Wrap>
             )}
           </VStack>
