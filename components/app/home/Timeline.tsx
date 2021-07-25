@@ -18,7 +18,7 @@ const Timeline = () => {
           获取数据失败，请稍后再试
         </Alert>
       ) : isLoading ? (
-        <Center w="full" h="full" maxH="80vh">
+        <Center w="full" h="50vh">
           <Spinner thickness="4px" color="pink.400" size="xl" />
         </Center>
       ) : (
