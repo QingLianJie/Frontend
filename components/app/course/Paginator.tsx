@@ -1,5 +1,6 @@
 import { HStack, useBreakpointValue } from '@chakra-ui/react'
 import { Next, PageGroup, Paginator, Previous } from 'chakra-paginator'
+import { useEffect } from 'react'
 
 interface CoursePaginatorProps {
   pagesQuantity: number

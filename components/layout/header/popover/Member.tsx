@@ -4,18 +4,19 @@ import {
   ButtonGroup,
   HStack,
   Text,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
 import router from 'next/router'
 import { MouseEvent } from 'react'
 import { mutate } from 'swr'
-import useLogoutToast from '../../../../hooks/useToast/useLogoutToast'
 import useUser from '../../../../hooks/useUser'
+import { toastConfig } from '../../../../utils/config/toast'
 import ButtonLink from '../../../common/action/link/ButtonLink'
 import PopoverWrapper from './Container'
 
 const MemberPopover = () => {
-  const toast = useLogoutToast()
+  const toast = useToast()
   const { user } = useUser()
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
@@ -30,7 +31,10 @@ const MemberPopover = () => {
     })
       .then(async res => {
         if (res.ok) {
-          toast.ok()
+          toast({
+            title: '退出登录成功',
+            ...toastConfig.ok,
+          })
           mutate(`${baseURL}/api/user`)
           if (user?.username) {
             mutate(`${baseURL}/api/profile/${user.username}`)
@@ -38,8 +42,11 @@ const MemberPopover = () => {
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
-            const t = d as string
-            toast.error(t)
+            toast({
+              title: '退出登录失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
           })
         }
 
@@ -47,7 +54,11 @@ const MemberPopover = () => {
       })
       .catch((err: Error) => {
         console.log('Logout Error -', err)
-        toast.error(err.toString())
+        toast({
+          title: '退出登录失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
       })
   }
 

@@ -12,16 +12,17 @@ import {
   Text,
   useBoolean,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { MouseEvent, useState } from 'react'
 import { RiBookFill, RiLockPasswordFill } from 'react-icons/ri'
 import { mutate } from 'swr'
-import useHEUBindToast from '../../../../hooks/useToast/useHEUBindToast'
+import { toastConfig } from '../../../../utils/config/toast'
 import FormInput from '../../../common/form/input/FormInput'
 
 const ProfileBind = () => {
-  const toast = useHEUBindToast()
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isRead, setRead] = useBoolean(false)
   const [name, setName] = useState('')
@@ -47,7 +48,10 @@ const ProfileBind = () => {
     })
       .then(async res => {
         if (res.ok) {
-          toast.ok()
+          toast({
+            title: '绑定成功',
+            ...toastConfig.ok,
+          })
           mutate(`${baseURL}/api/user`)
           mutate(`${baseURL}/api/profile/${username}`)
           onClose()
@@ -55,14 +59,21 @@ const ProfileBind = () => {
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
-            const t = d as string
-            toast.error(t)
+            toast({
+              title: '绑定失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
           })
         }
       })
       .catch((err: Error) => {
         console.log('HEU Bind Error -', err)
-        toast.error(err.toString())
+        toast({
+          title: '绑定失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
       })
   }
 

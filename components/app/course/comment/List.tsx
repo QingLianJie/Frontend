@@ -1,4 +1,5 @@
 import { Alert, AlertIcon, Spacer, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { RiDiscussLine } from 'react-icons/ri'
 import useCourse from '../../../../hooks/useCourse'
 import useUser from '../../../../hooks/useUser'
@@ -13,12 +14,16 @@ interface CourseCommentListProps {
 }
 
 const CourseCommentList = ({ id }: CourseCommentListProps) => {
-  const { user, isLoading: isUserLoading } = useUser()
+  const { user } = useUser()
   const { courseInfo, isLoading, isError } = useCourse(id)
+
+  useEffect(() => {
+    console.log(user, user?.self)
+  }, [user])
 
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
-      {isUserLoading ? null : user && user.self ? (
+      {user?.self ? (
         <CourseCommentInput id={id} />
       ) : (
         <Alert status="info" rounded="md">

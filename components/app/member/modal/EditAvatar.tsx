@@ -20,6 +20,7 @@ import {
   StatNumber,
   Text,
   useDisclosure,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
 import 'cropperjs/dist/cropper.css'
@@ -27,7 +28,7 @@ import { ChangeEvent, useState } from 'react'
 import Cropper from 'react-cropper'
 import { RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
-import useAvatarToast from '../../../../hooks/useToast/useAvatarToast'
+import { toastConfig } from '../../../../utils/config/toast'
 import { sizeFormatter } from '../../../../utils/formatter'
 import ProfileAvatar from '../Avatar'
 
@@ -40,7 +41,7 @@ type ImageInfo = { size: number; type: string }
 const fileType = ['image/jpeg', 'image/png', 'image/webp']
 
 const ProfileEditAvatar = ({ profile }: ProfileEditProps) => {
-  const toast = useAvatarToast()
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [image, setImage] = useState<string | ArrayBuffer | null>(null)
   const [imageInfo, setImageInfo] = useState<ImageInfo>({ size: 0, type: '' })
@@ -92,7 +93,10 @@ const ProfileEditAvatar = ({ profile }: ProfileEditProps) => {
           })
             .then(async res => {
               if (res.ok) {
-                toast.ok()
+                toast({
+                  title: '修改头像成功',
+                  ...toastConfig.ok,
+                })
                 mutate(`${baseURL}/api/user`)
                 mutate(`${baseURL}/api/profile/${profile.username}`)
                 onClose()
@@ -101,14 +105,21 @@ const ProfileEditAvatar = ({ profile }: ProfileEditProps) => {
               } else {
                 const data = await res.json()
                 Object.values(data).forEach(d => {
-                  const t = d as string
-                  toast.error(t)
+                  toast({
+                    title: '修改头像失败',
+                    description: d as string,
+                    ...toastConfig.error,
+                  })
                 })
               }
             })
             .catch((err: Error) => {
               console.log('Upload Avatar Error -', err)
-              toast.error(err.toString())
+              toast({
+                title: '修改头像失败',
+                description: err.toString(),
+                ...toastConfig.error,
+              })
             })
         }
       }, 'image/jpeg')

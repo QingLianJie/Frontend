@@ -9,20 +9,21 @@ import {
   Spacer,
   Textarea,
   Tooltip,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { RiSpyLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useCourse from '../../../../hooks/useCourse'
-import useCourseCommentToast from '../../../../hooks/useToast/useCourseCommentToast'
+import { toastConfig } from '../../../../utils/config/toast'
 
 interface CourseCommentInputProps {
   id: string
 }
 
 const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
-  const toast = useCourseCommentToast()
+  const toast = useToast()
   const { courseInfo } = useCourse(id)
   const [comment, setComment] = useState('')
   const [score, setScore] = useState('')
@@ -30,38 +31,49 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   const handlePostComment = (anonymous: boolean) => {
-    if (comment) {
-      fetch(`${baseURL}/api/course/${courseInfo.course_id}/comments`, {
-        method: 'POST',
-        body: JSON.stringify({
-          content: comment,
-          anonymous: anonymous,
-          show: score !== '',
-          score: score,
-        }),
-        headers: {
-          'content-type': 'application/json',
-        },
-        mode: 'cors',
-        credentials: 'include',
-      })
-        .then(async res => {
-          if (res.ok) {
-            toast.ok()
-            mutate(`${baseURL}/api/course/${courseInfo.course_id}`)
-          } else {
-            const data = await res.json()
-            Object.values(data).forEach(d => {
-              const t = d as string
-              toast.error(t)
+    // if (comment) {
+    fetch(`${baseURL}/api/course/${courseInfo.course_id}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({
+        content: comment,
+        anonymous: anonymous,
+        show: score !== '',
+        score: score,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            title: '发布评论成功',
+            ...toastConfig.ok,
+          })
+          mutate(`${baseURL}/api/course/${courseInfo.course_id}`)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            toast({
+              title: '发布评论失败',
+              description: d as string,
+              ...toastConfig.error,
+              duration: 20000,
             })
-          }
+          })
+        }
+      })
+      .catch((err: Error) => {
+        console.log('Course Comment Error -', err)
+        toast({
+          title: '发布评论失败',
+          description: err.toString(),
+          ...toastConfig.error,
         })
-        .catch((err: Error) => {
-          console.log('Course Comment Error -', err)
-          toast.error(err.toString())
-        })
-    }
+      })
+    // }
   }
 
   return (

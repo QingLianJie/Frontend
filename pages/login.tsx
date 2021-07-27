@@ -1,15 +1,16 @@
+import { useToast } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
 import { mutate } from 'swr'
+import BlockLink from '../components/common/action/link/BlockLink'
 import CenterContainer from '../components/common/container/Center'
 import HorizontalContainer from '../components/common/container/Horizontal'
-import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
-import BlockLink from '../components/common/action/link/BlockLink'
-import useLoginToast from '../hooks/useToast/useLoginToast'
+import SubmitButton from '../components/common/form/SubmitButton'
+import { toastConfig } from '../utils/config/toast'
 import { emailRegex } from '../utils/regex'
 
 type NameType = 'username' | 'email'
@@ -21,7 +22,8 @@ const links: Links = [
 ]
 
 const LoginPage = () => {
-  const toast = useLoginToast()
+  const toast = useToast()
+
   const router = useRouter()
   const [nameType, setNameType] = useState<NameType>('username')
   const [name, setName] = useState('')
@@ -48,7 +50,10 @@ const LoginPage = () => {
     })
       .then(async res => {
         if (res.ok) {
-          toast.ok()
+          toast({
+            title: '登录成功',
+            ...toastConfig.ok,
+          })
           mutate(`${baseURL}/api/user`)
 
           if (router.query.from) {
@@ -59,14 +64,21 @@ const LoginPage = () => {
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
-            const t = d as string
-            toast.error(t)
+            toast({
+              title: '登录失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
           })
         }
       })
       .catch((err: Error) => {
         console.log('Login Error -', err)
-        toast.error(err.toString())
+        toast({
+          title: '登录失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
       })
   }
 

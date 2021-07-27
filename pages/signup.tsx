@@ -1,15 +1,16 @@
+import { useToast } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
 import { RiLockPasswordFill, RiMailFill, RiUserFill } from 'react-icons/ri'
 import { mutate } from 'swr'
+import BlockLink from '../components/common/action/link/BlockLink'
 import CenterContainer from '../components/common/container/Center'
 import HorizontalContainer from '../components/common/container/Horizontal'
-import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
-import BlockLink from '../components/common/action/link/BlockLink'
-import useSignupToast from '../hooks/useToast/useSignupToast'
+import SubmitButton from '../components/common/form/SubmitButton'
+import { toastConfig } from '../utils/config/toast'
 import { nameRegex, passwordRegex } from '../utils/regex'
 
 const links: Links = [
@@ -19,7 +20,7 @@ const links: Links = [
 ]
 
 const SignupPage = () => {
-  const toast = useSignupToast()
+  const toast = useToast()
   const router = useRouter()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -30,7 +31,11 @@ const SignupPage = () => {
 
   const checkName = () => {
     if (!nameRegex.test(name)) {
-      toast.name()
+      toast({
+        title: '用户名不合适',
+        description: '用户名只能包含 3 到 16 个字符',
+        ...toastConfig.warn,
+      })
       return false
     }
     return true
@@ -38,10 +43,17 @@ const SignupPage = () => {
 
   const checkPassword = () => {
     if (!passwordRegex.test(password)) {
-      toast.password()
+      toast({
+        title: '密码不合适',
+        description: '密码需要包含至少 8 个字符，并且不能是纯数字',
+        ...toastConfig.warn,
+      })
       return false
     } else if (password !== passwordAgain) {
-      toast.diff()
+      toast({
+        title: '两次密码不一致',
+        ...toastConfig.warn,
+      })
       return false
     }
     return true
@@ -65,7 +77,10 @@ const SignupPage = () => {
       })
         .then(async res => {
           if (res.ok) {
-            toast.ok()
+            toast({
+              title: '注册成功',
+              ...toastConfig.ok,
+            })
             mutate(`${baseURL}/api/user`)
 
             if (router.query.from) {
@@ -76,14 +91,22 @@ const SignupPage = () => {
           } else {
             const data = await res.json()
             Object.values(data).forEach(d => {
-              const t = d as string
-              toast.error(t)
+              toast({
+                title: '注册失败',
+                description: d as string,
+                ...toastConfig.error,
+              })
             })
           }
         })
         .catch((err: Error) => {
           console.log('Signup Error -', err)
-          toast.error(err.toString())
+
+          toast({
+            title: '注册失败',
+            description: err.toString(),
+            ...toastConfig.error,
+          })
         })
     }
   }

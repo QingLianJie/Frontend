@@ -1,19 +1,20 @@
-import { useState, useRef, MouseEvent } from 'react'
 import {
-  Button,
   AlertDialog,
-  AlertDialogOverlay,
-  AlertDialogContent,
-  AlertDialogHeader,
   AlertDialogBody,
+  AlertDialogContent,
   AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Button,
+  useToast,
 } from '@chakra-ui/react'
-import useHEUUnbindToast from '../../../../hooks/useToast/useHEUUnbindToast'
-import { mutate } from 'swr'
 import { useRouter } from 'next/router'
+import { MouseEvent, useRef, useState } from 'react'
+import { mutate } from 'swr'
+import { toastConfig } from '../../../../utils/config/toast'
 
 const ProfileUnbind = () => {
-  const toast = useHEUUnbindToast()
+  const toast = useToast()
   const [isOpen, setIsOpen] = useState(false)
   const onClose = () => setIsOpen(false)
   const cancelRef = useRef<HTMLButtonElement>(null)
@@ -33,21 +34,31 @@ const ProfileUnbind = () => {
     })
       .then(async res => {
         if (res.ok) {
-          toast.ok()
+          toast({
+            title: '解绑成功',
+            ...toastConfig.ok,
+          })
           mutate(`${baseURL}/api/user`)
           mutate(`${baseURL}/api/profile/${name}`)
           onClose()
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
-            const t = d as string
-            toast.error(t)
+            toast({
+              title: '解绑失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
           })
         }
       })
       .catch((err: Error) => {
         console.log('HEU Unbind Error -', err)
-        toast.error(err.toString())
+        toast({
+          title: '解绑失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
       })
   }
 
