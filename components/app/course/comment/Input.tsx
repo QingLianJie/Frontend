@@ -30,36 +30,38 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   const handlePostComment = (anonymous: boolean) => {
-    fetch(`${baseURL}/api/course/${courseInfo.course_id}/comments`, {
-      method: 'POST',
-      body: JSON.stringify({
-        content: comment,
-        anonymous: anonymous,
-        show: score !== '',
-        score: score,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then(async res => {
-        if (res.ok) {
-          toast.ok()
-          mutate(`${baseURL}/api/course/${courseInfo.course_id}`)
-        } else {
-          const data = await res.json()
-          Object.values(data).forEach(d => {
-            const t = d as string
-            toast.error(t)
-          })
-        }
+    if (comment) {
+      fetch(`${baseURL}/api/course/${courseInfo.course_id}/comments`, {
+        method: 'POST',
+        body: JSON.stringify({
+          content: comment,
+          anonymous: anonymous,
+          show: score !== '',
+          score: score,
+        }),
+        headers: {
+          'content-type': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'include',
       })
-      .catch((err: Error) => {
-        console.log('Course Comment Error -', err)
-        toast.error(err.toString())
-      })
+        .then(async res => {
+          if (res.ok) {
+            toast.ok()
+            mutate(`${baseURL}/api/course/${courseInfo.course_id}`)
+          } else {
+            const data = await res.json()
+            Object.values(data).forEach(d => {
+              const t = d as string
+              toast.error(t)
+            })
+          }
+        })
+        .catch((err: Error) => {
+          console.log('Course Comment Error -', err)
+          toast.error(err.toString())
+        })
+    }
   }
 
   return (

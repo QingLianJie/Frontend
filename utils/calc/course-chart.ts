@@ -4,9 +4,11 @@ export const calcChartData = (
 ): CourseStatChartData[] => {
   const type = info.assessment_method
   const data = info.statistics[time || 'all']
+  const all = info.statistics['all']
 
   const arr: CourseStatChartData[] = []
-  if (type === '考试') {
+  if (Object.keys(all.exam).length !== 0) {
+    // 考试课
     let lastIndex = 0
     for (const [score, count] of Object.entries(data.exam)) {
       const currentIndex = Number(score)
@@ -19,7 +21,8 @@ export const calcChartData = (
     }
     for (let i = lastIndex; i <= 100; i++)
       arr.push({ score: i.toString(), count: 0 })
-  } else if (type === '考查') {
+  } else {
+    // 考查课
     const types = ['不及格', '及格', '中等', '良好', '优秀']
     types.forEach(type => arr.push({ score: type, count: 0 }))
     for (const [score, count] of Object.entries(data.test)) {
