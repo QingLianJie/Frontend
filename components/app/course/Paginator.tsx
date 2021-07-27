@@ -1,44 +1,98 @@
-import { HStack, useBreakpointValue } from '@chakra-ui/react'
-import { Next, PageGroup, Paginator, Previous } from 'chakra-paginator'
-import { useEffect } from 'react'
+import {
+  Button,
+  Center,
+  Grid,
+  HStack,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react'
+import { Paginated } from '@makotot/paginated'
 
 interface CoursePaginatorProps {
-  pagesQuantity: number
+  totalPage: number
   currentPage: number
   onPageChange: (page: number) => void
 }
 
 const CoursePaginator = ({
-  pagesQuantity,
+  totalPage,
   currentPage,
   onPageChange,
 }: CoursePaginatorProps) => {
-  const outerLimit = useBreakpointValue({ base: 1, sm: 1, md: 1, lg: 2, xl: 3 })
-  const innerLimit = useBreakpointValue({ base: -1, sm: 1, md: 1, lg: 2 })
+  const boundarySize = useBreakpointValue({ base: 1, xl: 2 })
+  const siblingsSize = useBreakpointValue({ base: 0, md: 1, xl: 2 })
 
   return (
     <HStack w="full" justify="space-between" spacing="4">
-      <Paginator
-        pagesQuantity={pagesQuantity}
+      <Paginated
         currentPage={currentPage}
-        onPageChange={onPageChange}
-        outerLimit={outerLimit}
-        innerLimit={innerLimit}
-        activeStyles={{
-          minW: '8',
-          colorScheme: 'red',
-          px: '3',
-        }}
-        normalStyles={{
-          minW: '8',
-          px: '3',
-          _dark: { bg: 'gray.700' },
-        }}
+        totalPage={totalPage}
+        siblingsSize={siblingsSize}
+        boundarySize={boundarySize}
       >
-        <Previous _dark={{ bg: 'gray.700' }}>上一页</Previous>
-        <PageGroup isInline spacing="2" />
-        <Next _dark={{ bg: 'gray.700' }}>下一页</Next>
-      </Paginator>
+        {({
+          pages,
+          currentPage,
+          hasPrev,
+          hasNext,
+          getFirstBoundary,
+          getLastBoundary,
+          isPrevTruncated,
+          isNextTruncated,
+        }) => (
+          <Grid
+            width="100%"
+            justifyContent="center"
+            alignItems="center"
+            gridTemplateColumns="min-content 1fr min-content"
+            gridGap={2}
+          >
+            <Button
+              disabled={!hasPrev()}
+              onClick={() => onPageChange(currentPage - 1)}
+            >
+              上一页
+            </Button>
+
+            <Center>
+              <HStack>
+                {getFirstBoundary().map(boundary => (
+                  <Button key={boundary} onClick={() => onPageChange(boundary)}>
+                    {boundary}
+                  </Button>
+                ))}
+                {isPrevTruncated && <Text>...</Text>}
+
+                {pages.map(page => {
+                  return page === currentPage ? (
+                    <Button key={page} colorScheme="red">
+                      {page}
+                    </Button>
+                  ) : (
+                    <Button key={page} onClick={() => onPageChange(page)}>
+                      {page}
+                    </Button>
+                  )
+                })}
+
+                {isNextTruncated && <Text>...</Text>}
+                {getLastBoundary().map(boundary => (
+                  <Button key={boundary} onClick={() => onPageChange(boundary)}>
+                    {boundary}
+                  </Button>
+                ))}
+              </HStack>
+            </Center>
+
+            <Button
+              disabled={!hasNext()}
+              onClick={() => onPageChange(currentPage + 1)}
+            >
+              下一页
+            </Button>
+          </Grid>
+        )}
+      </Paginated>
     </HStack>
   )
 }

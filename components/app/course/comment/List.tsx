@@ -17,10 +17,6 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
   const { user } = useUser()
   const { courseInfo, isLoading, isError } = useCourse(id)
 
-  useEffect(() => {
-    console.log(user, user?.self)
-  }, [user])
-
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
       {user?.self ? (

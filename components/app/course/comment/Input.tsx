@@ -31,49 +31,48 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   const handlePostComment = (anonymous: boolean) => {
-    // if (comment) {
-    fetch(`${baseURL}/api/course/${courseInfo.course_id}/comments`, {
-      method: 'POST',
-      body: JSON.stringify({
-        content: comment,
-        anonymous: anonymous,
-        show: score !== '',
-        score: score,
-      }),
-      headers: {
-        'content-type': 'application/json',
-      },
-      mode: 'cors',
-      credentials: 'include',
-    })
-      .then(async res => {
-        if (res.ok) {
-          toast({
-            title: '发布评论成功',
-            ...toastConfig.ok,
-          })
-          mutate(`${baseURL}/api/course/${courseInfo.course_id}`)
-        } else {
-          const data = await res.json()
-          Object.values(data).forEach(d => {
+    if (comment) {
+      fetch(`${baseURL}/api/course/${courseInfo.course_id}/comments`, {
+        method: 'POST',
+        body: JSON.stringify({
+          content: comment,
+          anonymous: anonymous,
+          show: score !== '',
+          score: score,
+        }),
+        headers: {
+          'content-type': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'include',
+      })
+        .then(async res => {
+          if (res.ok) {
             toast({
-              title: '发布评论失败',
-              description: d as string,
-              ...toastConfig.error,
-              duration: 20000,
+              title: '发布评论成功',
+              ...toastConfig.ok,
             })
-          })
-        }
-      })
-      .catch((err: Error) => {
-        console.log('Course Comment Error -', err)
-        toast({
-          title: '发布评论失败',
-          description: err.toString(),
-          ...toastConfig.error,
+            mutate(`${baseURL}/api/course/${courseInfo.course_id}`)
+          } else {
+            const data = await res.json()
+            Object.values(data).forEach(d => {
+              toast({
+                title: '发布评论失败',
+                description: d as string,
+                ...toastConfig.error,
+              })
+            })
+          }
         })
-      })
-    // }
+        .catch((err: Error) => {
+          console.log('Course Comment Error -', err)
+          toast({
+            title: '发布评论失败',
+            description: err.toString(),
+            ...toastConfig.error,
+          })
+        })
+    }
   }
 
   return (

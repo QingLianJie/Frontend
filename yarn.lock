@@ -1188,6 +1188,11 @@
   resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
   integrity sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==
 
+"@makotot/paginated@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@makotot/paginated/-/paginated-1.0.1.tgz#caef54b57da9642382ed753e795c5d6898c07ed2"
+  integrity sha512-WuwsGgo7n0O++vRzmY3upVMWL7kr4eJuRe/76ln0OZa03z5hMUUGClm1Pulo8PvZzzIkuZwTKSfW04nAIxdEww==
+
 "@next/env@11.0.1":
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-11.0.1.tgz#6dc96ac76f1663ab747340e907e8933f190cc8fd"
@@ -1807,13 +1812,6 @@ caniuse-lite@^1.0.30001202, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.300012
   version "1.0.30001243"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001243.tgz#d9250155c91e872186671c523f3ae50cfc94a3aa"
   integrity sha512-vNxw9mkTBtkmLFnJRv/2rhs1yufpDfCkBZexG3Y0xdOH2Z/eE/85E4Dl5j1YUN34nZVsSp6vVRFQRrez9wJMRA==
-
-chakra-paginator@^0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/chakra-paginator/-/chakra-paginator-0.7.2.tgz#04ef4b46d8c191da2795b939d0100de495f6932b"
-  integrity sha512-Zi0sjyVqbutNS94K83Wc7A94W44r1v4uAuO2sauXY6YCmYy0v3W1XqSNDxHN1rRvUI8GmFAD4lF9Ak/LA3XTeg==
-  dependencies:
-    lodash.union "^4.6.0"
 
 chalk@2.4.2, chalk@^2.0.0:
   version "2.4.2"
@@ -3253,11 +3251,6 @@ lodash.truncate@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha1-WjUNoLERO4N+z//VgSy+WNbq4ZM=
-
-lodash.union@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.union/-/lodash.union-4.6.0.tgz#48bb5088409f16f1821666641c44dd1aaae3cd88"
-  integrity sha1-SLtQiECfFvGCFmZkHETdGqrjzYg=
 
 lodash@^4.17.13:
   version "4.17.21"

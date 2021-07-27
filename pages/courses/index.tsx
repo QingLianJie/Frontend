@@ -2,15 +2,16 @@ import {
   Alert,
   AlertIcon,
   Box,
-  Fade,
+  Center,
   Grid,
   GridItem,
   Skeleton,
-  VStack,
+  Spinner,
+  VStack
 } from '@chakra-ui/react'
-import { usePaginator } from 'chakra-paginator'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { RiBookOpenLine, RiSearchLine } from 'react-icons/ri'
 import CoursePaginator from '../../components/app/course/Paginator'
 import CourseListFilter from '../../components/app/widget/course/list/Filter'
@@ -22,9 +23,7 @@ import useCourseList from '../../hooks/useCourseList'
 
 const CoursesPage = () => {
   const router = useRouter()
-  const { currentPage, setCurrentPage } = usePaginator({
-    initialState: { currentPage: Number(router.query.page) || 1 },
-  })
+  const [currentPage, setCurrentPage] = useState(Number(router.query.page) || 1)
 
   const { courseList, isLoading, isError } = useCourseList(
     Number(router.query.page) || currentPage
@@ -75,22 +74,15 @@ const CoursesPage = () => {
                     overflow="hidden"
                   >
                     <ListContainer spacing="0" divider>
-                      {!isLoading
-                        ? courseList?.results.map((course, index) => (
-                            <Fade key={index} in style={{ width: '100%' }}>
-                              <CourseListItem key={index} course={course} />
-                            </Fade>
-                          ))
-                        : new Array(10).fill('').map((_, index) => (
-                            <Skeleton
-                              w="full"
-                              key={index}
-                              startColor="transparent"
-                              endColor="transparent"
-                            >
-                              <CourseListItem />
-                            </Skeleton>
-                          ))}
+                      {!isLoading ? (
+                        courseList?.results.map((course, index) => (
+                          <CourseListItem key={index} course={course} />
+                        ))
+                      ) : (
+                        <Center w="full" h="50vh">
+                          <Spinner thickness="4px" color="pink.400" size="xl" />
+                        </Center>
+                      )}
                     </ListContainer>
                   </Box>
 
@@ -100,12 +92,12 @@ const CoursesPage = () => {
                     isLoaded={!isLoading && !!courseList?.count}
                   >
                     <CoursePaginator
-                      pagesQuantity={
+                      currentPage={currentPage}
+                      totalPage={
                         courseList
                           ? Math.floor(courseList.count / 10) + 1
                           : 1000
                       }
-                      currentPage={Number(router.query.page) || currentPage}
                       onPageChange={handlePageChange}
                     />
                   </Skeleton>
