@@ -3,6 +3,7 @@ import {
   AlertIcon,
   Box,
   Center,
+  Fade,
   Grid,
   GridItem,
   Spinner,
@@ -107,23 +108,29 @@ const CoursesPage = () => {
                     w="full"
                     overflow="hidden"
                   >
-                    <ListContainer spacing="0" divider>
-                      {!isLoading ? (
-                        courseList?.count !== 0 ? (
-                          courseList?.results.map((course, index) => (
-                            <CourseListItem key={index} course={course} />
-                          ))
+                    <Fade in>
+                      <ListContainer spacing="0" divider>
+                        {!isLoading ? (
+                          courseList?.count !== 0 ? (
+                            courseList?.results.map((course, index) => (
+                              <CourseListItem key={index} course={course} />
+                            ))
+                          ) : (
+                            <Text w="full" px="6" py="4">
+                              搜索无结果，试试其他关键词吧
+                            </Text>
+                          )
                         ) : (
-                          <Text w="full" px="6" py="4">
-                            搜索无结果，试试其他关键词吧
-                          </Text>
-                        )
-                      ) : (
-                        <Center w="full" h="50vh">
-                          <Spinner thickness="4px" color="pink.400" size="xl" />
-                        </Center>
-                      )}
-                    </ListContainer>
+                          <Center w="full" h="50vh">
+                            <Spinner
+                              thickness="4px"
+                              color="pink.400"
+                              size="xl"
+                            />
+                          </Center>
+                        )}
+                      </ListContainer>
+                    </Fade>
                   </Box>
 
                   {!isLoading && !!courseList?.count && (

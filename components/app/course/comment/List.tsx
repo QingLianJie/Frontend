@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Spacer, Text } from '@chakra-ui/react'
+import { Alert, AlertIcon, Fade, Spacer, Text } from '@chakra-ui/react'
 import { RiDiscussLine } from 'react-icons/ri'
 import useCourse from '../../../../hooks/useCourse'
 import useUser from '../../../../hooks/useUser'
@@ -42,11 +42,13 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
           </Text>
         </CardContainer>
       ) : (
-        <ListContainer divider>
-          {courseInfo.comments.map((comment, index) => (
-            <CourseComment lite comment={comment} key={index} />
-          ))}
-        </ListContainer>
+        <Fade in>
+          <ListContainer divider>
+            {courseInfo.comments.map((comment, index) => (
+              <CourseComment lite comment={comment} key={index} />
+            ))}
+          </ListContainer>
+        </Fade>
       )}
     </GroupContainer>
   )

@@ -16,6 +16,7 @@ import { useState } from 'react'
 import { RiSpyLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useCourse from '../../../../hooks/useCourse'
+import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
 
 interface CourseCommentInputProps {
@@ -24,6 +25,7 @@ interface CourseCommentInputProps {
 
 const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
   const toast = useToast()
+  const { user } = useUser()
   const { courseInfo } = useCourse(id)
   const [comment, setComment] = useState('')
   const [score, setScore] = useState('')
@@ -109,17 +111,29 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
         </Select>
         <Spacer />
         <ButtonGroup isAttached>
-          <Button
-            colorScheme="blue"
-            type="submit"
-            name="comment-input"
-            onClick={() => handlePostComment(false)}
-          >
-            发布评论
-          </Button>
           <Tooltip
-            label="点击以匿名发布"
-            aria-label="点击以匿名发布"
+            label={`以 ${user?.username} 身份发布`}
+            aria-label={`以 ${user?.username} 身份发布`}
+            hasArrow
+            fontSize="md"
+            px="3"
+            py="1.5"
+            rounded="md"
+            arrowSize={15}
+            gutter={15}
+          >
+            <Button
+              colorScheme="red"
+              type="submit"
+              name="comment-input"
+              onClick={() => handlePostComment(false)}
+            >
+              发布评论
+            </Button>
+          </Tooltip>
+          <Tooltip
+            label="以 匿名 身份发布"
+            aria-label="以 匿名 身份发布"
             hasArrow
             fontSize="md"
             px="3"
@@ -130,7 +144,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
           >
             <IconButton
               aria-label="匿名发布"
-              colorScheme="facebook"
+              colorScheme="orange"
               icon={<Icon as={RiSpyLine} w="50%" h="50%" />}
               type="submit"
               onClick={() => handlePostComment(true)}

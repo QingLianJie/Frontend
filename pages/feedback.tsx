@@ -119,7 +119,7 @@ const FeedbackCard = ({
     <CardContainer>
       <VStack align="start" pb="2">
         <Text
-          fontSize="xl"
+          fontSize="lg"
           fontWeight="600"
           d="flex"
           alignItems="center"

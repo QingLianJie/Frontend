@@ -1,4 +1,4 @@
-import { Alert, AlertIcon, Center, Spinner } from '@chakra-ui/react'
+import { Alert, AlertIcon, Center, Fade, Spinner } from '@chakra-ui/react'
 import { Fragment } from 'react'
 import { RiTimeLine } from 'react-icons/ri'
 import useTimeline from '../../../hooks/useTimeline'
@@ -22,20 +22,22 @@ const Timeline = () => {
           <Spinner thickness="4px" color="pink.400" size="xl" />
         </Center>
       ) : (
-        <ListContainer divider>
-          {timeline.map((item, index) => (
-            <Fragment key={index}>
-              {item.hasOwnProperty('user') ? (
-                <CourseComment comment={item as ICourseComment} />
-              ) : (
-                <RecentCourseGrade
-                  created={item.created}
-                  course={item.course as ICourse}
-                />
-              )}
-            </Fragment>
-          ))}
-        </ListContainer>
+        <Fade in>
+          <ListContainer divider>
+            {timeline.map((item, index) => (
+              <Fragment key={index}>
+                {item.hasOwnProperty('user') ? (
+                  <CourseComment comment={item as ICourseComment} />
+                ) : (
+                  <RecentCourseGrade
+                    created={item.created}
+                    course={item.course as ICourse}
+                  />
+                )}
+              </Fragment>
+            ))}
+          </ListContainer>
+        </Fade>
       )}
     </GroupContainer>
   )
