@@ -155,4 +155,5 @@ interface CourseFilter {
   kind?: string
   credit?: string
   total_time?: string
+  learned?: string
 }

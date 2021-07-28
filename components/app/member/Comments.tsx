@@ -71,7 +71,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
       {hasComment() && (
         <GridItem colSpan={{ base: 1, md: 1 }}>
           <GroupContainer title="搜索" icon={RiSearchLine}>
-            <CourseCommentFilter />
+            <CourseCommentFilter profile={profile} />
           </GroupContainer>
         </GridItem>
       )}
