@@ -13,12 +13,12 @@ interface CourseCommentListProps {
 }
 
 const CourseCommentList = ({ id }: CourseCommentListProps) => {
-  const { user } = useUser()
+  const { user, isLoading: isUserLoading } = useUser()
   const { courseInfo, isLoading, isError } = useCourse(id)
 
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
-      {isLoading ? null : user?.self ? (
+      {isUserLoading ? null : user?.self ? (
         <CourseCommentInput id={id} />
       ) : (
         <Alert status="info" rounded="md">

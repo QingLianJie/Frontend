@@ -147,3 +147,12 @@ type CourseStatChartData = {
   score: string
   count: number
 }
+
+interface CourseFilter {
+  search?: string
+  attributes?: string
+  assessment_method?: string
+  kind?: string
+  credit?: string
+  total_time?: string
+}
