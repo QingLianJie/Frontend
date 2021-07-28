@@ -102,7 +102,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
             bg: 'gray.800',
           }}
         >
-          <Text fontSize="lg" pt="0.5" pb="2">
+          <Text as="pre" fontSize="lg" pt="0.5" pb="2" fontFamily="inherit">
             {comment.content}
           </Text>
           <Text

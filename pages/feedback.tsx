@@ -41,17 +41,15 @@ const FeedbackPage = () => {
                 description="QQ 群号是 498047164 ，欢迎加入。"
                 recommend
               >
-                <ButtonGroup size="sm">
-                  <ButtonLink
-                    href="https://jq.qq.com/?_wv=1027&k=Fj4xfeQE"
-                    color="green"
-                  >
-                    一键加入
-                  </ButtonLink>
-                  <CopyButton text="498047164" color="blue">
-                    复制群号
-                  </CopyButton>
-                </ButtonGroup>
+                <ButtonLink
+                  href="https://jq.qq.com/?_wv=1027&k=Fj4xfeQE"
+                  color="green"
+                >
+                  一键加入
+                </ButtonLink>
+                <CopyButton text="498047164" color="blue">
+                  复制群号
+                </CopyButton>
               </FeedbackCard>
 
               <FeedbackCard
@@ -60,17 +58,15 @@ const FeedbackPage = () => {
                 description="如果你会写程序，而且有一个 GitHub 账号的话，欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
                 recommend
               >
-                <ButtonGroup size="sm">
-                  <ButtonLink href="https://github.com/QingLianJie">
-                    主页
-                  </ButtonLink>
-                  <ButtonLink href="https://github.com/QingLianJie/Frontend">
-                    前端仓库
-                  </ButtonLink>
-                  <ButtonLink href="https://github.com/QingLianJie/Backend">
-                    后端仓库
-                  </ButtonLink>
-                </ButtonGroup>
+                <ButtonLink href="https://github.com/QingLianJie">
+                  主页
+                </ButtonLink>
+                <ButtonLink href="https://github.com/QingLianJie/Frontend">
+                  前端仓库
+                </ButtonLink>
+                <ButtonLink href="https://github.com/QingLianJie/Backend">
+                  后端仓库
+                </ButtonLink>
               </FeedbackCard>
             </VStack>
           </GridItem>
@@ -81,14 +77,10 @@ const FeedbackPage = () => {
                 title="邮件联系"
                 description="如果你比较喜欢发邮件，也可以点击下面的按钮给我们发邮件。"
               >
-                <ButtonGroup size="sm">
-                  <ButtonLink href="mailto:bakedviolin@foxmail.com">
-                    发送邮件
-                  </ButtonLink>
-                  <CopyButton text="bakedviolin@foxmail.com">
-                    复制邮箱
-                  </CopyButton>
-                </ButtonGroup>
+                <ButtonLink href="mailto:bakedviolin@foxmail.com">
+                  发送邮件
+                </ButtonLink>
+                <CopyButton text="bakedviolin@foxmail.com">复制邮箱</CopyButton>
               </FeedbackCard>
             </VStack>
           </GridItem>
@@ -117,7 +109,21 @@ const FeedbackCard = ({
 }: FeedbackCardProps) => {
   return (
     <CardContainer>
-      <VStack align="start" pb="2">
+      <Icon
+        as={icon}
+        w="48"
+        h="48"
+        zIndex="0"
+        color="gray.100"
+        _dark={{
+          color: 'gray.700',
+        }}
+        right="-12"
+        bottom="-12"
+        pos="absolute"
+        pointerEvents="none"
+      />
+      <VStack align="start" pb="2" pos="relative" zIndex="1">
         <Text
           fontSize="lg"
           fontWeight="600"
@@ -126,7 +132,6 @@ const FeedbackCard = ({
           px="1"
           pt="2"
         >
-          <Icon as={icon} w="5" h="5" me="3" />
           {title}
           {recommend && (
             <Badge colorScheme="green" ms="2">
@@ -134,10 +139,12 @@ const FeedbackCard = ({
             </Badge>
           )}
         </Text>
-        <Text pt="0.5" pb="2" px="1">
+        <Text pt="1" pb="1.5" px="1">
           {description}
         </Text>
-        <HStack spacing="3">{children}</HStack>
+        <ButtonGroup size="sm">
+          <HStack spacing="3">{children}</HStack>
+        </ButtonGroup>
       </VStack>
     </CardContainer>
   )

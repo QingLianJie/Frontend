@@ -10,6 +10,7 @@ const CardContainer = ({ as, children }: CardContainerProps) => {
   return (
     <Box
       as={as}
+      pos="relative"
       borderWidth="1px"
       rounded="md"
       py="4"
@@ -19,6 +20,7 @@ const CardContainer = ({ as, children }: CardContainerProps) => {
       _dark={{
         bg: 'gray.800',
       }}
+      overflow="hidden"
     >
       {children}
     </Box>
