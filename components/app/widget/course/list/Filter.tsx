@@ -1,10 +1,14 @@
-import { Text, VStack } from '@chakra-ui/react'
+import { Input, VStack } from '@chakra-ui/react'
 
 const CourseListFilter = () => {
   return (
-    <VStack align="start" px="2" py="0.5">
-      <Text color="gray.500">这个功能正在开发中，</Text>
-      <Text color="gray.500">用于搜索或筛选课程列表。</Text>
+    <VStack as="form" align="start" py="0.5">
+      <Input
+        type="search"
+        placeholder="搜索课程名和课程 ID"
+        bg="white"
+        _dark={{ bg: 'gray.800' }}
+      />
     </VStack>
   )
 }

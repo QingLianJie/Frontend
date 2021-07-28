@@ -19,9 +19,10 @@ interface CourseCommentProps {
 const CourseComment = ({ lite, comment }: CourseCommentProps) => {
   return (
     <VStack align="start" w="full" p="0" spacing="3.5">
-      <HStack w="full" spacing="3" px="0.5" alignItems="flex-start">
+      <HStack w="full" spacing="3" px="0.5">
         <Avatar
-          size="xs"
+          w="6"
+          h="6"
           src={
             comment.anonymous
               ? undefined
@@ -52,13 +53,16 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
               _dark={{
                 color: 'gray.500',
               }}
+              fontWeight="600"
             >
               {comment.user.username}
             </Text>
           ) : (
-            <TextLink href={`/@${comment.user.username}`}>
-              {comment.user.username}
-            </TextLink>
+            <Text as="span" fontWeight="600">
+              <TextLink href={`/@${comment.user.username}`}>
+                {comment.user.username}
+              </TextLink>
+            </Text>
           )}
 
           {!lite && (

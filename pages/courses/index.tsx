@@ -7,7 +7,7 @@ import {
   GridItem,
   Skeleton,
   Spinner,
-  VStack
+  VStack,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -86,11 +86,7 @@ const CoursesPage = () => {
                     </ListContainer>
                   </Box>
 
-                  <Skeleton
-                    w="full"
-                    rounded="md"
-                    isLoaded={!isLoading && !!courseList?.count}
-                  >
+                  {!isLoading && !!courseList?.count && (
                     <CoursePaginator
                       currentPage={currentPage}
                       totalPage={
@@ -100,7 +96,7 @@ const CoursesPage = () => {
                       }
                       onPageChange={handlePageChange}
                     />
-                  </Skeleton>
+                  )}
                 </VStack>
               </GroupContainer>
             </GridItem>

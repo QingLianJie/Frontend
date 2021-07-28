@@ -10,9 +10,10 @@ interface RecentCourseGradeProps {
 
 const RecentCourseGrade = ({ course, created }: RecentCourseGradeProps) => {
   return (
-    <HStack w="full" spacing="3" alignItems="flex-start">
+    <HStack w="full" spacing="3">
       <Avatar
-        size="xs"
+        w="6"
+        h="6"
         icon={<Icon as={RiBookLine} w="60%" h="60%" />}
         color="gray.500"
         bg="gray.200"

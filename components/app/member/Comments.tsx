@@ -1,4 +1,12 @@
-import { Box, Center, Fade, Grid, GridItem, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Center,
+  Fade,
+  Grid,
+  GridItem,
+  Spinner,
+  Text,
+} from '@chakra-ui/react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import GroupContainer from '../../common/container/Group'
@@ -23,7 +31,9 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
       </Text>
     </Center>
   ) : isLoading ? (
-    <Center w="full" h="full"></Center>
+    <Center w="full" h="full">
+      <Spinner thickness="4px" color="pink.400" size="xl" />
+    </Center>
   ) : (
     <Grid
       h="full"
