@@ -7,8 +7,10 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
+import CardContainer from '../../common/container/Card'
 import GroupContainer from '../../common/container/Group'
 import ListContainer from '../../common/container/List'
 import CourseComment from '../widget/course/comment/Card'
@@ -21,7 +23,7 @@ interface MemberCommentsProps {
 const MemberComments = ({ name }: MemberCommentsProps) => {
   const username = name as string
   const { profile, isLoading, isError } = useProfile(username)
-
+  const [comments, setComments] = useState(profile?.comments)
   const hasComment = () => profile?.comments && profile?.comments.length !== 0
 
   return isError ? (
@@ -48,14 +50,20 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
         {profile && hasComment() ? (
           <Fade in>
             <GroupContainer
-              title={`${profile?.comments.length} 个课程评论`}
+              title={`${comments?.length} 个课程评论`}
               icon={RiDiscussLine}
             >
               <Box ps="1.5">
                 <ListContainer divider>
-                  {profile?.comments.map((comment, index) => (
-                    <CourseComment comment={comment} key={index} />
-                  ))}
+                  {comments?.length !== 0 ? (
+                    comments?.map((comment, index) => (
+                      <CourseComment comment={comment} key={index} />
+                    ))
+                  ) : (
+                    <CardContainer>
+                      <Text>还没有评论，换个关键词试试吧</Text>
+                    </CardContainer>
+                  )}
                 </ListContainer>
               </Box>
             </GroupContainer>
@@ -71,7 +79,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
       {hasComment() && (
         <GridItem colSpan={{ base: 1, md: 1 }}>
           <GroupContainer title="搜索" icon={RiSearchLine}>
-            <CourseCommentFilter profile={profile} />
+            <CourseCommentFilter profile={profile} setComments={setComments} />
           </GroupContainer>
         </GridItem>
       )}
