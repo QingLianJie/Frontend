@@ -130,7 +130,7 @@ const FeedbackCard = ({
           d="flex"
           alignItems="center"
           px="1"
-          pt="2"
+          pt="1.5"
         >
           {title}
           {recommend && (
@@ -139,7 +139,7 @@ const FeedbackCard = ({
             </Badge>
           )}
         </Text>
-        <Text pt="1" pb="1.5" px="1">
+        <Text pt="0.5" pb="1" px="1" lineHeight="1.75">
           {description}
         </Text>
         <ButtonGroup size="sm">

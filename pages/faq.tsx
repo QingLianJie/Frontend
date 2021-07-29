@@ -87,7 +87,9 @@ const FAQItem = ({ title, children }: FAQItemProps) => {
         <AccordionIcon ms="auto" />
       </AccordionButton>
       <AccordionPanel py="4" px="6">
-        <Text as="span">{children}</Text>
+        <Text as="span" lineHeight="1.75">
+          {children}
+        </Text>
       </AccordionPanel>
     </AccordionItem>
   )

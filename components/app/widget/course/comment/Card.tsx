@@ -109,7 +109,8 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
             pb="2"
             fontFamily="inherit"
             overflowWrap="break-word"
-            whiteSpace="normal"
+            whiteSpace="pre-wrap"
+            lineHeight="1.75"
           >
             {comment.content}
           </Text>
