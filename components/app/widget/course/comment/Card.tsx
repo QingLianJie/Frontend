@@ -2,12 +2,21 @@ import {
   Avatar,
   Badge,
   Box,
+  Button,
+  ButtonGroup,
   HStack,
   Icon,
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+  Spacer,
   Text,
+  useDisclosure,
   VStack,
 } from '@chakra-ui/react'
-import { RiSpyLine, RiUserLine } from 'react-icons/ri'
+import { RiDeleteBinLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
+import useUser from '../../../../../hooks/useUser'
 import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/action/link/TextLink'
 
@@ -17,6 +26,9 @@ interface CourseCommentProps {
 }
 
 const CourseComment = ({ lite, comment }: CourseCommentProps) => {
+  const { user } = useUser()
+  const { onOpen, onClose, isOpen } = useDisclosure()
+
   return (
     <VStack align="start" w="full" p="0" spacing="3.5">
       <HStack w="full" spacing="3" px="0.5">
@@ -101,6 +113,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
           _dark={{
             bg: 'gray.800',
           }}
+          role="group"
         >
           <Text
             as="pre"
@@ -114,16 +127,54 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
           >
             {comment.content}
           </Text>
-          <Text
-            as="time"
-            fontSize="sm"
-            color="gray.500"
-            d="inline-block"
-            pb="0.5"
-            title={dateFormatter({ date: comment.created })}
-          >
-            {dateFormatter({ date: comment.created, calendar: true })}
-          </Text>
+          <HStack w="full">
+            <Text
+              as="time"
+              fontSize="sm"
+              color="gray.500"
+              d="inline-block"
+              pb="0.5"
+              title={dateFormatter({ date: comment.created })}
+            >
+              {dateFormatter({ date: comment.created, calendar: true })}
+            </Text>
+            {user?.pk === comment.user.pk && (
+              <>
+                <Spacer />
+                <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
+                  <PopoverTrigger>
+                    <Button
+                      visibility={isOpen ? 'visible' : 'hidden'}
+                      opacity={isOpen ? '1' : '0'}
+                      _groupHover={{ visibility: 'visible', opacity: '1' }}
+                      _focus={{ visibility: 'visible', opacity: '1' }}
+                      variant="link"
+                      size="sm"
+                      colorScheme="red"
+                      fontWeight="400"
+                    >
+                      <Icon as={RiDeleteBinLine} me="2" />
+                      删除评论
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent w="fit-content" p="4">
+                    <PopoverArrow />
+                    <Text px="1">确定删除吗？</Text>
+                    <ButtonGroup size="sm" mt="3" w="full">
+                      <HStack spacing="3" w="full">
+                        <Button isFullWidth onClick={onClose}>
+                          取消
+                        </Button>
+                        <Button colorScheme="red" isFullWidth>
+                          删除
+                        </Button>
+                      </HStack>
+                    </ButtonGroup>
+                  </PopoverContent>
+                </Popover>
+              </>
+            )}
+          </HStack>
         </Box>
       </Box>
     </VStack>

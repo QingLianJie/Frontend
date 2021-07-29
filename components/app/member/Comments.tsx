@@ -7,7 +7,6 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { useState } from 'react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'

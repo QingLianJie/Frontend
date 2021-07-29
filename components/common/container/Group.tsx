@@ -5,12 +5,23 @@ import { ReactNode } from 'react'
 interface GroupContainerProps {
   title?: string
   icon?: FC
+  full?: boolean
   children: ReactNode | ReactNode[]
 }
 
-const GroupContainer = ({ title, icon, children }: GroupContainerProps) => {
+const GroupContainer = ({
+  title,
+  icon,
+  full,
+  children,
+}: GroupContainerProps) => {
   return (
-    <VStack align="start" w="full" spacing={{ base: 6, md: 9 }}>
+    <VStack
+      align="start"
+      w="full"
+      h={full ? 'full' : 'initial'}
+      spacing={{ base: 6, md: 9 }}
+    >
       {title && (
         <HStack spacing="3">
           {icon && <Icon ms="1" w="5" h="5" as={icon} />}
@@ -20,7 +31,9 @@ const GroupContainer = ({ title, icon, children }: GroupContainerProps) => {
         </HStack>
       )}
 
-      <Box w="full">{children}</Box>
+      <Box w="full" h={full ? 'full' : 'initial'}>
+        {children}
+      </Box>
     </VStack>
   )
 }
