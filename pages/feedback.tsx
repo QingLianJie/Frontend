@@ -33,7 +33,7 @@ const FeedbackPage = () => {
           gap={{ base: 4, md: 8 }}
           py={{ base: 4, md: 8 }}
         >
-          <GridItem colSpan={{ base: 2, md: 1 }}>
+          <GridItem colSpan={{ base: 2, md: 1 }} minW="0">
             <VStack align="start" spacing={{ base: 4, md: 8 }}>
               <FeedbackCard
                 icon={RiQqLine}
@@ -70,7 +70,7 @@ const FeedbackPage = () => {
               </FeedbackCard>
             </VStack>
           </GridItem>
-          <GridItem colSpan={{ base: 2, md: 1 }}>
+          <GridItem colSpan={{ base: 2, md: 1 }} minW="0">
             <VStack align="start" spacing="6">
               <FeedbackCard
                 icon={RiMailLine}

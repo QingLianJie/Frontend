@@ -7,6 +7,7 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
@@ -24,6 +25,8 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
   const username = name as string
   const { profile, isLoading, isError } = useProfile(username)
   const [comments, setComments] = useState(profile?.comments)
+  const [loading, setLoading] = useState(false)
+
   const hasComment = () => profile?.comments && profile?.comments.length !== 0
 
   return isError ? (
@@ -46,28 +49,31 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
         w="full"
         h="full"
         colSpan={{ base: 1, md: hasComment() ? 2 : 3 }}
+        minW="0"
       >
         {profile && hasComment() ? (
-          <Fade in>
-            <GroupContainer
-              title={`${comments?.length} 个课程评论`}
-              icon={RiDiscussLine}
-            >
-              <Box ps="1.5">
-                <ListContainer divider>
-                  {comments?.length !== 0 ? (
-                    comments?.map((comment, index) => (
-                      <CourseComment comment={comment} key={index} />
-                    ))
-                  ) : (
-                    <CardContainer>
-                      <Text>还没有评论，换个关键词试试吧</Text>
-                    </CardContainer>
-                  )}
-                </ListContainer>
-              </Box>
-            </GroupContainer>
-          </Fade>
+          <GroupContainer
+            title={`${comments?.length} 个课程评论`}
+            icon={RiDiscussLine}
+          >
+            {loading ? null : (
+              <Fade in>
+                <Box ps="1.5">
+                  <ListContainer divider>
+                    {comments?.length !== 0 ? (
+                      comments?.map((comment, index) => (
+                        <CourseComment comment={comment} key={index} />
+                      ))
+                    ) : (
+                      <CardContainer>
+                        <Text>还没有评论，换个关键词试试吧</Text>
+                      </CardContainer>
+                    )}
+                  </ListContainer>
+                </Box>
+              </Fade>
+            )}
+          </GroupContainer>
         ) : (
           <Center w="full" h="full">
             <Text color="gray.500" fontSize="lg">
@@ -77,9 +83,13 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
         )}
       </GridItem>
       {hasComment() && (
-        <GridItem colSpan={{ base: 1, md: 1 }}>
+        <GridItem colSpan={{ base: 1, md: 1 }} minW="0">
           <GroupContainer title="搜索" icon={RiSearchLine}>
-            <CourseCommentFilter profile={profile} setComments={setComments} />
+            <CourseCommentFilter
+              profile={profile}
+              setComments={setComments}
+              setLoading={setLoading}
+            />
           </GroupContainer>
         </GridItem>
       )}

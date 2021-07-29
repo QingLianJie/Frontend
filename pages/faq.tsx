@@ -33,7 +33,7 @@ const FAQPage = () => {
           gap={{ base: 4, md: 8 }}
           py={{ base: 4, md: 8 }}
         >
-          <GridItem colSpan={{ base: 2, md: 1 }}>
+          <GridItem colSpan={{ base: 2, md: 1 }} minW="0">
             <Accordion allowMultiple allowToggle>
               {left.map((faq, index) => (
                 <FAQItem key={index} title={faq.title}>
@@ -45,6 +45,7 @@ const FAQPage = () => {
           <GridItem
             colSpan={{ base: 2, md: 1 }}
             display={isMobile ? 'none' : 'initial'}
+            minW="0"
           >
             <Accordion allowMultiple allowToggle>
               {right.map((faq, index) => (

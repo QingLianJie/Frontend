@@ -18,12 +18,12 @@ const CoursePage = () => {
             gap={{ base: 8, md: 12 }}
             h="full"
           >
-            <GridItem colSpan={{ base: 3, md: 2 }} h="full">
+            <GridItem colSpan={{ base: 3, md: 2 }} h="full" minW="0">
               <CourseInfo id={id} />
               <Spacer h={{ base: 6, md: 9 }} />
               <CourseChart id={id} />
             </GridItem>
-            <GridItem colSpan={{ base: 3, md: 1 }} h="full">
+            <GridItem colSpan={{ base: 3, md: 1 }} h="full" minW="0">
               <CourseCommentList id={id} />
             </GridItem>
           </Grid>

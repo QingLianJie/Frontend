@@ -89,7 +89,12 @@ const CoursesPage = () => {
           w="full"
           h="full"
         >
-          <GridItem colSpan={{ base: 2, md: 10, lg: 12 }} maxW="full" h="full">
+          <GridItem
+            colSpan={{ base: 2, md: 10, lg: 12 }}
+            maxW="full"
+            h="full"
+            minW="0"
+          >
             <GroupContainer title="课程列表" icon={RiBookOpenLine}>
               {isError ? (
                 <Alert status="error" rounded="md">
@@ -149,7 +154,7 @@ const CoursesPage = () => {
             </GroupContainer>
           </GridItem>
 
-          <GridItem colSpan={{ base: 2, md: 6, lg: 4 }} h="full">
+          <GridItem colSpan={{ base: 2, md: 6, lg: 4 }} h="full" minW="0">
             <GroupContainer title="课程搜索" icon={RiSearchLine}>
               <CourseListFilter action={handleFilter} />
             </GroupContainer>

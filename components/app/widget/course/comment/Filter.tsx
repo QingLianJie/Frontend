@@ -15,11 +15,13 @@ import { calcCourseList } from '../../../../../utils/calc/profile-comments'
 interface CourseCommentFilterProps {
   profile: IProfile | undefined
   setComments: Dispatch<SetStateAction<ICourseComment[] | undefined>>
+  setLoading: Dispatch<SetStateAction<boolean>>
 }
 
 const CourseCommentFilter = ({
   profile,
   setComments,
+  setLoading,
 }: CourseCommentFilterProps) => {
   const [search, setSearch] = useState('')
   const [debounceSearch] = useDebounce(search, 300)
@@ -27,13 +29,17 @@ const CourseCommentFilter = ({
   const [course, setCourse] = useState<(string | number)[]>([])
 
   useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 0)
+
     setComments(
       profile?.comments.filter(comment => {
-        let searchRes = true
-        let identityRes = true
-        let courseRes = true
         if (debounceSearch !== '') {
-          searchRes = comment.content.includes(debounceSearch)
+          if (!comment.content.includes(debounceSearch)) {
+            return false
+          }
         }
 
         if (identity.length !== 0) {
@@ -45,14 +51,14 @@ const CourseCommentFilter = ({
               !identity.includes('normal') &&
               !comment.anonymous)
           )
-            identityRes = false
+            return false
         }
 
         if (comment.course && course.length !== 0) {
-          if (!course.includes(comment.course.course_id)) courseRes = false
+          if (!course.includes(comment.course.course_id)) return false
         }
 
-        return searchRes && identityRes && courseRes
+        return true
       })
     )
 

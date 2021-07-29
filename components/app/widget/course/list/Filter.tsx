@@ -38,7 +38,6 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
       setCredit(credit)
       setTime(time)
       setLearned(learned)
-      console.log(learned, learned === 'true')
 
       const query: CourseFilter = {
         search: search,

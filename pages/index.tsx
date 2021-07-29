@@ -16,16 +16,17 @@ const IndexPage = () => {
           templateColumns={{ base: 'repeat(4, 1fr)', lg: 'repeat(16, 1fr)' }}
           gap={{ base: 8, md: 12 }}
         >
-          <GridItem colSpan={{ base: 4, md: 2, lg: 3 }}>
+          <GridItem colSpan={{ base: 4, md: 2, lg: 3 }} minW="0">
             <Shortcuts />
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 4, lg: 9 }}>
+          <GridItem colSpan={{ base: 4, md: 4, lg: 9 }} minW="0">
             <Timeline />
           </GridItem>
           <GridItem
             colSpan={{ base: 4, md: 2, lg: 4 }}
             rowStart={{ base: 2, md: 1, lg: 'auto' }}
             colStart={{ base: 1, md: 3, lg: 'auto' }}
+            minW="0"
           >
             <Notices />
           </GridItem>

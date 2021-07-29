@@ -25,10 +25,10 @@ const MemberPage = () => {
           gap={{ base: 8, md: 12 }}
           h="full"
         >
-          <GridItem colSpan={{ base: 4, md: 1 }} h="full">
+          <GridItem colSpan={{ base: 4, md: 1 }} h="full" minW="0">
             {router.isReady && name && <MemberProfile name={name} />}
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 3 }} h="full">
+          <GridItem colSpan={{ base: 4, md: 3 }} h="full" minW="0">
             {router.isReady && name && <MemberComments name={name} />}
           </GridItem>
         </Grid>
