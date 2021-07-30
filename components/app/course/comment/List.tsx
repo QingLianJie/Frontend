@@ -1,4 +1,5 @@
-import { Alert, AlertIcon, Fade, Spacer, Text } from '@chakra-ui/react'
+import { Button, Fade, Spacer, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 import { RiDiscussLine } from 'react-icons/ri'
 import useCourse from '../../../../hooks/useCourse'
 import useUser from '../../../../hooks/useUser'
@@ -15,6 +16,11 @@ interface CourseCommentListProps {
 const CourseCommentList = ({ id }: CourseCommentListProps) => {
   const { user, isLoading: isUserLoading } = useUser()
   const { courseInfo, isLoading, isError } = useCourse(id)
+
+  const [count, setCount] = useState(
+    courseInfo?.comments.length < 5 ? courseInfo.comments.length : 5
+  )
+
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   return (
@@ -41,7 +47,7 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
       ) : (
         <Fade in>
           <ListContainer divider>
-            {courseInfo.comments.map((comment, index) => (
+            {courseInfo.comments.slice(0, count).map((comment, index) => (
               <CourseComment
                 lite
                 comment={comment}
@@ -49,6 +55,11 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
                 url={`${baseURL}/api/course/${id}`}
               />
             ))}
+            {count < courseInfo.comments.length && (
+              <Button onClick={() => setCount(count + 10)} isFullWidth>
+                加载更多评论
+              </Button>
+            )}
           </ListContainer>
         </Fade>
       )}
