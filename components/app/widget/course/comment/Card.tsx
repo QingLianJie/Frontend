@@ -16,7 +16,6 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { RiDeleteBinLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useUser from '../../../../../hooks/useUser'
@@ -111,13 +110,13 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
               fontWeight="600"
             >
               {comment.user.username}
-              {(user?.pk === comment.user.pk || comment.self) && '（我）'}
+              {comment.self && '（我）'}
             </Text>
           ) : (
             <Text as="span" fontWeight="600">
               <TextLink href={`/@${comment.user.username}`}>
                 {comment.user.username}
-                {(user?.pk === comment.user.pk || comment.self) && '（我）'}
+                {comment.self && '（我）'}
               </TextLink>
             </Text>
           )}
@@ -183,7 +182,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
             >
               {dateFormatter({ date: comment.created, calendar: true })}
             </Text>
-            {(user?.pk === comment.user.pk || comment.self) && (
+            {comment.self && (
               <>
                 <Spacer />
                 <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
