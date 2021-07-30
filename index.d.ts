@@ -140,6 +140,7 @@ type FAQ = {
 type FAQs = FAQ[]
 
 interface CourseInfoRate {
+  key: string
   excellent: { rate: string | null; count: number | null }
   pass: { rate: string | null; count: number | null }
   fail: { rate: string | null; count: number | null }
@@ -148,6 +149,7 @@ interface CourseInfoRate {
 type CourseStatChartData = {
   score: string
   count: number
+  rate: string
 }
 
 interface CourseFilter {

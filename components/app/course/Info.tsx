@@ -26,7 +26,9 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
   const [rate, setRate] = useState<CourseInfoRate | null>(null)
 
   useEffect(() => {
-    setRate(calcRate(courseInfo))
+    if (courseInfo) {
+      setRate(calcRate(courseInfo))
+    }
   }, [courseInfo])
 
   return (
@@ -84,12 +86,12 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
               {rate && (
                 <Wrap spacing="4">
                   <CourseStat
-                    label="挂科率"
+                    label="总挂科率"
                     number={rate.fail.rate || '无数据'}
                     help={rate.fail.count ? `${rate.fail.count} 人` : undefined}
                   />
                   <CourseStat
-                    label="优秀率"
+                    label="总优秀率"
                     number={rate.excellent.rate || '无数据'}
                     help={
                       rate.excellent.count

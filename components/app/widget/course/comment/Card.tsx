@@ -16,9 +16,9 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import { RiDeleteBinLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { mutate } from 'swr'
-import useUser from '../../../../../hooks/useUser'
 import { toastConfig } from '../../../../../utils/config/toast'
 import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/action/link/TextLink'
@@ -31,8 +31,8 @@ interface CourseCommentProps {
 
 const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
   const toast = useToast()
-  const { user } = useUser()
   const { onOpen, onClose, isOpen } = useDisclosure()
+  const [expand, setExpand] = useState(false)
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
@@ -162,12 +162,15 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
         >
           <Text
             as="pre"
+            pos="relative"
             fontSize="lg"
             pb="2"
             fontFamily="inherit"
             overflowWrap="break-word"
             whiteSpace="pre-wrap"
             lineHeight="1.75"
+            noOfLines={expand ? undefined : 3}
+            onClick={() => setExpand(true)}
           >
             {comment.content}
           </Text>
