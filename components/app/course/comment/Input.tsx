@@ -90,9 +90,11 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
         placeholder="在此输入评论"
         bg="white"
         _dark={{ bg: 'gray.800' }}
-        py="3"
-        px="4"
+        py="4"
+        px="6"
         minH="6rem"
+        fontSize="lg"
+        lineHeight="1.75"
         onChange={e => setComment(e.target.value)}
         required
       />

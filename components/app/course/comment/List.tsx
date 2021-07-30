@@ -20,15 +20,11 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
       {isUserLoading ? null : user?.self ? (
-        <CourseCommentInput id={id} />
-      ) : (
-        <Alert status="info" rounded="md">
-          <AlertIcon />
-          登录后才能发表评论
-        </Alert>
-      )}
-
-      <Spacer h="4" />
+        <>
+          <CourseCommentInput id={id} />
+          <Spacer h="4" />
+        </>
+      ) : null}
 
       {isError ? null : isLoading ? null : courseInfo.comments.length === 0 ? (
         <CardContainer>

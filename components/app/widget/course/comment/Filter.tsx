@@ -63,7 +63,7 @@ const CourseCommentFilter = ({
     )
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debounceSearch, identity, course])
+  }, [debounceSearch, identity, course, profile])
 
   return (
     <VStack align="start" spacing="3">

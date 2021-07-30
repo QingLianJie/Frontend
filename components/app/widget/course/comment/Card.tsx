@@ -16,6 +16,7 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { RiDeleteBinLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useUser from '../../../../../hooks/useUser'
@@ -49,6 +50,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
             ...toastConfig.ok,
           })
           if (url) mutate(url)
+          onClose()
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
@@ -115,6 +117,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
             <Text as="span" fontWeight="600">
               <TextLink href={`/@${comment.user.username}`}>
                 {comment.user.username}
+                {(user?.pk === comment.user.pk || comment.self) && '（我）'}
               </TextLink>
             </Text>
           )}

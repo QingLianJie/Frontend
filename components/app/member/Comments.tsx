@@ -29,10 +29,6 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
 
   const hasComment = () => profile?.comments && profile?.comments.length !== 0
 
-  useEffect(() => {
-    setComments(profile?.comments)
-  }, [profile])
-
   return isError ? (
     <Center w="full" h="full">
       <Text color="gray.500" fontSize="lg">
