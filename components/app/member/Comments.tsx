@@ -7,7 +7,7 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import CardContainer from '../../common/container/Card'
@@ -25,8 +25,13 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
   const { profile, isLoading, isError } = useProfile(username)
   const [comments, setComments] = useState(profile?.comments)
   const [loading, setLoading] = useState(false)
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   const hasComment = () => profile?.comments && profile?.comments.length !== 0
+
+  useEffect(() => {
+    setComments(profile?.comments)
+  }, [profile])
 
   return isError ? (
     <Center w="full" h="full">
@@ -61,7 +66,11 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
                   <ListContainer divider>
                     {comments?.length !== 0 ? (
                       comments?.map((comment, index) => (
-                        <CourseComment comment={comment} key={index} />
+                        <CourseComment
+                          comment={comment}
+                          key={index}
+                          url={`${baseURL}/api/profile/${username}`}
+                        />
                       ))
                     ) : (
                       <CardContainer>

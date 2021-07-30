@@ -9,6 +9,7 @@ import RecentCourseGrade from '../widget/message/RecentCourseGrade'
 
 const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   return (
     <GroupContainer title="最近" icon={RiTimeLine}>
@@ -27,7 +28,10 @@ const Timeline = () => {
             {timeline.map((item, index) => (
               <Fragment key={index}>
                 {item.hasOwnProperty('user') ? (
-                  <CourseComment comment={item as ICourseComment} />
+                  <CourseComment
+                    comment={item as ICourseComment}
+                    url={`${baseURL}/api/recent/comments`}
+                  />
                 ) : (
                   <RecentCourseGrade
                     created={item.created}

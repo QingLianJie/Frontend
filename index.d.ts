@@ -64,6 +64,7 @@ interface ICourseInfo extends ICourse {
 }
 
 interface ICourseComment {
+  id: number
   content: string
   created: string
   anonymous: boolean
@@ -71,6 +72,7 @@ interface ICourseComment {
   course?: ICourse
   score: string
   show: boolean
+  self?: boolean
 }
 
 interface IRecentCourseGrade {

@@ -13,21 +13,62 @@ import {
   Spacer,
   Text,
   useDisclosure,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
 import { RiDeleteBinLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
+import { mutate } from 'swr'
 import useUser from '../../../../../hooks/useUser'
+import { toastConfig } from '../../../../../utils/config/toast'
 import { dateFormatter } from '../../../../../utils/formatter'
 import TextLink from '../../../../common/action/link/TextLink'
 
 interface CourseCommentProps {
   lite?: boolean
   comment: ICourseComment
+  url?: string
 }
 
-const CourseComment = ({ lite, comment }: CourseCommentProps) => {
+const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
+  const toast = useToast()
   const { user } = useUser()
   const { onOpen, onClose, isOpen } = useDisclosure()
+
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+
+  const handleRemoveComment = () => {
+    fetch(`${baseURL}/api/comment/${comment.id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            title: '删除评论成功',
+            ...toastConfig.ok,
+          })
+          if (url) mutate(url)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            toast({
+              title: '删除评论失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
+          })
+        }
+      })
+      .catch((err: Error) => {
+        console.log('Course Comment Error -', err)
+        toast({
+          title: '删除评论失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
+      })
+  }
 
   return (
     <VStack align="start" w="full" p="0" spacing="3.5">
@@ -68,6 +109,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
               fontWeight="600"
             >
               {comment.user.username}
+              {(user?.pk === comment.user.pk || comment.self) && '（我）'}
             </Text>
           ) : (
             <Text as="span" fontWeight="600">
@@ -114,11 +156,11 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
             bg: 'gray.800',
           }}
           role="group"
+          tabIndex={0}
         >
           <Text
             as="pre"
             fontSize="lg"
-            pt="0.5"
             pb="2"
             fontFamily="inherit"
             overflowWrap="break-word"
@@ -138,7 +180,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
             >
               {dateFormatter({ date: comment.created, calendar: true })}
             </Text>
-            {user?.pk === comment.user.pk && (
+            {(user?.pk === comment.user.pk || comment.self) && (
               <>
                 <Spacer />
                 <Popover isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
@@ -147,7 +189,7 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
                       visibility={isOpen ? 'visible' : 'hidden'}
                       opacity={isOpen ? '1' : '0'}
                       _groupHover={{ visibility: 'visible', opacity: '1' }}
-                      _focus={{ visibility: 'visible', opacity: '1' }}
+                      _groupFocus={{ visibility: 'visible', opacity: '1' }}
                       variant="link"
                       size="sm"
                       colorScheme="red"
@@ -165,7 +207,11 @@ const CourseComment = ({ lite, comment }: CourseCommentProps) => {
                         <Button isFullWidth onClick={onClose}>
                           取消
                         </Button>
-                        <Button colorScheme="red" isFullWidth>
+                        <Button
+                          colorScheme="red"
+                          isFullWidth
+                          onClick={handleRemoveComment}
+                        >
                           删除
                         </Button>
                       </HStack>

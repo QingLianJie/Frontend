@@ -15,6 +15,7 @@ interface CourseCommentListProps {
 const CourseCommentList = ({ id }: CourseCommentListProps) => {
   const { user, isLoading: isUserLoading } = useUser()
   const { courseInfo, isLoading, isError } = useCourse(id)
+  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>
@@ -45,7 +46,12 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
         <Fade in>
           <ListContainer divider>
             {courseInfo.comments.map((comment, index) => (
-              <CourseComment lite comment={comment} key={index} />
+              <CourseComment
+                lite
+                comment={comment}
+                key={index}
+                url={`${baseURL}/api/course/${id}`}
+              />
             ))}
           </ListContainer>
         </Fade>
