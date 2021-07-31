@@ -16,8 +16,14 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { useState } from 'react'
-import { RiDeleteBinLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
+import { useEffect, useRef, useState } from 'react'
+import {
+  RiArrowDropDownLine,
+  RiArrowDropUpLine,
+  RiDeleteBinLine,
+  RiSpyLine,
+  RiUserLine,
+} from 'react-icons/ri'
 import { mutate } from 'swr'
 import { toastConfig } from '../../../../../utils/config/toast'
 import { dateFormatter } from '../../../../../utils/formatter'
@@ -31,10 +37,27 @@ interface CourseCommentProps {
 
 const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
   const toast = useToast()
+  const contentRef = useRef<(HTMLPreElement & HTMLParagraphElement) | null>(
+    null
+  )
   const { onOpen, onClose, isOpen } = useDisclosure()
   const [expand, setExpand] = useState(false)
+  const [more, setMore] = useState(false)
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const height = parseInt(getComputedStyle(contentRef.current).height)
+      const lineHeight = parseInt(
+        getComputedStyle(contentRef.current).lineHeight
+      )
+
+      if (height > lineHeight * 3) {
+        setMore(true)
+      }
+    }
+  }, [])
 
   const handleRemoveComment = () => {
     fetch(`${baseURL}/api/comment/${comment.id}`, {
@@ -161,6 +184,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
           tabIndex={0}
         >
           <Text
+            ref={contentRef}
             as="pre"
             pos="relative"
             fontSize="lg"
@@ -170,10 +194,28 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
             whiteSpace="pre-wrap"
             lineHeight="1.75"
             noOfLines={expand ? undefined : 3}
-            onClick={() => setExpand(true)}
+            onClick={() => setExpand(!expand)}
           >
             {comment.content}
           </Text>
+          {more && (
+            <Text
+              fontSize="sm"
+              color="gray.500"
+              pb="2"
+              cursor="pointer"
+              d="flex"
+              alignItems="center"
+              onClick={() => setExpand(!expand)}
+            >
+              {expand ? '收起' : '展开'}
+              {expand ? (
+                <Icon as={RiArrowDropUpLine} w="5" h="5" />
+              ) : (
+                <Icon as={RiArrowDropDownLine} w="5" h="5" />
+              )}
+            </Text>
+          )}
           <HStack w="full">
             <Text
               as="time"
