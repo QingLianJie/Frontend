@@ -75,7 +75,7 @@ const FeedbackPage = () => {
               <FeedbackCard
                 icon={RiMailLine}
                 title="邮件联系"
-                description="如果你比较喜欢发邮件，也可以点击下面的按钮给我们发邮件。"
+                description="如果你比较喜欢发邮件，也可以点击下面的按钮给我们发邮件，不过回复的可能要慢一些，见谅。"
               >
                 <ButtonLink href="mailto:bakedviolin@foxmail.com">
                   发送邮件

@@ -194,14 +194,14 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
             whiteSpace="pre-wrap"
             lineHeight="1.75"
             noOfLines={expand ? undefined : 3}
-            onClick={() => setExpand(!expand)}
           >
             {comment.content}
           </Text>
           {more && (
             <Text
               fontSize="sm"
-              color="gray.500"
+              color="purple.500"
+              _dark={{ color: 'purple.300' }}
               pb="2"
               cursor="pointer"
               d="flex"
