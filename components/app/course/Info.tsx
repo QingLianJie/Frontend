@@ -11,9 +11,9 @@ import {
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+import { RiBookOpenLine } from 'react-icons/ri'
 import useCourse from '../../../hooks/useCourse'
 import { calcRate } from '../../../utils/calc/course-statistics'
-import BreadcrumbLink from '../../common/action/link/BreadcrumbLink'
 import GroupContainer from '../../common/container/Group'
 import CourseStat from '../widget/course/dashboard/Stat'
 
@@ -39,7 +39,7 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
           清廉街
         </title>
       </Head>
-      <GroupContainer>
+      <GroupContainer title="课程详情" icon={RiBookOpenLine}>
         {isError ? (
           <Alert status="error" rounded="md">
             <AlertIcon />
@@ -52,7 +52,6 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
         ) : (
           <Fade in>
             <VStack align="start" spacing="4" px="4">
-              <BreadcrumbLink href={`/courses`}>课程列表</BreadcrumbLink>
               <Wrap spacing="3" alignItems="center" pb="4">
                 <Heading as="h2" fontSize="2xl" fontWeight="600">
                   {courseInfo.name}

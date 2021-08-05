@@ -15,11 +15,9 @@ const CourseListItem = ({ course }: CourseListItemProps) => {
         direction={{ base: 'column', lg: 'row' }}
       >
         <WrapItem pe="2">
-          <HStack spacing="4">
-            <Text color="gray.500" fontSize="sm">
-              {course?.course_id}
-            </Text>
-          </HStack>
+          <Text color="gray.500" fontSize="sm">
+            {course?.course_id}
+          </Text>
         </WrapItem>
 
         <WrapItem pe="2">

@@ -80,6 +80,40 @@ interface IRecentCourseGrade {
   course: ICourse
 }
 
+type ScoreStatus = 'Fail' | 'Success' | 'Pending' | 'Never'
+
+interface IScoreAPI {
+  heu_username: string
+  result: '' | string[]
+  created: number
+  status: ScoreStatus
+}
+
+interface IScore {
+  id: string
+  term: string // 开课学期
+  course_id: string // 课程编号
+  name: string // 课程名称
+  grade: string // 成绩
+  credit: string // 学分
+  total_time: string // 总学时
+  assessment_method: string // 考核方式
+  assessment_type: string // 考试性质
+  attributes: string // 课程属性
+  kind: string // 课程性质
+  general_category: string // 通识教育选修课程类别
+  grade_mark: string // 成绩标记
+}
+
+type Scores = { [key: string]: IScore[] }
+
+interface IScoreList {
+  heu_username: string
+  scores: Scores
+  created: number
+  status: ScoreStatus
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string

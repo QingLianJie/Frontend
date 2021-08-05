@@ -6,7 +6,7 @@ dayjs.locale('zh-cn')
 dayjs.extend(calendar)
 
 interface DateFormatterProps {
-  date: string
+  date: string | number
   relative?: boolean
   calendar?: boolean
 }
