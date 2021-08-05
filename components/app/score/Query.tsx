@@ -2,20 +2,17 @@ import {
   Alert,
   AlertIcon,
   Badge,
+  Button,
   Center,
   Fade,
   Heading,
   HStack,
+  Icon,
   Spinner,
-  Stat,
-  StatHelpText,
-  StatLabel,
-  StatNumber,
   Text,
   VStack,
-  Wrap,
 } from '@chakra-ui/react'
-import { RiBarChartBoxLine } from 'react-icons/ri'
+import { RiBarChartBoxLine, RiRefreshLine } from 'react-icons/ri'
 import useScore from '../../../hooks/useScore'
 import useUser from '../../../hooks/useUser'
 import { dateFormatter } from '../../../utils/formatter'
@@ -25,6 +22,8 @@ const ScoreQuery = () => {
   const { user } = useUser()
   const { scores, isLoading, isError } = useScore()
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+
+  const handleFetchScore = () => {}
 
   return (
     <GroupContainer title="我的成绩" icon={RiBarChartBoxLine}>
@@ -39,14 +38,31 @@ const ScoreQuery = () => {
         </Center>
       ) : (
         <Fade in>
-          <HStack spacing="4" px="4">
-            <Heading as="h2" fontSize="2xl" fontWeight="600">
-              {user && `${user.username} 的`}成绩单
-            </Heading>
-            <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
-              {scores.heu_username}
-            </Badge>
-          </HStack>
+          <VStack align="start" spacing="4">
+            <HStack spacing="4" px="4">
+              <Heading as="h2" fontSize="2xl" fontWeight="600">
+                {user && `${user.username} 的`}成绩单
+              </Heading>
+              <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
+                {scores.heu_username}
+              </Badge>
+            </HStack>
+            <HStack spacing="4" px="4">
+              <Text d="flex" alignItems="center">
+                数据更新于{' '}
+                {dateFormatter({ date: scores.created * 1000, calendar: true })}
+              </Text>
+              <Button
+                size="sm"
+                colorScheme="green"
+                variant="link"
+                onClick={handleFetchScore}
+              >
+                <Icon as={RiRefreshLine} me="2" w="4" h="4" />
+                重新获取
+              </Button>
+            </HStack>
+          </VStack>
         </Fade>
       )}
     </GroupContainer>

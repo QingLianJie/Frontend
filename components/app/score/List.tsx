@@ -24,7 +24,7 @@ const ScoreList = () => {
   return (
     <GroupContainer>
       {isLoading ? null : isError ? null : (
-        <Accordion allowMultiple allowToggle defaultIndex={[0]}>
+        <Accordion allowMultiple allowToggle>
           {Object.entries(scores.scores)
             .reverse()
             .map(([term, data], index) => (
@@ -139,7 +139,7 @@ const ListItem = ({ title, count, children }: ListItemProps) => {
         <Text textAlign="left" fontSize="lg" p="2" d="flex" alignItems="center">
           {title}
         </Text>
-        <Badge ms="auto" me="3" color="gray.500">
+        <Badge ms="auto" me="3" px="1.5" py="0.5" color="gray.500">
           {count} 个课程
         </Badge>
         <AccordionIcon />
