@@ -6,7 +6,6 @@ import {
   HStack,
   Icon,
   Text,
-  useBreakpointValue,
   VStack,
 } from '@chakra-ui/react'
 import Head from 'next/head'
@@ -19,8 +18,6 @@ import MainContainer from '../components/common/container/Main'
 import PageHeading from '../components/common/typography/PageHeading'
 
 const FeedbackPage = () => {
-  const text = useBreakpointValue({ base: '在下面', md: '从右侧' })
-
   return (
     <>
       <Head>
@@ -29,60 +26,64 @@ const FeedbackPage = () => {
       <MainContainer title="反馈" gray>
         <PageHeading title="感谢你提供反馈，请在下面选择反馈方式。" />
         <Grid
-          templateColumns="repeat(2, 1fr)"
+          templateColumns={{
+            base: 'repeat(1, 1fr)',
+            sm: 'repeat(2, 1fr)',
+            md: 'repeat(3, 1fr)',
+          }}
           gap={{ base: 4, md: 8 }}
           py={{ base: 4, md: 8 }}
+          autoRows="1fr"
         >
-          <GridItem colSpan={{ base: 2, md: 1 }} minW="0">
-            <VStack align="start" spacing={{ base: 4, md: 8 }}>
-              <FeedbackCard
-                icon={RiQqLine}
-                title="加入反馈 QQ 群"
-                description="QQ 群号是 498047164 ，欢迎加入。"
-                recommend
+          <GridItem w="full" minW="0">
+            <FeedbackCard
+              icon={RiQqLine}
+              title="加入反馈 QQ 群"
+              description="QQ 群号是 498047164 ，欢迎点击下面的按钮加入。"
+              recommend
+            >
+              <ButtonLink
+                href="https://jq.qq.com/?_wv=1027&k=Fj4xfeQE"
+                color="green"
               >
-                <ButtonLink
-                  href="https://jq.qq.com/?_wv=1027&k=Fj4xfeQE"
-                  color="green"
-                >
-                  一键加入
-                </ButtonLink>
-                <CopyButton text="498047164" color="blue">
-                  复制群号
-                </CopyButton>
-              </FeedbackCard>
-
-              <FeedbackCard
-                icon={RiGithubLine}
-                title="去 GitHub 提 Issue"
-                description="如果你会写程序，而且有一个 GitHub 账号的话，欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
-                recommend
-              >
-                <ButtonLink href="https://github.com/QingLianJie">
-                  主页
-                </ButtonLink>
-                <ButtonLink href="https://github.com/QingLianJie/Frontend">
-                  前端仓库
-                </ButtonLink>
-                <ButtonLink href="https://github.com/QingLianJie/Backend">
-                  后端仓库
-                </ButtonLink>
-              </FeedbackCard>
-            </VStack>
+                一键加入
+              </ButtonLink>
+              <CopyButton text="498047164" color="blue">
+                复制群号
+              </CopyButton>
+            </FeedbackCard>
           </GridItem>
-          <GridItem colSpan={{ base: 2, md: 1 }} minW="0">
-            <VStack align="start" spacing="6">
-              <FeedbackCard
-                icon={RiMailLine}
-                title="邮件联系"
-                description="如果你比较喜欢发邮件，也可以点击下面的按钮给我们发邮件，不过回复的可能要慢一些，见谅。"
-              >
-                <ButtonLink href="mailto:bakedviolin@foxmail.com">
-                  发送邮件
-                </ButtonLink>
-                <CopyButton text="bakedviolin@foxmail.com">复制邮箱</CopyButton>
-              </FeedbackCard>
-            </VStack>
+
+          <GridItem w="full" minW="0">
+            <FeedbackCard
+              icon={RiGithubLine}
+              title="去 GitHub 提 Issue"
+              description="欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
+              recommend
+            >
+              <ButtonLink href="https://github.com/QingLianJie">
+                主页
+              </ButtonLink>
+              <ButtonLink href="https://github.com/QingLianJie/Frontend">
+                前端仓库
+              </ButtonLink>
+              <ButtonLink href="https://github.com/QingLianJie/Backend">
+                后端仓库
+              </ButtonLink>
+            </FeedbackCard>
+          </GridItem>
+
+          <GridItem w="full" minW="0">
+            <FeedbackCard
+              icon={RiMailLine}
+              title="邮件联系"
+              description="如果你比较喜欢发邮件，也可以点击下面的按钮给我们发邮件。"
+            >
+              <ButtonLink href="mailto:bakedviolin@foxmail.com">
+                发送邮件
+              </ButtonLink>
+              <CopyButton text="bakedviolin@foxmail.com">复制邮箱</CopyButton>
+            </FeedbackCard>
           </GridItem>
         </Grid>
       </MainContainer>
@@ -108,24 +109,33 @@ const FeedbackCard = ({
   children,
 }: FeedbackCardProps) => {
   return (
-    <CardContainer>
+    <CardContainer full>
       <Icon
         as={icon}
-        w="48"
-        h="48"
+        w="24"
+        h="24"
         zIndex="0"
-        color="gray.100"
+        color="gray.200"
         _dark={{
           color: 'gray.700',
         }}
-        right="-12"
-        bottom="-12"
+        top="5"
+        left="5"
         pos="absolute"
         pointerEvents="none"
       />
-      <VStack align="start" pb="2" pos="relative" zIndex="1">
+      <VStack
+        align="start"
+        pt="28"
+        pb="2"
+        pos="relative"
+        zIndex="1"
+        justify="flex-end"
+        flex="1"
+        h="full"
+      >
         <Text
-          fontSize="lg"
+          fontSize="xl"
           fontWeight="600"
           d="flex"
           alignItems="center"
@@ -142,7 +152,7 @@ const FeedbackCard = ({
         <Text pt="0.5" pb="1" px="1" lineHeight="1.75">
           {description}
         </Text>
-        <ButtonGroup size="sm">
+        <ButtonGroup size="sm" alignItems="flex-start">
           <HStack spacing="3">{children}</HStack>
         </ButtonGroup>
       </VStack>

@@ -3,10 +3,11 @@ import { ReactNode } from 'react'
 
 interface CardContainerProps {
   as?: As
+  full?: boolean
   children: ReactNode | ReactNode[]
 }
 
-const CardContainer = ({ as, children }: CardContainerProps) => {
+const CardContainer = ({ as, full, children }: CardContainerProps) => {
   return (
     <Box
       as={as}
@@ -16,6 +17,7 @@ const CardContainer = ({ as, children }: CardContainerProps) => {
       py="4"
       px="6"
       w="full"
+      h={full ? 'full' : 'auto'}
       bg="white"
       _dark={{
         bg: 'gray.800',
