@@ -10,20 +10,57 @@ import {
   Icon,
   Spinner,
   Text,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
 import { RiBarChartBoxLine, RiRefreshLine } from 'react-icons/ri'
+import { mutate } from 'swr'
 import useScore from '../../../hooks/useScore'
 import useUser from '../../../hooks/useUser'
+import { toastConfig } from '../../../utils/config/toast'
 import { dateFormatter } from '../../../utils/formatter'
 import GroupContainer from '../../common/container/Group'
 
 const ScoreQuery = () => {
+  const toast = useToast()
   const { user } = useUser()
   const { scores, isLoading, isError } = useScore()
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
-  const handleFetchScore = () => {}
+  const handleFetchScore = () => {
+    fetch(`${baseURL}/api/my/scores`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            title: '已发送获取数据请求',
+            description: '获取数据需要一些时间，请稍等片刻并刷新页面查看结果',
+            ...toastConfig.ok,
+          })
+          mutate(`${baseURL}/api/my/scores`)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            toast({
+              title: '数据请求失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
+          })
+        }
+      })
+      .catch((err: Error) => {
+        console.log('Fetch Score Error -', err)
+        toast({
+          title: '数据请求失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
+      })
+  }
 
   return (
     <GroupContainer title="我的成绩" icon={RiBarChartBoxLine}>
@@ -48,10 +85,28 @@ const ScoreQuery = () => {
               </Badge>
             </HStack>
             <HStack spacing="4" px="4">
-              <Text d="flex" alignItems="center">
-                数据更新于{' '}
-                {dateFormatter({ date: scores.created * 1000, calendar: true })}
-              </Text>
+              {scores.status === 'Success' ? (
+                <Text d="flex" alignItems="center">
+                  数据更新于{' '}
+                  {dateFormatter({
+                    date: scores.created * 1000,
+                    calendar: true,
+                  })}
+                </Text>
+              ) : scores.status === 'Fail' ? (
+                <Text d="flex" alignItems="center">
+                  数据更新失败，请尝试重新获取
+                </Text>
+              ) : scores.status === 'Pending' ? (
+                <Text d="flex" alignItems="center">
+                  数据正在更新，请稍等片刻
+                </Text>
+              ) : scores.status === 'Never' ? (
+                <Text d="flex" alignItems="center">
+                  还没有获取过成绩数据，点击右边按钮获取
+                </Text>
+              ) : null}
+
               <Button
                 size="sm"
                 colorScheme="green"
