@@ -15,10 +15,11 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import useTimetable from '../../../hooks/useTimetable'
+import { getWeek } from '../../../utils/date/get-week'
 
 const Timetable = () => {
   const { timetable, isLoading, isError } = useTimetable()
-  const [week, setWeek] = useState(1)
+  const [week, setWeek] = useState(getWeek() || 1)
 
   const timeMap = [
     '第一大节',

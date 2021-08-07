@@ -100,7 +100,7 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
                   />
                   <CourseStat
                     label="统计人数"
-                    number={`${courseInfo.statistics.all.total} 人`}
+                    number={`${courseInfo.statistics?.all?.total || 0} 人`}
                   />
                   {courseInfo.my_scores?.map((score, index) => (
                     <CourseStat

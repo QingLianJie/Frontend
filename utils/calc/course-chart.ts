@@ -4,9 +4,11 @@ export const calcChartData = (
 ): CourseStatChartData[] => {
   const data = info.statistics[time || 'all']
   const all = info.statistics['all']
-  const total = data.total
+  const total = data?.total || 0
 
   const arr: CourseStatChartData[] = []
+  if (!data) return arr
+
   if (Object.keys(all.exam).length !== 0) {
     // 考试课
     let lastIndex = 0

@@ -164,7 +164,7 @@ const CourseChart = ({ id }: CourseChartProps) => {
                     textAlign="center"
                     color="gray.500"
                   >{`${select || '所有时间'} 的成绩分布图，统计人数 ${
-                    courseInfo.statistics[select || 'all'].total
+                    courseInfo.statistics[select || 'all']?.total || '0'
                   } 人`}</Text>
                 </>
               )}
