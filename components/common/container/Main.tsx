@@ -6,18 +6,25 @@ import ScreenContainer from './Screen'
 
 interface MainContainer {
   center?: boolean
+  screen?: boolean
   gray?: boolean
   title?: string
   children: ReactNode | ReactNode[]
 }
 
-const MainContainer = ({ center, gray, title, children }: MainContainer) => {
+const MainContainer = ({
+  center,
+  screen,
+  gray,
+  title,
+  children,
+}: MainContainer) => {
   return (
     <ScreenContainer gray={gray}>
       <Header title={title} />
       <Container
         width="full"
-        maxW="container.xl"
+        maxW={screen ? 'unset' : 'container.xl'}
         d="flex"
         flexDir="column"
         py={{ base: 2, md: 4 }}

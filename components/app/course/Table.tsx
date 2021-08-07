@@ -5,14 +5,13 @@ import {
   HStack,
   Icon,
   Table,
-  TableCaption,
   Tbody,
   Td,
   Th,
   Thead,
   Tr,
 } from '@chakra-ui/react'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { RiTableLine } from 'react-icons/ri'
 import useCourse from '../../../hooks/useCourse'
 import { calcRate } from '../../../utils/calc/course-statistics'

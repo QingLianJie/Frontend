@@ -114,6 +114,34 @@ interface IScoreList {
   status: ScoreStatus
 }
 
+type TimetableWeek = [] | [string[]]
+
+type TimetableRow = [
+  TimetableWeek, // 周一
+  TimetableWeek, // 周二
+  TimetableWeek, // 周三
+  TimetableWeek, // 周四
+  TimetableWeek, // 周五
+  TimetableWeek, // 周六
+  TimetableWeek // 周日
+]
+
+type Timetable = [
+  TimetableRow, // 第一大节
+  TimetableRow, // 第二大节
+  TimetableRow, // 第三大节
+  TimetableRow, // 第四大节
+  TimetableRow, // 第五大节
+  TimetableWeek | [string] // 备注
+][] // 每周
+
+interface ITimetableAPI {
+  heu_username: string
+  created: number
+  status: ScoreStatus
+  result: Timetable
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string
