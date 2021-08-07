@@ -129,7 +129,6 @@ const TimetablePage = () => {
             </Wrap>
             {Array.isArray(timetable?.result) ? (
               <>
-                <Spacer h="4" />
                 <Timetable />
               </>
             ) : (
