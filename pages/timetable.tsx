@@ -4,7 +4,6 @@ import {
   Heading,
   HStack,
   Icon,
-  Spacer,
   Spinner,
   Text,
   useToast,
@@ -127,13 +126,21 @@ const TimetablePage = () => {
                 </Button>
               </WrapItem>
             </Wrap>
-            {Array.isArray(timetable?.result) ? (
-              <>
-                <Timetable />
-              </>
+            {timetable ? (
+              Array.isArray(timetable.result) ? (
+                <>
+                  <Timetable />
+                </>
+              ) : (
+                <Center w="full" flexDir="column" h="50vh" pb="4">
+                  <Text color="gray.500">
+                    还没有数据，点击右上角按钮获取数据
+                  </Text>
+                </Center>
+              )
             ) : (
               <Center w="full" flexDir="column" h="50vh" pb="4">
-                <Text color="gray.500">还没有数据，点击右上角按钮获取数据</Text>
+                <Spinner thickness="4px" color="pink.400" size="xl" />
               </Center>
             )}
           </CardContainer>

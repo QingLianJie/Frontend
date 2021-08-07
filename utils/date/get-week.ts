@@ -7,10 +7,10 @@ export const getWeek = () => {
   const month = new Date().getMonth() + 1
 
   if (month <= 2) {
-    return dayjs().week() - dayjs(`${year - 1}-09-01`).week()
+    return dayjs().week() - dayjs(`${year - 1}-09-01`).week() + 1
   } else if (month >= 9) {
-    return dayjs().week() - dayjs(`${year}-09-01`).week()
+    return dayjs().week() - dayjs(`${year}-09-01`).week() + 1
   } else {
-    return dayjs().week() - dayjs(`${year}-03-01`).week()
+    return dayjs().week() - dayjs(`${year}-03-01`).week() + 1
   }
 }

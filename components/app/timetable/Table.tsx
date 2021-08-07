@@ -4,8 +4,8 @@ import {
   Divider,
   Fade,
   HStack,
-  Spacer,
   Table,
+  TableCaption,
   Tbody,
   Td,
   Text,
@@ -14,7 +14,6 @@ import {
   Thead,
   Tr,
   VStack,
-  TableCaption,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react'
@@ -44,8 +43,8 @@ const Timetable = () => {
         <Fade in>
           <Box w="full" overflowX="auto">
             <Table w="full" mb="2">
-              <TableCaption placement="top" my="0" pb="6">
-                <HStack spacing="2" px="4" justify="center">
+              <TableCaption placement="top" my="2" pb="4" fontSize="md" px="4">
+                <HStack spacing="2">
                   <Text>
                     {user && `${user.heu_username} 的`}第 {week} 周课表
                   </Text>
