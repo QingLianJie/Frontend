@@ -1,6 +1,6 @@
 import { Badge, HStack, Icon, Text, Wrap, WrapItem } from '@chakra-ui/react'
 import { RiFlagLine, RiTimeLine } from 'react-icons/ri'
-import CardLink from '../../../../common/action/link/CardLink'
+import ListLink from '../../../../common/action/link/ListLink'
 
 interface CourseListItemProps {
   course?: ICourse
@@ -8,7 +8,7 @@ interface CourseListItemProps {
 
 const CourseListItem = ({ course }: CourseListItemProps) => {
   return (
-    <CardLink href={`/courses/${course?.course_id}`}>
+    <ListLink href={`/courses/${course?.course_id}`}>
       <Wrap
         spacing="2"
         align={{ base: 'flex-start', lg: 'center' }}
@@ -52,7 +52,7 @@ const CourseListItem = ({ course }: CourseListItemProps) => {
           </Badge>
         </WrapItem>
       </Wrap>
-    </CardLink>
+    </ListLink>
   )
 }
 

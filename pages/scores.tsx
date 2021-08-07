@@ -16,7 +16,7 @@ import ButtonLink from '../components/common/action/link/ButtonLink'
 import MainContainer from '../components/common/container/Main'
 import useUser from '../hooks/useUser'
 
-const CoursePage = () => {
+const ScoresPage = () => {
   const { user, isError, isLoading } = useUser()
 
   return (
@@ -81,4 +81,4 @@ const CoursePage = () => {
   )
 }
 
-export default CoursePage
+export default ScoresPage

@@ -2,12 +2,12 @@ import { LinkBox, LinkOverlay } from '@chakra-ui/react'
 import { default as NextLink } from 'next/link'
 import { ReactNode } from 'react'
 
-interface CardLinkProps {
+interface ListLinkProps {
   href: string
   children: ReactNode | ReactNode[]
 }
 
-const CardLink = ({ href, children }: CardLinkProps) => {
+const ListLink = ({ href, children }: ListLinkProps) => {
   return (
     <LinkBox
       w="full"
@@ -23,10 +23,6 @@ const CardLink = ({ href, children }: CardLinkProps) => {
           bg: 'gray.900',
         },
       }}
-      borderWidth="1px"
-      rounded="md"
-      d="flex"
-      flexDir="column"
       transition="all 0.2s"
     >
       <NextLink href={href} passHref>
@@ -36,4 +32,4 @@ const CardLink = ({ href, children }: CardLinkProps) => {
   )
 }
 
-export default CardLink
+export default ListLink

@@ -80,13 +80,13 @@ interface IRecentCourseGrade {
   course: ICourse
 }
 
-type ScoreStatus = 'Fail' | 'Success' | 'Pending' | 'Never'
+type TaskStatus = 'Fail' | 'Success' | 'Pending' | 'Never'
 
 interface IScoreAPI {
   heu_username: string
   result: '' | string[]
   created: number
-  status: ScoreStatus
+  status: TaskStatus
 }
 
 interface IScore {
@@ -111,7 +111,7 @@ interface IScoreList {
   heu_username: string
   scores: Scores
   created: number
-  status: ScoreStatus
+  status: TaskStatus
 }
 
 type TimetableWeek = [] | [string[]]
@@ -138,8 +138,17 @@ type Timetable = [
 interface ITimetableAPI {
   heu_username: string
   created: number
-  status: ScoreStatus
+  status: TaskStatus
   result: Timetable
+}
+
+interface ITasks {
+  user: number
+  title: string
+  description: string
+  status: TaskStatus
+  additional_info: string
+  created: string
 }
 
 type RouterLink = {
@@ -178,6 +187,19 @@ type ShortcutLink = {
 }
 
 type ShortcutLinks = ShortcutLink[]
+
+type TaskLink = {
+  text: string
+  description: string
+  href: string
+  color?: {
+    light: ColorProps['color']
+    dark: ColorProps['color']
+  }
+  icon?: FC
+}
+
+type TaskLinks = TaskLink[]
 
 type Link = {
   href: string
