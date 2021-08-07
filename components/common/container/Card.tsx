@@ -17,7 +17,7 @@ const CardContainer = ({ as, full, children }: CardContainerProps) => {
       py="4"
       px="6"
       w="full"
-      h={full ? 'full' : 'auto'}
+      minH={full ? 'full' : 'auto'}
       bg="white"
       _dark={{
         bg: 'gray.800',

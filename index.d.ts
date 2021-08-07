@@ -142,7 +142,7 @@ interface ITimetableAPI {
   result: Timetable
 }
 
-interface ITasks {
+interface ITask {
   user: number
   title: string
   description: string
