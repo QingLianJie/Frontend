@@ -1,9 +1,9 @@
 import { Button, Checkbox, Fade, Input, Select, VStack } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useState } from 'react'
-import { courseQuery } from '../../../../../data/course-query'
-import useUser from '../../../../../hooks/useUser'
-import NumberInput from '../../../../common/form/input/NumberInput'
+import { courseQuery } from '../../../../data/course-query'
+import useUser from '../../../../hooks/useUser'
+import NumberInput from '../../../common/form/input/NumberInput'
 
 interface CourseListFilterProps {
   action: (query: CourseFilter) => void

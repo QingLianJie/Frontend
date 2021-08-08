@@ -16,7 +16,7 @@ import { RiBookOpenFill } from 'react-icons/ri'
 import useCourse from '../../../hooks/useCourse'
 import { calcRate } from '../../../utils/calc/course-statistics'
 import GroupContainer from '../../common/container/Group'
-import CourseStat from '../widget/course/dashboard/Stat'
+import CourseStat from './dashboard/Stat'
 
 interface CourseInfoProps {
   id: string

@@ -6,7 +6,7 @@ import useUser from '../../../../hooks/useUser'
 import CardContainer from '../../../common/container/Card'
 import GroupContainer from '../../../common/container/Group'
 import ListContainer from '../../../common/container/List'
-import CourseComment from '../../widget/course/comment/Card'
+import CourseComment from './Card'
 import CourseCommentInput from './Input'
 
 interface CourseCommentListProps {

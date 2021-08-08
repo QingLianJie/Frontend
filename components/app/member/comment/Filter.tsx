@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useDebounce } from 'use-debounce'
-import { calcCourseList } from '../../../../../utils/calc/profile-comments'
+import { calcCourseList } from '../../../../utils/calc/profile-comments'
 
 interface CourseCommentFilterProps {
   profile: IProfile | undefined

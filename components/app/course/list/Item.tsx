@@ -1,6 +1,6 @@
 import { Badge, HStack, Icon, Text, Wrap, WrapItem } from '@chakra-ui/react'
 import { RiFlagLine, RiTimeLine } from 'react-icons/ri'
-import ListLink from '../../../../common/action/link/ListLink'
+import ListLink from '../../../common/action/link/ListLink'
 
 interface CourseListItemProps {
   course?: ICourse

@@ -25,9 +25,9 @@ import {
   RiUserLine,
 } from 'react-icons/ri'
 import { mutate } from 'swr'
-import { toastConfig } from '../../../../../utils/config/toast'
-import { dateFormatter } from '../../../../../utils/formatter'
-import TextLink from '../../../../common/action/link/TextLink'
+import { toastConfig } from '../../../../utils/config/toast'
+import { dateFormatter } from '../../../../utils/formatter'
+import TextLink from '../../../common/action/link/TextLink'
 
 interface CourseCommentProps {
   lite?: boolean

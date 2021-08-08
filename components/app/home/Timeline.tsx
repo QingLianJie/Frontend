@@ -4,8 +4,8 @@ import { RiTimeLine } from 'react-icons/ri'
 import useTimeline from '../../../hooks/useTimeline'
 import GroupContainer from '../../common/container/Group'
 import ListContainer from '../../common/container/List'
-import CourseComment from '../widget/course/comment/Card'
-import RecentCourseGrade from '../widget/message/RecentCourseGrade'
+import CourseComment from '../course/comment/Card'
+import RecentCourseGrade from './message/RecentCourseGrade'
 
 const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()

@@ -7,14 +7,14 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
 import useProfile from '../../../hooks/useProfile'
 import CardContainer from '../../common/container/Card'
 import GroupContainer from '../../common/container/Group'
 import ListContainer from '../../common/container/List'
-import CourseComment from '../widget/course/comment/Card'
-import CourseCommentFilter from '../widget/course/comment/Filter'
+import CourseComment from '../course/comment/Card'
+import CourseCommentFilter from './comment/Filter'
 
 interface MemberCommentsProps {
   name: string | string[] | undefined
