@@ -6,6 +6,7 @@ import {
   Spinner,
   Text,
   ThemeTypings,
+  Tooltip,
   VStack,
   Wrap,
   WrapItem,
@@ -94,13 +95,31 @@ const TaskList = () => {
               tasks.map((task, index) => (
                 <Wrap key={index} w="full" spacing="3">
                   <WrapItem d="flex" alignItems="center">
-                    <Badge
-                      colorScheme={statusColorMap[task.status]}
-                      px="1.5"
-                      py="0.5"
+                    <Tooltip
+                      hasArrow
+                      fontSize="md"
+                      px="3"
+                      py="1.5"
+                      rounded="md"
+                      arrowSize={15}
+                      gutter={15}
+                      isDisabled={task.additional_info === ''}
+                      placement="top"
+                      label={
+                        task.additional_info === ''
+                          ? '暂无提示'
+                          : task.additional_info
+                      }
                     >
-                      {statusTextMap[task.status]}
-                    </Badge>
+                      <Badge
+                        colorScheme={statusColorMap[task.status]}
+                        px="1.5"
+                        py="0.5"
+                        cursor="default"
+                      >
+                        {statusTextMap[task.status]}
+                      </Badge>
+                    </Tooltip>
                     <Text ms="3" fontSize="sm" fontWeight="600">
                       {dateFormatter({ date: task.created })}
                     </Text>

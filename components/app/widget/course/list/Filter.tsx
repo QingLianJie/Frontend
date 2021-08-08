@@ -51,6 +51,11 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
       for (const key in query) {
         if (query[key as keyof CourseFilter] === '') {
           delete query[key as keyof CourseFilter]
+        } else if (
+          key === 'learned' &&
+          query[key as keyof CourseFilter] === 'false'
+        ) {
+          delete query[key as keyof CourseFilter]
         }
       }
 

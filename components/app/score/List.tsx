@@ -16,6 +16,7 @@ import {
 import { ReactNode } from 'react'
 import { RiFlagLine, RiTimeLine } from 'react-icons/ri'
 import useScore from '../../../hooks/useScore'
+import TextLink from '../../common/action/link/TextLink'
 import GroupContainer from '../../common/container/Group'
 
 const ScoreList = () => {
@@ -46,7 +47,9 @@ const ScoreList = () => {
                       </WrapItem>
 
                       <WrapItem pe="2">
-                        <Text>{score.name} </Text>
+                        <TextLink href={`/courses/${score.course_id}`}>
+                          {score.name}
+                        </TextLink>
                       </WrapItem>
 
                       <WrapItem pe="2" ms="auto">

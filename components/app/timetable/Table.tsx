@@ -22,6 +22,7 @@ import useTimetable from '../../../hooks/useTimetable'
 import useUser from '../../../hooks/useUser'
 import { getWeek } from '../../../utils/date/get-week'
 import { dateFormatter } from '../../../utils/formatter'
+import TextLink from '../../common/action/link/TextLink'
 
 const Timetable = () => {
   const { user } = useUser()
@@ -134,7 +135,21 @@ const Timetable = () => {
                               overflowWrap="break-word"
                               whiteSpace="pre-wrap"
                             >
-                              {cell?.toString().replace(/,/g, '\n')}
+                              <TextLink
+                                href={`/courses?search=${
+                                  cell?.toString().split(/[\ |,]/)[0]
+                                }`}
+                              >
+                                {cell?.toString().split(/[\ |,]/)[0]}
+                              </TextLink>
+                              <br />
+                              {cell
+                                ?.toString()
+                                .replace(/,/g, '\n')
+                                .replace(
+                                  cell?.toString().split(/[\ |\,]/)[0],
+                                  ''
+                                )}
                             </Text>
                           ))}
                         </HStack>
@@ -160,7 +175,21 @@ const Timetable = () => {
                                   overflowWrap="break-word"
                                   whiteSpace="pre-wrap"
                                 >
-                                  {course?.toString().replace(/,/g, '\n')}
+                                  <TextLink
+                                    href={`/courses?search=${
+                                      cell?.toString().split(/[\ |,]/)[0]
+                                    }`}
+                                  >
+                                    {cell?.toString().split(/[\ |,]/)[0]}
+                                  </TextLink>
+
+                                  {course
+                                    ?.toString()
+                                    .replace(/,/g, '\n')
+                                    .replace(
+                                      cell?.toString().split(/[\ |\,]/)[0],
+                                      ''
+                                    )}
                                 </Text>
                               ))}
                             </VStack>
