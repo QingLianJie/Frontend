@@ -1,73 +1,17 @@
-import {
-  Button,
-  Center,
-  Heading,
-  HStack,
-  Icon,
-  Spinner,
-  Text,
-  useToast,
-  VStack,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react'
+import { Center, HStack, Spinner, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { RiTableLine } from 'react-icons/ri'
-import { mutate } from 'swr'
 import Timetable from '../components/app/timetable/Table'
 import ButtonLink from '../components/common/action/link/ButtonLink'
 import CardContainer from '../components/common/container/Card'
+import GroupContainer from '../components/common/container/Group'
 import MainContainer from '../components/common/container/Main'
 import useTimetable from '../hooks/useTimetable'
 import useUser from '../hooks/useUser'
-import { toastConfig } from '../utils/config/toast'
-import { getTerm } from '../utils/date/get-term'
 
 const TimetablePage = () => {
-  const toast = useToast()
   const { user, isError: isUserError, isLoading: isUserLoading } = useUser()
   const { timetable, isLoading, isError } = useTimetable()
-
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
-
-  const handleFetchTimetable = () => {
-    fetch(`${baseURL}/api/my/timetable`, {
-      method: 'POST',
-      body: JSON.stringify({ term: getTerm() }),
-      mode: 'cors',
-      credentials: 'include',
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-      .then(async res => {
-        if (res.ok) {
-          toast({
-            title: '已发送获取数据请求',
-            description: '获取数据需要一些时间，请稍等片刻并刷新页面查看结果',
-            ...toastConfig.ok,
-          })
-          mutate(`${baseURL}/api/my/timetable`)
-        } else {
-          const data = await res.json()
-          Object.values(data).forEach(d => {
-            toast({
-              title: '数据请求失败',
-              description: d as string,
-              ...toastConfig.error,
-            })
-          })
-        }
-      })
-      .catch((err: Error) => {
-        console.log('Fetch Score Error -', err)
-        toast({
-          title: '数据请求失败',
-          description: err.toString(),
-          ...toastConfig.error,
-        })
-      })
-  }
 
   return (
     <>
@@ -111,39 +55,27 @@ const TimetablePage = () => {
             </VStack>
           </Center>
         ) : (
-          <CardContainer>
-            <Wrap spacing="4" justify="space-between">
-              <WrapItem alignItems="center" py="1">
-                <Icon as={RiTableLine} w="5" h="5" ms="1" me="3" />
-                <Heading as="p" fontSize="lg" fontWeight="600">
-                  我的课表
-                </Heading>
-              </WrapItem>
-
-              <WrapItem alignItems="center" py="1">
-                <Button size="sm" onClick={handleFetchTimetable}>
-                  更新课表
-                </Button>
-              </WrapItem>
-            </Wrap>
-            {timetable ? (
-              Array.isArray(timetable.result) ? (
-                <>
-                  <Timetable />
-                </>
+          <GroupContainer>
+            <CardContainer>
+              {timetable ? (
+                Array.isArray(timetable.result) ? (
+                  <>
+                    <Timetable />
+                  </>
+                ) : (
+                  <Center w="full" flexDir="column" h="50vh" pb="4">
+                    <Text color="gray.500">
+                      还没有数据，点击右上角按钮获取数据
+                    </Text>
+                  </Center>
+                )
               ) : (
                 <Center w="full" flexDir="column" h="50vh" pb="4">
-                  <Text color="gray.500">
-                    还没有数据，点击右上角按钮获取数据
-                  </Text>
+                  <Spinner thickness="4px" color="pink.400" size="xl" />
                 </Center>
-              )
-            ) : (
-              <Center w="full" flexDir="column" h="50vh" pb="4">
-                <Spinner thickness="4px" color="pink.400" size="xl" />
-              </Center>
-            )}
-          </CardContainer>
+              )}
+            </CardContainer>
+          </GroupContainer>
         )}
       </MainContainer>
     </>

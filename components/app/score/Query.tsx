@@ -63,7 +63,7 @@ const ScoreQuery = () => {
   }
 
   return (
-    <GroupContainer title="我的成绩" icon={RiBarChartBoxLine}>
+    <GroupContainer>
       {isError ? (
         <Alert status="error" rounded="md">
           <AlertIcon />

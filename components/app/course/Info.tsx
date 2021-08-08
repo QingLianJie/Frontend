@@ -39,7 +39,7 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
           清廉街
         </title>
       </Head>
-      <GroupContainer title="课程详情" icon={RiBookOpenLine}>
+      <GroupContainer>
         {isError ? (
           <Alert status="error" rounded="md">
             <AlertIcon />

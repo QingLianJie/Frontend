@@ -95,7 +95,7 @@ const CoursesPage = () => {
             h="full"
             minW="0"
           >
-            <GroupContainer title="课程列表" icon={RiBookOpenLine}>
+            <GroupContainer>
               {isError ? (
                 <Alert status="error" rounded="md">
                   <AlertIcon />
