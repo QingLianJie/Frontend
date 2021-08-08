@@ -13,7 +13,7 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { RiBarChartBoxLine, RiRefreshLine } from 'react-icons/ri'
+import { RiBarChartBoxFill, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useScore from '../../../hooks/useScore'
 import useUser from '../../../hooks/useUser'
@@ -77,7 +77,21 @@ const ScoreQuery = () => {
         <Fade in>
           <VStack align="start" spacing="4">
             <HStack spacing="4" px="4">
-              <Heading as="h2" fontSize="2xl" fontWeight="600">
+              <Heading
+                as="h2"
+                fontSize="2xl"
+                fontWeight="600"
+                d="flex"
+                alignItems="center"
+              >
+                <Icon
+                  as={RiBarChartBoxFill}
+                  me="4"
+                  w="7"
+                  h="7"
+                  color="green.500"
+                  _dark={{ color: 'green.400' }}
+                />
                 {user && `${user.username} 的`}成绩单
               </Heading>
               <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
@@ -86,7 +100,7 @@ const ScoreQuery = () => {
             </HStack>
             <HStack spacing="4" px="4">
               {scores.status === 'Success' ? (
-                <Text d="flex" alignItems="center">
+                <Text d="flex" alignItems="center" fontSize="sm">
                   数据更新于{' '}
                   {dateFormatter({
                     date: scores.created * 1000,

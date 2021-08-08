@@ -5,13 +5,14 @@ import {
   Center,
   Fade,
   Heading,
+  Icon,
   Spinner,
   VStack,
   Wrap,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { RiBookOpenLine } from 'react-icons/ri'
+import { RiBookOpenFill } from 'react-icons/ri'
 import useCourse from '../../../hooks/useCourse'
 import { calcRate } from '../../../utils/calc/course-statistics'
 import GroupContainer from '../../common/container/Group'
@@ -53,7 +54,21 @@ const CourseInfo = ({ id }: CourseInfoProps) => {
           <Fade in>
             <VStack align="start" spacing="4" px="4">
               <Wrap spacing="3" alignItems="center" pb="4">
-                <Heading as="h2" fontSize="2xl" fontWeight="600">
+                <Heading
+                  as="h2"
+                  fontSize="2xl"
+                  fontWeight="600"
+                  d="flex"
+                  alignItems="center"
+                >
+                  <Icon
+                    as={RiBookOpenFill}
+                    me="4"
+                    w="7"
+                    h="7"
+                    color="red.500"
+                    _dark={{ color: 'red.400' }}
+                  />
                   {courseInfo.name}
                 </Heading>
                 <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">

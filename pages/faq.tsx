@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { ReactNode } from 'react'
+import { RiQuestionFill } from 'react-icons/ri'
 import MainContainer from '../components/common/container/Main'
 import PageHeading from '../components/common/typography/PageHeading'
 import { faqs } from '../data/frequently-asked-questions'
@@ -27,7 +28,11 @@ const FAQPage = () => {
         <title>常见问题 | 清廉街</title>
       </Head>
       <MainContainer title="常见问题" gray>
-        <PageHeading title="第一次使用「清廉街」？这里有一些常见问题及解答。" />
+        <PageHeading
+          title="第一次使用「清廉街」？这里有一些常见问题及解答。"
+          icon={RiQuestionFill}
+          color="purple"
+        />
         <Grid
           templateColumns="repeat(2, 1fr)"
           gap={{ base: 4, md: 8 }}

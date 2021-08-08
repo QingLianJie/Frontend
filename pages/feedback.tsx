@@ -5,12 +5,18 @@ import {
   GridItem,
   HStack,
   Icon,
+  Spacer,
   Text,
   VStack,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { FC, ReactNode } from 'react'
-import { RiGithubLine, RiMailLine, RiQqLine } from 'react-icons/ri'
+import {
+  RiFeedbackFill,
+  RiGithubFill,
+  RiMailFill,
+  RiQqFill,
+} from 'react-icons/ri'
 import CopyButton from '../components/common/action/button/CopyButton'
 import ButtonLink from '../components/common/action/link/ButtonLink'
 import CardContainer from '../components/common/container/Card'
@@ -24,7 +30,11 @@ const FeedbackPage = () => {
         <title>反馈 | 清廉街</title>
       </Head>
       <MainContainer title="反馈" gray>
-        <PageHeading title="感谢你提供反馈，请在下面选择反馈方式。" />
+        <PageHeading
+          title="感谢你提供反馈，请在下面选择反馈方式。"
+          icon={RiFeedbackFill}
+          color="orange"
+        />
         <Grid
           templateColumns={{
             base: 'repeat(1, 1fr)',
@@ -37,7 +47,8 @@ const FeedbackPage = () => {
         >
           <GridItem w="full" minW="0">
             <FeedbackCard
-              icon={RiQqLine}
+              icon={RiQqFill}
+              color="blue"
               title="加入反馈 QQ 群"
               description="QQ 群号是 498047164 ，欢迎点击下面的按钮加入。"
               recommend
@@ -56,7 +67,8 @@ const FeedbackPage = () => {
 
           <GridItem w="full" minW="0">
             <FeedbackCard
-              icon={RiGithubLine}
+              icon={RiGithubFill}
+              color="black"
               title="去 GitHub 提 Issue"
               description="欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
               recommend
@@ -75,7 +87,8 @@ const FeedbackPage = () => {
 
           <GridItem w="full" minW="0">
             <FeedbackCard
-              icon={RiMailLine}
+              icon={RiMailFill}
+              color="yellow"
               title="邮件联系"
               description="如果你比较喜欢发邮件，也可以点击下面的按钮给我们发邮件。"
             >
@@ -95,6 +108,7 @@ export default FeedbackPage
 
 interface FeedbackCardProps {
   icon: FC
+  color: string
   title: string
   description: string
   recommend?: boolean
@@ -103,6 +117,7 @@ interface FeedbackCardProps {
 
 const FeedbackCard = ({
   icon,
+  color,
   title,
   description,
   recommend,
@@ -110,30 +125,7 @@ const FeedbackCard = ({
 }: FeedbackCardProps) => {
   return (
     <CardContainer full>
-      <Icon
-        as={icon}
-        w="24"
-        h="24"
-        zIndex="0"
-        color="gray.200"
-        _dark={{
-          color: 'gray.700',
-        }}
-        top="5"
-        left="5"
-        pos="absolute"
-        pointerEvents="none"
-      />
-      <VStack
-        align="start"
-        pt="28"
-        pb="2"
-        pos="relative"
-        zIndex="1"
-        justify="flex-end"
-        flex="1"
-        h="full"
-      >
+      <VStack align="start" py="2" pos="relative" zIndex="1" flex="1" h="full">
         <Text
           fontSize="xl"
           fontWeight="600"
@@ -152,10 +144,24 @@ const FeedbackCard = ({
         <Text pt="0.5" pb="1" px="1" lineHeight="1.75">
           {description}
         </Text>
+        <Spacer minH="16" />
         <ButtonGroup size="sm" alignItems="flex-start">
           <HStack spacing="3">{children}</HStack>
         </ButtonGroup>
       </VStack>
+      <Icon
+        as={icon}
+        w="48"
+        h="48"
+        zIndex="0"
+        color={`gray.500`}
+        _dark={{ color: `gray.400` }}
+        bottom="2"
+        right="-16"
+        pos="absolute"
+        pointerEvents="none"
+        opacity={0.1}
+      />
     </CardContainer>
   )
 }
