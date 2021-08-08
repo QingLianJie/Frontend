@@ -1,11 +1,13 @@
 import {
   Box,
   Button,
+  Center,
   Divider,
   Fade,
   HStack,
   Icon,
   Spacer,
+  Spinner,
   Table,
   TableCaption,
   Tbody,
@@ -17,8 +19,6 @@ import {
   Tr,
   useToast,
   VStack,
-  Wrap,
-  WrapItem,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { RiRefreshLine } from 'react-icons/ri'
@@ -48,6 +48,16 @@ const Timetable = () => {
   ]
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  let pollingCount = 0
+
+  const pollingFetch = (time: number = 1000) => {
+    pollingCount += 1
+    if (pollingCount > 8) return
+    setTimeout(() => {
+      mutate(`${baseURL}/api/my/timetable`)
+      pollingFetch(1000 * pollingCount)
+    }, time)
+  }
 
   const handleFetchTimetable = () => {
     fetch(`${baseURL}/api/my/timetable`, {
@@ -66,7 +76,8 @@ const Timetable = () => {
             description: '获取数据需要一些时间，请稍等片刻并刷新页面查看结果',
             ...toastConfig.ok,
           })
-          mutate(`${baseURL}/api/my/timetable`)
+          pollingCount = 0
+          pollingFetch()
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
@@ -142,100 +153,67 @@ const Timetable = () => {
                   </Button>
                 </HStack>
               </TableCaption>
-              <Thead>
-                <Tr whiteSpace="nowrap">
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    时间
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期一
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期二
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期三
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期四
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期五
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期六
-                  </Th>
-                  <Th fontSize="sm" borderWidth="1px" textAlign="center">
-                    星期天
-                  </Th>
-                </Tr>
-              </Thead>
-              <Tbody w="full">
-                {timetable?.result?.[week - 1]?.map((row, index) => (
-                  <Tr key={index} w="full">
-                    <Td
-                      fontSize="sm"
-                      whiteSpace="nowrap"
-                      borderWidth="1px"
-                      textAlign="center"
-                    >
-                      {timeMap[index]}
-                    </Td>
-                    {index === 5 ? (
-                      <Td
-                        colSpan={7}
-                        textAlign="center"
-                        fontSize="sm"
-                        borderWidth="1px"
-                        _hover={{ bg: 'gray.100', _dark: { bg: 'gray.900' } }}
-                        transition="all 0.2s"
-                      >
-                        <HStack
-                          spacing="3"
-                          divider={<Divider orientation="vertical" h="full" />}
-                          justify="space-evenly"
-                        >
-                          {row.map((cell, index) => (
-                            <Text
-                              key={index}
-                              lineHeight="1.75"
-                              as="pre"
-                              fontFamily="inherit"
-                              overflowWrap="break-word"
-                              whiteSpace="pre-wrap"
-                            >
-                              <TextLink
-                                href={`/courses?search=${
-                                  cell?.toString().split(/[\ |,]/)[0]
-                                }`}
-                              >
-                                {cell?.toString().split(/[\ |,]/)[0]}
-                              </TextLink>
-                              <br />
-                              {cell
-                                ?.toString()
-                                .replace(/,/g, '\n')
-                                .replace(
-                                  cell?.toString().split(/[\ |\,]/)[0],
-                                  ''
-                                )}
-                            </Text>
-                          ))}
-                        </HStack>
-                      </Td>
-                    ) : (
-                      row.map((cell, index) => (
+              {Array.isArray(timetable.result) ? (
+                <>
+                  <Thead>
+                    <Tr whiteSpace="nowrap">
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        时间
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期一
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期二
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期三
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期四
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期五
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期六
+                      </Th>
+                      <Th fontSize="sm" borderWidth="1px" textAlign="center">
+                        星期天
+                      </Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody w="full">
+                    {timetable?.result?.[week - 1]?.map((row, index) => (
+                      <Tr key={index} w="full">
                         <Td
-                          key={index}
-                          textAlign="center"
                           fontSize="sm"
+                          whiteSpace="nowrap"
                           borderWidth="1px"
-                          _hover={{ bg: 'gray.100', _dark: { bg: 'gray.900' } }}
-                          transition="all 0.2s"
+                          textAlign="center"
                         >
-                          {Array.isArray(cell) && (
-                            <VStack divider={<Divider />}>
-                              {cell.map((course, index) => (
+                          {timeMap[index]}
+                        </Td>
+                        {index === 5 ? (
+                          <Td
+                            colSpan={7}
+                            textAlign="center"
+                            fontSize="sm"
+                            borderWidth="1px"
+                            _hover={{
+                              bg: 'gray.100',
+                              _dark: { bg: 'gray.900' },
+                            }}
+                            transition="all 0.2s"
+                          >
+                            <HStack
+                              spacing="3"
+                              divider={
+                                <Divider orientation="vertical" h="full" />
+                              }
+                              justify="space-evenly"
+                            >
+                              {row.map((cell, index) => (
                                 <Text
                                   key={index}
                                   lineHeight="1.75"
@@ -251,8 +229,8 @@ const Timetable = () => {
                                   >
                                     {cell?.toString().split(/[\ |,]/)[0]}
                                   </TextLink>
-
-                                  {course
+                                  <br />
+                                  {cell
                                     ?.toString()
                                     .replace(/,/g, '\n')
                                     .replace(
@@ -261,25 +239,74 @@ const Timetable = () => {
                                     )}
                                 </Text>
                               ))}
-                            </VStack>
-                          )}
-                        </Td>
-                      ))
-                    )}
-                  </Tr>
-                ))}
-              </Tbody>
-              <Tfoot w="full">
-                <Tr>
-                  <Td colSpan={8} borderWidth="0" px="0" pb="0" mb="0">
-                    <TimetablePaginator
-                      currentPage={week}
-                      totalPage={timetable?.result?.length}
-                      onPageChange={week => setWeek(week)}
-                    />
-                  </Td>
-                </Tr>
-              </Tfoot>
+                            </HStack>
+                          </Td>
+                        ) : (
+                          row.map((cell, index) => (
+                            <Td
+                              key={index}
+                              textAlign="center"
+                              fontSize="sm"
+                              borderWidth="1px"
+                              _hover={{
+                                bg: 'gray.100',
+                                _dark: { bg: 'gray.900' },
+                              }}
+                              transition="all 0.2s"
+                            >
+                              {Array.isArray(cell) && (
+                                <VStack divider={<Divider />}>
+                                  {cell.map((course, index) => (
+                                    <Text
+                                      key={index}
+                                      lineHeight="1.75"
+                                      as="pre"
+                                      fontFamily="inherit"
+                                      overflowWrap="break-word"
+                                      whiteSpace="pre-wrap"
+                                    >
+                                      <TextLink
+                                        href={`/courses?search=${
+                                          cell?.toString().split(/[\ |,]/)[0]
+                                        }`}
+                                      >
+                                        {cell?.toString().split(/[\ |,]/)[0]}
+                                      </TextLink>
+
+                                      {course
+                                        ?.toString()
+                                        .replace(/,/g, '\n')
+                                        .replace(
+                                          cell?.toString().split(/[\ |\,]/)[0],
+                                          ''
+                                        )}
+                                    </Text>
+                                  ))}
+                                </VStack>
+                              )}
+                            </Td>
+                          ))
+                        )}
+                      </Tr>
+                    ))}
+                  </Tbody>
+                  <Tfoot w="full">
+                    <Tr>
+                      <Td colSpan={8} borderWidth="0" px="0" pb="0" mb="0">
+                        <TimetablePaginator
+                          currentPage={week}
+                          totalPage={timetable?.result?.length}
+                          onPageChange={week => setWeek(week)}
+                        />
+                      </Td>
+                    </Tr>
+                  </Tfoot>
+                </>
+              ) : (
+                <Center w="full" flexDir="column" h="50vh" pb="4">
+                  <Spinner thickness="4px" color="pink.400" size="xl" />
+                </Center>
+              )}
             </Table>
           </Box>
         </Fade>

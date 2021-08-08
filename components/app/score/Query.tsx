@@ -25,7 +25,18 @@ const ScoreQuery = () => {
   const toast = useToast()
   const { user } = useUser()
   const { scores, isLoading, isError } = useScore()
+
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  let pollingCount = 0
+
+  const pollingFetch = (time: number = 1000) => {
+    pollingCount += 1
+    if (pollingCount > 8) return
+    setTimeout(() => {
+      mutate(`${baseURL}/api/my/scores`)
+      pollingFetch(1000 * pollingCount)
+    }, time)
+  }
 
   const handleFetchScore = () => {
     fetch(`${baseURL}/api/my/scores`, {
@@ -40,7 +51,8 @@ const ScoreQuery = () => {
             description: '获取数据需要一些时间，请稍等片刻并刷新页面查看结果',
             ...toastConfig.ok,
           })
-          mutate(`${baseURL}/api/my/scores`)
+          pollingCount = 0
+          pollingFetch()
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
@@ -108,15 +120,15 @@ const ScoreQuery = () => {
                   })}
                 </Text>
               ) : scores.status === 'Fail' ? (
-                <Text d="flex" alignItems="center">
+                <Text d="flex" alignItems="center" fontSize="sm">
                   数据更新失败，请尝试重新获取
                 </Text>
               ) : scores.status === 'Pending' ? (
-                <Text d="flex" alignItems="center">
+                <Text d="flex" alignItems="center" fontSize="sm">
                   数据正在更新，请稍等片刻
                 </Text>
               ) : scores.status === 'Never' ? (
-                <Text d="flex" alignItems="center">
+                <Text d="flex" alignItems="center" fontSize="sm">
                   还没有获取过成绩数据，点击右边按钮获取
                 </Text>
               ) : null}

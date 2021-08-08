@@ -1,6 +1,5 @@
 import { Center, HStack, Spinner, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
-import { RiTableLine } from 'react-icons/ri'
 import Timetable from '../components/app/timetable/Table'
 import ButtonLink from '../components/common/action/link/ButtonLink'
 import CardContainer from '../components/common/container/Card'
@@ -58,17 +57,7 @@ const TimetablePage = () => {
           <GroupContainer>
             <CardContainer>
               {timetable ? (
-                Array.isArray(timetable.result) ? (
-                  <>
-                    <Timetable />
-                  </>
-                ) : (
-                  <Center w="full" flexDir="column" h="50vh" pb="4">
-                    <Text color="gray.500">
-                      还没有数据，点击右上角按钮获取数据
-                    </Text>
-                  </Center>
-                )
+                <Timetable />
               ) : (
                 <Center w="full" flexDir="column" h="50vh" pb="4">
                   <Spinner thickness="4px" color="pink.400" size="xl" />
