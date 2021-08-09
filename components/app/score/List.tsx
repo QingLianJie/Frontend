@@ -16,7 +16,7 @@ import {
 import { ReactNode } from 'react'
 import { RiFlagLine, RiTimeLine } from 'react-icons/ri'
 import useScore from '../../../hooks/useScore'
-import TextLink from '../../common/action/link/TextLink'
+import ListLink from '../../common/action/link/ListLink'
 import GroupContainer from '../../common/container/Group'
 
 const ScoreList = () => {
@@ -30,83 +30,81 @@ const ScoreList = () => {
             .reverse()
             .map(([term, data], index) => (
               <ListItem key={index} title={term} count={data.length}>
-                <VStack w="full" divider={<Divider />}>
+                <VStack w="full" spacing="0" divider={<Divider />}>
                   {data.map((score, index) => (
-                    <Wrap
-                      key={index}
-                      w="full"
-                      py="2"
-                      spacing="2"
-                      align={{ base: 'flex-start', lg: 'center' }}
-                      direction={{ base: 'column', lg: 'row' }}
-                    >
-                      <WrapItem pe="2">
-                        <Text color="gray.500" fontSize="sm">
-                          {score.course_id}
-                        </Text>
-                      </WrapItem>
-
-                      <WrapItem pe="2">
-                        <TextLink href={`/courses/${score.course_id}`}>
-                          {score.name}
-                        </TextLink>
-                      </WrapItem>
-
-                      <WrapItem pe="2" ms="auto">
-                        <HStack spacing="4">
+                    <ListLink key={index} href={`/courses/${score.course_id}`}>
+                      <Wrap
+                        w="full"
+                        spacing="2"
+                        align={{ base: 'flex-start', lg: 'center' }}
+                        direction={{ base: 'column', lg: 'row' }}
+                      >
+                        <WrapItem pe="2">
                           <Text color="gray.500" fontSize="sm">
-                            {score.attributes}
+                            {score.course_id}
                           </Text>
+                        </WrapItem>
 
-                          <Text color="gray.500" fontSize="sm">
-                            {score.assessment_method}
-                          </Text>
+                        <WrapItem pe="2">
+                          <Text>{score.name}</Text>
+                        </WrapItem>
 
-                          <Text
-                            color="gray.500"
-                            fontSize="sm"
-                            d="flex"
-                            alignItems="center"
-                          >
-                            <Icon as={RiFlagLine} w="4" h="4" me="1.5" />
-                            {score.credit} 学分
-                          </Text>
+                        <WrapItem pe="2" ms="auto">
+                          <HStack spacing="4">
+                            <Text color="gray.500" fontSize="sm">
+                              {score.attributes}
+                            </Text>
 
-                          <Text
-                            color="gray.500"
-                            fontSize="sm"
-                            d="flex"
-                            alignItems="center"
-                          >
-                            <Icon as={RiTimeLine} w="4" h="4" me="1.5" />
-                            {score.total_time} 学时
-                          </Text>
-                        </HStack>
-                      </WrapItem>
+                            <Text color="gray.500" fontSize="sm">
+                              {score.assessment_method}
+                            </Text>
 
-                      <WrapItem flex="1" justifyContent="flex-end">
-                        <HStack>
-                          <Text
-                            fontWeight="bold"
-                            color={
-                              score.grade === '---'
-                                ? 'yellow.500'
-                                : score.grade === '不及格' ||
-                                  Number(score.grade) < 60
-                                ? 'red.500'
-                                : score.grade === '优秀' ||
-                                  Number(score.grade) >= 90
-                                ? 'green.500'
-                                : 'inherit'
-                            }
-                          >
-                            {score.grade === '---'
-                              ? score.grade_mark
-                              : score.grade}
-                          </Text>
-                        </HStack>
-                      </WrapItem>
-                    </Wrap>
+                            <Text
+                              color="gray.500"
+                              fontSize="sm"
+                              d="flex"
+                              alignItems="center"
+                            >
+                              <Icon as={RiFlagLine} w="4" h="4" me="1.5" />
+                              {score.credit} 学分
+                            </Text>
+
+                            <Text
+                              color="gray.500"
+                              fontSize="sm"
+                              d="flex"
+                              alignItems="center"
+                            >
+                              <Icon as={RiTimeLine} w="4" h="4" me="1.5" />
+                              {score.total_time} 学时
+                            </Text>
+                          </HStack>
+                        </WrapItem>
+
+                        <WrapItem flex="1" justifyContent="flex-end">
+                          <HStack>
+                            <Text
+                              fontWeight="bold"
+                              color={
+                                score.grade === '---'
+                                  ? 'yellow.500'
+                                  : score.grade === '不及格' ||
+                                    Number(score.grade) < 60
+                                  ? 'red.500'
+                                  : score.grade === '优秀' ||
+                                    Number(score.grade) >= 90
+                                  ? 'green.500'
+                                  : 'inherit'
+                              }
+                            >
+                              {score.grade === '---'
+                                ? score.grade_mark
+                                : score.grade}
+                            </Text>
+                          </HStack>
+                        </WrapItem>
+                      </Wrap>
+                    </ListLink>
                   ))}
                 </VStack>
               </ListItem>
@@ -147,9 +145,7 @@ const ListItem = ({ title, count, children }: ListItemProps) => {
         </Badge>
         <AccordionIcon />
       </AccordionButton>
-      <AccordionPanel py="4" px="6">
-        {children}
-      </AccordionPanel>
+      <AccordionPanel p="0">{children}</AccordionPanel>
     </AccordionItem>
   )
 }

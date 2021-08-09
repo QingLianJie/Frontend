@@ -4,23 +4,24 @@ import { ReactNode } from 'react'
 
 interface TextLinkProps {
   href: string
+  color?: string
   children: ReactNode | ReactNode[]
 }
 
-const TextLink = ({ href, children }: TextLinkProps) => {
+const TextLink = ({ href, color, children }: TextLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
         w="fit-content"
-        color="purple.500"
+        color={`${color || 'purple'}.600`}
         _dark={{
-          color: 'purple.300',
+          color: `${color || 'purple'}.300`,
         }}
         _hover={{
           textDecoration: 'none',
-          color: 'purple.700',
+          color: `${color || 'purple'}.700`,
           _dark: {
-            color: 'purple.200',
+            color: `${color || 'purple'}.200`,
           },
         }}
       >
