@@ -1,6 +1,8 @@
 import {
+  Badge,
   Button,
   Center,
+  Divider,
   FormControl,
   FormLabel,
   HStack,
@@ -12,9 +14,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spacer,
   Spinner,
   Switch,
   Text,
+  ThemeTypings,
   useDisclosure,
   useToast,
   VStack,
@@ -27,7 +31,21 @@ import { mutate } from 'swr'
 import useDailyReport from '../../../../hooks/useDailyReport'
 import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
+import { dateFormatter } from '../../../../utils/formatter'
 import TaskButton from '../../../common/action/button/TaskButton'
+
+const statusTextMap: { [key in ReportStatus]: string } = {
+  Fail: '失败',
+  Success: '成功',
+  Waiting: '执行中',
+}
+
+const statusColorMap: { [key in ReportStatus]: ThemeTypings['colorSchemes'] } =
+  {
+    Fail: 'red',
+    Success: 'green',
+    Waiting: 'blue',
+  }
 
 const DailyReport = () => {
   const toast = useToast()
@@ -71,7 +89,7 @@ const DailyReport = () => {
             ...toastConfig.ok,
           })
           mutate(`${baseURL}/api/tasks`)
-          mutate(`${baseURL}/api/pingjiao`)
+          mutate(`${baseURL}/api/report/task`)
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
@@ -93,6 +111,41 @@ const DailyReport = () => {
       })
   }
 
+  const handleRemoveReport = (id: number) => {
+    fetch(`${baseURL}/api/report/task/${id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            title: '删除任务成功',
+            ...toastConfig.ok,
+          })
+          mutate(`${baseURL}/api/tasks`)
+          mutate(`${baseURL}/api/report/task`)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            toast({
+              title: '删除任务失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
+          })
+        }
+      })
+      .catch((err: Error) => {
+        console.log('Teaching Evaluation Error -', err)
+        toast({
+          title: '删除任务失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
+      })
+  }
+
   return (
     <>
       {isLoading ? null : isError ? null : (
@@ -100,7 +153,7 @@ const DailyReport = () => {
           color="yellow"
           icon={RiGalleryUploadFill}
           title="每日报备"
-          description="每日 00:05 自动执行当天报备"
+          description="按计划自动执行报备"
           action={onOpen}
           disabled={isUserLoading || isUserError || !user?.heu_username}
         />
@@ -121,7 +174,7 @@ const DailyReport = () => {
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
           <ModalBody>
-            <FormControl isDisabled>
+            <FormControl isDisabled d="none">
               <HStack
                 spacing="4"
                 w="full"
@@ -134,25 +187,51 @@ const DailyReport = () => {
                 <Switch id="report-daily" size="md" isDisabled />
               </HStack>
             </FormControl>
+
             {isError ? (
-              <Center w="full" h="full" minH="25vh">
+              <Center w="full" h="full" minH="25vh" pb="6">
                 <Text color="gray.500" fontSize="lg">
                   数据加载失败
                 </Text>
               </Center>
             ) : isLoading ? (
-              <Center w="full" h="full" minH="25vh">
+              <Center w="full" h="full" minH="25vh" pb="6">
                 <Spinner thickness="4px" color="pink.400" size="xl" />
               </Center>
             ) : tasks.length === 0 ? (
-              <Center w="full" h="full" minH="25vh">
+              <Center w="full" h="full" minH="25vh" pb="6">
                 <Text color="gray.500" fontSize="lg">
                   暂无已请求的报备任务
                 </Text>
               </Center>
             ) : (
-              <></>
+              <VStack spacing="3" w="full" divider={<Divider />} py="4">
+                {tasks.map((task, index) => (
+                  <HStack spacing="4" w="full" key={index}>
+                    <Badge
+                      colorScheme={statusColorMap[task.status]}
+                      px="1.5"
+                      py="0.5"
+                      cursor="default"
+                    >
+                      {statusTextMap[task.status]}
+                    </Badge>
+                    <Text>{task.pk}</Text>
+                    <Text>{dateFormatter({ date: task.time })}</Text>
+                    <Spacer />
+                    <Button
+                      size="sm"
+                      colorScheme="red"
+                      variant="outline"
+                      onClick={() => handleRemoveReport(task.pk)}
+                    >
+                      删除
+                    </Button>
+                  </HStack>
+                ))}
+              </VStack>
             )}
+
             <VStack spacing="4">
               <HStack
                 as="form"
@@ -183,7 +262,7 @@ const DailyReport = () => {
                   handleReport(true)
                 }}
               >
-                <Button isFullWidth type="submit">
+                <Button isFullWidth type="submit" colorScheme="yellow">
                   立即报备一次（{dayjs().format('YYYY-MM-DD')}）
                 </Button>
               </HStack>

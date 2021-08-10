@@ -152,13 +152,15 @@ interface ITask {
 }
 
 interface ITeachingEvaluation {
-  todo: unknown[]
+  todo: string[]
 }
+
+type ReportStatus = 'Fail' | 'Success' | 'Waiting'
 
 interface IDailyReport {
   pk: number
   time: string
-  status: TaskStatus
+  status: ReportStatus
 }
 
 type RouterLink = {

@@ -1,6 +1,7 @@
 import {
   Button,
   Center,
+  Divider,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -12,14 +13,13 @@ import {
   Text,
   useDisclosure,
   useToast,
+  VStack,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
-import { MouseEvent } from 'react'
+import { MouseEvent, useEffect } from 'react'
 import { RiQuillPenFill } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useTeachingEvaluation from '../../../../hooks/useTeachingEvaluation'
-import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
 import TaskButton from '../../../common/action/button/TaskButton'
 
@@ -123,7 +123,13 @@ const TeachingEvaluation = () => {
                 </Text>
               </Center>
             ) : (
-              <></>
+              <VStack spacing="3" w="full" divider={<Divider />}>
+                {todos.todo.map((todo, index) => (
+                  <Text key={index} w="full">
+                    {todo}
+                  </Text>
+                ))}
+              </VStack>
             )}
           </ModalBody>
 
