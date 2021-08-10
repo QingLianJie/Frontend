@@ -151,6 +151,16 @@ interface ITask {
   created: string
 }
 
+interface ITeachingEvaluation {
+  todo: unknown[]
+}
+
+interface IDailyReport {
+  pk: number
+  time: string
+  status: TaskStatus
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string

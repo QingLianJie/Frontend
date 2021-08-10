@@ -1,20 +1,10 @@
-import {
-  Grid,
-  GridItem,
-  Heading,
-  Icon,
-  Spacer,
-  Text,
-  VStack,
-  Wrap,
-  WrapItem,
-} from '@chakra-ui/react'
+import { Grid, GridItem, Heading, Icon, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { RiTaskFill } from 'react-icons/ri'
-import TaskList from '../../components/app/task/List'
-import CardLink from '../../components/common/action/link/CardLink'
-import MainContainer from '../../components/common/container/Main'
-import { taskLinks } from '../../data/task-links'
+import TaskList from '../components/app/task/List'
+import DailyReport from '../components/app/task/modal/DailyReport'
+import TeachingEvaluation from '../components/app/task/modal/TeachingEvaluation'
+import MainContainer from '../components/common/container/Main'
 
 const TasksPage = () => {
   return (
@@ -53,30 +43,8 @@ const TasksPage = () => {
               <strong>登录账号并且绑定 HEU 账号</strong> 后才能使用。
             </Text>
             <VStack spacing="3" py="2">
-              {taskLinks.map((link, index) => (
-                <CardLink key={index} href={link.href}>
-                  <Wrap spacing="3">
-                    <WrapItem d="flex" alignItems="center">
-                      <Icon
-                        as={link.icon}
-                        color={link.color?.light}
-                        _dark={{ color: link.color?.dark }}
-                        w="5"
-                        h="5"
-                        me="3"
-                      />
-                      <Text>{link.text}</Text>
-                    </WrapItem>
-                    <Spacer />
-
-                    <WrapItem d="flex" alignItems="center">
-                      <Text fontSize="sm" color="gray.500">
-                        {link.description}
-                      </Text>
-                    </WrapItem>
-                  </Wrap>
-                </CardLink>
-              ))}
+              <TeachingEvaluation />
+              <DailyReport />
             </VStack>
           </GridItem>
           <GridItem colSpan={{ base: 3, md: 2 }} minW="0" h="full">
