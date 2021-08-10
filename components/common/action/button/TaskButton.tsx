@@ -24,11 +24,12 @@ const TaskButton = ({
       isFullWidth
       variant="outline"
       px="6"
-      py="7"
+      py="5"
       bg="white"
       _dark={{ bg: 'gray.800' }}
       disabled={disabled}
       _disabled={{ cursor: 'not-allowed' }}
+      h="unset"
     >
       <Wrap spacing="3" w="full">
         <WrapItem d="flex" alignItems="center">

@@ -41,14 +41,14 @@ export const shortcutLinks: ShortcutLinks = [
   {
     text: '评教',
     long: '一键评教',
-    href: '/tasks/teaching-evaluation',
+    href: '/tasks/#teaching-evaluation',
     icon: RiQuillPenFill,
     color: { light: 'orange.500', dark: 'orange.400' },
   },
   {
     text: '报备',
     long: '每日报备',
-    href: '/tasks/daily-report',
+    href: '/tasks/#daily-report',
     icon: RiGalleryUploadFill,
     color: { light: 'yellow.500', dark: 'yellow.400' },
   },

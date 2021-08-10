@@ -13,6 +13,8 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { MouseEvent } from 'react'
 import { RiQuillPenFill } from 'react-icons/ri'
 import { mutate } from 'swr'
@@ -23,11 +25,20 @@ import TaskButton from '../../../common/action/button/TaskButton'
 
 const TeachingEvaluation = () => {
   const toast = useToast()
-  const { user, isError: isUserError, isLoading: isUserLoading } = useUser()
+  const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { todos, isLoading, isError } = useTeachingEvaluation()
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+
+  useEffect(() => {
+    if (router.isReady) {
+      const hash = window.location.hash
+      if (hash === '#teaching-evaluation') {
+        onOpen()
+      }
+    }
+  }, [onOpen, router])
 
   const handlePingJiao = (e: MouseEvent) => {
     e.preventDefault()
@@ -68,23 +79,17 @@ const TeachingEvaluation = () => {
 
   return (
     <>
-      {isLoading ? null : isError ? null : (
-        <TaskButton
-          color="orange"
-          icon={RiQuillPenFill}
-          title="一键评教"
-          description={
-            todos.todo.length === 0 ? '暂无需要评教的课程' : '自动执行评教'
-          }
-          action={onOpen}
-          disabled={
-            isUserLoading ||
-            isUserError ||
-            !user?.heu_username ||
-            todos.todo.length === 0
-          }
-        />
-      )}
+      <TaskButton
+        color="orange"
+        icon={RiQuillPenFill}
+        title="一键评教"
+        description={
+          !todos || todos.todo.length === 0
+            ? '暂无需要评教的课程'
+            : '自动执行评教'
+        }
+        action={onOpen}
+      />
 
       <Modal
         isCentered

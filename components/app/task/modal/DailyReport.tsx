@@ -20,7 +20,8 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import dayjs from 'dayjs'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 import { RiGalleryUploadFill } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useDailyReport from '../../../../hooks/useDailyReport'
@@ -30,10 +31,20 @@ import TaskButton from '../../../common/action/button/TaskButton'
 
 const DailyReport = () => {
   const toast = useToast()
+  const router = useRouter()
   const { user, isError: isUserError, isLoading: isUserLoading } = useUser()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { tasks, isLoading, isError } = useDailyReport()
   const [time, setTime] = useState('')
+
+  useEffect(() => {
+    if (router.isReady) {
+      const hash = window.location.hash
+      if (hash === '#daily-report') {
+        onOpen()
+      }
+    }
+  }, [onOpen, router])
 
   const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
 
