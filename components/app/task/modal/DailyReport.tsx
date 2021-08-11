@@ -72,7 +72,7 @@ const DailyReport = () => {
       body: once
         ? undefined
         : JSON.stringify({
-            time: time,
+            time: dayjs(time).format('YYYY-MM-DDT00:00'),
           }),
       mode: 'cors',
       credentials: 'include',
@@ -148,16 +148,14 @@ const DailyReport = () => {
 
   return (
     <>
-      {isLoading ? null : isError ? null : (
-        <TaskButton
-          color="yellow"
-          icon={RiGalleryUploadFill}
-          title="每日报备"
-          description="按计划自动执行报备"
-          action={onOpen}
-          disabled={isUserLoading || isUserError || !user?.heu_username}
-        />
-      )}
+      <TaskButton
+        color="yellow"
+        icon={RiGalleryUploadFill}
+        title="每日报备"
+        description="按计划自动执行报备"
+        action={onOpen}
+        disabled={isUserLoading || isUserError || !user?.heu_username}
+      />
 
       <Modal
         isCentered
@@ -205,7 +203,7 @@ const DailyReport = () => {
                 </Text>
               </Center>
             ) : (
-              <VStack spacing="3" w="full" divider={<Divider />} py="4">
+              <VStack spacing="3" w="full" divider={<Divider />} pb="4">
                 {tasks.map((task, index) => (
                   <HStack spacing="4" w="full" key={index}>
                     <Badge
@@ -222,7 +220,7 @@ const DailyReport = () => {
                     <Button
                       size="sm"
                       colorScheme="red"
-                      variant="outline"
+                      variant="ghost"
                       onClick={() => handleRemoveReport(task.pk)}
                     >
                       删除

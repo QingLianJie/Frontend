@@ -28,7 +28,7 @@ const TaskButton = ({
       bg="white"
       _dark={{ bg: 'gray.800' }}
       disabled={disabled}
-      _disabled={{ cursor: 'not-allowed' }}
+      _disabled={{ cursor: 'not-allowed', opacity: 0.5 }}
       h="unset"
     >
       <Wrap spacing="3" w="full">

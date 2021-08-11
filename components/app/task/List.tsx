@@ -37,7 +37,7 @@ const TaskList = () => {
 
   return (
     <>
-      {isUserLoading || isLoading ? (
+      {isUserLoading || isLoading || !tasks ? (
         <Center w="full" flexDir="column" flex="1" h="full" minH="50vh">
           <Spinner thickness="4px" color="pink.400" size="xl" />
         </Center>

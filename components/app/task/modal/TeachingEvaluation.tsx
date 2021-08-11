@@ -20,12 +20,14 @@ import { MouseEvent, useEffect } from 'react'
 import { RiQuillPenFill } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useTeachingEvaluation from '../../../../hooks/useTeachingEvaluation'
+import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
 import TaskButton from '../../../common/action/button/TaskButton'
 
 const TeachingEvaluation = () => {
   const toast = useToast()
   const router = useRouter()
+  const { user, isError: isUserError, isLoading: isUserLoading } = useUser()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { todos, isLoading, isError } = useTeachingEvaluation()
 
@@ -89,6 +91,7 @@ const TeachingEvaluation = () => {
             : '自动执行评教'
         }
         action={onOpen}
+        disabled={isUserLoading || isUserError || !user?.heu_username}
       />
 
       <Modal
