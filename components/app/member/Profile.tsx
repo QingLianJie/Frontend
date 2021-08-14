@@ -19,6 +19,7 @@ import {
 import useProfile from '../../../hooks/useProfile'
 import ProfileAvatar from './Avatar'
 import ProfileBind from './modal/Bind'
+import ProfileChangePassword from './modal/ChangePassword'
 import ProfileEditAvatar from './modal/EditAvatar'
 import ProfileUnbind from './modal/Unbind'
 
@@ -91,6 +92,7 @@ const MemberProfile = ({ name }: MemberProfileProps) => {
         {profile?.self && (
           <Skeleton isLoaded={!isLoading} w="full">
             <VStack spacing="3" w="full" mt="4">
+              <ProfileChangePassword />
               {profile?.heu_username ? <ProfileUnbind /> : <ProfileBind />}
             </VStack>
           </Skeleton>
