@@ -19,11 +19,11 @@ const IndexPage = () => {
           <GridItem colSpan={{ base: 4, md: 2, lg: 3 }} minW="0">
             <Shortcuts />
           </GridItem>
-          <GridItem colSpan={{ base: 4, md: 4, lg: 9 }} minW="0">
+          <GridItem colSpan={{ base: 4, md: 4, lg: 8 }} minW="0">
             <Timeline />
           </GridItem>
           <GridItem
-            colSpan={{ base: 4, md: 2, lg: 4 }}
+            colSpan={{ base: 4, md: 2, lg: 5 }}
             rowStart={{ base: 2, md: 1, lg: 'auto' }}
             colStart={{ base: 1, md: 3, lg: 'auto' }}
             minW="0"
