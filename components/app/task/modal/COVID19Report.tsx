@@ -153,7 +153,7 @@ const COVID19Report = () => {
               <>
                 <Text pb="4">
                   当前{' '}
-                  <strong>{status.pingan_daily ? '已启用' : '未启用'}</strong>{' '}
+                  <strong>{status?.pingan_daily ? '已启用' : '未启用'}</strong>{' '}
                   自动执行平安行动。
                 </Text>
                 <Center
@@ -173,7 +173,7 @@ const COVID19Report = () => {
                 spacing="2.5"
                 w="full"
                 divider={<Divider />}
-                px="4"
+                px="3"
                 py="2.5"
                 minH="25vh"
                 borderWidth="1px"

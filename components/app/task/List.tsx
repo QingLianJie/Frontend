@@ -95,7 +95,11 @@ const TaskList = () => {
             py="1.5"
           >
             {tasks.length === 0 ? (
-              <Text>暂时没有任务，试试刷新课表或者获取成绩吧</Text>
+              <Center w="full" flexDir="column" flex="1" h="full" minH="50vh">
+                <Text color="gray.500">
+                  暂时没有任务，试试刷新课表或者获取成绩吧
+                </Text>
+              </Center>
             ) : (
               tasks.slice(0, more ? tasks.length : 8).map((task, index) => (
                 <Wrap key={index} w="full" spacing="3">
@@ -138,20 +142,22 @@ const TaskList = () => {
                 </Wrap>
               ))
             )}
-
-            <Button
-              isFullWidth
-              onClick={() => setMore(!more)}
-              variant="link"
-              size="sm"
-            >
-              {more ? '收起' : '查看全部'}
-              {more ? (
-                <Icon as={RiArrowDropUpLine} w="5" h="5" />
-              ) : (
-                <Icon as={RiArrowDropDownLine} w="5" h="5" />
-              )}
-            </Button>
+            {tasks && tasks.length !== 0 && (
+              <Button
+                isFullWidth
+                onClick={() => setMore(!more)}
+                variant="link"
+                size="sm"
+                mb="-1"
+              >
+                {more ? '收起' : '查看全部'}
+                {more ? (
+                  <Icon as={RiArrowDropUpLine} w="5" h="5" />
+                ) : (
+                  <Icon as={RiArrowDropDownLine} w="5" h="5" />
+                )}
+              </Button>
+            )}
           </VStack>
         </CardContainer>
       )}

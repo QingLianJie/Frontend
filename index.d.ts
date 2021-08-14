@@ -187,6 +187,15 @@ interface ICOVID19ReportStatus {
   pingan_daily: boolean
 }
 
+interface IServiceStatus {
+  result: {
+    one: boolean
+    pingjiao: boolean
+    'cas-443': boolean
+    edusys: boolean
+  }
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string
