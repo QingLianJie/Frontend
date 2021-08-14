@@ -17,6 +17,13 @@ interface IProfile {
   comments: ICourseComment[]
 }
 
+interface IArticle {
+  pk: number
+  title: string
+  body: string
+  created: string
+}
+
 interface ICourse {
   id: number
   course_id: string
