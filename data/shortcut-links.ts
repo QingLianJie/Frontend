@@ -3,6 +3,7 @@ import {
   RiBookOpenFill,
   RiFeedbackFill,
   RiGalleryUploadFill,
+  RiHealthBookFill,
   RiQuestionFill,
   RiQuillPenFill,
   RiTableFill,
@@ -51,6 +52,13 @@ export const shortcutLinks: ShortcutLinks = [
     href: '/tasks/#daily-report',
     icon: RiGalleryUploadFill,
     color: { light: 'yellow.500', dark: 'yellow.400' },
+  },
+  {
+    text: '平安',
+    long: '平安行动',
+    href: '/tasks/#covid-19-report',
+    icon: RiHealthBookFill,
+    color: { light: 'green.500', dark: 'green.400' },
   },
   {
     text: '反馈',

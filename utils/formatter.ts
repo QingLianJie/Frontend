@@ -7,14 +7,14 @@ dayjs.extend(calendar)
 
 interface DateFormatterProps {
   date: string | number
-  relative?: boolean
   calendar?: boolean
+  time?: boolean
 }
 
 export const dateFormatter = ({
   date,
-  relative,
   calendar,
+  time = true,
 }: DateFormatterProps): string => {
   if (calendar) {
     return dayjs(date).calendar(dayjs(), {
@@ -25,10 +25,11 @@ export const dateFormatter = ({
       lastWeek: 'YYYY 年 M 月 D 日 - HH:mm',
       sameElse: 'YYYY 年 M 月 D 日 HH:mm',
     })
-  } else if (relative) {
   }
-
-  return dayjs(date).format('YYYY 年 M 月 D 日 - HH:mm')
+  if (time) {
+    return dayjs(date).format('YYYY 年 M 月 D 日 - HH:mm')
+  }
+  return dayjs(date).format('YYYY 年 M 月 D 日')
 }
 
 export const sizeFormatter = (size: number) => {

@@ -29,6 +29,7 @@ import { useEffect, useState } from 'react'
 import { RiGalleryUploadFill } from 'react-icons/ri'
 import { mutate } from 'swr'
 import useDailyReport from '../../../../hooks/useDailyReport'
+import useDailyReportStatus from '../../../../hooks/useDailyReportStatus'
 import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
 import { dateFormatter } from '../../../../utils/formatter'
@@ -53,6 +54,11 @@ const DailyReport = () => {
   const { user, isError: isUserError, isLoading: isUserLoading } = useUser()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { tasks, isLoading, isError } = useDailyReport()
+  const {
+    status,
+    isLoading: isStatusLoading,
+    isError: isStatusError,
+  } = useDailyReportStatus()
   const [time, setTime] = useState('')
 
   useEffect(() => {
@@ -88,8 +94,9 @@ const DailyReport = () => {
             title: '请求报备成功',
             ...toastConfig.ok,
           })
-          mutate(`${baseURL}/api/tasks`)
-          mutate(`${baseURL}/api/report/task`)
+          once
+            ? mutate(`${baseURL}/api/tasks`)
+            : mutate(`${baseURL}/api/report/task`)
         } else {
           const data = await res.json()
           Object.values(data).forEach(d => {
@@ -123,7 +130,6 @@ const DailyReport = () => {
             title: '删除任务成功',
             ...toastConfig.ok,
           })
-          mutate(`${baseURL}/api/tasks`)
           mutate(`${baseURL}/api/report/task`)
         } else {
           const data = await res.json()
@@ -140,6 +146,46 @@ const DailyReport = () => {
         console.log('Teaching Evaluation Error -', err)
         toast({
           title: '删除任务失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
+      })
+  }
+
+  const handleChangeDailyReport = (status: boolean) => {
+    fetch(`${baseURL}/api/report/daily`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+      body: JSON.stringify({
+        report_daily: status,
+      }),
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            title: (status ? '启用' : '取消') + '每日报备成功',
+            ...toastConfig.ok,
+          })
+          mutate(`${baseURL}/api/report/daily`)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            toast({
+              title: (status ? '启用' : '取消') + '每日报备失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
+          })
+        }
+      })
+      .catch((err: Error) => {
+        console.log('Teaching Evaluation Error -', err)
+        toast({
+          title: (status ? '启用' : '取消') + '每日报备失败',
           description: err.toString(),
           ...toastConfig.error,
         })
@@ -172,65 +218,106 @@ const DailyReport = () => {
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
           <ModalBody>
-            <FormControl isDisabled d="none">
+            <VStack spacing="4">
+              {!isStatusError && !isStatusLoading && (
+                <HStack
+                  as="form"
+                  spacing="4"
+                  w="full"
+                  align="center"
+                  onSubmit={e => {
+                    e.preventDefault()
+                    handleChangeDailyReport(!status.report_daily)
+                  }}
+                >
+                  <Button
+                    isFullWidth
+                    type="submit"
+                    colorScheme={status.report_daily ? 'red' : 'yellow'}
+                  >
+                    {status.report_daily
+                      ? '点击取消「每天都报备」'
+                      : '点击启用「每天都报备」'}
+                  </Button>
+                </HStack>
+              )}
+
+              {isError ? (
+                <Center w="full" h="full" minH="25vh" pb="4">
+                  <Text color="gray.500" fontSize="lg">
+                    数据加载失败
+                  </Text>
+                </Center>
+              ) : isLoading ? (
+                <Center w="full" h="full" minH="25vh" pb="4">
+                  <Spinner thickness="4px" color="pink.400" size="xl" />
+                </Center>
+              ) : tasks.length === 0 ? (
+                <Center
+                  w="full"
+                  h="full"
+                  minH="25vh"
+                  borderWidth="1px"
+                  rounded="md"
+                >
+                  <Text color="gray.500" fontSize="lg">
+                    暂无已请求的报备任务
+                  </Text>
+                </Center>
+              ) : (
+                <VStack
+                  spacing="2.5"
+                  w="full"
+                  divider={<Divider />}
+                  px="4"
+                  py="2.5"
+                  minH="25vh"
+                  borderWidth="1px"
+                  rounded="md"
+                >
+                  {tasks.map((task, index) => (
+                    <HStack spacing="4" w="full" key={index}>
+                      <Badge
+                        colorScheme={statusColorMap[task.status]}
+                        px="1.5"
+                        py="0.5"
+                        cursor="default"
+                      >
+                        {statusTextMap[task.status]}
+                      </Badge>
+                      <Text>{task.pk}</Text>
+                      <Text>
+                        {dateFormatter({ date: task.time, time: false })}
+                      </Text>
+                      <Spacer />
+                      <Button
+                        size="sm"
+                        colorScheme="red"
+                        variant="ghost"
+                        onClick={() => handleRemoveReport(task.pk)}
+                      >
+                        删除
+                      </Button>
+                    </HStack>
+                  ))}
+                </VStack>
+              )}
+
               <HStack
+                as="form"
                 spacing="4"
                 w="full"
                 align="center"
-                justify="space-between"
+                onSubmit={e => {
+                  e.preventDefault()
+                  handleReport(true)
+                }}
               >
-                <FormLabel htmlFor="report-daily" whiteSpace="nowrap" m="0">
-                  每天都报备
-                </FormLabel>
-                <Switch id="report-daily" size="md" isDisabled />
+                <Button isFullWidth type="submit">
+                  立即报备一次（{dayjs().format('YYYY-MM-DD')}）
+                </Button>
               </HStack>
-            </FormControl>
 
-            {isError ? (
-              <Center w="full" h="full" minH="25vh" pb="6">
-                <Text color="gray.500" fontSize="lg">
-                  数据加载失败
-                </Text>
-              </Center>
-            ) : isLoading ? (
-              <Center w="full" h="full" minH="25vh" pb="6">
-                <Spinner thickness="4px" color="pink.400" size="xl" />
-              </Center>
-            ) : tasks.length === 0 ? (
-              <Center w="full" h="full" minH="25vh" pb="6">
-                <Text color="gray.500" fontSize="lg">
-                  暂无已请求的报备任务
-                </Text>
-              </Center>
-            ) : (
-              <VStack spacing="3" w="full" divider={<Divider />} pb="4">
-                {tasks.map((task, index) => (
-                  <HStack spacing="4" w="full" key={index}>
-                    <Badge
-                      colorScheme={statusColorMap[task.status]}
-                      px="1.5"
-                      py="0.5"
-                      cursor="default"
-                    >
-                      {statusTextMap[task.status]}
-                    </Badge>
-                    <Text>{task.pk}</Text>
-                    <Text>{dateFormatter({ date: task.time })}</Text>
-                    <Spacer />
-                    <Button
-                      size="sm"
-                      colorScheme="red"
-                      variant="ghost"
-                      onClick={() => handleRemoveReport(task.pk)}
-                    >
-                      删除
-                    </Button>
-                  </HStack>
-                ))}
-              </VStack>
-            )}
-
-            <VStack spacing="4">
               <HStack
                 as="form"
                 spacing="4"
@@ -248,21 +335,6 @@ const DailyReport = () => {
                   required
                 />
                 <Button type="submit">按指定日期报备</Button>
-              </HStack>
-
-              <HStack
-                as="form"
-                spacing="4"
-                w="full"
-                align="center"
-                onSubmit={e => {
-                  e.preventDefault()
-                  handleReport(true)
-                }}
-              >
-                <Button isFullWidth type="submit" colorScheme="yellow">
-                  立即报备一次（{dayjs().format('YYYY-MM-DD')}）
-                </Button>
               </HStack>
             </VStack>
           </ModalBody>

@@ -170,6 +170,23 @@ interface IDailyReport {
   status: ReportStatus
 }
 
+interface IDailyReportStatus {
+  report_daily: boolean
+}
+
+interface ICOVID19Report {
+  user: number
+  title: string
+  description: string
+  status: ReportStatus
+  additional_info: string
+  created: string
+}
+
+interface ICOVID19ReportStatus {
+  pingan_daily: boolean
+}
+
 type RouterLink = {
   type: 'LINK'
   text: string
