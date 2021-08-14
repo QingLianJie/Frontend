@@ -39,7 +39,7 @@ EXPOSE 3000
 ENV NEXT_TELEMETRY_DISABLED 1
 
 # API URL
-ENV NEXT_PUBLIC_BASE_API_URL=https://api.qinglianjie.cn
-ENV NEXT_PUBLIC_BASE_AVATAR_URL=https://api.qinglianjie.cn
+ENV NEXT_PUBLIC_BASE_API_URL https://api.qinglianjie.cn
+ENV NEXT_PUBLIC_BASE_AVATAR_URL https://api.qinglianjie.cn
 
 CMD ["yarn", "start"]
