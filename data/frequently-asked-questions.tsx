@@ -1,4 +1,4 @@
-import { Link } from '@chakra-ui/react'
+import TextLink from '../components/common/action/link/TextLink'
 
 export const faqs: FAQs = [
   {
@@ -27,7 +27,7 @@ export const faqs: FAQs = [
   },
   {
     title: '网站用什么技术做的？',
-    content: '后端用的是 Django 和 MySQL，前端用的是 Next.js 。',
+    content: '后端用的是 Django 和 MySQL，前端用的是 Next.js 和 Chakra UI 。',
   },
   {
     title: '网站如何维护？（指盈利方式）',
@@ -42,13 +42,33 @@ export const faqs: FAQs = [
     content: '没有关系。',
   },
   {
+    title: '为什么上传的头像很模糊、有锯齿？',
+    content: (
+      <span>
+        所有上传头像都会被压缩到 512x512 分辨率，而且如果你用的是 Firefox 或者
+        Safari，那么它不支持&nbsp;
+        <TextLink
+          external
+          href="https://caniuse.com/mdn-api_paintrenderingcontext2d_imagesmoothingenabled"
+        >
+          图片抗锯齿
+        </TextLink>
+        &nbsp;处理，所以在上传头像的时候，可以选择使用最新版 Chrome 或者 Edge
+        上传。
+      </span>
+    ),
+  },
+  {
+    title: '如何开启暗色模式？',
+    content:
+      '目前网站是否启用暗色模式取决于系统的颜色模式，暂时不支持手动切换。',
+  },
+  {
     title: '还有其他问题或建议？',
     content: (
       <span>
         欢迎联系我们，通过&nbsp;
-        <strong>
-          <Link href="/feedback">反馈页面</Link>
-        </strong>
+        <TextLink href="/feedback">反馈页面</TextLink>
         &nbsp;向我们提供反馈。
       </span>
     ),

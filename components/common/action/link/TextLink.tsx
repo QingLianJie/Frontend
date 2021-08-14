@@ -4,11 +4,12 @@ import { ReactNode } from 'react'
 
 interface TextLinkProps {
   href: string
+  external?: boolean
   color?: string
   children: ReactNode | ReactNode[]
 }
 
-const TextLink = ({ href, color, children }: TextLinkProps) => {
+const TextLink = ({ href, external, color, children }: TextLinkProps) => {
   return (
     <NextLink href={href} passHref>
       <Link
@@ -24,6 +25,8 @@ const TextLink = ({ href, color, children }: TextLinkProps) => {
             color: `${color || 'purple'}.200`,
           },
         }}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
       >
         <Text as="span" w="fit-content">
           {children}
