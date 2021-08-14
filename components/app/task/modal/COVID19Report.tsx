@@ -18,7 +18,10 @@ import {
   useDisclosure,
   useToast,
   VStack,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
+import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { MouseEvent, useEffect } from 'react'
 import { RiHealthBookFill } from 'react-icons/ri'
@@ -113,13 +116,50 @@ const COVID19Report = () => {
       })
   }
 
+  const handlePingAnOnce = (e: MouseEvent) => {
+    e.preventDefault()
+
+    fetch(`${baseURL}/api/pingan`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'include',
+    })
+      .then(async res => {
+        if (res.ok) {
+          toast({
+            title: '执行平安行动成功',
+            ...toastConfig.ok,
+          })
+          mutate(`${baseURL}/api/pingan/daily`)
+          mutate(`${baseURL}/api/pingan/tasks`)
+        } else {
+          const data = await res.json()
+          Object.values(data).forEach(d => {
+            toast({
+              title: '执行平安行动失败',
+              description: d as string,
+              ...toastConfig.error,
+            })
+          })
+        }
+      })
+      .catch((err: Error) => {
+        console.log('Teaching Evaluation Error -', err)
+        toast({
+          title: '执行平安行动失败',
+          description: err.toString(),
+          ...toastConfig.error,
+        })
+      })
+  }
+
   return (
     <>
       <TaskButton
         color="green"
         icon={RiHealthBookFill}
-        title="每日平安"
-        description={'自动执行每日平安'}
+        title="平安行动"
+        description={'自动执行平安行动报备'}
         action={onOpen}
         disabled={isUserLoading || isUserError || !user?.heu_username}
       />
@@ -134,11 +174,22 @@ const COVID19Report = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader pt="5" pb="3">
-            每日平安
+            平安行动
           </ModalHeader>
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
           <ModalBody>
+            <Button
+              mb="4"
+              isFullWidth
+              colorScheme={status?.pingan_daily ? 'red' : 'green'}
+              onClick={handlePingAn}
+            >
+              {!status?.pingan_daily
+                ? '开启自动执行「平安行动」'
+                : '关闭自动执行「平安行动」'}
+            </Button>
+
             {isError ? (
               <Center w="full" h="full" minH="25vh" pb="4">
                 <Text color="gray.500" fontSize="lg">
@@ -151,11 +202,6 @@ const COVID19Report = () => {
               </Center>
             ) : tasks.length === 0 ? (
               <>
-                <Text pb="4">
-                  当前{' '}
-                  <strong>{status?.pingan_daily ? '已启用' : '未启用'}</strong>{' '}
-                  自动执行平安行动。
-                </Text>
                 <Center
                   w="full"
                   h="full"
@@ -169,63 +215,51 @@ const COVID19Report = () => {
                 </Center>
               </>
             ) : (
-              <VStack
-                spacing="2.5"
-                w="full"
-                divider={<Divider />}
-                px="3"
-                py="2.5"
-                minH="25vh"
-                borderWidth="1px"
-                rounded="md"
-              >
-                {tasks.map((task, index) => (
-                  <HStack spacing="4" w="full" key={index}>
-                    <Tooltip
-                      hasArrow
-                      fontSize="md"
-                      px="3"
-                      py="1.5"
-                      rounded="md"
-                      arrowSize={15}
-                      gutter={15}
-                      isDisabled={task.additional_info === ''}
-                      placement="top"
-                      label={
-                        task.additional_info === ''
-                          ? '暂无提示'
-                          : task.additional_info
-                      }
-                    >
-                      <Badge
-                        colorScheme={statusColorMap[task.status]}
-                        px="1.5"
-                        py="0.5"
-                        cursor="default"
-                      >
-                        {statusTextMap[task.status]}
-                      </Badge>
-                    </Tooltip>
-                    <Text ms="3" fontSize="sm" fontWeight="600">
-                      {dateFormatter({ date: task.created })}
-                    </Text>
-                  </HStack>
-                ))}
-              </VStack>
-            )}
-          </ModalBody>
+              <>
+                <VStack
+                  spacing="3"
+                  w="full"
+                  divider={<Divider />}
+                  px="4"
+                  py="3"
+                  minH="25vh"
+                  borderWidth="1px"
+                  rounded="md"
+                  maxH="50vh"
+                  overflow="auto"
+                >
+                  {tasks.map((task, index) => (
+                    <Wrap w="full" key={index} align="start">
+                      <WrapItem>
+                        <Badge
+                          colorScheme={statusColorMap[task.status]}
+                          px="1.5"
+                          py="0.5"
+                          cursor="default"
+                        >
+                          {statusTextMap[task.status]}
+                        </Badge>
 
-          <ModalFooter pt="2" pb="6">
-            <Button mr={3} onClick={onClose}>
-              取消
+                        <Text ms="3" fontSize="sm" fontWeight="600">
+                          {dateFormatter({ date: task.created })}
+                        </Text>
+                      </WrapItem>
+                      <WrapItem>
+                        <Text overflowWrap="break-word" fontSize="sm">
+                          {task.additional_info}
+                        </Text>
+                      </WrapItem>
+                    </Wrap>
+                  ))}
+                </VStack>
+              </>
+            )}
+
+            <Button mt="4" isFullWidth onClick={handlePingAnOnce}>
+              立即执行一次（{dayjs().format('YYYY-MM-DD')}）
             </Button>
-            <Button
-              colorScheme={status?.pingan_daily ? 'red' : 'green'}
-              onClick={handlePingAn}
-            >
-              {!status?.pingan_daily ? '开启自动执行' : '关闭自动执行'}
-            </Button>
-          </ModalFooter>
+          </ModalBody>
+          <ModalFooter py="2"></ModalFooter>
         </ModalContent>
       </Modal>
     </>

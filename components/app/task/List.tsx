@@ -134,15 +134,23 @@ const TaskList = () => {
                     </Text>
                   </WrapItem>
                   <WrapItem d="flex" alignItems="center">
-                    <Text me="3">{task.title}</Text>
-                    <Text color="gray.500" fontSize="sm">
+                    <Text me="3" whiteSpace="nowrap">
+                      {task.title}
+                    </Text>
+                  </WrapItem>
+                  <WrapItem d="flex" alignItems="center">
+                    <Text
+                      color="gray.500"
+                      fontSize="sm"
+                      overflowWrap="break-word"
+                    >
                       {task.description}
                     </Text>
                   </WrapItem>
                 </Wrap>
               ))
             )}
-            {tasks && tasks.length !== 0 && (
+            {tasks && tasks.length > 8 && (
               <Button
                 isFullWidth
                 onClick={() => setMore(!more)}
