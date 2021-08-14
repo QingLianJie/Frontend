@@ -102,40 +102,32 @@ const TaskList = () => {
               </Center>
             ) : (
               tasks.slice(0, more ? tasks.length : 8).map((task, index) => (
-                <Wrap key={index} w="full" spacing="3">
+                <Wrap key={index} w="full" spacing="2">
                   <WrapItem d="flex" alignItems="center">
-                    <Tooltip
-                      hasArrow
-                      fontSize="md"
-                      px="3"
-                      py="1.5"
-                      rounded="md"
-                      arrowSize={15}
-                      gutter={15}
-                      isDisabled={task.additional_info === ''}
-                      placement="top"
-                      label={
-                        task.additional_info === ''
-                          ? '暂无提示'
-                          : task.additional_info
-                      }
+                    <Badge
+                      colorScheme={statusColorMap[task.status]}
+                      px="1.5"
+                      py="0.5"
+                      cursor="default"
                     >
-                      <Badge
-                        colorScheme={statusColorMap[task.status]}
-                        px="1.5"
-                        py="0.5"
-                        cursor="default"
-                      >
-                        {statusTextMap[task.status]}
-                      </Badge>
-                    </Tooltip>
+                      {statusTextMap[task.status]}
+                    </Badge>
+
                     <Text ms="3" fontSize="sm" fontWeight="600">
                       {dateFormatter({ date: task.created })}
                     </Text>
                   </WrapItem>
                   <WrapItem d="flex" alignItems="center">
-                    <Text me="3" whiteSpace="nowrap">
-                      {task.title}
+                    <Text whiteSpace="nowrap">{task.title}</Text>
+                  </WrapItem>
+                  <WrapItem d="flex" alignItems="center">
+                    <Text
+                      color="gray.500"
+                      fontSize="sm"
+                      overflowWrap="break-word"
+                      wordBreak="break-all"
+                    >
+                      {task.additional_info}
                     </Text>
                   </WrapItem>
                   <WrapItem d="flex" alignItems="center">
@@ -143,6 +135,7 @@ const TaskList = () => {
                       color="gray.500"
                       fontSize="sm"
                       overflowWrap="break-word"
+                      wordBreak="break-all"
                     >
                       {task.description}
                     </Text>

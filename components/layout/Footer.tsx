@@ -2,7 +2,7 @@ import { Container, Flex, Text } from '@chakra-ui/react'
 
 const Footer = () => {
   return (
-    <Flex as="footer" px={{ base: '6', md: '8', lg: '12' }} py="8">
+    <Flex as="footer" px={{ base: 6, md: 8, lg: 12 }} py="8">
       <Container
         w="full"
         maxW="container.xl"

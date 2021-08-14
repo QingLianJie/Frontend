@@ -60,7 +60,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => {
           <HeaderDrawer />
         </Box>
 
-        <Text as="h1" fontWeight="600" ms={{ base: 4, lg: 0 }} fontSize="lg">
+        <Text as="h1" fontWeight="600" ms={{ base: 0, lg: 0 }} fontSize="lg">
           {title}
         </Text>
 

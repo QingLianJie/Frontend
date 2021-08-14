@@ -107,7 +107,7 @@ const ProfileChangePassword = () => {
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
           <ModalBody>
-            <Flex flexDir="column">
+            <Flex flexDir="column" as="form">
               <FormInput
                 placeholder="旧密码"
                 type="password"

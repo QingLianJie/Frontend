@@ -111,7 +111,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
           ))}
         </Select>
         <Spacer />
-        <ButtonGroup isAttached>
+        <ButtonGroup isAttached spacing="0">
           <Tooltip
             label={`以 ${user?.username} 身份发布`}
             aria-label={`以 ${user?.username} 身份发布`}
@@ -122,6 +122,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
             rounded="md"
             arrowSize={15}
             gutter={15}
+            w="full"
           >
             <Button
               colorScheme="red"
@@ -149,6 +150,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
               icon={<Icon as={RiSpyLine} w="50%" h="50%" />}
               type="submit"
               onClick={() => handlePostComment(true)}
+              w="12"
             />
           </Tooltip>
         </ButtonGroup>

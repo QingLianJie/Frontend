@@ -73,6 +73,7 @@ const CourseCommentFilter = ({
         bg="white"
         _dark={{ bg: 'gray.800' }}
         onChange={e => setSearch(e.target.value)}
+        name="comment-filter"
       />
 
       {profile?.self && (
