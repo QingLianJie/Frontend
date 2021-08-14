@@ -52,7 +52,7 @@ const ServiceStatusPage = () => {
         {isError ? (
           <Center w="full" h="full" minH="50vh" pb="4">
             <Text color="gray.500" fontSize="lg">
-              数据加载失败
+              数据加载失败，应该是服务器挂了
             </Text>
           </Center>
         ) : isLoading || !status?.result ? (

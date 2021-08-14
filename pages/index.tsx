@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem, useColorMode } from '@chakra-ui/react'
 import Head from 'next/head'
 import Notices from '../components/app/home/Notices'
 import Shortcuts from '../components/app/home/Shortcuts'

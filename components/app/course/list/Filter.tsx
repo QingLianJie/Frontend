@@ -199,7 +199,7 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
             spacing="3"
             isChecked={learned === 'true'}
             onChange={e => setLearned(e.target.checked ? 'true' : 'false')}
-            d={expand ? 'initial' : 'none'}
+            d={expand ? 'flex' : 'none'}
           >
             只看我学过的
           </Checkbox>

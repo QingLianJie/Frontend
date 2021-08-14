@@ -7,7 +7,6 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react'
-import 'github-markdown-css/github-markdown.css'
 import { RiNotificationBadgeLine } from 'react-icons/ri'
 import useArticle from '../../../hooks/useArticle'
 import { dateFormatter } from '../../../utils/formatter'
@@ -64,13 +63,13 @@ const NoticeCard = ({ title, date, content }: NoticeCardProps) => {
       <Text as="time" d="flex" fontSize="sm" color="gray.500" py="1">
         {date}
       </Text>
-      <Box py="1">
-        <article
-          className="markdown-body"
-          dangerouslySetInnerHTML={{ __html: content }}
-          style={{ fontFamily: 'inherit' }}
-        />
-      </Box>
+      <Box
+        className="markdown-body"
+        as="article"
+        py="1"
+        color="inherit"
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></Box>
     </CardContainer>
   )
 }
