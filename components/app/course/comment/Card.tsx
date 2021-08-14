@@ -98,6 +98,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
     <VStack align="start" w="full" p="0" spacing="3.5">
       <HStack w="full" spacing="3" px="0.5">
         <Avatar
+          name={comment.anonymous ? '' : comment?.user?.username || '用户头像'}
           w="6"
           h="6"
           src={

@@ -12,6 +12,7 @@ const RecentCourseGrade = ({ course, created }: RecentCourseGradeProps) => {
   return (
     <HStack w="full" spacing="3">
       <Avatar
+        name="最近成绩"
         w="6"
         h="6"
         icon={<Icon as={RiBookLine} w="60%" h="60%" />}

@@ -20,6 +20,7 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
     <Popover placement="bottom-end">
       <PopoverTrigger>
         <Avatar
+          name={!user?.image ? '' : user?.username || '用户头像'}
           src={
             user?.image
               ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${user.image}`

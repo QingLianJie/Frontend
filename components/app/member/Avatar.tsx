@@ -25,6 +25,7 @@ const ProfileAvatar = ({ profile, action }: ProfileAvatarProps) => {
         mx={{ base: 0, sm: 'auto' }}
       >
         <Avatar
+          name={!profile?.image ? '' : profile?.username || '用户头像'}
           icon={<RiUserLine size="50%" />}
           src={
             profile?.image
