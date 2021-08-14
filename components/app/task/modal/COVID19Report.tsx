@@ -3,7 +3,6 @@ import {
   Button,
   Center,
   Divider,
-  HStack,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,7 +13,6 @@ import {
   Spinner,
   Text,
   ThemeTypings,
-  Tooltip,
   useDisclosure,
   useToast,
   VStack,
@@ -186,8 +184,8 @@ const COVID19Report = () => {
               onClick={handlePingAn}
             >
               {!status?.pingan_daily
-                ? '开启自动执行「平安行动」'
-                : '关闭自动执行「平安行动」'}
+                ? '点击开启自动执行「平安行动」'
+                : '点击关闭自动执行「平安行动」'}
             </Button>
 
             {isError ? (

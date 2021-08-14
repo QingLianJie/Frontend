@@ -1,10 +1,10 @@
-import { Divider, Grid, useBreakpointValue, VStack } from '@chakra-ui/react'
+import { Grid, useBreakpointValue, VStack } from '@chakra-ui/react'
 import { FC } from 'react'
 import { RiLinksLine } from 'react-icons/ri'
 import { shortcutLinks } from '../../../data/shortcut-links'
-import GroupContainer from '../../common/container/Group'
 import IconLink from '../../common/action/link/IconLink'
 import MenuListLink from '../../common/action/link/MenuListLink'
+import GroupContainer from '../../common/container/Group'
 
 const Shortcuts = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false })
@@ -13,9 +13,9 @@ const Shortcuts = () => {
     <GroupContainer title="常用" icon={RiLinksLine}>
       {isMobile === undefined ? null : isMobile ? (
         <Grid
-          templateColumns="repeat(auto-fit, 4.5rem)"
+          templateColumns="repeat(auto-fit, 4.75rem)"
           justifyContent={{ base: 'center', md: 'flex-start' }}
-          gap={{ base: 1, md: 4 }}
+          gap={{ base: 0.5, md: 4 }}
           py="1"
           w="full"
           rounded="md"

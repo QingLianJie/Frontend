@@ -6,6 +6,7 @@ import {
   RiHealthBookFill,
   RiQuestionFill,
   RiQuillPenFill,
+  RiServerFill,
   RiTableFill,
   RiTaskFill,
 } from 'react-icons/ri'
@@ -66,6 +67,13 @@ export const shortcutLinks: ShortcutLinks = [
     href: '/feedback',
     icon: RiFeedbackFill,
     color: { light: 'orange.500', dark: 'orange.400' },
+  },
+  {
+    text: '状态',
+    long: '服务状态',
+    href: '/service-status',
+    icon: RiServerFill,
+    color: { light: 'green.500', dark: 'green.400' },
   },
   {
     text: '帮助',
