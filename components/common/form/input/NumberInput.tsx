@@ -30,7 +30,7 @@ const NumberInput = ({
   action,
 }: NumberInputProps) => {
   return (
-    <InputGroup>
+    <InputGroup w="full">
       {addon && <InputLeftAddon>{addon}</InputLeftAddon>}
       <ChakraNumberInput
         min={min}
@@ -38,6 +38,7 @@ const NumberInput = ({
         step={step}
         onChange={action}
         value={value}
+        w="full"
       >
         <NumberInputField
           placeholder={placeholder}

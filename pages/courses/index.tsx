@@ -154,7 +154,12 @@ const CoursesPage = () => {
             </GroupContainer>
           </GridItem>
 
-          <GridItem colSpan={{ base: 2, md: 6, lg: 4 }} h="full" minW="0">
+          <GridItem
+            colSpan={{ base: 2, md: 6, lg: 4 }}
+            h="full"
+            minW="0"
+            rowStart={{ base: 1, md: 'auto' }}
+          >
             <GroupContainer title="课程搜索" icon={RiSearchLine}>
               <CourseListFilter action={handleFilter} />
             </GroupContainer>
