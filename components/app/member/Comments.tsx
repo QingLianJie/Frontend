@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { RiDiscussLine, RiSearchLine } from 'react-icons/ri'
+import { BASE_API_URL } from '../../../data/api-config'
 import useProfile from '../../../hooks/useProfile'
 import CardContainer from '../../common/container/Card'
 import GroupContainer from '../../common/container/Group'
@@ -25,7 +26,7 @@ const MemberComments = ({ name }: MemberCommentsProps) => {
   const { profile, isLoading, isError } = useProfile(username)
   const [comments, setComments] = useState(profile?.comments)
   const [loading, setLoading] = useState(false)
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const hasComment = () => profile?.comments && profile?.comments.length !== 0
 

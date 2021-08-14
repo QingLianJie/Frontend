@@ -14,6 +14,7 @@ import {
 import { useRouter } from 'next/router'
 import { MouseEvent, useState } from 'react'
 import { RiLockPasswordFill } from 'react-icons/ri'
+import { BASE_API_URL } from '../../../../data/api-config'
 import { toastConfig } from '../../../../utils/config/toast'
 import { passwordRegex } from '../../../../utils/regex'
 import FormInput from '../../../common/form/input/FormInput'
@@ -25,7 +26,7 @@ const ProfileChangePassword = () => {
   const [newPassword, setNewPassword] = useState('')
   const [newPasswordAgain, setNewPasswordAgain] = useState('')
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const router = useRouter()
 

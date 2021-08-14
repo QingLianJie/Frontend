@@ -1,5 +1,6 @@
 import { AspectRatio, Avatar, Tooltip } from '@chakra-ui/react'
 import { RiUserLine } from 'react-icons/ri'
+import { BASE_AVATAR_URL } from '../../../data/api-config'
 
 interface ProfileAvatarProps {
   profile?: IProfile | undefined
@@ -29,7 +30,7 @@ const ProfileAvatar = ({ profile, action }: ProfileAvatarProps) => {
           icon={<RiUserLine size="50%" />}
           src={
             profile?.image
-              ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${profile.image}`
+              ? `${BASE_AVATAR_URL}${profile.image}`
               : undefined
           }
           borderWidth="1px"

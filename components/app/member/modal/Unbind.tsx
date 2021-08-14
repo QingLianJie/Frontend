@@ -11,6 +11,7 @@ import {
 import { useRouter } from 'next/router'
 import { MouseEvent, useRef, useState } from 'react'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import { toastConfig } from '../../../../utils/config/toast'
 
 const ProfileUnbind = () => {
@@ -19,7 +20,7 @@ const ProfileUnbind = () => {
   const onClose = () => setIsOpen(false)
   const cancelRef = useRef<HTMLButtonElement>(null)
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const router = useRouter()
   const name = router.asPath.replace(/[\/@]|[\/@\/]/g, '')

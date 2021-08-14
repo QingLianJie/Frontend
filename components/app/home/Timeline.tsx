@@ -1,6 +1,7 @@
 import { Alert, AlertIcon, Center, Fade, Spinner } from '@chakra-ui/react'
 import { Fragment } from 'react'
 import { RiTimeLine } from 'react-icons/ri'
+import { BASE_API_URL } from '../../../data/api-config'
 import useTimeline from '../../../hooks/useTimeline'
 import GroupContainer from '../../common/container/Group'
 import ListContainer from '../../common/container/List'
@@ -9,7 +10,7 @@ import RecentCourseGrade from './message/RecentCourseGrade'
 
 const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   return (
     <GroupContainer title="最近" icon={RiTimeLine}>

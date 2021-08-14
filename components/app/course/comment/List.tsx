@@ -1,6 +1,7 @@
 import { Button, Fade, Spacer, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { RiDiscussLine } from 'react-icons/ri'
+import { BASE_API_URL } from '../../../../data/api-config'
 import useCourse from '../../../../hooks/useCourse'
 import useUser from '../../../../hooks/useUser'
 import CardContainer from '../../../common/container/Card'
@@ -21,7 +22,7 @@ const CourseCommentList = ({ id }: CourseCommentListProps) => {
     courseInfo?.comments.length < 5 ? courseInfo.comments.length : 5
   )
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   return (
     <GroupContainer title="课程评论" icon={RiDiscussLine}>

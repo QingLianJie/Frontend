@@ -10,6 +10,7 @@ import {
 import router from 'next/router'
 import { MouseEvent } from 'react'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
 import ButtonLink from '../../../common/action/link/ButtonLink'
@@ -19,7 +20,7 @@ const MemberPopover = () => {
   const toast = useToast()
   const { user } = useUser()
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const handleLogout = (e: MouseEvent) => {
     e.preventDefault()

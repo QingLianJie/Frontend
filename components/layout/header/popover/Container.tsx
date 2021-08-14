@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { ReactElement } from 'react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
+import { BASE_AVATAR_URL } from '../../../../data/api-config'
 
 interface PopoverWrapperProps {
   user?: IUser
@@ -23,7 +24,7 @@ const PopoverWrapper = ({ user, children }: PopoverWrapperProps) => {
           name={!user?.image ? '' : user?.username || '用户头像'}
           src={
             user?.image
-              ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${user.image}`
+              ? `${BASE_AVATAR_URL}${user.image}`
               : undefined
           }
           icon={

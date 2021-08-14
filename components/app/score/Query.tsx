@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { RiBarChartBoxFill, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../data/api-config'
 import useScore from '../../../hooks/useScore'
 import useUser from '../../../hooks/useUser'
 import { toastConfig } from '../../../utils/config/toast'
@@ -26,7 +27,7 @@ const ScoreQuery = () => {
   const { user } = useUser()
   const { scores, isLoading, isError } = useScore()
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
   let pollingCount = 0
 
   const pollingFetch = (time: number = 1000) => {

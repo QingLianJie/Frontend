@@ -28,6 +28,7 @@ import { ChangeEvent, useState } from 'react'
 import Cropper from 'react-cropper'
 import { RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import { toastConfig } from '../../../../utils/config/toast'
 import { sizeFormatter } from '../../../../utils/formatter'
 import ProfileAvatar from '../Avatar'
@@ -64,7 +65,7 @@ const ProfileEditAvatar = ({ profile }: ProfileEditProps) => {
   const verifyFileSize = (size: number) => size <= 10 * 1024 * 1024
   const verifyFileType = (type: string) => fileType.includes(type)
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const handleAvatarUpload = () => {
     if (cropper) {

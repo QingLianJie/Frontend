@@ -25,6 +25,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { RiGalleryUploadFill } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import useDailyReport from '../../../../hooks/useDailyReport'
 import useDailyReportStatus from '../../../../hooks/useDailyReportStatus'
 import useUser from '../../../../hooks/useUser'
@@ -67,7 +68,7 @@ const DailyReport = () => {
     }
   }, [onOpen, router])
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const handleReport = (once?: boolean) => {
     fetch(once ? `${baseURL}/api/report` : `${baseURL}/api/report/task`, {

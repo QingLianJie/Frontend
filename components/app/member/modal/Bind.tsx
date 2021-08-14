@@ -18,6 +18,7 @@ import { useRouter } from 'next/router'
 import { MouseEvent, useState } from 'react'
 import { RiBookFill, RiLockPasswordFill } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import { toastConfig } from '../../../../utils/config/toast'
 import FormInput from '../../../common/form/input/FormInput'
 
@@ -28,7 +29,7 @@ const ProfileBind = () => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const router = useRouter()
   const username = router.asPath.replace(/[\/@]|[\/@\/]/g, '')

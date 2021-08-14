@@ -25,6 +25,10 @@ import {
   RiUserLine,
 } from 'react-icons/ri'
 import { mutate } from 'swr'
+import {
+  BASE_API_URL,
+  BASE_AVATAR_URL,
+} from '../../../../data/api-config'
 import { toastConfig } from '../../../../utils/config/toast'
 import { dateFormatter } from '../../../../utils/formatter'
 import TextLink from '../../../common/action/link/TextLink'
@@ -44,7 +48,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
   const [expand, setExpand] = useState(false)
   const [more, setMore] = useState(false)
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   useEffect(() => {
     if (contentRef.current) {
@@ -105,7 +109,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
             comment.anonymous
               ? undefined
               : comment.user.image
-              ? `${process.env.NEXT_PUBLIC_BASE_AVATAR_URL}${comment.user.image}`
+              ? `${BASE_AVATAR_URL}${comment.user.image}`
               : undefined
           }
           icon={

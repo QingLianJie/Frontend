@@ -19,6 +19,7 @@ import { useRouter } from 'next/router'
 import { MouseEvent, useEffect } from 'react'
 import { RiQuillPenFill } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import useTeachingEvaluation from '../../../../hooks/useTeachingEvaluation'
 import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
@@ -31,7 +32,7 @@ const TeachingEvaluation = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { todos, isLoading, isError } = useTeachingEvaluation()
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   useEffect(() => {
     if (router.isReady) {

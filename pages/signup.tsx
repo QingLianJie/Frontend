@@ -10,6 +10,7 @@ import HorizontalContainer from '../components/common/container/Horizontal'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
 import SubmitButton from '../components/common/form/SubmitButton'
+import { BASE_API_URL } from '../data/api-config'
 import { toastConfig } from '../utils/config/toast'
 import { nameRegex, passwordRegex } from '../utils/regex'
 
@@ -27,8 +28,7 @@ const SignupPage = () => {
   const [password, setPassword] = useState('')
   const [passwordAgain, setPasswordAgain] = useState('')
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
-
+  const baseURL = BASE_API_URL
   const checkName = () => {
     if (!nameRegex.test(name)) {
       toast({

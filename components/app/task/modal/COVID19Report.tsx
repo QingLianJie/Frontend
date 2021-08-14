@@ -24,6 +24,7 @@ import { useRouter } from 'next/router'
 import { MouseEvent, useEffect } from 'react'
 import { RiHealthBookFill } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import useCOVID19Report from '../../../../hooks/useCOVID19Report'
 import useCOVID19ReportStatus from '../../../../hooks/useCOVID19ReportStatus'
 import useUser from '../../../../hooks/useUser'
@@ -56,7 +57,7 @@ const COVID19Report = () => {
     isError: isStatusError,
   } = useCOVID19ReportStatus()
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   useEffect(() => {
     if (router.isReady) {

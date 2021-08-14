@@ -10,6 +10,7 @@ import HorizontalContainer from '../components/common/container/Horizontal'
 import CardForm from '../components/common/form/CardForm'
 import Input from '../components/common/form/input/FormInput'
 import SubmitButton from '../components/common/form/SubmitButton'
+import { BASE_API_URL } from '../data/api-config'
 import { toastConfig } from '../utils/config/toast'
 import { emailRegex } from '../utils/regex'
 
@@ -29,7 +30,7 @@ const LoginPage = () => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const isEmail = (name: string) =>
     setNameType(emailRegex.test(name) ? 'email' : 'username')

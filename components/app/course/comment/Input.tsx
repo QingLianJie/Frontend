@@ -15,6 +15,7 @@ import {
 import { useState } from 'react'
 import { RiSpyLine } from 'react-icons/ri'
 import { mutate } from 'swr'
+import { BASE_API_URL } from '../../../../data/api-config'
 import useCourse from '../../../../hooks/useCourse'
 import useUser from '../../../../hooks/useUser'
 import { toastConfig } from '../../../../utils/config/toast'
@@ -30,7 +31,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
   const [comment, setComment] = useState('')
   const [score, setScore] = useState('')
 
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
 
   const handlePostComment = (anonymous: boolean) => {
     if (comment) {

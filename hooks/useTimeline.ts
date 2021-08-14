@@ -1,9 +1,10 @@
 import { timelineMerge } from '../utils/merge'
 import useSWR from 'swr'
 import fetcher from '../utils/fetcher'
+import { BASE_API_URL } from '../data/api-config'
 
 const useRecentCourseGrades = () => {
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
   const { data, error } = useSWR(`${baseURL}/api/recent/grade/courses`, fetcher)
 
   return {
@@ -14,7 +15,7 @@ const useRecentCourseGrades = () => {
 }
 
 const useRecentCourseComments = () => {
-  const baseURL = process.env.NEXT_PUBLIC_BASE_API_URL
+  const baseURL = BASE_API_URL
   const { data, error } = useSWR(`${baseURL}/api/recent/comments`, fetcher)
 
   return {
