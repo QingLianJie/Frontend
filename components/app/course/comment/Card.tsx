@@ -25,10 +25,7 @@ import {
   RiUserLine,
 } from 'react-icons/ri'
 import { mutate } from 'swr'
-import {
-  BASE_API_URL,
-  BASE_AVATAR_URL,
-} from '../../../../data/api-config'
+import { BASE_API_URL, BASE_AVATAR_URL } from '../../../../data/api-config'
 import { toastConfig } from '../../../../utils/config/toast'
 import { dateFormatter } from '../../../../utils/formatter'
 import TextLink from '../../../common/action/link/TextLink'
@@ -102,9 +99,10 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
     <VStack align="start" w="full" p="0" spacing="3.5">
       <HStack w="full" spacing="3" px="0.5">
         <Avatar
-          name={comment.anonymous ? '' : comment?.user?.username || '用户头像'}
-          w="6"
-          h="6"
+          name={
+            !comment.user.image ? '' : comment?.user?.username || '用户头像'
+          }
+          size="xs"
           src={
             comment.anonymous
               ? undefined
