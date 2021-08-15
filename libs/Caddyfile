@@ -1,6 +1,5 @@
 localhost:7000
 encode gzip
 
-reverse_proxy /api localhost:8080
-reverse_proxy /api/* localhost:8080
-reverse_proxy /* localhost:3000
+reverse_proxy /api localhost:80
+reverse_proxy /api/* localhost:80

@@ -29,4 +29,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: lifeni/qinglianjie:${{ steps.vars.outputs.tag }}
+          tags: |
+            lifeni/qinglianjie:${{ steps.vars.outputs.tag }}
+            lifeni/qinglianjie:latest
