@@ -42,11 +42,11 @@ const TaskList = () => {
 
   return (
     <>
-      {isUserLoading || isLoading || !tasks ? (
+      {isUserLoading || isLoading ? (
         <Center w="full" flexDir="column" flex="1" h="full" minH="50vh">
           <Spinner thickness="4px" color="pink.400" size="xl" />
         </Center>
-      ) : isUserError || !user ? (
+      ) : isUserError || isError || !user || !tasks ? (
         <VStack
           spacing="3"
           h="full"
@@ -54,7 +54,6 @@ const TaskList = () => {
           justifyContent="center"
           rounded="md"
           borderWidth="1px"
-          borderStyle="dashed"
         >
           <Text fontSize="2xl">想要使用任务？</Text>
           <Text textAlign="center">登录并且绑定 HEU 账号后才能使用任务</Text>
@@ -75,7 +74,6 @@ const TaskList = () => {
           justifyContent="center"
           rounded="md"
           borderWidth="1px"
-          borderStyle="dashed"
         >
           <Text fontSize="2xl">想要使用任务？</Text>
           <Text textAlign="center">去个人主页绑定 HEU 账号后才能使用任务</Text>

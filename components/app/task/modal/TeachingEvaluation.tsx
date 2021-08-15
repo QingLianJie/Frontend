@@ -38,10 +38,17 @@ const TeachingEvaluation = () => {
     if (router.isReady) {
       const hash = window.location.hash
       if (hash === '#teaching-evaluation') {
-        onOpen()
+        if (!user?.heu_username) {
+          toast({
+            title: '登录并且绑定 HEU 账号后才能进行自动评教',
+            ...toastConfig.warn,
+          })
+        } else {
+          onOpen()
+        }
       }
     }
-  }, [onOpen, router])
+  }, [onOpen, router, user, toast])
 
   const handlePingJiao = (e: MouseEvent) => {
     e.preventDefault()

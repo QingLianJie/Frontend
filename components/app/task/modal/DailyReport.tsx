@@ -63,10 +63,17 @@ const DailyReport = () => {
     if (router.isReady) {
       const hash = window.location.hash
       if (hash === '#daily-report') {
-        onOpen()
+        if (!user?.heu_username) {
+          toast({
+            title: '登录并且绑定 HEU 账号后才能进行自动报备',
+            ...toastConfig.warn,
+          })
+        } else {
+          onOpen()
+        }
       }
     }
-  }, [onOpen, router])
+  }, [onOpen, router, user, toast])
 
   const baseURL = BASE_API_URL
 
