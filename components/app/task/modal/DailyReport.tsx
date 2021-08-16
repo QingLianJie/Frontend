@@ -114,7 +114,7 @@ const DailyReport = () => {
         }
       })
       .catch((err: Error) => {
-        console.log('Teaching Evaluation Error -', err)
+        console.log('Daily Report Error -', err)
         toast({
           title: '请求报备失败',
           description: err.toString(),
@@ -148,7 +148,7 @@ const DailyReport = () => {
         }
       })
       .catch((err: Error) => {
-        console.log('Teaching Evaluation Error -', err)
+        console.log('Daily Report Error -', err)
         toast({
           title: '删除任务失败',
           description: err.toString(),
@@ -188,7 +188,7 @@ const DailyReport = () => {
         }
       })
       .catch((err: Error) => {
-        console.log('Teaching Evaluation Error -', err)
+        console.log('Daily Report Error -', err)
         toast({
           title: (status ? '启用' : '取消') + '每日报备失败',
           description: err.toString(),

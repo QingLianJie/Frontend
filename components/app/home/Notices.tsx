@@ -66,7 +66,7 @@ const NoticeCard = ({ title, date, content }: NoticeCardProps) => {
       <Box
         className="markdown-body"
         as="article"
-        py="1"
+        py="1.5"
         color="inherit"
         dangerouslySetInnerHTML={{ __html: content }}
       ></Box>

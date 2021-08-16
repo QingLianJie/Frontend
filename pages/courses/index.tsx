@@ -13,10 +13,10 @@ import {
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { RiBookOpenLine, RiSearchLine } from 'react-icons/ri'
-import CoursePaginator from '../../components/app/course/Paginator'
+import { RiSearchLine } from 'react-icons/ri'
 import CourseListFilter from '../../components/app/course/list/Filter'
 import CourseListItem from '../../components/app/course/list/Item'
+import CoursePaginator from '../../components/app/course/Paginator'
 import GroupContainer from '../../components/common/container/Group'
 import ListContainer from '../../components/common/container/List'
 import MainContainer from '../../components/common/container/Main'
@@ -38,18 +38,25 @@ const CoursesPage = () => {
 
   const { courseList, isLoading, isError } = useCourseList(query)
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
+  const handleRouter = (page?: number, query?: CourseFilter) => {
+    if (page) {
+      setCurrentPage(page)
+    }
+
+    if (query) {
+      setFilter(query)
+    }
 
     const search = new URLSearchParams()
     for (const [key, value] of Object.entries({
-      ...filter,
-      page: page.toString(),
+      ...(query || filter),
+      page: page ? page.toString() : router.query.page?.toString() || '1',
     })) {
       if (key === 'page' && value === '1') continue
       search.set(key, value)
     }
     setQuery(search.toString())
+
     if (search.toString() === '') {
       router.push(`/courses`, undefined, { shallow: true })
     } else {
@@ -59,21 +66,11 @@ const CoursesPage = () => {
     }
   }
 
-  const handleFilter = (query: CourseFilter) => {
-    setCurrentPage(1)
-    setFilter(query)
-
-    const search = new URLSearchParams()
-    for (const [key, value] of Object.entries(query)) {
-      search.set(key, value)
-    }
-    setQuery(search.toString())
-    if (search.toString() === '') {
-      router.push(`/courses`, undefined, { shallow: true })
+  const handleFilter = (query: CourseFilter, resetPage: boolean) => {
+    if (resetPage) {
+      handleRouter(1, query)
     } else {
-      router.push(`/courses?${search.toString()}`, undefined, {
-        shallow: true,
-      })
+      handleRouter(undefined, query)
     }
   }
 
@@ -146,7 +143,7 @@ const CoursesPage = () => {
                           ? Math.floor(courseList.count / 10) + 1
                           : 1000
                       }
-                      onPageChange={handlePageChange}
+                      onPageChange={handleRouter}
                     />
                   )}
                 </VStack>

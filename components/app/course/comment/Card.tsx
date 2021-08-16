@@ -86,7 +86,7 @@ const CourseComment = ({ lite, comment, url }: CourseCommentProps) => {
         }
       })
       .catch((err: Error) => {
-        console.log('Course Comment Error -', err)
+        console.log('Delete Course Comment Error -', err)
         toast({
           title: '删除评论失败',
           description: err.toString(),

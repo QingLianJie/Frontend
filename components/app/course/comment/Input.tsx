@@ -68,7 +68,7 @@ const CourseCommentInput = ({ id }: CourseCommentInputProps) => {
           }
         })
         .catch((err: Error) => {
-          console.log('Course Comment Error -', err)
+          console.log('Submit Course Comment Error -', err)
           toast({
             title: '发布评论失败',
             description: err.toString(),

@@ -17,7 +17,7 @@ import useUser from '../../../../hooks/useUser'
 import NumberInput from '../../../common/form/input/NumberInput'
 
 interface CourseListFilterProps {
-  action: (query: CourseFilter) => void
+  action: (query: CourseFilter, resetPage: boolean) => void
 }
 
 const CourseListFilter = ({ action }: CourseListFilterProps) => {
@@ -71,11 +71,11 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
           key === 'learned' &&
           query[key as keyof CourseFilter] === 'false'
         ) {
-          delete query[key as keyof CourseFilter]
+          delete query['learned']
         }
       }
 
-      action(query)
+      action(query, false)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,10 +95,16 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
     for (const key in query) {
       if (query[key as keyof CourseFilter] === '') {
         delete query[key as keyof CourseFilter]
+      } else if (
+        key === 'learned' &&
+        query[key as keyof CourseFilter] === 'false'
+      ) {
+        delete query['learned']
       }
     }
+    console.log(query)
 
-    action(query)
+    action(query, true)
   }
 
   const handleClear = () => {
@@ -109,7 +115,7 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
     setCredit('')
     setTime('')
     setLearned('false')
-    action({})
+    action({}, true)
   }
 
   return router.isReady ? (
@@ -177,7 +183,7 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
             max={10}
             step={0.5}
             value={credit}
-            action={(_, num) => setCredit(num.toString())}
+            action={(str, num) => setCredit(str ? num.toString() : '')}
           />
         </Box>
 
@@ -189,7 +195,7 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
             max={200}
             step={1}
             value={time}
-            action={(_, num) => setTime(num.toString())}
+            action={(str, num) => setTime(str ? num.toString() : '')}
           />
         </Box>
 

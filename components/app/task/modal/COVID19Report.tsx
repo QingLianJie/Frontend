@@ -112,7 +112,7 @@ const COVID19Report = () => {
         }
       })
       .catch((err: Error) => {
-        console.log('Teaching Evaluation Error -', err)
+        console.log('COVID 19 Report Error -', err)
         toast({
           title:
             (!status.pingan_daily ? '启用' : '取消') + '自动执行平安行动失败',
@@ -150,7 +150,7 @@ const COVID19Report = () => {
         }
       })
       .catch((err: Error) => {
-        console.log('Teaching Evaluation Error -', err)
+        console.log('COVID 19 Report Error -', err)
         toast({
           title: '执行平安行动失败',
           description: err.toString(),
