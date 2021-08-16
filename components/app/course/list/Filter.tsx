@@ -102,7 +102,6 @@ const CourseListFilter = ({ action }: CourseListFilterProps) => {
         delete query['learned']
       }
     }
-    console.log(query)
 
     action(query, true)
   }

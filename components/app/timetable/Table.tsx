@@ -53,7 +53,7 @@ const Timetable = () => {
 
   const pollingFetch = (time: number = 1000) => {
     pollingCount += 1
-    if (pollingCount > 8) return
+    if (pollingCount > 8 || timetable?.status === 'Success') return
     setTimeout(() => {
       mutate(`${baseURL}/api/my/timetable`)
       pollingFetch(1000 * pollingCount)
@@ -110,9 +110,9 @@ const Timetable = () => {
                 placement="top"
                 fontSize="md"
                 px="0"
-                pt="0"
-                pb="6"
+                py="0"
                 mt="0"
+                mb={Array.isArray(timetable.result) ? 6 : 0}
                 w="full"
               >
                 <HStack spacing="3" w="full" fontSize="sm" px="4" my="-1">
@@ -303,7 +303,7 @@ const Timetable = () => {
                     </Tr>
                   </Tfoot>
                 </>
-              ) : (
+              ) : timetable.status === 'Never' ? null : (
                 <Center w="full" flexDir="column" h="50vh" pb="4">
                   <Spinner thickness="4px" color="pink.400" size="xl" />
                 </Center>

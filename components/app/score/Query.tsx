@@ -32,7 +32,7 @@ const ScoreQuery = () => {
 
   const pollingFetch = (time: number = 1000) => {
     pollingCount += 1
-    if (pollingCount > 8) return
+    if (pollingCount > 8 || scores?.status === 'Success') return
     setTimeout(() => {
       mutate(`${baseURL}/api/my/scores`)
       pollingFetch(1000 * pollingCount)
@@ -108,7 +108,7 @@ const ScoreQuery = () => {
                 {user && `${user.username} 的`}成绩单
               </Heading>
               <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
-                {scores.heu_username}
+                {user && user.heu_username}
               </Badge>
             </HStack>
             <HStack spacing="4" px="4">
