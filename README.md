@@ -3,6 +3,8 @@
 ![GitHub](https://img.shields.io/github/license/QingLianJie/Frontend)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/lifeni/qinglianjie)
 
+「清廉街」的前端仓库。
+
 ## 部署
 
 可运行的版本已经上传到 [Docker Hub](https://hub.docker.com/r/lifeni/qinglianjie/tags?page=1&ordering=last_updated) 了，使用下面的命令运行一个实例。
@@ -41,9 +43,13 @@ docker run -p 10000:3000 -d --name qinglianjie lifeni/qinglianjie:latest
    yarn
    ```
 
-3. 如果你要使用出自己的后端的话，在 `data/api-config.ts` 文件里修改 API 和头像的地址。
+3. 如果你要使用出自己的后端的话，在 [`data/api-config.ts`](./data/api-config.ts) 文件里修改 API 和头像的地址。
 
-4. 最后运行网站。
+   > **注意：** 这个仓库只是前端的项目，网站的大部分功能需要接入后端 API 才能运行。
+   >
+   > [线上 API 地址](https://api.qinglianjie.cn) 有跨域限制，在本地开发无法进行连接，因此在运行前端项目的同时，请确保当前机器上运行有后端程序，且端口为 80（可在 [`data/api-config.ts`](./data/api-config.ts) 中修改）。
+
+4. 最后运行网站，默认地址为 [localhost:3000](http://localhost:3000/) 。
 
    ```shell
    # 运行开发环境
