@@ -15,14 +15,27 @@ interface ButtonLinkProps {
   href: string
   color?: ThemeTypings['colorSchemes']
   icon?: FC
+  external?: boolean
 }
 
-const ButtonLink = ({ children, href, full, color, icon }: ButtonLinkProps) => {
+const ButtonLink = ({
+  children,
+  href,
+  full,
+  color,
+  icon,
+  external,
+}: ButtonLinkProps) => {
   return (
     <LinkBox w={full ? 'full' : undefined} _focus={{ boxShadow: 'outline' }}>
       <Button colorScheme={color} isFullWidth={full}>
         <NextLink href={href} passHref>
-          <LinkOverlay d="flex" alignItems="center">
+          <LinkOverlay
+            d="flex"
+            alignItems="center"
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+          >
             {icon && <Icon as={icon} w="5" h="5" me="3" />}
             <Text>{children}</Text>
           </LinkOverlay>

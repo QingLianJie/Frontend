@@ -56,6 +56,7 @@ const FeedbackPage = () => {
               <ButtonLink
                 href="https://jq.qq.com/?_wv=1027&k=Fj4xfeQE"
                 color="green"
+                external
               >
                 一键加入
               </ButtonLink>
@@ -73,13 +74,19 @@ const FeedbackPage = () => {
               description="欢迎在我们的开源仓库中提 Issue 或者 Pull Request，帮助我们改进这个网站。"
               recommend
             >
-              <ButtonLink href="https://github.com/QingLianJie">
+              <ButtonLink href="https://github.com/QingLianJie" external>
                 主页
               </ButtonLink>
-              <ButtonLink href="https://github.com/QingLianJie/Frontend">
+              <ButtonLink
+                href="https://github.com/QingLianJie/Frontend"
+                external
+              >
                 前端仓库
               </ButtonLink>
-              <ButtonLink href="https://github.com/QingLianJie/Backend">
+              <ButtonLink
+                href="https://github.com/QingLianJie/Backend"
+                external
+              >
                 后端仓库
               </ButtonLink>
             </FeedbackCard>
