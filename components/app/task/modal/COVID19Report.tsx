@@ -3,6 +3,8 @@ import {
   Button,
   Center,
   Divider,
+  Icon,
+  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -22,7 +24,7 @@ import {
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { MouseEvent, useEffect } from 'react'
-import { RiHealthBookFill } from 'react-icons/ri'
+import { RiHealthBookFill, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import { BASE_API_URL } from '../../../../data/api-config'
 import useCOVID19Report from '../../../../hooks/useCOVID19Report'
@@ -179,8 +181,20 @@ const COVID19Report = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader pt="5" pb="3">
+          <ModalHeader pt="5" pb="3" d="flex" alignItems="center">
             平安行动
+            <IconButton
+              size="sm"
+              ms="3"
+              variant="ghost"
+              aria-label="刷新列表"
+              title="刷新列表"
+              icon={<Icon as={RiRefreshLine} w="4" h="4" />}
+              onClick={() => {
+                mutate(`${baseURL}/api/pingan/daily`)
+                mutate(`${baseURL}/api/pingan/tasks`)
+              }}
+            />
           </ModalHeader>
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 

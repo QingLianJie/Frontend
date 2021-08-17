@@ -4,6 +4,8 @@ import {
   Center,
   Divider,
   HStack,
+  Icon,
+  IconButton,
   Input,
   Modal,
   ModalBody,
@@ -23,7 +25,7 @@ import {
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { RiGalleryUploadFill } from 'react-icons/ri'
+import { RiGalleryUploadFill, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import { BASE_API_URL } from '../../../../data/api-config'
 import useDailyReport from '../../../../hooks/useDailyReport'
@@ -217,8 +219,19 @@ const DailyReport = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader pt="5" pb="3">
+          <ModalHeader pt="5" pb="3" d="flex" alignItems="center">
             报备
+            <IconButton
+              size="sm"
+              ms="3"
+              variant="ghost"
+              aria-label="刷新列表"
+              title="刷新列表"
+              icon={<Icon as={RiRefreshLine} w="4" h="4" />}
+              onClick={() => {
+                mutate(`${baseURL}/api/report/task`)
+              }}
+            />
           </ModalHeader>
           <ModalCloseButton mx="2" my="0.5" top="4" right="4" />
 
