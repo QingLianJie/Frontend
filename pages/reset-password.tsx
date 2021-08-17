@@ -4,6 +4,7 @@ import HorizontalContainer from '../components/common/container/Horizontal'
 import SubmitButton from '../components/common/form/SubmitButton'
 import CardForm from '../components/common/form/CardForm'
 import BlockLink from '../components/common/action/link/BlockLink'
+import ButtonLink from '../components/common/action/link/ButtonLink'
 
 const links: Links = [
   { href: '/login', text: '登录' },
@@ -18,7 +19,14 @@ const ResetPasswordPage = () => {
         <title>重置密码 - 清廉街</title>
       </Head>
       <CardForm heading={'重置密码'} action={e => e.preventDefault()}>
-        <SubmitButton color="teal" text="还没有这个功能" />
+        <ButtonLink
+          color="yellow"
+          full
+          external
+          href="https://qinglianjie.cn/accounts/password/reset/"
+        >
+          去旧网站重置密码
+        </ButtonLink>
 
         <HorizontalContainer center divider>
           {links.map(link => (
