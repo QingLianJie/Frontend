@@ -97,6 +97,7 @@ interface IScoreAPI {
 }
 
 interface IScore {
+  index: number
   id: string
   term: string // 开课学期
   course_id: string // 课程编号

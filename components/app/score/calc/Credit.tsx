@@ -1,9 +1,9 @@
 import { Text } from '@chakra-ui/react'
 import { RiCalculatorLine } from 'react-icons/ri'
-import CardContainer from '../../common/container/Card'
-import GroupContainer from '../../common/container/Group'
+import CardContainer from '../../../common/container/Card'
+import GroupContainer from '../../../common/container/Group'
 
-const ScoreCalc = () => {
+const CalcCredit = () => {
   return (
     <GroupContainer title="学分计算" icon={RiCalculatorLine}>
       <CardContainer>
@@ -13,4 +13,4 @@ const ScoreCalc = () => {
   )
 }
 
-export default ScoreCalc
+export default CalcCredit

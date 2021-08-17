@@ -1,4 +1,5 @@
 import {
+  Box,
   Center,
   Grid,
   GridItem,
@@ -9,7 +10,8 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import Head from 'next/head'
-import ScoreCalc from '../components/app/score/Calc'
+import CalcAverage from '../components/app/score/calc/Average'
+import CalcCredit from '../components/app/score/calc/Credit'
 import ScoreList from '../components/app/score/List'
 import ScoreQuery from '../components/app/score/Query'
 import ButtonLink from '../components/common/action/link/ButtonLink'
@@ -72,7 +74,15 @@ const ScoresPage = () => {
               <ScoreList />
             </GridItem>
             <GridItem colSpan={{ base: 3, md: 1 }} h="full" minW="0">
-              <ScoreCalc />
+              <VStack
+                align="start"
+                spacing={{ base: 6, md: 9 }}
+                pos="sticky"
+                top="28"
+              >
+                <CalcCredit />
+                <CalcAverage />
+              </VStack>
             </GridItem>
           </Grid>
         )}

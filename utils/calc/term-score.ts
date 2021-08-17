@@ -2,7 +2,8 @@ import _ from 'lodash'
 
 export const calcTermScore = (data: IScoreAPI): IScoreList => {
   if (data?.result && Array.isArray(data.result)) {
-    const arr = data.result.map(item => ({
+    const arr = data.result.map((item, index) => ({
+      index: index,
       id: item[0],
       term: item[1],
       course_id: item[2],

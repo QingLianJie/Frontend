@@ -5,7 +5,10 @@ import fetcher from '../utils/fetcher'
 
 const useScore = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/my/scores`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/my/scores`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     scores: calcTermScore(data as IScoreAPI),
