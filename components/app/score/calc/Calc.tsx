@@ -65,9 +65,9 @@ const ScoreCalc = () => {
           # 在成绩列表选择成绩来计算分数
         </Text>
       </CardContainer>
-      <Box as="ul" p="2" ps="6" lineHeight="1.75">
+      <Box as="ul" p="2" ps="5" lineHeight="1.75">
         <Text as="li" pt="2" fontSize="sm" color="gray.500" ps="1">
-          加权平均分计算规则： 分数 × 学分数 ÷ 学分总数
+          加权平均分计算规则：分数 × 学分数 ÷ 学分总数
         </Text>
         <Text as="li" pt="2" fontSize="sm" color="gray.500" ps="1">
           对于按等级评分的课程，优秀 = 95，良好 = 85，中等 = 75，及格 =

@@ -10,7 +10,7 @@ import {
   Text,
   VisuallyHidden,
   Wrap,
-  WrapItem
+  WrapItem,
 } from '@chakra-ui/react'
 import { ChangeEvent, ReactNode } from 'react'
 import { RiBarChartBoxLine, RiFlagLine, RiLineChartLine } from 'react-icons/ri'
@@ -66,7 +66,7 @@ const ScoreListItem = ({
             </Text>
           </WrapItem>
 
-          <WrapItem alignItems="center" p="2">
+          <WrapItem alignItems="center" px="2" py="1">
             <HStack spacing="4">
               <Text color="gray.500" fontSize="sm" d="flex" alignItems="center">
                 <Icon as={RiBarChartBoxLine} w="4" h="4" me="1.5" />
@@ -80,7 +80,7 @@ const ScoreListItem = ({
             </HStack>
           </WrapItem>
 
-          <WrapItem alignItems="center" p="2">
+          <WrapItem alignItems="center" px="2" py="1">
             <HStack spacing="4">
               <Text color="gray.500" fontSize="sm" d="flex" alignItems="center">
                 <Icon as={RiLineChartLine} w="4" h="4" me="1.5" />

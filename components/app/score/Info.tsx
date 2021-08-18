@@ -12,6 +12,7 @@ import {
   Text,
   useToast,
   VStack,
+  Wrap,
 } from '@chakra-ui/react'
 import { RiBarChartBoxFill, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
@@ -89,7 +90,7 @@ const ScoreInfo = () => {
       ) : (
         <Fade in>
           <VStack align="start" spacing="4">
-            <HStack spacing="4" px="4">
+            <Wrap spacing="4" px="4">
               <Heading
                 as="h2"
                 fontSize="2xl"
@@ -110,8 +111,8 @@ const ScoreInfo = () => {
               <Badge d="flex" alignItems="center" fontSize="sm" px="2" py="1">
                 {user && user.heu_username}
               </Badge>
-            </HStack>
-            <HStack spacing="4" px="4">
+            </Wrap>
+            <Wrap spacing="3" px="4">
               {scores.status === 'Success' ? (
                 <Text d="flex" alignItems="center" fontSize="sm">
                   数据更新于{' '}
@@ -143,7 +144,7 @@ const ScoreInfo = () => {
                 <Icon as={RiRefreshLine} me="2" w="4" h="4" />
                 重新获取
               </Button>
-            </HStack>
+            </Wrap>
           </VStack>
         </Fade>
       )}
