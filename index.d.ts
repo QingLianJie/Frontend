@@ -120,6 +120,7 @@ interface IScoreList {
   scores: Scores
   created: number
   status: TaskStatus
+  lists: IScore[]
 }
 
 type TimetableWeek = [] | [string[]]
@@ -291,3 +292,5 @@ interface CourseFilter {
   total_time?: string
   learned?: string
 }
+
+type GradeMap = '不及格' | '及格' | '中等' | '良好' | '优秀'

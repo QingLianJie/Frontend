@@ -22,7 +22,7 @@ import { toastConfig } from '../../../utils/config/toast'
 import { dateFormatter } from '../../../utils/formatter'
 import GroupContainer from '../../common/container/Group'
 
-const ScoreQuery = () => {
+const ScoreInfo = () => {
   const toast = useToast()
   const { user } = useUser()
   const { scores, isLoading, isError } = useScore()
@@ -151,4 +151,4 @@ const ScoreQuery = () => {
   )
 }
 
-export default ScoreQuery
+export default ScoreInfo

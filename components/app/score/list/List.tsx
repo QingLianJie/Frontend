@@ -1,10 +1,5 @@
 import {
   Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Badge,
   Checkbox,
   Divider,
   HStack,
@@ -16,29 +11,35 @@ import {
   WrapItem,
 } from '@chakra-ui/react'
 import _ from 'lodash'
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react'
+import { ChangeEvent, useContext } from 'react'
 import { RiFlagLine, RiTimeLine } from 'react-icons/ri'
-import useScore from '../../../hooks/useScore'
-import ListLink from '../../common/action/link/ListLink'
-import GroupContainer from '../../common/container/Group'
+import useScore from '../../../../hooks/useScore'
+import { ScoresContext } from '../../../../pages/scores'
+import ListLink from '../../../common/action/link/ListLink'
+import GroupContainer from '../../../common/container/Group'
+import ScoreListItem from './Item'
+
+const gradeMap = {
+  不及格: 30,
+  及格: 65,
+  中等: 75,
+  良好: 85,
+  优秀: 95,
+}
 
 const ScoreList = () => {
   const { scores, isLoading, isError } = useScore()
-  const [checkList, setCheckList] = useState<number[]>([])
-
-  useEffect(() => {
-    console.log(checkList)
-  }, [checkList])
+  const context = useContext(ScoresContext)
 
   const handleCheck = (e: ChangeEvent, index: number) => {
     const target = e.target as HTMLInputElement
     if (target) {
-      const arr = checkList
+      const arr = context.checkList
       if (target.checked) {
-        setCheckList([...arr, index])
+        context.setCheckList([...arr, index])
       } else {
         _.remove(arr, (i: number) => i === index)
-        setCheckList([...arr])
+        context.setCheckList([...arr])
       }
     }
   }
@@ -46,12 +47,12 @@ const ScoreList = () => {
   const handleAllCheck = (e: ChangeEvent, index: number[]) => {
     const target = e.target as HTMLInputElement
     if (target) {
-      const arr = checkList
+      const arr = context.checkList
       if (target.checked) {
-        setCheckList(_.union(arr, index))
+        context.setCheckList(_.union(arr, index))
       } else {
         _.remove(arr, (i: number) => index.includes(i))
-        setCheckList([...arr])
+        context.setCheckList([...arr])
       }
     }
   }
@@ -63,10 +64,29 @@ const ScoreList = () => {
           {Object.entries(scores.scores)
             .reverse()
             .map(([term, data], index) => (
-              <ListItem
+              <ScoreListItem
                 key={index}
                 title={term}
                 count={data.length}
+                credit={data.reduce(
+                  (pre, cur) => Number(cur?.credit || 0) + pre,
+                  0
+                )}
+                average={
+                  data.reduce((pre, cur) => {
+                    const grade = cur.grade
+                    if (!isNaN(Number(grade))) {
+                      return Number(grade) * Number(cur.credit) + pre
+                    } else {
+                      return (
+                        (gradeMap[grade as GradeMap] || 0) *
+                          Number(cur.credit) +
+                        pre
+                      )
+                    }
+                  }, 0) /
+                  data.reduce((pre, cur) => Number(cur?.credit || 0) + pre, 0)
+                }
                 handleAllCheck={e =>
                   handleAllCheck(
                     e,
@@ -79,7 +99,7 @@ const ScoreList = () => {
                     <HStack key={index} w="full" spacing="1">
                       <Checkbox
                         ms="6"
-                        isChecked={checkList.includes(score.index)}
+                        isChecked={context.checkList.includes(score.index)}
                         onChange={e => handleCheck(e, score.index)}
                       >
                         <VisuallyHidden>选中</VisuallyHidden>
@@ -111,7 +131,11 @@ const ScoreList = () => {
                               <Text color="gray.500" fontSize="sm">
                                 {score.assessment_method}
                               </Text>
+                            </HStack>
+                          </WrapItem>
 
+                          <WrapItem pe="2">
+                            <HStack spacing="4">
                               <Text
                                 color="gray.500"
                                 fontSize="sm"
@@ -160,7 +184,7 @@ const ScoreList = () => {
                     </HStack>
                   ))}
                 </VStack>
-              </ListItem>
+              </ScoreListItem>
             ))}
         </Accordion>
       )}
@@ -169,55 +193,3 @@ const ScoreList = () => {
 }
 
 export default ScoreList
-
-interface ListItemProps {
-  title: string
-  count: number
-  handleAllCheck: (e: ChangeEvent) => void
-  children: ReactNode | ReactNode[]
-}
-
-const ListItem = ({
-  title,
-  count,
-  handleAllCheck,
-  children,
-}: ListItemProps) => {
-  return (
-    <AccordionItem
-      bg="white"
-      borderLeftWidth="1px"
-      borderRightWidth="1px"
-      _first={{ roundedTop: 'md' }}
-      _last={{ roundedBottom: 'md', borderBottomWidth: '1px' }}
-      _dark={{
-        bg: 'gray.800',
-      }}
-    >
-      <AccordionButton
-        pos="relative"
-        _expanded={{ fontWeight: '600' }}
-        zIndex="10"
-      >
-        <Text
-          as="span"
-          textAlign="left"
-          fontSize="lg"
-          p="2"
-          d="flex"
-          alignItems="center"
-        >
-          <Checkbox me="6" onChange={handleAllCheck}>
-            <VisuallyHidden>选中</VisuallyHidden>
-          </Checkbox>
-          {title}
-        </Text>
-        <Badge ms="auto" me="3" px="1.5" py="0.5" color="gray.500">
-          {count} 个课程
-        </Badge>
-        <AccordionIcon />
-      </AccordionButton>
-      <AccordionPanel p="0">{children}</AccordionPanel>
-    </AccordionItem>
-  )
-}

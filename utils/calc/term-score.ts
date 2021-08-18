@@ -24,6 +24,7 @@ export const calcTermScore = (data: IScoreAPI): IScoreList => {
       created: data.created,
       status: data.status,
       scores: _.groupBy(arr, a => a.term),
+      lists: arr,
     }
   }
 
@@ -32,5 +33,6 @@ export const calcTermScore = (data: IScoreAPI): IScoreList => {
     created: 0,
     status: 'Fail',
     scores: {},
+    lists: [],
   }
 }
