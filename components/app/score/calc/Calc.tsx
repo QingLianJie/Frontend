@@ -1,4 +1,4 @@
-import { Box, Text, Wrap } from '@chakra-ui/react'
+import { Box, Button, Text, Wrap } from '@chakra-ui/react'
 import { useContext, useEffect, useState } from 'react'
 import { RiCalculatorLine } from 'react-icons/ri'
 import useScore from '../../../../hooks/useScore'
@@ -49,6 +49,29 @@ const ScoreCalc = () => {
 
   return (
     <GroupContainer title="成绩计算" icon={RiCalculatorLine}>
+      {context.calcMode ? (
+        <Button
+          isFullWidth
+          colorScheme="red"
+          mb="4"
+          onClick={() => {
+            context.setCalcMode(false)
+            context.setCheckList([])
+          }}
+        >
+          退出计算成绩模式
+        </Button>
+      ) : (
+        <Button
+          isFullWidth
+          colorScheme="green"
+          mb="4"
+          onClick={() => context.setCalcMode(true)}
+        >
+          点击进入计算成绩模式
+        </Button>
+      )}
+
       <CardContainer>
         {scores && (
           <Wrap spacing="4" py="1">
@@ -60,10 +83,6 @@ const ScoreCalc = () => {
             <ScoreStat label="加权平均分" number={`${average.toFixed(2)} 分`} />
           </Wrap>
         )}
-
-        <Text pt="2" fontSize="sm" color="gray.500">
-          # 在成绩列表选择成绩来计算分数
-        </Text>
       </CardContainer>
       <Box as="ul" p="2" ps="5" lineHeight="1.75">
         <Text as="li" pt="2" fontSize="sm" color="gray.500" ps="1">

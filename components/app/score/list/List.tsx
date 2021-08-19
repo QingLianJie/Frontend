@@ -2,10 +2,10 @@ import {
   Accordion,
   Checkbox,
   Divider,
+  Flex,
   HStack,
   Icon,
   Text,
-  VisuallyHidden,
   VStack,
   Wrap,
   WrapItem,
@@ -87,6 +87,9 @@ const ScoreList = () => {
                   }, 0) /
                   data.reduce((pre, cur) => Number(cur?.credit || 0) + pre, 0)
                 }
+                calc={context.calcMode}
+                check={data.every(d => context.checkList.includes(d.index))}
+                some={data.some(d => context.checkList.includes(d.index))}
                 handleAllCheck={e =>
                   handleAllCheck(
                     e,
@@ -97,90 +100,40 @@ const ScoreList = () => {
                 <VStack w="full" spacing="0" divider={<Divider />}>
                   {data.map((score, index) => (
                     <HStack key={index} w="full" spacing="1">
-                      <Checkbox
-                        ms="6"
-                        isChecked={context.checkList.includes(score.index)}
-                        onChange={e => handleCheck(e, score.index)}
-                      >
-                        <VisuallyHidden>选中</VisuallyHidden>
-                      </Checkbox>
-                      <ListLink href={`/courses/${score.course_id}`}>
-                        <Wrap
+                      {context.calcMode ? (
+                        <Checkbox
                           w="full"
-                          spacing="2"
-                          align={{ base: 'flex-start', lg: 'center' }}
-                          direction={{ base: 'column', lg: 'row' }}
-                          ms="-1"
+                          py="4"
+                          px="5"
+                          bg="white"
+                          spacing="7"
+                          _dark={{
+                            bg: 'gray.800',
+                          }}
+                          _hover={{
+                            bg: 'gray.100',
+                            _dark: {
+                              bg: 'gray.900',
+                            },
+                          }}
+                          d="flex"
+                          isChecked={context.checkList.includes(score.index)}
+                          onChange={e => handleCheck(e, score.index)}
+                          sx={{
+                            '.chakra-checkbox__label': {
+                              width: '100%',
+                            },
+                          }}
                         >
-                          <WrapItem pe="2">
-                            <Text color="gray.500" fontSize="sm">
-                              {score.course_id}
-                            </Text>
-                          </WrapItem>
-
-                          <WrapItem pe="2">
-                            <Text>{score.name}</Text>
-                          </WrapItem>
-
-                          <WrapItem pe="2" ms="auto">
-                            <HStack spacing="4">
-                              <Text color="gray.500" fontSize="sm">
-                                {score.attributes}
-                              </Text>
-
-                              <Text color="gray.500" fontSize="sm">
-                                {score.assessment_method}
-                              </Text>
-                            </HStack>
-                          </WrapItem>
-
-                          <WrapItem pe="2">
-                            <HStack spacing="4">
-                              <Text
-                                color="gray.500"
-                                fontSize="sm"
-                                d="flex"
-                                alignItems="center"
-                              >
-                                <Icon as={RiFlagLine} w="4" h="4" me="1.5" />
-                                {score.credit} 学分
-                              </Text>
-
-                              <Text
-                                color="gray.500"
-                                fontSize="sm"
-                                d="flex"
-                                alignItems="center"
-                              >
-                                <Icon as={RiTimeLine} w="4" h="4" me="1.5" />
-                                {score.total_time} 学时
-                              </Text>
-                            </HStack>
-                          </WrapItem>
-
-                          <WrapItem flex="1" justifyContent="flex-end">
-                            <Text
-                              fontWeight="bold"
-                              whiteSpace="nowrap"
-                              color={
-                                score.grade === '---'
-                                  ? 'yellow.500'
-                                  : score.grade === '不及格' ||
-                                    Number(score.grade) < 60
-                                  ? 'red.500'
-                                  : score.grade === '优秀' ||
-                                    Number(score.grade) >= 90
-                                  ? 'green.500'
-                                  : 'inherit'
-                              }
-                            >
-                              {score.grade === '---'
-                                ? score.grade_mark
-                                : score.grade}
-                            </Text>
-                          </WrapItem>
-                        </Wrap>
-                      </ListLink>
+                          <Flex w="full" transition="all 0.2s">
+                            <ScoreCourseMeta score={score} calcMode={true} />
+                          </Flex>
+                        </Checkbox>
+                      ) : (
+                        <ListLink href={`/courses/${score.course_id}`}>
+                          <ScoreCourseMeta score={score} calcMode={false} />
+                        </ListLink>
+                      )}
                     </HStack>
                   ))}
                 </VStack>
@@ -193,3 +146,74 @@ const ScoreList = () => {
 }
 
 export default ScoreList
+
+interface ScoreCourseMetaProps {
+  score: IScore
+  calcMode: boolean
+}
+
+const ScoreCourseMeta = ({ score, calcMode }: ScoreCourseMetaProps) => {
+  return (
+    <Wrap
+      w="full"
+      spacing="2"
+      align={{ base: 'flex-start', lg: 'center' }}
+      direction={{ base: 'column', lg: 'row' }}
+      ms={calcMode ? -2 : 0}
+    >
+      <WrapItem pe="2">
+        <Text color="gray.500" fontSize="sm">
+          {score.course_id}
+        </Text>
+      </WrapItem>
+
+      <WrapItem pe="2">
+        <Text>{score.name}</Text>
+      </WrapItem>
+
+      <WrapItem pe="2" ms="auto">
+        <HStack spacing="4">
+          <Text color="gray.500" fontSize="sm">
+            {score.attributes}
+          </Text>
+
+          <Text color="gray.500" fontSize="sm">
+            {score.assessment_method}
+          </Text>
+        </HStack>
+      </WrapItem>
+
+      <WrapItem pe="2">
+        <HStack spacing="4">
+          <Text color="gray.500" fontSize="sm" d="flex" alignItems="center">
+            <Icon as={RiFlagLine} w="4" h="4" me="1.5" />
+            {score.credit} 学分
+          </Text>
+
+          <Text color="gray.500" fontSize="sm" d="flex" alignItems="center">
+            <Icon as={RiTimeLine} w="4" h="4" me="1.5" />
+            {score.total_time} 学时
+          </Text>
+        </HStack>
+      </WrapItem>
+
+      <WrapItem flex="1" justifyContent="flex-end">
+        <Text
+          fontWeight="bold"
+          whiteSpace="nowrap"
+          color={
+            score.grade === '---'
+              ? 'yellow.500'
+              : score.grade === '不及格' || Number(score.grade) < 60
+              ? 'red.500'
+              : score.grade === '优秀' || Number(score.grade) >= 90
+              ? 'green.500'
+              : 'inherit'
+          }
+        >
+          {score.grade === '---' ? score.grade_mark : score.grade}
+        </Text>
+      </WrapItem>
+    </Wrap>
+  )
+}

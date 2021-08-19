@@ -20,6 +20,9 @@ interface ScoreListItemProps {
   count: number
   credit: number
   average: number
+  calc: boolean
+  check: boolean
+  some: boolean
   handleAllCheck: (e: ChangeEvent) => void
   children: ReactNode | ReactNode[]
 }
@@ -29,6 +32,9 @@ const ScoreListItem = ({
   count = 0,
   credit = 0,
   average = 0,
+  calc = false,
+  check,
+  some,
   handleAllCheck,
   children,
 }: ScoreListItemProps) => {
@@ -59,9 +65,18 @@ const ScoreListItem = ({
               d="flex"
               alignItems="center"
             >
-              <Checkbox me="6" onChange={handleAllCheck}>
-                <VisuallyHidden>选中</VisuallyHidden>
-              </Checkbox>
+              {calc && (
+                <Checkbox
+                  me="3"
+                  ms="-1"
+                  isChecked={check}
+                  isIndeterminate={some && !check}
+                  onChange={handleAllCheck}
+                >
+                  <VisuallyHidden>选中</VisuallyHidden>
+                </Checkbox>
+              )}
+
               {title}
             </Text>
           </WrapItem>

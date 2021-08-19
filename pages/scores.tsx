@@ -20,23 +20,30 @@ import useUser from '../hooks/useUser'
 interface IScoresContext {
   checkList: number[]
   setCheckList: (checkList: number[]) => void
+  calcMode: boolean
+  setCalcMode: (calcMode: boolean) => void
 }
 
 export const ScoresContext = createContext<IScoresContext>({
   checkList: [],
   setCheckList: () => {},
+  calcMode: false,
+  setCalcMode: () => {},
 })
 
 const ScoresPage = () => {
   const { user, isError, isLoading } = useUser()
   const [checkList, setCheckList] = useState<number[]>([])
+  const [calcMode, setCalcMode] = useState<boolean>(false)
 
   return (
     <>
       <Head>
         <title>成绩 - 清廉街</title>
       </Head>
-      <ScoresContext.Provider value={{ checkList, setCheckList }}>
+      <ScoresContext.Provider
+        value={{ checkList, setCheckList, calcMode, setCalcMode }}
+      >
         <MainContainer gray title="成绩">
           {isLoading ? (
             <Center w="full" flexDir="column" flex="1">
