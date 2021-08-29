@@ -23,16 +23,13 @@
     "react-cropper": "^2.1.8",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",
-    "swr": "^0.5.6",
-    "ts-md5": "^1.2.9",
-    "use-debounce": "^7.0.0",
-    "uuid": "^8.3.2"
+    "swr": "^1.0.0",
+    "use-debounce": "^7.0.0"
   },
   "devDependencies": {
-    "@types/react": "17.0.17",
-    "@types/uuid": "^8.3.1",
+    "@types/react": "17.0.19",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   }
 }
