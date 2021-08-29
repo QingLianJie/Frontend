@@ -16,12 +16,15 @@ import {
   Tfoot,
   Th,
   Thead,
+  theme,
   Tr,
+  useColorMode,
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { useState } from 'react'
-import { RiRefreshLine } from 'react-icons/ri'
+import { toPng } from 'html-to-image'
+import { useRef, useState } from 'react'
+import { RiImageLine, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
 import { BASE_API_URL } from '../../../data/api-config'
 import useTimetable from '../../../hooks/useTimetable'
@@ -34,6 +37,7 @@ import TextLink from '../../common/action/link/TextLink'
 import TimetablePaginator from './Paginator'
 
 const Timetable = () => {
+  const { colorMode } = useColorMode()
   const toast = useToast()
   const { user } = useUser()
   const { timetable, isLoading, isError } = useTimetable()
@@ -100,12 +104,32 @@ const Timetable = () => {
       })
   }
 
+  const tableRef = useRef<HTMLTableElement>(null)
+
+  const handleExportImage = () => {
+    if (tableRef?.current) {
+      toPng(tableRef.current, {
+        backgroundColor:
+          colorMode === 'dark' ? theme.colors.gray[800] : theme.colors.white,
+        style: {
+          margin: '16px 0 0 0',
+        },
+        filter: (node: HTMLElement) => node.tagName !== 'BUTTON',
+      }).then(dataUrl => {
+        var link = document.createElement('a')
+        link.download = `${user && `${user.heu_username} 的`}第 ${week} 周课表`
+        link.href = dataUrl
+        link.click()
+      })
+    }
+  }
+
   return (
     <>
       {isError ? null : isLoading ? null : (
         <Fade in>
-          <Box w="full" overflow="auto" py="2">
-            <Table w="full">
+          <Box w="full" overflow="auto">
+            <Table w="full" my="2" ref={tableRef} p="1px">
               <TableCaption
                 placement="top"
                 fontSize="md"
@@ -151,6 +175,17 @@ const Timetable = () => {
                   >
                     <Icon as={RiRefreshLine} me="2" w="4" h="4" />
                     更新课表
+                  </Button>
+
+                  <Button
+                    size="sm"
+                    colorScheme="blue"
+                    variant="link"
+                    onClick={handleExportImage}
+                    mx="2"
+                  >
+                    <Icon as={RiImageLine} me="2" w="4" h="4" />
+                    导出课表截图
                   </Button>
                 </HStack>
               </TableCaption>
