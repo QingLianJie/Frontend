@@ -338,11 +338,11 @@ const Timetable = () => {
                     </Tr>
                   </Tfoot>
                 </>
-              ) : timetable.status === 'Never' ? null : (
+              ) : timetable.status === 'Pending' ? (
                 <Center w="full" flexDir="column" h="50vh" pb="4">
                   <Spinner thickness="4px" color="pink.400" size="xl" />
                 </Center>
-              )}
+              ) : null}
             </Table>
           </Box>
         </Fade>

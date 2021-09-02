@@ -56,12 +56,16 @@ const TimetablePage = () => {
         ) : (
           <GroupContainer>
             <CardContainer>
-              {timetable ? (
-                <Timetable />
-              ) : (
+              {isError ? (
+                <Center w="full" flexDir="column" h="50vh" pb="4">
+                  <Text color="gray.500">获取数据失败</Text>
+                </Center>
+              ) : isLoading || !timetable ? (
                 <Center w="full" flexDir="column" h="50vh" pb="4">
                   <Spinner thickness="4px" color="pink.400" size="xl" />
                 </Center>
+              ) : (
+                <Timetable />
               )}
             </CardContainer>
           </GroupContainer>
