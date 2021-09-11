@@ -22,7 +22,8 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { toPng } from 'html-to-image'
+import { saveAs } from 'file-saver'
+import { toBlob } from 'html-to-image'
 import { useRef, useState } from 'react'
 import { RiImageLine, RiRefreshLine } from 'react-icons/ri'
 import { mutate } from 'swr'
@@ -108,18 +109,20 @@ const Timetable = () => {
 
   const handleExportImage = () => {
     if (tableRef?.current) {
-      toPng(tableRef.current, {
+      toBlob(tableRef.current, {
         backgroundColor:
           colorMode === 'dark' ? theme.colors.gray[800] : theme.colors.white,
         style: {
           margin: '16px 0 0 0',
         },
         filter: (node: HTMLElement) => node.tagName !== 'BUTTON',
-      }).then(dataUrl => {
-        var link = document.createElement('a')
-        link.download = `${user && `${user.heu_username} 的`}第 ${week} 周课表`
-        link.href = dataUrl
-        link.click()
+      }).then(blob => {
+        if (blob) {
+          saveAs(
+            blob,
+            `${user && `${user.heu_username} 的`}第 ${week} 周课表.png`
+          )
+        }
       })
     }
   }
