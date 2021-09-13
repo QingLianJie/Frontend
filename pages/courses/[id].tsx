@@ -25,8 +25,14 @@ const CoursePage = () => {
               <CourseChart id={id} />
               <Spacer h="4" />
               <CourseTable id={id} />
-              <Text fontSize="sm" color="gray.500" px="4" py="4">
-                注：腐败街数据不计入「所有时间」的优秀率和挂科率的统计，也不呈现在「所有时间」的图表中。
+              <Text
+                fontSize="sm"
+                color="gray.500"
+                px="6"
+                py="4"
+                lineHeight="1.75"
+              >
+                注：部分课程可以查看腐败街历史数据，但是腐败街数据不计入「所有时间」的优秀率和挂科率的统计，也不呈现在「所有时间」的图表中，仅供参考。
               </Text>
             </GridItem>
             <GridItem colSpan={{ base: 3, md: 1 }} h="full" minW="0">

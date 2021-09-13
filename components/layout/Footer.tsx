@@ -15,7 +15,15 @@ const Footer = () => {
         <Text fontSize="sm" color="gray.500">
           清廉街 © 2021
         </Text>
-        <Text fontSize="sm" color="gray.500">
+        <Text
+          as="a"
+          fontSize="sm"
+          color="gray.500"
+          _hover={{ color: 'blue.500' }}
+          href="https://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           黑ICP备2021003925号-1
         </Text>
       </Container>
