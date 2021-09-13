@@ -68,7 +68,13 @@ const CourseTable = ({ id }: CourseTableProps) => {
                 <Tbody>
                   {rates?.map((rate, index) => (
                     <Tr key={index}>
-                      <Td>{rate.key === 'all' ? '所有时间' : rate.key}</Td>
+                      <Td>
+                        {rate.key === 'all'
+                          ? '所有时间'
+                          : rate.key === '腐败街'
+                          ? '腐败街数据'
+                          : rate.key}
+                      </Td>
                       <Td>{rate.excellent.rate}</Td>
                       <Td>{rate.excellent.count}</Td>
                       <Td>{rate.fail.rate}</Td>

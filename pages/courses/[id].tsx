@@ -1,4 +1,4 @@
-import { Grid, GridItem, Spacer } from '@chakra-ui/react'
+import { Grid, GridItem, Spacer, Text } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import CourseChart from '../../components/app/course/Chart'
 import CourseCommentList from '../../components/app/course/comment/List'
@@ -25,6 +25,9 @@ const CoursePage = () => {
               <CourseChart id={id} />
               <Spacer h="4" />
               <CourseTable id={id} />
+              <Text fontSize="sm" color="gray.500" px="4" py="4">
+                注：腐败街数据不计入「所有时间」的优秀率和挂科率的统计，也不呈现在「所有时间」的图表中。
+              </Text>
             </GridItem>
             <GridItem colSpan={{ base: 3, md: 1 }} h="full" minW="0">
               <CourseCommentList id={id} />
