@@ -4,7 +4,10 @@ import fetcher from '../utils/fetcher'
 
 const useDailyReportStatus = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/report/daily`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/report/daily`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     status: data as IDailyReportStatus,

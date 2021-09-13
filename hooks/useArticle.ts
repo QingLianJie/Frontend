@@ -4,7 +4,10 @@ import fetcher from '../utils/fetcher'
 
 const useArticle = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/articles`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/articles`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     articles: data as IArticle[],

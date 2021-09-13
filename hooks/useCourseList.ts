@@ -5,7 +5,10 @@ import fetcher from '../utils/fetcher'
 const useCourseList = (query: string) => {
   const baseURL = BASE_API_URL
 
-  const { data, error } = useSWR(`${baseURL}/api/courses?${query}`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/courses?${query}`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     courseList: data as ICourseList,

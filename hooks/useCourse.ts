@@ -4,7 +4,10 @@ import fetcher from '../utils/fetcher'
 
 const useCourse = (id?: string) => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/course/${id}`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/course/${id}`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     courseInfo: data as ICourseInfo,

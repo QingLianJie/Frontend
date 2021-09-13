@@ -4,7 +4,10 @@ import fetcher from '../utils/fetcher'
 
 const useCOVID19ReportStatus = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/pingan/daily`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/pingan/daily`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     status: data as ICOVID19ReportStatus,

@@ -4,7 +4,14 @@ import fetcher from '../utils/fetcher'
 
 const useProfile = (username: string) => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/profile/${username}`, fetcher)
+  const { data, error } = useSWR(
+    `${baseURL}/api/profile/${username}`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  )
 
   if (error && error.status === 404) {
     return { isError: true, isNotFound: true }

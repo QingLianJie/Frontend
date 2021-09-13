@@ -4,7 +4,10 @@ import fetcher from '../utils/fetcher'
 
 const useTeachingEvaluation = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/pingjiao`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/pingjiao`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     todos: data as ITeachingEvaluation,

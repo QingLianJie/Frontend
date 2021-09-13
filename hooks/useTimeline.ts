@@ -5,7 +5,14 @@ import { BASE_API_URL } from '../data/api-config'
 
 const useRecentCourseGrades = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/recent/grade/courses`, fetcher)
+  const { data, error } = useSWR(
+    `${baseURL}/api/recent/grade/courses`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  )
 
   return {
     grades: data as IRecentCourseGrade[],
@@ -16,7 +23,10 @@ const useRecentCourseGrades = () => {
 
 const useRecentCourseComments = () => {
   const baseURL = BASE_API_URL
-  const { data, error } = useSWR(`${baseURL}/api/recent/comments`, fetcher)
+  const { data, error } = useSWR(`${baseURL}/api/recent/comments`, fetcher, {
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
 
   return {
     comments: data as ICourseComment[],
