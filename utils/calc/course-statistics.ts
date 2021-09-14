@@ -1,6 +1,5 @@
 export const calcRate = (info: ICourseInfo, time?: string): CourseInfoRate => {
   const data = info.statistics[time || 'all']
-  const all = info.statistics['all']
 
   const defaultResult = {
     key: time || 'all',
@@ -15,7 +14,7 @@ export const calcRate = (info: ICourseInfo, time?: string): CourseInfoRate => {
   let excellent = 0
   let fail = 0
 
-  if (Object.keys(all.exam).length !== 0) {
+  if (Object.keys(data.exam).length !== 0) {
     for (const [score, count] of Object.entries(data.exam)) {
       if (Number(score) < 60) {
         fail += count
