@@ -6,11 +6,16 @@ import TextLink from '../../../common/action/link/TextLink'
 interface RecentCourseGradeProps {
   created: string
   course: ICourse
+  hide?: boolean
 }
 
-const RecentCourseGrade = ({ course, created }: RecentCourseGradeProps) => {
+const RecentCourseGrade = ({
+  course,
+  created,
+  hide,
+}: RecentCourseGradeProps) => {
   return (
-    <HStack w="full" spacing="3">
+    <HStack w="full" spacing="3" display={hide ? 'none' : 'flex'}>
       <Avatar
         aria-hidden
         size="xs"

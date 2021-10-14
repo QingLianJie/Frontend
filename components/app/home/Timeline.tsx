@@ -1,5 +1,17 @@
-import { Alert, AlertIcon, Center, Fade, Spinner } from '@chakra-ui/react'
-import { Fragment } from 'react'
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Alert,
+  AlertIcon,
+  Center,
+  Fade,
+  Spinner,
+  Text,
+} from '@chakra-ui/react'
+import React from 'react'
 import { RiTimeLine } from 'react-icons/ri'
 import { BASE_API_URL } from '../../../data/api-config'
 import useTimeline from '../../../hooks/useTimeline'
@@ -8,9 +20,83 @@ import ListContainer from '../../common/container/List'
 import CourseComment from '../course/comment/Card'
 import RecentCourseGrade from './message/RecentCourseGrade'
 
+interface ItemProps {
+  item: ICourseComment[] | IRecentCourseGrade[]
+}
+
+const Item = ({ item }: ItemProps) => {
+  const baseURL = BASE_API_URL
+
+  if (item[0].hasOwnProperty('user')) {
+    return (
+      <ListContainer divider>
+        {item.map((a, index) => (
+          <CourseComment
+            key={index}
+            comment={a as ICourseComment}
+            url={`${baseURL}/api/recent/comments`}
+          />
+        ))}
+      </ListContainer>
+    )
+  } else {
+    if (item.length > 3) {
+      return (
+        <ListContainer divider>
+          {item.slice(0, 3).map((a, index) => (
+            <RecentCourseGrade
+              key={index}
+              created={a.created}
+              course={a.course as ICourse}
+            />
+          ))}
+          <Accordion allowToggle w="full">
+            <AccordionItem border="none" w="full" my="-2">
+              <AccordionButton p="1">
+                <Text
+                  flex="1"
+                  fontSize="sm"
+                  display="flex"
+                  alignItems="center"
+                  color="gray.500"
+                >
+                  <AccordionIcon me="4" />
+                  查看更多出分课程
+                </Text>
+              </AccordionButton>
+
+              <AccordionPanel pt="4" pb="2" px="0">
+                <ListContainer divider>
+                  {item.slice(3, item.length).map((a, index) => (
+                    <RecentCourseGrade
+                      key={index}
+                      created={a.created}
+                      course={a.course as ICourse}
+                    />
+                  ))}
+                </ListContainer>
+              </AccordionPanel>
+            </AccordionItem>
+          </Accordion>
+        </ListContainer>
+      )
+    }
+    return (
+      <ListContainer divider>
+        {item.map((a, index) => (
+          <RecentCourseGrade
+            key={index}
+            created={a.created}
+            course={a.course as ICourse}
+          />
+        ))}
+      </ListContainer>
+    )
+  }
+}
+
 const Timeline = () => {
   const { timeline, isLoading, isError } = useTimeline()
-  const baseURL = BASE_API_URL
 
   return (
     <GroupContainer title="最近" icon={RiTimeLine}>
@@ -27,19 +113,7 @@ const Timeline = () => {
         <Fade in>
           <ListContainer divider>
             {timeline.map((item, index) => (
-              <Fragment key={index}>
-                {item.hasOwnProperty('user') ? (
-                  <CourseComment
-                    comment={item as ICourseComment}
-                    url={`${baseURL}/api/recent/comments`}
-                  />
-                ) : (
-                  <RecentCourseGrade
-                    created={item.created}
-                    course={item.course as ICourse}
-                  />
-                )}
-              </Fragment>
+              <Item key={index} item={item} />
             ))}
           </ListContainer>
         </Fade>
