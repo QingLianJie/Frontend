@@ -66,7 +66,7 @@ const CourseChart = ({ id }: CourseChartProps) => {
                       .map((key, index) =>
                         key === 'all' ? null : (
                           <option key={index} value={key}>
-                            {key === '腐败街' ? '腐败街数据 *' : key}
+                            {key === '腐败街' ? '腐败街数据' : key}
                           </option>
                         )
                       )}
@@ -164,7 +164,7 @@ const CourseChart = ({ id }: CourseChartProps) => {
                     textAlign="center"
                     color="gray.500"
                   >{`${
-                    select === '腐败街' ? '腐败街数据 *' : select || '所有时间'
+                    select === '腐败街' ? '腐败街数据' : select || '所有时间'
                   } 的成绩分布图，统计人数 ${
                     courseInfo.statistics[select || 'all']?.total || '0'
                   } 人`}</Text>

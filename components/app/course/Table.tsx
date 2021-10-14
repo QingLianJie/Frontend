@@ -72,7 +72,7 @@ const CourseTable = ({ id }: CourseTableProps) => {
                         {rate.key === 'all'
                           ? '所有时间'
                           : rate.key === '腐败街'
-                          ? '腐败街数据 *'
+                          ? '腐败街数据'
                           : rate.key}
                       </Td>
                       <Td>{rate.excellent.rate}</Td>

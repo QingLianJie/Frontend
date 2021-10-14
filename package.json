@@ -10,29 +10,29 @@
     "docker:build": "docker build . -t qinglianjie"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.7",
+    "@chakra-ui/react": "^1.6.9",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@makotot/paginated": "^1.0.1",
-    "bizcharts": "^4.1.11",
+    "bizcharts": "^4.1.14",
     "dayjs": "^1.10.7",
     "file-saver": "^2.0.5",
     "framer-motion": "^4",
-    "html-to-image": "^1.7.0",
+    "html-to-image": "^1.9.0",
     "lodash": "^4.17.21",
     "next": "11.1.2",
     "react": "17.0.2",
     "react-cropper": "^2.1.8",
     "react-dom": "17.0.2",
-    "react-icons": "^4.2.0",
+    "react-icons": "^4.3.1",
     "swr": "^1.0.1",
     "use-debounce": "^7.0.0"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.3",
-    "@types/react": "17.0.20",
-    "eslint": "7.32.0",
+    "@types/react": "17.0.29",
+    "eslint": "8.0.1",
     "eslint-config-next": "11.1.2",
-    "typescript": "4.4.3"
+    "typescript": "4.4.4"
   }
 }
