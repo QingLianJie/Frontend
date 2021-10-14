@@ -306,19 +306,21 @@ const Timetable = () => {
                                     >
                                       <TextLink
                                         href={`/courses?search=${
-                                          cell?.toString().split(/[\ |,]/)[0]
+                                          Array.isArray(course)
+                                            ? course[0]
+                                            : course
                                         }`}
                                       >
-                                        {cell?.toString().split(/[\ |,]/)[0]}
+                                        {Array.isArray(course)
+                                          ? course[0]
+                                          : course}
                                       </TextLink>
 
-                                      {course
-                                        ?.toString()
-                                        .replace(/,/g, '\n')
-                                        .replace(
-                                          cell?.toString().split(/[\ |\,]/)[0],
-                                          ''
-                                        )}
+                                      {Array.isArray(course)
+                                        ? course
+                                            .join('\n')
+                                            .replace(course[0], '')
+                                        : course.replace(course[0], '')}
                                     </Text>
                                   ))}
                                 </VStack>
