@@ -118,20 +118,6 @@ export const routerLinks: RouterLinks = [
         icon: RiQuillPenFill,
         color: { light: 'orange.500', dark: 'orange.400' },
       },
-      {
-        type: 'LINK',
-        text: '每日报备',
-        href: '/tasks/#daily-report',
-        icon: RiGalleryUploadFill,
-        color: { light: 'yellow.500', dark: 'yellow.400' },
-      },
-      {
-        type: 'LINK',
-        text: '平安行动',
-        href: '/tasks/#covid-19-report',
-        icon: RiHealthBookFill,
-        color: { light: 'green.500', dark: 'green.400' },
-      },
     ],
   },
 

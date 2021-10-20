@@ -48,20 +48,6 @@ export const shortcutLinks: ShortcutLinks = [
     color: { light: 'orange.500', dark: 'orange.400' },
   },
   {
-    text: '报备',
-    long: '每日报备',
-    href: '/tasks/#daily-report',
-    icon: RiGalleryUploadFill,
-    color: { light: 'yellow.500', dark: 'yellow.400' },
-  },
-  {
-    text: '平安',
-    long: '平安行动',
-    href: '/tasks/#covid-19-report',
-    icon: RiHealthBookFill,
-    color: { light: 'green.500', dark: 'green.400' },
-  },
-  {
     text: '反馈',
     long: '反馈',
     href: '/feedback',
