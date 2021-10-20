@@ -2,8 +2,6 @@ import { Grid, GridItem, Heading, Icon, Text, VStack } from '@chakra-ui/react'
 import Head from 'next/head'
 import { RiTaskFill } from 'react-icons/ri'
 import TaskList from '../components/app/task/List'
-import COVID19Report from '../components/app/task/modal/COVID19Report'
-import DailyReport from '../components/app/task/modal/DailyReport'
 import TeachingEvaluation from '../components/app/task/modal/TeachingEvaluation'
 import MainContainer from '../components/common/container/Main'
 
@@ -45,8 +43,6 @@ const TasksPage = () => {
             </Text>
             <VStack spacing="3" py="2">
               <TeachingEvaluation />
-              <DailyReport />
-              <COVID19Report />
             </VStack>
           </GridItem>
           <GridItem colSpan={{ base: 3, md: 2 }} minW="0" h="full">
