@@ -31,10 +31,10 @@ docker run -p 10000:3000 -d --name qinglianjie lifeni/qinglianjie:latest
 
 1. 首先克隆项目。
 
-    ```shell
-    git clone https://github.com/QingLianJie/Frontend.git
-    cd Frontend
-    ```
+   ```shell
+   git clone https://github.com/QingLianJie/Frontend.git
+   cd Frontend
+   ```
 
 2. 其次安装依赖。
 
@@ -58,6 +58,15 @@ docker run -p 10000:3000 -d --name qinglianjie lifeni/qinglianjie:latest
    yarn build
    yarn start
    ```
+
+### 环境变量
+
+在本地开发时，可以添加一个 `.env.local` 文件，即可修改相关的 API 地址。
+
+| 环境变量                      | 说明             |
+| ----------------------------- | ---------------- |
+| `NEXT_PUBLIC_BASE_API_URL`    | API 前缀         |
+| `NEXT_PUBLIC_BASE_AVATAR_URL` | 头像图片地址前缀 |
 
 ## 协议相关
 

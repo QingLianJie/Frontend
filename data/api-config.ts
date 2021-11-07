@@ -7,12 +7,8 @@
 
 // API 的前缀地址
 export const BASE_API_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'https://test.lifeni.life'
-    : 'https://api.qinglianjie.cn'
+  process.env.NEXT_PUBLIC_BASE_API_URL || 'https://api.qinglianjie.cn'
 
 // 头像图片的前缀地址
 export const BASE_AVATAR_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'https://test.lifeni.life'
-    : 'https://api.qinglianjie.cn'
+  process.env.NEXT_PUBLIC_BASE_AVATAR_URL || 'https://api.qinglianjie.cn'
