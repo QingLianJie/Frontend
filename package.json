@@ -1,38 +1,33 @@
 {
-  "name": "qinglianjie",
-  "version": "0.1.0",
   "private": true,
+  "name": "qing-web",
+  "description": "清廉街的前端部分",
+  "license": "MIT",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "docker:build": "docker build . -t qinglianjie"
+    "build": "remix build",
+    "dev": "remix dev",
+    "postinstall": "remix setup node",
+    "start": "remix-serve build"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.6.9",
+    "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@makotot/paginated": "^1.0.1",
-    "bizcharts": "^4.1.14",
-    "dayjs": "^1.10.7",
-    "file-saver": "^2.0.5",
-    "framer-motion": "^4",
-    "html-to-image": "^1.9.0",
-    "lodash": "^4.17.21",
-    "next": "11.1.2",
-    "react": "17.0.2",
-    "react-cropper": "^2.1.8",
-    "react-dom": "17.0.2",
-    "react-icons": "^4.3.1",
-    "swr": "^1.0.1",
-    "use-debounce": "^7.0.0"
+    "@remix-run/react": "^1.1.1",
+    "@remix-run/serve": "^1.1.1",
+    "framer-motion": "^5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "remix": "^1.1.1"
   },
   "devDependencies": {
-    "@types/file-saver": "^2.0.3",
-    "@types/react": "17.0.29",
-    "eslint": "8.0.1",
-    "eslint-config-next": "11.1.2",
-    "typescript": "4.4.4"
-  }
+    "@remix-run/dev": "^1.1.1",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "typescript": "^4.5.4"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "sideEffects": false
 }

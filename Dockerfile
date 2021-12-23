@@ -1,41 +1,50 @@
-# Install dependencies only when needed
-FROM node:alpine AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+FROM node:16-bullseye-slim as base
 
-# Rebuild the source code only when needed
-FROM node:alpine AS builder
-WORKDIR /app
-COPY . .
-COPY --from=deps /app/node_modules ./node_modules
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+RUN apt-get update && apt-get install -y openssl
 
-# Production image, copy all the files and run next
-FROM node:alpine AS runner
+
+FROM base as deps
+
+RUN mkdir /app
 WORKDIR /app
 
-ENV NODE_ENV production
+ADD package.json yarn.lock ./
+RUN yarn install --production=false
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
 
-# You only need to copy next.config.js if you are NOT using the default configuration
-COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+FROM base as production-deps
 
-USER nextjs
+RUN mkdir /app
+WORKDIR /app
 
-EXPOSE 3000
+COPY --from=deps /app/node_modules /app/node_modules
+ADD package.json yarn.lock ./
+RUN yarn install --production
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
-# Uncomment the following line in case you want to disable telemetry.
-ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD ["yarn", "start"]
+FROM base as build
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY --from=deps /app/node_modules /app/node_modules
+
+RUN yarn install
+
+ADD . .
+RUN yarn run build
+
+
+FROM base
+
+ENV NODE_ENV=production
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY --from=production-deps /app/node_modules /app/node_modules
+COPY --from=build /app/build /app/build
+COPY --from=build /app/public /app/public
+ADD . .
+
+CMD ["npm", "run", "start"]
