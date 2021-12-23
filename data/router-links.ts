@@ -88,6 +88,11 @@ export const routerLinks: RouterLinks = [
       },
       {
         type: 'LINK',
+        text: '实验室综合管理系统',
+        href: 'http://lims.hrbeu.edu.cn/OLMSWeb/Indexmain.aspx',
+      },
+      {
+        type: 'LINK',
         text: '中国知网',
         href: 'https://www-cnki-net-443.wvpn.hrbeu.edu.cn/',
       },
