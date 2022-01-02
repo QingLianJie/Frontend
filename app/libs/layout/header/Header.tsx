@@ -1,21 +1,16 @@
 import type { SystemProps } from '@chakra-ui/react'
-import {
-  Avatar,
-  Flex,
-  Heading,
-  Icon,
-  IconButton,
-  Link,
-  Tooltip,
-  useColorMode,
-} from '@chakra-ui/react'
+import { Avatar, Flex, Heading, Icon, Link, Tooltip } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
-import { RiMoonFill, RiSunFill } from 'react-icons/ri'
+import { RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'react-router-dom'
+import SwitchTheme from '~/libs/common/SwitchTheme'
+import Drawer from './Drawer'
 import Nav from './Nav'
 
+type AlignType = 'left' | 'center' | 'right'
+
 interface HeaderSectionProps extends SystemProps {
-  align?: 'left' | 'center' | 'right'
+  align?: AlignType | { base: AlignType; md: AlignType }
   children: ReactNode
 }
 
@@ -24,65 +19,37 @@ const HeaderSection = ({
   children,
   ...props
 }: HeaderSectionProps) => (
-  <Flex align="center" justify={align} flex="1" px="2" gap="4" {...props}>
+  <Flex
+    align="center"
+    justify={align}
+    flex="1"
+    px={{ base: '0', md: '2' }}
+    gap="4"
+    {...props}
+  >
     {children}
   </Flex>
 )
 
-const SwitchTheme = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
-  return (
-    <Tooltip
-      hasArrow
-      label={colorMode === 'light' ? '变暗' : '变亮'}
-      px="2.5"
-      py="1.5"
-      rounded="md"
-    >
-      <IconButton
-        onClick={toggleColorMode}
-        aria-label="切换夜间模式"
-        icon={<Icon as={colorMode === 'light' ? RiMoonFill : RiSunFill} />}
-        rounded="full"
-        size="md"
-        fontSize="lg"
-        color="gray.400"
-        bg="transparent"
-        _hover={{
-          color: 'gray.600',
-          bg: 'gray.200',
-        }}
-        _dark={{
-          color: 'gray.500',
-          _hover: {
-            color: 'gray.300',
-            bg: 'gray.900',
-          },
-        }}
-      />
-    </Tooltip>
-  )
-}
-
 interface MemberProps {
-  name: string
-  heu?: string
+  name?: string
   avatar?: string
 }
 
-const Member = ({ name, heu, avatar }: MemberProps) => (
+const Member = ({ name, avatar }: MemberProps) => (
   <Tooltip
     hasArrow
     placement="bottom-end"
-    label={name ? `已登录到 ${name}` : '考虑登录一下吗？'}
+    label={name ? `已登录到 ${name}` : '考虑登录一下吗'}
     px="2.5"
     py="1.5"
     rounded="md"
   >
-    <Link as={RemixLink} to={`/@${name}`} rounded="full">
+    <Link as={RemixLink} to={name ? `/@${name}` : '/登录'} rounded="full">
       <Avatar
-        name={name}
+        aria-label={name ?? '陌生人'}
         src={avatar}
+        icon={<Icon as={RiUserLine} fontSize="xl" />}
         size="md"
         bg="gray.200"
         color="gray.500"
@@ -100,35 +67,32 @@ interface HeaderProps {
   title?: string
 }
 
-const Header = ({ title = '清廉街' }: HeaderProps) => {
-  const memberMock = {
-    name: 'Test User',
-  }
-
-  return (
-    <Flex
-      as="header"
-      w="full"
-      align="center"
-      justify="stretch"
-      px={{ base: '6', sm: '8' }}
-      py={{ base: '4', sm: '5' }}
-      gap="8"
-    >
-      <HeaderSection align="left">
-        <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
-          {title}
-        </Heading>
-      </HeaderSection>
-      <HeaderSection align="center" d={{ base: 'none', md: 'flex' }}>
-        <Nav />
-      </HeaderSection>
-      <HeaderSection align="right">
-        <SwitchTheme />
-        <Member {...memberMock} />
-      </HeaderSection>
-    </Flex>
-  )
-}
+const Header = ({ title = '清廉街' }: HeaderProps) => (
+  <Flex
+    as="header"
+    w="full"
+    align="center"
+    justify="stretch"
+    px={{ base: '6', sm: '8' }}
+    py="5"
+    gap="8"
+  >
+    <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>
+      <Drawer />
+    </HeaderSection>
+    <HeaderSection align={{ base: 'center', md: 'left' }}>
+      <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
+        {title}
+      </Heading>
+    </HeaderSection>
+    <HeaderSection align="center" d={{ base: 'none', md: 'flex' }}>
+      <Nav />
+    </HeaderSection>
+    <HeaderSection align="right">
+      <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
+      <Member />
+    </HeaderSection>
+  </Flex>
+)
 
 export default Header
