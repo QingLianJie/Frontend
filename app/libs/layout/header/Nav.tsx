@@ -1,31 +1,43 @@
 import {
+  Button,
   HStack,
+  Icon,
   Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  SystemProps,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
+import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/nav-links'
 
 interface NavItemProps {
   href: string
-  children: ReactNode
+  children: string
 }
 
-const NavItemStyles = {
+const NavItemStyles: SystemProps = {
   px: '3',
   py: '2',
   rounded: 'md',
   fontWeight: 'bold',
+  whiteSpace: 'nowrap',
+  bg: 'transparent',
   _hover: {
-    bg: 'gray.100',
+    bg: 'gray.200',
     textDecor: 'none',
+  },
+  _active: {
+    bg: 'gray.300',
   },
   _dark: {
     _hover: {
+      bg: 'gray.900',
+    },
+    _active: {
       bg: 'gray.700',
     },
   },
@@ -44,8 +56,14 @@ interface NavMenuProps {
 
 const NavMenu = ({ text, children }: NavMenuProps) => (
   <Menu>
-    <MenuButton {...NavItemStyles}>{text}</MenuButton>
-    <MenuList>{children}</MenuList>
+    <MenuButton
+      as={Button}
+      rightIcon={<Icon as={RiArrowDownSLine} aria-label="菜单图标" />}
+      {...NavItemStyles}
+    >
+      {text}
+    </MenuButton>
+    <MenuList py="3">{children}</MenuList>
   </Menu>
 )
 

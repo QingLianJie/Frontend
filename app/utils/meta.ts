@@ -11,7 +11,7 @@ export const theme = extendTheme({
     body: fontFamily,
     heading: fontFamily,
   },
-  initialColorMode: 'light',
+  initialColorMode: 'system',
   useSystemColorMode: true,
 })
 

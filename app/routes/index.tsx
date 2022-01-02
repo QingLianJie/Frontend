@@ -1,10 +1,5 @@
-import Header from '~/libs/layout/header/Header'
 import Layout from '~/libs/layout/Layout'
 
-const IndexPage = () => (
-  <Layout>
-    <Header />
-  </Layout>
-)
+const IndexPage = () => <Layout>hello</Layout>
 
 export default IndexPage

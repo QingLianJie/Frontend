@@ -46,17 +46,17 @@ export const navLinks: (NavLink | NavMenu)[] = [
   },
   {
     type: 'LINK',
-    text: '课表',
-    href: '/课表',
-    color: 'blue',
-    icon: RiTableFill,
-  },
-  {
-    type: 'LINK',
     text: '成绩',
     href: '/成绩',
     color: 'green',
     icon: RiBarChartBoxFill,
+  },
+  {
+    type: 'LINK',
+    text: '课表',
+    href: '/课表',
+    color: 'blue',
+    icon: RiTableFill,
   },
   {
     type: 'MENU',
@@ -96,13 +96,10 @@ export const navLinks: (NavLink | NavMenu)[] = [
         text: '研究生教育培养与服务信息系统',
         href: 'https://yjs.wvpn.hrbeu.edu.cn/cas/CASLogin.ashx',
       },
+      {
+        text: '学校官网',
+        href: 'http://www.hrbeu.edu.cn/',
+      },
     ],
-  },
-  {
-    type: 'LINK',
-    text: '关于',
-    href: '/关于',
-    color: 'cyan',
-    icon: RiInformationFill,
   },
 ]
