@@ -1,3 +1,10 @@
-export default function Index() {
-  return <div>hello</div>
-}
+import Header from '~/libs/layout/header/Header'
+import Layout from '~/libs/layout/Layout'
+
+const IndexPage = () => (
+  <Layout>
+    <Header />
+  </Layout>
+)
+
+export default IndexPage
