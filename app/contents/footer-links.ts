@@ -43,7 +43,8 @@ export const footerLinks: FooterLink[] = [
       },
       {
         title: '插件',
-        description: '获取一个油猴（UserScript）插件，可以在本地解析学校数据',
+        description:
+          '获取一个用户脚本（UserScript）插件，可以在本地解析学校数据',
         href: 'https://github.com/QingLianJie/Bridge',
       },
       {
@@ -54,7 +55,7 @@ export const footerLinks: FooterLink[] = [
     ],
   },
   {
-    name: '链接',
+    name: '页面',
     links: [
       {
         title: '服务状态',
@@ -62,8 +63,8 @@ export const footerLinks: FooterLink[] = [
         href: '#',
       },
       {
-        title: '博客',
-        description: '未开放，开发中的博客',
+        title: '公告',
+        description: '未开放，网站上的一些历史公告',
         href: '#',
       },
       {

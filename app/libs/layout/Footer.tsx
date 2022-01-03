@@ -43,6 +43,7 @@ const FooterLink = ({ href, description, children }: FooterLinkProps) => (
       py="1.5"
       rounded="md"
       maxW="64"
+      placement="top"
     >
       {children}
     </Tooltip>
@@ -61,7 +62,7 @@ const Footer = () => {
       gap="8"
       justify="space-between"
       color="gray.500"
-      flexDir={{ base: 'column', md: 'row' }}
+      flexDir={{ base: 'column', sm: 'row' }}
     >
       <VStack align="flex-start" px="2" pb="1">
         <Image
@@ -75,10 +76,10 @@ const Footer = () => {
         </FooterLink>
         <Text fontWeight="bold">清廉街 © 2022</Text>
       </VStack>
-      <Wrap px="2" spacing="8">
+      <Wrap px="2" spacing={{ base: '8', md: '10' }}>
         {footerLinks.map(link => (
-          <WrapItem>
-            <VStack key={link.name} align="flex-start">
+          <WrapItem key={link.name}>
+            <VStack align="flex-start">
               <Text fontWeight="bold">{link.name}</Text>
               <List>
                 {link.links.map(item => (

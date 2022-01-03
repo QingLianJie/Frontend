@@ -4,7 +4,7 @@ import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'react-router-dom'
 import SwitchTheme from '~/libs/common/SwitchTheme'
-import Drawer from './Drawer'
+import Drawer from '../drawer/Drawer'
 import Nav from './Nav'
 
 type AlignType = 'left' | 'center' | 'right'

@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { RiMenuLine } from 'react-icons/ri'
 import SwitchTheme from '~/libs/common/SwitchTheme'
+import Nav from './Nav'
 
 const Drawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -52,15 +53,19 @@ const Drawer = () => {
             }}
           />
           <DrawerHeader
-            p="8"
+            px="8"
+            pt="8"
+            pb="20vh"
             fontSize="lg"
             bg="gray.100"
             _dark={{ bg: 'gray.800' }}
           >
             清廉街
           </DrawerHeader>
-          <DrawerBody p="8">world</DrawerBody>
-          <DrawerFooter px="8" py="4" bg="gray.100" _dark={{ bg: 'gray.800' }}>
+          <DrawerBody py="8" px="5">
+            <Nav />
+          </DrawerBody>
+          <DrawerFooter px="8" py="4">
             <HStack w="full">
               <Text
                 fontSize="sm"

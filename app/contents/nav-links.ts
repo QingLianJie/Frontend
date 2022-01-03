@@ -1,11 +1,10 @@
 import type { IconType } from 'react-icons'
 import {
-  RiBarChartBoxFill,
-  RiBookOpenFill,
-  RiBuildingFill,
-  RiInformationFill,
-  RiLayoutMasonryFill,
-  RiTableFill,
+  RiBarChartBoxLine,
+  RiBookOpenLine,
+  RiBuildingLine,
+  RiLayoutMasonryLine,
+  RiTableLine,
 } from 'react-icons/ri'
 
 type NavLink = {
@@ -35,34 +34,34 @@ export const navLinks: (NavLink | NavMenu)[] = [
     text: '主页',
     href: '/',
     color: 'pink',
-    icon: RiLayoutMasonryFill,
+    icon: RiLayoutMasonryLine,
   },
   {
     type: 'LINK',
     text: '课程',
     href: '/课程',
     color: 'red',
-    icon: RiBookOpenFill,
+    icon: RiBookOpenLine,
   },
   {
     type: 'LINK',
     text: '成绩',
     href: '/成绩',
     color: 'green',
-    icon: RiBarChartBoxFill,
+    icon: RiBarChartBoxLine,
   },
   {
     type: 'LINK',
     text: '课表',
     href: '/课表',
     color: 'blue',
-    icon: RiTableFill,
+    icon: RiTableLine,
   },
   {
     type: 'MENU',
     text: '学校',
     color: 'green',
-    icon: RiBuildingFill,
+    icon: RiBuildingLine,
     children: [
       {
         text: '学生个人中心',
