@@ -2,7 +2,7 @@ import type { SystemProps } from '@chakra-ui/react'
 import { Avatar, Flex, Heading, Icon, Link, Tooltip } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
-import { Link as RemixLink } from 'react-router-dom'
+import { Link as RemixLink } from 'remix'
 import SwitchTheme from '~/libs/common/SwitchTheme'
 import Drawer from '../drawer/Drawer'
 import Nav from './Nav'
@@ -45,7 +45,7 @@ const Member = ({ name, avatar }: MemberProps) => (
     py="1.5"
     rounded="md"
   >
-    <Link as={RemixLink} to={name ? `/@${name}` : '/登录'} rounded="full">
+    <Link as={RemixLink} to={name ? `/@${name}` : '/login'} rounded="full">
       <Avatar
         aria-label={name ?? '陌生人'}
         src={avatar}

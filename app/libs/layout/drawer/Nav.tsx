@@ -13,7 +13,7 @@ import {
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
-import { navLinks } from '~/contents/nav-links'
+import { navLinks } from '~/contents/links/nav-links'
 
 const NavItemStyles: SystemProps = {
   w: 'full',

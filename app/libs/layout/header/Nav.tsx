@@ -12,11 +12,11 @@ import {
 import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
-import { navLinks } from '~/contents/nav-links'
+import { navLinks } from '~/contents/links/nav-links'
 
 interface NavItemProps {
   href: string
-  children: string
+  name: string
 }
 
 const NavItemStyles: SystemProps = {
@@ -43,31 +43,31 @@ const NavItemStyles: SystemProps = {
   },
 }
 
-const NavLink = ({ href, children }: NavItemProps) => (
+const NavLink = ({ href, name }: NavItemProps) => (
   <Link as={RemixLink} to={href} {...NavItemStyles}>
-    {children}
+    {name}
   </Link>
 )
 
 interface NavMenuProps {
-  text: string
+  name: string
   children: ReactNode
 }
 
-const NavMenu = ({ text, children }: NavMenuProps) => (
+const NavMenu = ({ name, children }: NavMenuProps) => (
   <Menu>
     <MenuButton
       as={Button}
       rightIcon={<Icon as={RiArrowDownSLine} aria-label="菜单图标" />}
       {...NavItemStyles}
     >
-      {text}
+      {name}
     </MenuButton>
     <MenuList py="3">{children}</MenuList>
   </Menu>
 )
 
-const NavMenuItem = ({ href, children }: NavItemProps) => (
+const NavMenuItem = ({ href, name }: NavItemProps) => (
   <MenuItem p="0">
     <Link
       href={href}
@@ -79,7 +79,7 @@ const NavMenuItem = ({ href, children }: NavItemProps) => (
         textDecor: 'none',
       }}
     >
-      {children}
+      {name}
     </Link>
   </MenuItem>
 )
@@ -88,15 +88,11 @@ const Nav = () => (
   <HStack as="nav">
     {navLinks.map(link =>
       link.type === 'LINK' ? (
-        <NavLink href={link.href} key={link.text}>
-          {link.text}
-        </NavLink>
+        <NavLink {...link} key={link.name} />
       ) : (
-        <NavMenu text={link.text} key={link.text}>
+        <NavMenu {...link} key={link.name}>
           {link.children.map(item => (
-            <NavMenuItem href={item.href} key={item.text}>
-              {item.text}
-            </NavMenuItem>
+            <NavMenuItem {...item} key={item.name} />
           ))}
         </NavMenu>
       )

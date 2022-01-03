@@ -19,7 +19,7 @@ const Layout = ({ children }: LayoutProps) => (
     }}
   >
     <Header />
-    <Flex as="main" flex="1">
+    <Flex as="main" w="full" flexDir="column" align="center" flex="1">
       {children}
     </Flex>
     <Footer />
