@@ -21,10 +21,9 @@ const NavItemStyles: SystemProps = {
   py: '2.5',
   d: 'flex',
   alignItems: 'center',
-  gap: '4',
+  gap: '5',
   rounded: 'md',
   whiteSpace: 'nowrap',
-  fontWeight: 'bold',
   textAlign: 'start',
   bg: 'transparent',
   _hover: {
@@ -46,41 +45,41 @@ const NavItemStyles: SystemProps = {
 
 interface NavItemIconProps {
   icon: IconType
-  text: string
+  name: string
   color: string
 }
 
-const NavItemIcon = ({ icon, text, color }: NavItemIconProps) => (
-  <Icon as={icon} aria-label={text} color={`${color}.500`} fontSize="xl" />
+const NavItemIcon = ({ icon, name, color }: NavItemIconProps) => (
+  <Icon as={icon} aria-label={name} color={`${color}.500`} fontSize="xl" />
 )
 
 interface NavItemProps {
   href: string
   color?: string
   icon?: IconType
-  children: string
+  name: string
 }
 
-const NavLink = ({ href, color = 'gray', icon, children }: NavItemProps) => (
+const NavLink = ({ href, color = 'gray', icon, name }: NavItemProps) => (
   <Link as={RemixLink} to={href} {...NavItemStyles}>
-    {icon && <NavItemIcon icon={icon} text={children} color={color} />}
-    {children}
+    {icon && <NavItemIcon icon={icon} name={name} color={color} />}
+    {name}
   </Link>
 )
 
 interface NavMenuProps {
-  text: string
+  name: string
   color: string
   icon: IconType
   children: ReactNode
 }
 
-const NavAccordion = ({ text, color, icon, children }: NavMenuProps) => (
+const NavAccordion = ({ name, color, icon, children }: NavMenuProps) => (
   <Accordion allowToggle w="full">
     <AccordionItem border="none" w="full">
       <AccordionButton {...NavItemStyles}>
-        <NavItemIcon icon={icon} text={text} color={color} />
-        {text}
+        <NavItemIcon icon={icon} name={name} color={color} />
+        {name}
         <Spacer />
         <AccordionIcon
           fontSize="xl"
@@ -91,14 +90,14 @@ const NavAccordion = ({ text, color, icon, children }: NavMenuProps) => (
           }}
         />
       </AccordionButton>
-      <AccordionPanel py="1" ms="5">
+      <AccordionPanel py="1" ms="6">
         <VStack spacing="0">{children}</VStack>
       </AccordionPanel>
     </AccordionItem>
   </Accordion>
 )
 
-const NavAccordionItem = ({ href, children }: NavItemProps) => (
+const NavAccordionItem = ({ href, name }: NavItemProps) => (
   <Link
     href={href}
     isExternal
@@ -111,7 +110,7 @@ const NavAccordionItem = ({ href, children }: NavItemProps) => (
     }}
     isTruncated
   >
-    {children}
+    {name}
   </Link>
 )
 
@@ -119,15 +118,11 @@ const Nav = () => (
   <VStack as="nav" spacing="0">
     {navLinks.map(link =>
       link.type === 'LINK' ? (
-        <NavLink {...link} key={link.text}>
-          {link.text}
-        </NavLink>
+        <NavLink {...link} key={link.name} />
       ) : (
-        <NavAccordion {...link} key={link.text}>
+        <NavAccordion {...link} key={link.name}>
           {link.children.map(item => (
-            <NavAccordionItem {...item} key={item.text}>
-              {item.text}
-            </NavAccordionItem>
+            <NavAccordionItem {...item} key={item.name} />
           ))}
         </NavAccordion>
       )

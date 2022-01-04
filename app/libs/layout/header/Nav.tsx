@@ -31,11 +31,11 @@ const NavItemStyles: SystemProps = {
     textDecor: 'none',
   },
   _active: {
-    bg: 'gray.300',
+    bg: 'gray.200',
   },
   _dark: {
     _hover: {
-      bg: 'gray.900',
+      bg: 'gray.700',
     },
     _active: {
       bg: 'gray.700',

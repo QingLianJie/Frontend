@@ -65,7 +65,7 @@ const Drawer = () => {
           <DrawerBody py="8" px="5">
             <Nav />
           </DrawerBody>
-          <DrawerFooter px="8" py="4">
+          <DrawerFooter px="8" py="5">
             <HStack w="full">
               <Text
                 fontSize="sm"

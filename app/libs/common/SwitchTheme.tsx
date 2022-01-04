@@ -35,7 +35,7 @@ const SwitchTheme = ({ hasTooltip, ...props }: SwitchThemeProps) => {
           color: 'gray.400',
           _hover: {
             color: 'gray.200',
-            bg: 'gray.900',
+            bg: 'gray.700',
           },
         }}
         {...props}

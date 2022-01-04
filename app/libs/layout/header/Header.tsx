@@ -53,9 +53,15 @@ const Member = ({ name, avatar }: MemberProps) => (
         size="md"
         bg="gray.200"
         color="gray.500"
+        _hover={{
+          color: 'gray.700',
+        }}
         _dark={{
           bg: 'gray.700',
           color: 'gray.400',
+          _hover: {
+            color: 'gray.200',
+          },
         }}
         cursor="pointer"
       />
@@ -74,7 +80,8 @@ const Header = ({ title = '清廉街' }: HeaderProps) => (
     align="center"
     justify="stretch"
     px={{ base: '6', sm: '8' }}
-    py="5"
+    pt="5"
+    pb={{ base: '20vh', sm: '5' }}
     gap="8"
   >
     <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>

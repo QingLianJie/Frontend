@@ -1,4 +1,4 @@
-import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import type { LinksFunction, MetaFunction } from 'remix'
 import {
   Links,
@@ -8,7 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
-import { links as rootLinks, meta as rootMeta, theme } from './utils/meta'
+import { links as rootLinks, meta as rootMeta, theme } from '~/utils/meta'
 
 export const meta: MetaFunction = () => rootMeta
 

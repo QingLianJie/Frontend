@@ -9,6 +9,26 @@ type FooterLink = {
 
 export const footerLinks: FooterLink[] = [
   {
+    name: '联系',
+    links: [
+      {
+        name: 'QQ 群',
+        description: 'QQ 群号：498047164',
+        href: 'https://jq.qq.com/?_wv=1027&k=Fj4xfeQE',
+      },
+      {
+        name: '邮箱',
+        description: '如果更喜欢发邮件，也可以通过邮箱反馈',
+        href: 'mailto:bakedviolin@foxmail.com',
+      },
+      {
+        name: '问卷',
+        description: '更简单的反馈方式，但是可能不能及时回应',
+        href: 'https://wj.qq.com/s2/9542270/79ad',
+      },
+    ],
+  },
+  {
     name: '页面',
     links: [
       {
@@ -28,31 +48,12 @@ export const footerLinks: FooterLink[] = [
       },
     ],
   },
-  {
-    name: '联系',
-    links: [
-      {
-        name: 'QQ 群',
-        description: 'QQ 群号：498047164',
-        href: 'https://jq.qq.com/?_wv=1027&k=Fj4xfeQE',
-      },
-      {
-        name: '邮箱',
-        description: '如果更喜欢发邮件，也可以通过邮箱反馈',
-        href: 'mailto:bakedviolin@foxmail.com',
-      },
-      {
-        name: '腾讯问卷',
-        description: '更简单的反馈方式，但是可能不能及时回应',
-        href: 'https://wj.qq.com/s2/9542270/79ad',
-      },
-    ],
-  },
+
   {
     name: '开源',
     links: [
       {
-        name: 'GitHub',
+        name: '项目主页',
         description: '这是我们的项目主页，欢迎来看看',
         href: 'https://github.com/QingLianJie',
       },
@@ -63,7 +64,7 @@ export const footerLinks: FooterLink[] = [
         href: 'https://github.com/QingLianJie/Bridge',
       },
       {
-        name: 'Android 应用',
+        name: '移动应用',
         description:
           '开发中，获取 Android 应用程序，功能与网页版相同，自带插件',
         href: 'https://github.com/QingLianJie/Mobile',

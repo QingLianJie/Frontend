@@ -1,6 +1,5 @@
-import { Icon, Link, VStack } from '@chakra-ui/react'
+import { Icon, Link, VStack, Wrap, WrapItem } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
-import { RiProfileLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
 import { appLinks } from '~/contents/links/app-links'
 import HomeCard from '~/libs/common/HomeCard'
@@ -8,6 +7,7 @@ import HomeCard from '~/libs/common/HomeCard'
 interface NavLinkProps {
   href: string
   name: string
+  short?: string
   icon: IconType
   color: string
 }
@@ -25,7 +25,7 @@ const NavLink = ({ href, name, icon, color }: NavLinkProps) => (
     py="2"
     _hover={{
       textDecor: 'none',
-      bg: 'gray.50',
+      bg: 'gray.200',
     }}
     _dark={{
       _hover: {
@@ -39,14 +39,8 @@ const NavLink = ({ href, name, icon, color }: NavLinkProps) => (
 )
 
 const Nav = () => (
-  <HomeCard title="页面">
+  <HomeCard title="页面" d={{ base: 'none', sm: 'flex' }}>
     <VStack align="flex-start" spacing="0" w="full" pt="2" pb="4">
-      <NavLink
-        href="/profile"
-        name="个人主页"
-        color="pink"
-        icon={RiProfileLine}
-      />
       {appLinks.map(link => (
         <NavLink {...link} key={link.name} />
       ))}
@@ -54,4 +48,45 @@ const Nav = () => (
   </HomeCard>
 )
 
-export default Nav
+const MobileNavLink = ({ href, name, short, icon, color }: NavLinkProps) => (
+  <Link
+    as={RemixLink}
+    to={href}
+    key={name}
+    d="flex"
+    alignItems="center"
+    flexDir="column"
+    gap="3"
+    w="full"
+    px="3"
+    pt="3"
+    pb="2"
+    rounded="md"
+    _hover={{
+      textDecor: 'none',
+      bg: 'gray.200',
+    }}
+    _dark={{
+      _hover: {
+        bg: 'gray.600',
+      },
+    }}
+  >
+    <Icon as={icon} aria-label={short} color={`${color}.500`} fontSize="28" />
+    {short}
+  </Link>
+)
+
+const MobileNav = () => (
+  <HomeCard title="页面" d={{ base: 'flex', sm: 'none' }}>
+    <Wrap w="full" px="4" pt="1" pb="4">
+      {appLinks.map(link => (
+        <WrapItem key={link.short}>
+          <MobileNavLink {...link} />
+        </WrapItem>
+      ))}
+    </Wrap>
+  </HomeCard>
+)
+
+export { Nav, MobileNav }
