@@ -9,7 +9,7 @@ const IndexPage = () => (
       w="full"
       maxW="72rem"
       px={{ base: '4', sm: '8' }}
-      py={{ base: '0', sm: '12' }}
+      py={{ base: '0', sm: '8' }}
       templateColumns="repeat(4, 1fr)"
       gap="8"
     >
