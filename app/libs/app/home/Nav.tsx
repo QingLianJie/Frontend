@@ -1,10 +1,31 @@
 import { Flex, Icon, Link, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
-import { appLinks } from '~/contents/links/app-links'
-import HomeCard from '~/libs/common/HomeCard'
+import { appLinks } from '~/contents/meta/links/app-links'
+import HomeCard from '~/libs/common/containers/HomeCard'
 
-interface NavLinkProps {
+const HomeNav = () => (
+  <HomeCard title="页面">
+    <Flex
+      flexDir={{ base: 'row', sm: 'column' }}
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      w="full"
+      pt={{ base: '1', sm: '2' }}
+      px={{ base: '4', sm: '0' }}
+      pb="4"
+      gap={{ base: '2', sm: '0' }}
+    >
+      {appLinks.map(link => (
+        <HomeNavLink {...link} key={link.name} />
+      ))}
+    </Flex>
+  </HomeCard>
+)
+
+export default HomeNav
+
+interface HomeNavLinkProps {
   href: string
   name: string
   short: string
@@ -12,7 +33,7 @@ interface NavLinkProps {
   color: string
 }
 
-const NavLink = ({ href, name, short, icon, color }: NavLinkProps) => (
+const HomeNavLink = ({ href, name, short, icon, color }: HomeNavLinkProps) => (
   <Link
     as={RemixLink}
     to={href}
@@ -46,24 +67,3 @@ const NavLink = ({ href, name, short, icon, color }: NavLinkProps) => (
     <Text d={{ base: 'none', sm: 'flex' }}>{name}</Text>
   </Link>
 )
-
-const Nav = () => (
-  <HomeCard title="页面">
-    <Flex
-      flexDir={{ base: 'row', sm: 'column' }}
-      alignItems="flex-start"
-      justifyContent="flex-start"
-      w="full"
-      pt={{ base: '1', sm: '2' }}
-      px={{ base: '4', sm: '0' }}
-      pb="4"
-      gap={{ base: '2', sm: '0' }}
-    >
-      {appLinks.map(link => (
-        <NavLink {...link} key={link.name} />
-      ))}
-    </Flex>
-  </HomeCard>
-)
-
-export default Nav

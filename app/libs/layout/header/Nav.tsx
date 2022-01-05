@@ -8,18 +8,41 @@ import {
   MenuItem,
   MenuList,
   SystemProps,
+  Tag,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
-import { navLinks } from '~/contents/links/nav-links'
+import { navLinks } from '~/contents/meta/links/nav-links'
+import LanTag from '~/libs/common/tags/LanTag'
 
-interface NavItemProps {
-  href: string
-  name: string
+const HeaderNav = () => {
+  return (
+    <HStack as="nav">
+      {navLinks.map(link =>
+        link.type === 'LINK' ? (
+          <HeaderNavLink {...link} key={link.name} />
+        ) : (
+          <HeaderNavMenu {...link} key={link.name}>
+            {link.children.map(item => (
+              <HeaderNavMenuItem {...item} key={item.name} />
+            ))}
+          </HeaderNavMenu>
+        )
+      )}
+    </HStack>
+  )
 }
 
-const NavItemStyles: SystemProps = {
+export default HeaderNav
+
+interface HeaderNavItemProps {
+  href: string
+  name: string
+  lan?: boolean
+}
+
+const HeaderNavItemStyles: SystemProps = {
   px: '3',
   py: '2',
   rounded: 'md',
@@ -43,23 +66,23 @@ const NavItemStyles: SystemProps = {
   },
 }
 
-const NavLink = ({ href, name }: NavItemProps) => (
-  <Link as={RemixLink} to={href} {...NavItemStyles}>
+const HeaderNavLink = ({ href, name }: HeaderNavItemProps) => (
+  <Link as={RemixLink} to={href} {...HeaderNavItemStyles}>
     {name}
   </Link>
 )
 
-interface NavMenuProps {
+interface HeaderNavMenuProps {
   name: string
   children: ReactNode
 }
 
-const NavMenu = ({ name, children }: NavMenuProps) => (
+const HeaderNavMenu = ({ name, children }: HeaderNavMenuProps) => (
   <Menu>
     <MenuButton
       as={Button}
       rightIcon={<Icon as={RiArrowDownSLine} aria-label="展开列表" />}
-      {...NavItemStyles}
+      {...HeaderNavItemStyles}
     >
       {name}
     </MenuButton>
@@ -67,7 +90,7 @@ const NavMenu = ({ name, children }: NavMenuProps) => (
   </Menu>
 )
 
-const NavMenuItem = ({ href, name }: NavItemProps) => (
+const HeaderNavMenuItem = ({ href, name, lan }: HeaderNavItemProps) => (
   <MenuItem p="0">
     <Link
       href={href}
@@ -80,24 +103,7 @@ const NavMenuItem = ({ href, name }: NavItemProps) => (
       }}
     >
       {name}
+      {lan && <LanTag />}
     </Link>
   </MenuItem>
 )
-
-const Nav = () => (
-  <HStack as="nav">
-    {navLinks.map(link =>
-      link.type === 'LINK' ? (
-        <NavLink {...link} key={link.name} />
-      ) : (
-        <NavMenu {...link} key={link.name}>
-          {link.children.map(item => (
-            <NavMenuItem {...item} key={item.name} />
-          ))}
-        </NavMenu>
-      )
-    )}
-  </HStack>
-)
-
-export default Nav

@@ -52,10 +52,12 @@ const Search = () => {
           color="gray.500"
           _dark={{ color: 'gray.400' }}
         >
-          <Kbd mr="1" rounded="sm">
+          <Kbd mr="1" rounded="sm" transition="all 0.2s">
             Ctrl
           </Kbd>
-          <Kbd rounded="sm">K</Kbd>
+          <Kbd rounded="sm" transition="all 0.2s">
+            K
+          </Kbd>
         </InputRightElement>
       </InputGroup>
     </Flex>

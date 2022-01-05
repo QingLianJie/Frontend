@@ -1,5 +1,5 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import type { LinksFunction, MetaFunction } from 'remix'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import type { LinkDescriptor, MetaDescriptor } from 'remix'
 import {
   Links,
   LiveReload,
@@ -8,29 +8,61 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
-import { links as rootLinks, meta as rootMeta, theme } from '~/utils/meta'
 
-export const meta: MetaFunction = () => rootMeta
+const fontFamily = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
+    Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
+    "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji"`
 
-export const links: LinksFunction = () => rootLinks
+export const theme = extendTheme({
+  fonts: {
+    body: fontFamily,
+    heading: fontFamily,
+  },
+  initialColorMode: 'system',
+  useSystemColorMode: true,
+})
 
-const App = () => (
-  <html lang="zh-cn">
-    <head>
-      <meta charSet="utf-8" />
-      <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-      <Meta />
-      <Links />
-    </head>
-    <body>
-      <ChakraProvider theme={theme}>
-        <Outlet />
-      </ChakraProvider>
-      <ScrollRestoration />
-      <Scripts />
-      {process.env.NODE_ENV === 'development' && <LiveReload />}
-    </body>
-  </html>
-)
+export const meta: MetaDescriptor = {
+  title: '清廉街',
+  description: '一个简单的网站，非官方，开放源代码。',
+  viewport: 'width=device-width,initial-scale=1',
+}
 
-export default App
+export const links: LinkDescriptor[] = [
+  {
+    rel: 'manifest',
+    href: '/manifest.webmanifest',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    href: '/logo.png',
+  },
+  {
+    rel: 'shortcut icon',
+    type: 'image/x-icon',
+    href: '/favicon.ico',
+  },
+]
+
+export default function App() {
+  return (
+    <html lang="zh-cn">
+      <head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <ChakraProvider theme={theme}>
+          <Outlet />
+        </ChakraProvider>
+        <ScrollRestoration />
+        <Scripts />
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
+      </body>
+    </html>
+  )
+}

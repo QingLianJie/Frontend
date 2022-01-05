@@ -1,11 +1,54 @@
 import type { SystemProps } from '@chakra-ui/react'
-import { Avatar, Flex, Heading, Icon, Link, Tooltip } from '@chakra-ui/react'
+import {
+  Avatar as ChakraAvatar,
+  Flex,
+  Heading,
+  Icon,
+  Link,
+  Tooltip,
+} from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
-import SwitchTheme from '~/libs/common/SwitchTheme'
+import SwitchTheme from '~/libs/common/actions/SwitchTheme'
 import Drawer from '../drawer/Drawer'
 import Nav from './Nav'
+
+interface HeaderProps {
+  title?: string
+}
+
+const Header = ({ title = '清廉街' }: HeaderProps) => (
+  <Flex
+    as="header"
+    w="full"
+    align="center"
+    justify="stretch"
+    px={{ base: '6', sm: '8' }}
+    pt="5"
+    pb={{ base: '20vh', sm: '5' }}
+    gap="8"
+    zIndex="100"
+  >
+    <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>
+      <Drawer />
+    </HeaderSection>
+    <HeaderSection align={{ base: 'center', md: 'left' }}>
+      <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
+        {title}
+      </Heading>
+    </HeaderSection>
+    <HeaderSection align="center" d={{ base: 'none', md: 'flex' }}>
+      <Nav />
+    </HeaderSection>
+    <HeaderSection align="right">
+      <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
+      <HeaderAvatar />
+    </HeaderSection>
+  </Flex>
+)
+
+export default Header
 
 type AlignType = 'left' | 'center' | 'right'
 
@@ -31,12 +74,12 @@ const HeaderSection = ({
   </Flex>
 )
 
-interface MemberProps {
+interface HeaderAvatarProps {
   name?: string
   avatar?: string
 }
 
-const Member = ({ name, avatar }: MemberProps) => (
+const HeaderAvatar = ({ name, avatar }: HeaderAvatarProps) => (
   <Tooltip
     hasArrow
     placement="bottom-end"
@@ -46,7 +89,7 @@ const Member = ({ name, avatar }: MemberProps) => (
     rounded="md"
   >
     <Link as={RemixLink} to={name ? `/@${name}` : '/login'} rounded="full">
-      <Avatar
+      <ChakraAvatar
         aria-label={name ?? '陌生人'}
         src={avatar}
         icon={<Icon as={RiUserLine} fontSize="xl" />}
@@ -69,38 +112,3 @@ const Member = ({ name, avatar }: MemberProps) => (
     </Link>
   </Tooltip>
 )
-
-interface HeaderProps {
-  title?: string
-}
-
-const Header = ({ title = '清廉街' }: HeaderProps) => (
-  <Flex
-    as="header"
-    w="full"
-    align="center"
-    justify="stretch"
-    px={{ base: '6', sm: '8' }}
-    pt="5"
-    pb={{ base: '20vh', sm: '5' }}
-    gap="8"
-  >
-    <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>
-      <Drawer />
-    </HeaderSection>
-    <HeaderSection align={{ base: 'center', md: 'left' }}>
-      <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
-        {title}
-      </Heading>
-    </HeaderSection>
-    <HeaderSection align="center" d={{ base: 'none', md: 'flex' }}>
-      <Nav />
-    </HeaderSection>
-    <HeaderSection align="right">
-      <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
-      <Member />
-    </HeaderSection>
-  </Flex>
-)
-
-export default Header

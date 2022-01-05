@@ -13,9 +13,28 @@ import {
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
-import { navLinks } from '~/contents/links/nav-links'
+import { navLinks } from '~/contents/meta/links/nav-links'
+import LanTag from '~/libs/common/tags/LanTag'
 
-const NavItemStyles: SystemProps = {
+const DrawerNav = () => (
+  <VStack as="nav" spacing="0">
+    {navLinks.map(link =>
+      link.type === 'LINK' ? (
+        <DrawerNavLink {...link} key={link.name} />
+      ) : (
+        <DrawerNavAccordion {...link} key={link.name}>
+          {link.children.map(item => (
+            <DrawerNavAccordionItem {...item} key={item.name} />
+          ))}
+        </DrawerNavAccordion>
+      )
+    )}
+  </VStack>
+)
+
+export default DrawerNav
+
+const DrawerNavItemStyles: SystemProps = {
   w: 'full',
   px: '3',
   py: '2.5',
@@ -43,42 +62,55 @@ const NavItemStyles: SystemProps = {
   },
 }
 
-interface NavItemIconProps {
+interface DrawerNavItemIconProps {
   icon: IconType
   name: string
   color: string
 }
 
-const NavItemIcon = ({ icon, name, color }: NavItemIconProps) => (
+const DrawerNavItemIcon = ({ icon, name, color }: DrawerNavItemIconProps) => (
   <Icon as={icon} aria-label={name} color={`${color}.500`} fontSize="xl" />
 )
 
-interface NavItemProps {
+interface DrawerNavItemProps {
   href: string
-  color?: string
-  icon?: IconType
   name: string
+  icon?: IconType
+  color?: string
+  lan?: boolean
 }
 
-const NavLink = ({ href, color = 'gray', icon, name }: NavItemProps) => (
-  <Link as={RemixLink} to={href} {...NavItemStyles}>
-    {icon && <NavItemIcon icon={icon} name={name} color={color} />}
+const DrawerNavLink = ({
+  href,
+  color = 'gray',
+  icon,
+  name,
+  lan,
+}: DrawerNavItemProps) => (
+  <Link as={RemixLink} to={href} {...DrawerNavItemStyles}>
+    {icon && <DrawerNavItemIcon icon={icon} name={name} color={color} />}
     {name}
+    {lan && <LanTag />}
   </Link>
 )
 
-interface NavMenuProps {
+interface DrawerNavAccordionProps {
   name: string
   color: string
   icon: IconType
   children: ReactNode
 }
 
-const NavAccordion = ({ name, color, icon, children }: NavMenuProps) => (
+const DrawerNavAccordion = ({
+  name,
+  color,
+  icon,
+  children,
+}: DrawerNavAccordionProps) => (
   <Accordion allowToggle w="full">
     <AccordionItem border="none" w="full">
-      <AccordionButton {...NavItemStyles}>
-        <NavItemIcon icon={icon} name={name} color={color} />
+      <AccordionButton {...DrawerNavItemStyles}>
+        <DrawerNavItemIcon icon={icon} name={name} color={color} />
         {name}
         <Spacer />
         <AccordionIcon
@@ -97,7 +129,7 @@ const NavAccordion = ({ name, color, icon, children }: NavMenuProps) => (
   </Accordion>
 )
 
-const NavAccordionItem = ({ href, name }: NavItemProps) => (
+const DrawerNavAccordionItem = ({ href, name }: DrawerNavItemProps) => (
   <Link
     href={href}
     isExternal
@@ -113,21 +145,3 @@ const NavAccordionItem = ({ href, name }: NavItemProps) => (
     {name}
   </Link>
 )
-
-const Nav = () => (
-  <VStack as="nav" spacing="0">
-    {navLinks.map(link =>
-      link.type === 'LINK' ? (
-        <NavLink {...link} key={link.name} />
-      ) : (
-        <NavAccordion {...link} key={link.name}>
-          {link.children.map(item => (
-            <NavAccordionItem {...item} key={item.name} />
-          ))}
-        </NavAccordion>
-      )
-    )}
-  </VStack>
-)
-
-export default Nav

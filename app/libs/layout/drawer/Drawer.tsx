@@ -14,8 +14,9 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { RiMenuLine } from 'react-icons/ri'
-import SwitchTheme from '~/libs/common/SwitchTheme'
-import Nav from './Nav'
+import { meta } from '~/contents/meta/meta'
+import SwitchTheme from '~/libs/common/actions/SwitchTheme'
+import DrawerNav from './Nav'
 
 const Drawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -61,9 +62,8 @@ const Drawer = () => {
             _dark={{ bg: 'gray.800' }}
             transition="all 0.2s"
           >
-            清廉街
+            {meta.name}
           </DrawerHeader>
-
           <DrawerBody
             py="8"
             px="5"
@@ -71,7 +71,7 @@ const Drawer = () => {
             _dark={{ bg: 'gray.700' }}
             transition="all 0.2s"
           >
-            <Nav />
+            <DrawerNav />
           </DrawerBody>
           <DrawerFooter
             px="8"
@@ -80,20 +80,7 @@ const Drawer = () => {
             _dark={{ bg: 'gray.700' }}
             transition="all 0.2s"
           >
-            <HStack w="full">
-              <Text
-                fontSize="sm"
-                color="gray.500"
-                _dark={{
-                  color: 'gray.400',
-                }}
-                transition="all 0.2s"
-              >
-                点击按钮，切换颜色模式
-              </Text>
-              <Spacer />
-              <SwitchTheme />
-            </HStack>
+            <SwitchThemeText />
           </DrawerFooter>
         </DrawerContent>
       </CharkraDrawer>
@@ -102,3 +89,20 @@ const Drawer = () => {
 }
 
 export default Drawer
+
+const SwitchThemeText = () => (
+  <HStack w="full">
+    <Text
+      fontSize="sm"
+      color="gray.500"
+      _dark={{
+        color: 'gray.400',
+      }}
+      transition="all 0.2s"
+    >
+      点击按钮，切换颜色模式
+    </Text>
+    <Spacer />
+    <SwitchTheme />
+  </HStack>
+)
