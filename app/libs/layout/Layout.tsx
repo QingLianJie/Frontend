@@ -1,13 +1,13 @@
 import { Flex } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
-import Footer from './Footer'
-import Header from './header/Header'
+import { Footer } from './Footer'
+import { Header } from './header/Header'
 
 interface LayoutProps {
   children: ReactNode
 }
 
-const Layout = ({ children }: LayoutProps) => (
+export const Layout = ({ children }: LayoutProps) => (
   <Flex
     minH="100vh"
     flexDir="column"
@@ -26,5 +26,3 @@ const Layout = ({ children }: LayoutProps) => (
     <Footer />
   </Flex>
 )
-
-export default Layout

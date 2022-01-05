@@ -8,33 +8,28 @@ import {
   MenuItem,
   MenuList,
   SystemProps,
-  Tag,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/meta/links/nav-links'
-import LanTag from '~/libs/common/tags/LanTag'
+import { LanTag } from '~/libs/common/tags/LanTag'
 
-const HeaderNav = () => {
-  return (
-    <HStack as="nav">
-      {navLinks.map(link =>
-        link.type === 'LINK' ? (
-          <HeaderNavLink {...link} key={link.name} />
-        ) : (
-          <HeaderNavMenu {...link} key={link.name}>
-            {link.children.map(item => (
-              <HeaderNavMenuItem {...item} key={item.name} />
-            ))}
-          </HeaderNavMenu>
-        )
-      )}
-    </HStack>
-  )
-}
-
-export default HeaderNav
+export const HeaderNav = () => (
+  <HStack as="nav">
+    {navLinks.map(link =>
+      link.type === 'LINK' ? (
+        <HeaderNavLink {...link} key={link.name} />
+      ) : (
+        <HeaderNavMenu {...link} key={link.name}>
+          {link.children.map(item => (
+            <HeaderNavMenuItem {...item} key={item.name} />
+          ))}
+        </HeaderNavMenu>
+      )
+    )}
+  </HStack>
+)
 
 interface HeaderNavItemProps {
   href: string

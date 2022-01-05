@@ -10,15 +10,15 @@ import {
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
-import SwitchTheme from '~/libs/common/actions/SwitchTheme'
-import Drawer from '../drawer/Drawer'
-import Nav from './Nav'
+import { SwitchTheme } from '~/libs/common/actions/SwitchTheme'
+import { Drawer } from '../drawer/Drawer'
+import { HeaderNav } from './Nav'
 
 interface HeaderProps {
   title?: string
 }
 
-const Header = ({ title = '清廉街' }: HeaderProps) => (
+export const Header = ({ title = '清廉街' }: HeaderProps) => (
   <Flex
     as="header"
     w="full"
@@ -39,7 +39,7 @@ const Header = ({ title = '清廉街' }: HeaderProps) => (
       </Heading>
     </HeaderSection>
     <HeaderSection align="center" d={{ base: 'none', md: 'flex' }}>
-      <Nav />
+      <HeaderNav />
     </HeaderSection>
     <HeaderSection align="right">
       <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
@@ -47,8 +47,6 @@ const Header = ({ title = '清廉街' }: HeaderProps) => (
     </HeaderSection>
   </Flex>
 )
-
-export default Header
 
 type AlignType = 'left' | 'center' | 'right'
 

@@ -7,7 +7,7 @@ interface HomeCardProps extends SystemProps {
   children: ReactNode
 }
 
-const HomeCard = ({ title, children, ...props }: HomeCardProps) => (
+export const HomeCard = ({ title, children, ...props }: HomeCardProps) => (
   <VStack
     w="full"
     align="flex-start"
@@ -25,5 +25,3 @@ const HomeCard = ({ title, children, ...props }: HomeCardProps) => (
     {children}
   </VStack>
 )
-
-export default HomeCard

@@ -1,5 +1,5 @@
-import Layout from '~/libs/layout/Layout'
+import { Layout } from '~/libs/layout/Layout'
 
-const LoginPage = () => <Layout>login</Layout>
-
-export default LoginPage
+export default function LoginPage() {
+  return <Layout>login</Layout>
+}

@@ -11,7 +11,7 @@ import { useKeyPress } from 'ahooks'
 import { useRef } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
 
-const Search = () => {
+export const HomeSearch = () => {
   const ref = useRef<HTMLInputElement>(null)
   useKeyPress(['ctrl.k'], e => {
     e.preventDefault()
@@ -63,5 +63,3 @@ const Search = () => {
     </Flex>
   )
 }
-
-export default Search

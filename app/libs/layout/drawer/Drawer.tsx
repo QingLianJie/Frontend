@@ -6,20 +6,18 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  HStack,
   Icon,
   IconButton,
-  Spacer,
-  Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { RiMenuLine } from 'react-icons/ri'
 import { meta } from '~/contents/meta/meta'
-import SwitchTheme from '~/libs/common/actions/SwitchTheme'
-import DrawerNav from './Nav'
+import { SwitchThemeText } from '~/libs/common/actions/SwitchTheme'
+import {DrawerNav} from './Nav'
 
-const Drawer = () => {
+export const Drawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
       <IconButton
@@ -87,22 +85,3 @@ const Drawer = () => {
     </>
   )
 }
-
-export default Drawer
-
-const SwitchThemeText = () => (
-  <HStack w="full">
-    <Text
-      fontSize="sm"
-      color="gray.500"
-      _dark={{
-        color: 'gray.400',
-      }}
-      transition="all 0.2s"
-    >
-      点击按钮，切换颜色模式
-    </Text>
-    <Spacer />
-    <SwitchTheme />
-  </HStack>
-)

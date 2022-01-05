@@ -14,9 +14,9 @@ import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/meta/links/nav-links'
-import LanTag from '~/libs/common/tags/LanTag'
+import { LanTag } from '~/libs/common/tags/LanTag'
 
-const DrawerNav = () => (
+export const DrawerNav = () => (
   <VStack as="nav" spacing="0">
     {navLinks.map(link =>
       link.type === 'LINK' ? (
@@ -31,8 +31,6 @@ const DrawerNav = () => (
     )}
   </VStack>
 )
-
-export default DrawerNav
 
 const DrawerNavItemStyles: SystemProps = {
   w: 'full',

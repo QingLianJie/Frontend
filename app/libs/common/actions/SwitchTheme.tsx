@@ -1,14 +1,23 @@
-import { useColorMode, Tooltip, IconButton, Icon } from '@chakra-ui/react'
-import { RiMoonLine, RiSunLine } from 'react-icons/ri'
 import type { SystemProps } from '@chakra-ui/react'
+import {
+  HStack,
+  Icon,
+  IconButton,
+  Spacer,
+  Text,
+  Tooltip,
+  useColorMode,
+} from '@chakra-ui/react'
+import { RiMoonLine, RiSunLine } from 'react-icons/ri'
 
 interface SwitchThemeProps extends SystemProps {
   hasTooltip?: boolean
 }
 
-const SwitchTheme = ({ hasTooltip, ...props }: SwitchThemeProps) => {
+export const SwitchTheme = ({ hasTooltip, ...props }: SwitchThemeProps) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const isLight = colorMode === 'light'
+
   return (
     <Tooltip
       hasArrow
@@ -44,4 +53,19 @@ const SwitchTheme = ({ hasTooltip, ...props }: SwitchThemeProps) => {
   )
 }
 
-export default SwitchTheme
+export const SwitchThemeText = () => (
+  <HStack w="full">
+    <Text
+      fontSize="sm"
+      color="gray.500"
+      _dark={{
+        color: 'gray.400',
+      }}
+      transition="all 0.2s"
+    >
+      点击按钮，切换颜色模式
+    </Text>
+    <Spacer />
+    <SwitchTheme />
+  </HStack>
+)

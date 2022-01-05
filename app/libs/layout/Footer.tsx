@@ -17,7 +17,7 @@ import Logo from '~/assets/logo.svg'
 import { footerLinks } from '~/contents/meta/links/footer-links'
 import { meta } from '~/contents/meta/meta'
 
-const Footer = () => {
+export const Footer = () => {
   const { colorMode } = useColorMode()
 
   return (
@@ -65,8 +65,6 @@ const Footer = () => {
     </Flex>
   )
 }
-
-export default Footer
 
 interface FooterLinkProps {
   href: string

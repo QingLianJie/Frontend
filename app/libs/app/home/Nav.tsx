@@ -2,9 +2,9 @@ import { Flex, Icon, Link, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
 import { appLinks } from '~/contents/meta/links/app-links'
-import HomeCard from '~/libs/common/containers/HomeCard'
+import { HomeCard } from '~/libs/common/containers/HomeCard'
 
-const HomeNav = () => (
+export const HomeNav = () => (
   <HomeCard title="页面">
     <Flex
       flexDir={{ base: 'row', sm: 'column' }}
@@ -22,8 +22,6 @@ const HomeNav = () => (
     </Flex>
   </HomeCard>
 )
-
-export default HomeNav
 
 interface HomeNavLinkProps {
   href: string

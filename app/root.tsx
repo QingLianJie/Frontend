@@ -1,5 +1,5 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import type { LinkDescriptor, MetaDescriptor } from 'remix'
+import type { LinksFunction, MetaFunction } from 'remix'
 import {
   Links,
   LiveReload,
@@ -23,13 +23,13 @@ export const theme = extendTheme({
   useSystemColorMode: true,
 })
 
-export const meta: MetaDescriptor = {
+export const meta: MetaFunction = () => ({
   title: '清廉街',
   description: '一个简单的网站，非官方，开放源代码。',
   viewport: 'width=device-width,initial-scale=1',
-}
+})
 
-export const links: LinkDescriptor[] = [
+export const links: LinksFunction = () => [
   {
     rel: 'manifest',
     href: '/manifest.webmanifest',
