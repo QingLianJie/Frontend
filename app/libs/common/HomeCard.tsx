@@ -14,6 +14,7 @@ const HomeCard = ({ title, children, ...props }: HomeCardProps) => (
     rounded="md"
     bg="white"
     _dark={{ bg: 'gray.700' }}
+    transition="all 0.2s"
     {...props}
   >
     {title && (

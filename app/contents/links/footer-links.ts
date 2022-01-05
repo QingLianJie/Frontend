@@ -29,31 +29,10 @@ export const footerLinks: FooterLink[] = [
     ],
   },
   {
-    name: '页面',
-    links: [
-      {
-        name: '常见问题',
-        description: '未开放，一些与网站相关的问题',
-        href: '#',
-      },
-      {
-        name: '服务状态',
-        description: '未开放，查看网站的运行状态',
-        href: '#',
-      },
-      {
-        name: '测试网站',
-        description: '包含最新特性的网站，可能并不稳定',
-        href: 'https://qing-dev.dist.run',
-      },
-    ],
-  },
-
-  {
     name: '开源',
     links: [
       {
-        name: '项目主页',
+        name: 'GitHub',
         description: '这是我们的项目主页，欢迎来看看',
         href: 'https://github.com/QingLianJie',
       },
@@ -64,10 +43,30 @@ export const footerLinks: FooterLink[] = [
         href: 'https://github.com/QingLianJie/Bridge',
       },
       {
-        name: '移动应用',
+        name: 'Android',
         description:
           '开发中，获取 Android 应用程序，功能与网页版相同，自带插件',
         href: 'https://github.com/QingLianJie/Mobile',
+      },
+    ],
+  },
+  {
+    name: '页面',
+    links: [
+      {
+        name: '有问题',
+        description: '未开放，问问题之前看看这个，说不定就知道了',
+        href: '#',
+      },
+      {
+        name: '坏了么',
+        description: '未开放，看看网站是不是坏掉了',
+        href: '#',
+      },
+      {
+        name: '开发版',
+        description: '包含最新特性的网站，可能并不稳定',
+        href: 'https://qing-dev.dist.run',
       },
     ],
   },

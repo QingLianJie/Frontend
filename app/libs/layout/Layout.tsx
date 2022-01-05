@@ -17,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => (
     _dark={{
       bg: 'gray.800',
     }}
+    transition="all 0.2s"
   >
     <Header />
     <Flex as="main" w="full" flexDir="column" align="center" flex="1">

@@ -1,6 +1,7 @@
-import { Grid, GridItem, Spacer } from '@chakra-ui/react'
+import { Grid, GridItem, VStack } from '@chakra-ui/react'
 import Links from '~/libs/app/home/Links'
-import { MobileNav, Nav } from '~/libs/app/home/Nav'
+import Nav from '~/libs/app/home/Nav'
+import Search from '~/libs/app/home/Search'
 import Layout from '~/libs/layout/Layout'
 
 const IndexPage = () => (
@@ -11,15 +12,19 @@ const IndexPage = () => (
       px={{ base: '4', sm: '8' }}
       py={{ base: '0', sm: '8' }}
       templateColumns="repeat(4, 1fr)"
-      gap="8"
+      gap="4"
     >
-      <GridItem colSpan={{ base: 4, sm: 2, md: 1 }}>
-        <MobileNav />
-        <Nav />
-        <Spacer h="4" />
-        <Links />
+      <GridItem w="full" colSpan={{ base: 4, sm: 2, md: 1 }}>
+        <VStack align="flex-start" spacing="4">
+          <Nav />
+          <Links />
+        </VStack>
       </GridItem>
-      <GridItem colSpan={{ base: 4, sm: 4, md: 2 }}></GridItem>
+      <GridItem colSpan={{ base: 4, sm: 4, md: 2 }}>
+        <VStack align="flex-start" spacing="4">
+          <Search />
+        </VStack>
+      </GridItem>
       <GridItem colSpan={{ base: 4, sm: 2, md: 1 }}></GridItem>
     </Grid>
   </Layout>

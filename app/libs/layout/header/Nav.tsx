@@ -58,7 +58,7 @@ const NavMenu = ({ name, children }: NavMenuProps) => (
   <Menu>
     <MenuButton
       as={Button}
-      rightIcon={<Icon as={RiArrowDownSLine} aria-label="菜单图标" />}
+      rightIcon={<Icon as={RiArrowDownSLine} aria-label="展开列表" />}
       {...NavItemStyles}
     >
       {name}

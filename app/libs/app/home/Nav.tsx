@@ -1,4 +1,4 @@
-import { Icon, Link, VStack, Wrap, WrapItem } from '@chakra-ui/react'
+import { Flex, Icon, Link, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
 import { appLinks } from '~/contents/links/app-links'
@@ -7,22 +7,25 @@ import HomeCard from '~/libs/common/HomeCard'
 interface NavLinkProps {
   href: string
   name: string
-  short?: string
+  short: string
   icon: IconType
   color: string
 }
 
-const NavLink = ({ href, name, icon, color }: NavLinkProps) => (
+const NavLink = ({ href, name, short, icon, color }: NavLinkProps) => (
   <Link
     as={RemixLink}
     to={href}
     key={name}
     d="flex"
     alignItems="center"
-    gap="4"
-    w="full"
-    px="6"
-    py="2"
+    flexDir={{ base: 'column', sm: 'row' }}
+    gap={{ base: '3', sm: '4' }}
+    w={{ base: 'fit-content', sm: 'full' }}
+    px={{ base: '3', sm: '6' }}
+    pt={{ base: '3', sm: '2' }}
+    pb={{ base: '2', sm: '2' }}
+    rounded={{ base: 'md', sm: 'none' }}
     _hover={{
       textDecor: 'none',
       bg: 'gray.200',
@@ -33,60 +36,34 @@ const NavLink = ({ href, name, icon, color }: NavLinkProps) => (
       },
     }}
   >
-    <Icon as={icon} aria-label={name} color={`${color}.500`} fontSize="xl" />
-    {name}
+    <Icon
+      as={icon}
+      aria-label={name}
+      color={`${color}.500`}
+      fontSize={{ base: '28', sm: 'xl' }}
+    />
+    <Text d={{ base: 'flex', sm: 'none' }}>{short}</Text>
+    <Text d={{ base: 'none', sm: 'flex' }}>{name}</Text>
   </Link>
 )
 
 const Nav = () => (
-  <HomeCard title="页面" d={{ base: 'none', sm: 'flex' }}>
-    <VStack align="flex-start" spacing="0" w="full" pt="2" pb="4">
+  <HomeCard title="页面">
+    <Flex
+      flexDir={{ base: 'row', sm: 'column' }}
+      alignItems="flex-start"
+      justifyContent="flex-start"
+      w="full"
+      pt={{ base: '1', sm: '2' }}
+      px={{ base: '4', sm: '0' }}
+      pb="4"
+      gap={{ base: '2', sm: '0' }}
+    >
       {appLinks.map(link => (
         <NavLink {...link} key={link.name} />
       ))}
-    </VStack>
+    </Flex>
   </HomeCard>
 )
 
-const MobileNavLink = ({ href, name, short, icon, color }: NavLinkProps) => (
-  <Link
-    as={RemixLink}
-    to={href}
-    key={name}
-    d="flex"
-    alignItems="center"
-    flexDir="column"
-    gap="3"
-    w="full"
-    px="3"
-    pt="3"
-    pb="2"
-    rounded="md"
-    _hover={{
-      textDecor: 'none',
-      bg: 'gray.200',
-    }}
-    _dark={{
-      _hover: {
-        bg: 'gray.600',
-      },
-    }}
-  >
-    <Icon as={icon} aria-label={short} color={`${color}.500`} fontSize="28" />
-    {short}
-  </Link>
-)
-
-const MobileNav = () => (
-  <HomeCard title="页面" d={{ base: 'flex', sm: 'none' }}>
-    <Wrap w="full" px="4" pt="1" pb="4">
-      {appLinks.map(link => (
-        <WrapItem key={link.short}>
-          <MobileNavLink {...link} />
-        </WrapItem>
-      ))}
-    </Wrap>
-  </HomeCard>
-)
-
-export { Nav, MobileNav }
+export default Nav

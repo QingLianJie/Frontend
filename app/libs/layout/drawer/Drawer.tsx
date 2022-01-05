@@ -22,7 +22,7 @@ const Drawer = () => {
   return (
     <>
       <IconButton
-        aria-label="菜单图标"
+        aria-label="菜单"
         icon={<Icon as={RiMenuLine} fontSize="xl" />}
         onClick={onOpen}
         d={{ base: 'flex', md: 'none' }}
@@ -59,13 +59,27 @@ const Drawer = () => {
             fontSize="lg"
             bg="gray.100"
             _dark={{ bg: 'gray.800' }}
+            transition="all 0.2s"
           >
             清廉街
           </DrawerHeader>
-          <DrawerBody py="8" px="5">
+
+          <DrawerBody
+            py="8"
+            px="5"
+            bg="white"
+            _dark={{ bg: 'gray.700' }}
+            transition="all 0.2s"
+          >
             <Nav />
           </DrawerBody>
-          <DrawerFooter px="8" py="5">
+          <DrawerFooter
+            px="8"
+            py="5"
+            bg="white"
+            _dark={{ bg: 'gray.700' }}
+            transition="all 0.2s"
+          >
             <HStack w="full">
               <Text
                 fontSize="sm"
@@ -73,6 +87,7 @@ const Drawer = () => {
                 _dark={{
                   color: 'gray.400',
                 }}
+                transition="all 0.2s"
               >
                 点击按钮，切换颜色模式
               </Text>

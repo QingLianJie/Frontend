@@ -64,6 +64,7 @@ const Member = ({ name, avatar }: MemberProps) => (
           },
         }}
         cursor="pointer"
+        transition="all 0.2s"
       />
     </Link>
   </Tooltip>

@@ -83,14 +83,14 @@ const NavAccordion = ({ name, color, icon, children }: NavMenuProps) => (
         <Spacer />
         <AccordionIcon
           fontSize="xl"
-          me="2.5"
+          mr="2.5"
           color="gray.500"
           _dark={{
             color: 'gray.400',
           }}
         />
       </AccordionButton>
-      <AccordionPanel py="1" ms="6">
+      <AccordionPanel py="1" ml="6">
         <VStack spacing="0">{children}</VStack>
       </AccordionPanel>
     </AccordionItem>
