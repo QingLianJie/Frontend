@@ -39,7 +39,7 @@ export const HomeSearch = () => {
           borderColor="white"
           pl="12"
           pr="4"
-          py="2.5"
+          py="3"
           bg="white"
           _dark={{ bg: 'gray.700', borderColor: 'gray.700' }}
         />
