@@ -1,0 +1,9 @@
+{
+    "description": "获取当前登录用户所有的评论",
+    "method": "GET",
+    "path": "/member/comments",
+    "response": {
+        "200": "获取成功",
+        "401": "没有登录"
+    }
+}

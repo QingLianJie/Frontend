@@ -1,0 +1,9 @@
+{
+    "description": "获取指定 ID 的课程分数统计",
+    "method": "GET",
+    "path": "/courses/[id]/statistics",
+    "response": {
+        "200": "获取成功",
+        "404": "课程不存在"
+    }
+}

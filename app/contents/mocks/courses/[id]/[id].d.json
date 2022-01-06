@@ -1,0 +1,9 @@
+{
+    "description": "获取指定 ID 的课程信息",
+    "method": "GET",
+    "path": "/courses/[id]",
+    "response": {
+        "200": "获取成功",
+        "404": "课程不存在"
+    }
+}

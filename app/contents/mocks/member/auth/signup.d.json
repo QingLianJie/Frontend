@@ -1,0 +1,14 @@
+{
+    "method": "POST",
+    "path": "/member/auth/signup",
+    "payload": {
+        "email": "邮箱",
+        "name": "用户名",
+        "password": "密码"
+    },
+    "response": {
+        "200": "登录成功",
+        "401": "密码错误",
+        "403": "用户已存在"
+    }
+}

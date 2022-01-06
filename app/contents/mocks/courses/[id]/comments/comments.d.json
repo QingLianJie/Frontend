@@ -1,0 +1,25 @@
+[
+    {
+        "description": "获取指定 ID 的课程评论数据",
+        "method": "GET",
+        "path": "/courses/[id]/comments",
+        "response": {
+            "200": "获取成功",
+            "404": "课程不存在"
+        }
+    },
+    {
+        "description": "发表指定课程评论",
+        "method": "POST",
+        "path": "/courses/[id]/comments",
+        "payload": {
+            "content": "评论内容",
+            "anonymous": "是否匿名"
+        },
+        "response": {
+            "200": "发表成功",
+            "401": "没有登录",
+            "404": "课程不存在"
+        }
+    }
+]
