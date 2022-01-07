@@ -11,7 +11,7 @@ export const schoolLinks: SchoolLink[] = [
     lan: false,
   },
   {
-    name: '网站办事中心',
+    name: '网上办事中心',
     href: 'https://one.wvpn.hrbeu.edu.cn/',
     lan: false,
   },

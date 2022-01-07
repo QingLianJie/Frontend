@@ -10,6 +10,7 @@ export const HomeLinks = () => (
         <Link
           href={link.href}
           key={link.name}
+          title={link.name}
           w="full"
           px="6"
           py="2"

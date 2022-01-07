@@ -18,7 +18,7 @@ export const HomeTips = () => (
         color="gray.500"
         _dark={{ color: 'gray.400' }}
       >
-        更多内容，可以到语雀
+        更多相关内容，可以到语雀
         <Link
           href="https://www.yuque.com/lifeni/qing"
           isExternal
@@ -46,11 +46,12 @@ const HomeTipsLink = ({ href, name, icon, color }: HomeTipsLinkProps) => (
   <Link
     href={href}
     key={name}
+    title={name}
+    w="full"
     isExternal
     d="flex"
     alignItems="center"
     gap="4"
-    w="full"
     px="6"
     py="2"
     _hover={{
@@ -64,6 +65,6 @@ const HomeTipsLink = ({ href, name, icon, color }: HomeTipsLinkProps) => (
     }}
   >
     <Icon as={icon} aria-label={name} color={`${color}.500`} fontSize="xl" />
-    <Text>{name}</Text>
+    <Text isTruncated>{name}</Text>
   </Link>
 )

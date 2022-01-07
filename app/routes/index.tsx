@@ -22,9 +22,9 @@ export default function IndexPage() {
       <Grid
         w="full"
         maxW="72rem"
-        px={{ base: '4', sm: '8' }}
+        px={{ base: '4', sm: 6, md: '8' }}
         py={{ base: '0', sm: '8' }}
-        templateColumns="repeat(4, 1fr)"
+        templateColumns="repeat(4, minmax(0, 1fr))"
         gap="4"
       >
         <GridItem w="full" colSpan={{ base: 4, sm: 2, md: 1 }}>
