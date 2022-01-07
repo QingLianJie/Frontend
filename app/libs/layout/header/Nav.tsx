@@ -12,7 +12,7 @@ import {
 import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
-import { navLinks } from '~/contents/meta/links/nav-links'
+import { navLinks } from '~/contents/links/nav-links'
 import { LanTag } from '~/libs/common/tags/LanTag'
 
 export const HeaderNav = () => (

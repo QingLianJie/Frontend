@@ -14,8 +14,7 @@ import {
 } from '@chakra-ui/react'
 import LogoDark from '~/assets/logo-dark.svg'
 import Logo from '~/assets/logo.svg'
-import { footerLinks } from '~/contents/meta/links/footer-links'
-import { meta } from '~/contents/meta/meta'
+import { footerLinks } from '~/contents/links/footer-links'
 
 export const Footer = () => {
   const { colorMode } = useColorMode()
@@ -35,14 +34,17 @@ export const Footer = () => {
       <VStack align="flex-start" pb="1">
         <Image
           src={colorMode === 'light' ? Logo : LogoDark}
-          alt={`${meta.name} Logo`}
+          alt={`清廉街 Logo`}
           w="28"
           userSelect="none"
           pointerEvents="none"
         />
         <Spacer />
-        <FooterLink href={meta.icp.href} name={meta.icp.name} />
-        <Text fontWeight="bold">{meta.copyright}</Text>
+        <FooterLink
+          href="http://www.beian.miit.gov.cn/"
+          name="黑ICP备2021003925号-1"
+        />
+        <Text fontWeight="bold">清廉街 © 2022</Text>
       </VStack>
       <Wrap spacing={{ base: '8', md: '12' }}>
         {footerLinks.map(link => (

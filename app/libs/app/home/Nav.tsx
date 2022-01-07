@@ -1,7 +1,7 @@
 import { Flex, Icon, Link, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
-import { appLinks } from '~/contents/meta/links/app-links'
+import { appLinks } from '~/contents/links/app-links'
 import { HomeCard } from '~/libs/common/containers/HomeCard'
 
 export const HomeNav = () => (

@@ -1,5 +1,10 @@
 import type { IconType } from 'react-icons'
-import { RiBarChartBoxLine, RiBookOpenLine, RiTableLine } from 'react-icons/ri'
+import {
+  RiAccountCircleLine,
+  RiBarChartBoxLine,
+  RiBookOpenLine,
+  RiTableLine,
+} from 'react-icons/ri'
 
 type AppLink = {
   name: string
@@ -30,5 +35,12 @@ export const appLinks: AppLink[] = [
     href: '/timetable',
     color: 'blue',
     icon: RiTableLine,
+  },
+  {
+    name: '账号管理',
+    short: '账号',
+    href: '/member',
+    color: 'yellow',
+    icon: RiAccountCircleLine,
   },
 ]

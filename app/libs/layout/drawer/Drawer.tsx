@@ -11,9 +11,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { RiMenuLine } from 'react-icons/ri'
-import { meta } from '~/contents/meta/meta'
 import { SwitchThemeText } from '~/libs/common/actions/SwitchTheme'
-import {DrawerNav} from './Nav'
+import { DrawerNav } from './Nav'
 
 export const Drawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -60,7 +59,7 @@ export const Drawer = () => {
             _dark={{ bg: 'gray.800' }}
             transition="all 0.2s"
           >
-            {meta.name}
+            清廉街
           </DrawerHeader>
           <DrawerBody
             py="8"

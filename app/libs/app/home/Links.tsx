@@ -1,5 +1,5 @@
 import { Link, VStack } from '@chakra-ui/react'
-import { schoolLinks } from '~/contents/meta/links/school-links'
+import { schoolLinks } from '~/contents/links/school-links'
 import { HomeCard } from '~/libs/common/containers/HomeCard'
 import { LanTag } from '~/libs/common/tags/LanTag'
 

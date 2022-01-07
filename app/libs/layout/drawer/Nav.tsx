@@ -13,7 +13,7 @@ import {
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
-import { navLinks } from '~/contents/meta/links/nav-links'
+import { navLinks } from '~/contents/links/nav-links'
 import { LanTag } from '~/libs/common/tags/LanTag'
 
 export const DrawerNav = () => (
@@ -83,12 +83,10 @@ const DrawerNavLink = ({
   color = 'gray',
   icon,
   name,
-  lan,
 }: DrawerNavItemProps) => (
   <Link as={RemixLink} to={href} {...DrawerNavItemStyles}>
     {icon && <DrawerNavItemIcon icon={icon} name={name} color={color} />}
     {name}
-    {lan && <LanTag />}
   </Link>
 )
 
@@ -127,7 +125,7 @@ const DrawerNavAccordion = ({
   </Accordion>
 )
 
-const DrawerNavAccordionItem = ({ href, name }: DrawerNavItemProps) => (
+const DrawerNavAccordionItem = ({ href, name, lan }: DrawerNavItemProps) => (
   <Link
     href={href}
     isExternal
@@ -141,5 +139,6 @@ const DrawerNavAccordionItem = ({ href, name }: DrawerNavItemProps) => (
     isTruncated
   >
     {name}
+    {lan && <LanTag />}
   </Link>
 )

@@ -45,7 +45,7 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
         />
         <VStack align="flex-start" spacing="0">
           <Text fontWeight="bold">{comment.author.name}</Text>
-          <Text fontSize="xs">{calendarTime(comment.date)}</Text>
+          <Text fontSize="sm">{calendarTime(comment.date)}</Text>
         </VStack>
       </HStack>
       <Text lineHeight="tall" px="2">

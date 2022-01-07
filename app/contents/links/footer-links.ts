@@ -55,8 +55,8 @@ export const footerLinks: FooterLink[] = [
     links: [
       {
         name: '有问题',
-        description: '未开放，问问题之前看看这个，说不定就知道了',
-        href: '#',
+        description: '有问题？看看这个，说不定就知道了',
+        href: 'https://www.yuque.com/lifeni/qing/faq',
       },
       {
         name: '坏了么',
