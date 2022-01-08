@@ -18,7 +18,7 @@ interface FormInputProps {
   help?: string
   name: string
   disabled?: boolean
-  action: (e: ChangeEvent<HTMLInputElement>) => void
+  action?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const FormInput = ({
