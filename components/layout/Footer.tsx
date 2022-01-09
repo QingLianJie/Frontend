@@ -21,7 +21,7 @@ const Footer = () => {
         flexWrap="wrap"
       >
         <Text fontSize="sm" color="gray.500">
-          清廉街 © 2021
+          清廉街 © {new Date().getFullYear()}
         </Text>
         <Button
           variant="link"

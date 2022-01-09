@@ -58,6 +58,9 @@ const ResetConfirmPage = () => {
           uid: id,
           token: token,
         }),
+        headers: {
+          'content-type': 'application/json',
+        },
         mode: 'cors',
         credentials: 'include',
       })
