@@ -1,14 +1,12 @@
-/*
-  可以在这个文件里修改 API 地址，
-  每个变量有两个地址，
-  分别为 开发环境 和 生产环境 下的 API 地址，
-  请按需修改。
-*/
+const defaultApi = 'https://api.qinglianjie.cn'
+
+const baseApi =
+  typeof window !== 'undefined' && window.localStorage.getItem('BASE_URL')
 
 // API 的前缀地址
 export const BASE_API_URL =
-  process.env.NEXT_PUBLIC_BASE_API_URL || 'https://api.qinglianjie.cn'
+  baseApi || process.env.NEXT_PUBLIC_BASE_API_URL || defaultApi
 
 // 头像图片的前缀地址
 export const BASE_AVATAR_URL =
-  process.env.NEXT_PUBLIC_BASE_AVATAR_URL || 'https://api.qinglianjie.cn'
+  baseApi || process.env.NEXT_PUBLIC_BASE_AVATAR_URL || defaultApi
