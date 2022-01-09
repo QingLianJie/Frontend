@@ -2,7 +2,7 @@ import { useToast } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { FormEvent, useState } from 'react'
-import { RiLockPasswordFill, RiUserFill } from 'react-icons/ri'
+import { RiLockPasswordFill } from 'react-icons/ri'
 import BlockLink from '../../../components/common/action/link/BlockLink'
 import CenterContainer from '../../../components/common/container/Center'
 import HorizontalContainer from '../../../components/common/container/Horizontal'
@@ -74,13 +74,21 @@ const ResetConfirmPage = () => {
             router.push('/login')
           } else {
             const data = await res.json()
-            Object.values(data).forEach(d => {
+            if (data.token === 'Invalid value') {
               toast({
                 title: '重置密码失败',
-                description: d as string,
+                description: '重置链接已经过期，请重新发送邮件。',
                 ...toastConfig.error,
               })
-            })
+            } else {
+              Object.values(data).forEach(d => {
+                toast({
+                  title: '重置密码失败',
+                  description: d as string,
+                  ...toastConfig.error,
+                })
+              })
+            }
           }
         })
         .catch((err: Error) => {
