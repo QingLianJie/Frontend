@@ -74,7 +74,7 @@ const ResetConfirmPage = () => {
             router.push('/login')
           } else {
             const data = await res.json()
-            if (data.token[0] === 'Invalid value') {
+            if (data?.token?.[0] === 'Invalid value') {
               toast({
                 title: '重置密码失败',
                 description: '重置链接已经过期，请重新发送邮件。',
