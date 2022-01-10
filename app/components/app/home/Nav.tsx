@@ -19,9 +19,9 @@ export const HomeNav = (props: HomeNavProps) => (
       pb="4"
       gap="0"
     >
-      {appLinks.map(link => (
-        <HomeNavLink {...link} key={link.name} />
-      ))}
+      {appLinks.map(link =>
+        link.mobile ? null : <HomeNavLink {...link} key={link.name} />
+      )}
     </Flex>
   </HomeCard>
 )
@@ -29,12 +29,11 @@ export const HomeNav = (props: HomeNavProps) => (
 interface HomeNavLinkProps {
   href: string
   name: string
-  short: string
   icon: IconType
   color: string
 }
 
-const HomeNavLink = ({ href, name, short, icon, color }: HomeNavLinkProps) => (
+const HomeNavLink = ({ href, name, icon, color }: HomeNavLinkProps) => (
   <Link
     as={RemixLink}
     to={href}

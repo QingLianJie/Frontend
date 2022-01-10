@@ -1,11 +1,20 @@
 [
     {
         "date": "2022-01-08T08:46:24.421Z",
-        "content": "新版清廉街正在开发测试中，还没有接入数据库和 API，所以出现无法访问是正常现象。",
-        "link": "https://www.yuque.com/lifeni/qing/update-2.0"
+        "content": "新版清廉街正在开发测试中，还没有接入数据库和 API，所以出现无法访问是正常现象。"
     },
     {
         "date": "2022-01-05T21:27:59.421Z",
-        "content": "这是另一条公告，但是没有多余的链接。"
+        "content": "这是另一条公告，但是有几个没什么用的外部链接。",
+        "links": [
+            {
+                "text": "更新日志",
+                "href": "https://www.yuque.com/lifeni/qing/update-2.0"
+            },
+            {
+                "text": "常见问题",
+                "href": "https://www.yuque.com/lifeni/qing/faq"
+            }
+        ]
     }
 ]

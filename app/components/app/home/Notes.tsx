@@ -1,5 +1,6 @@
-import { Link, SystemProps } from '@chakra-ui/react'
-import { Divider, HStack, Text, VStack } from '@chakra-ui/react'
+import type { SystemProps } from '@chakra-ui/react'
+import { Divider, HStack, Icon, Link, Text, VStack } from '@chakra-ui/react'
+import { RiLinksLine } from 'react-icons/ri'
 import { HomeCard } from '~/components/common/containers/HomeCard'
 import { calendarDate } from '~/utils/time'
 
@@ -27,6 +28,15 @@ export const HomeNotes = ({ notes, ...props }: HomeNotesProps) => (
           key={note.content}
         >
           <Text
+            as="time"
+            fontSize="sm"
+            color="gray.500"
+            _dark={{ color: 'gray.400' }}
+            isTruncated
+          >
+            {calendarDate(note.date)}
+          </Text>
+          <Text
             as="article"
             w="full"
             overflowWrap="break-word"
@@ -34,30 +44,26 @@ export const HomeNotes = ({ notes, ...props }: HomeNotesProps) => (
           >
             {note.content}
           </Text>
-          <HStack w="full" justify="space-between">
-            <Text
-              as="time"
-              fontSize="sm"
-              color="gray.500"
-              _dark={{ color: 'gray.400' }}
-              isTruncated
-            >
-              {calendarDate(note.date)}
-            </Text>
-            {note.link && (
-              <Link
-                href={note.link}
-                isExternal
-                fontSize="sm"
-                color="blue.500"
-                _dark={{ color: 'blue.400' }}
-                textUnderlineOffset="0.25rem"
-                isTruncated
-              >
-                查看更多
-              </Link>
-            )}
-          </HStack>
+          {note.links && (
+            <HStack align="flex-start" spacing="4" w="full">
+              {note.links?.map(link => (
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  isExternal
+                  d="flex"
+                  alignItems="center"
+                  fontSize="sm"
+                  color="purple.500"
+                  _dark={{ color: 'purple.400' }}
+                  textUnderlineOffset="0.25rem"
+                  isTruncated
+                >
+                  {link.text}
+                </Link>
+              ))}
+            </HStack>
+          )}
         </VStack>
       ))}
     </VStack>

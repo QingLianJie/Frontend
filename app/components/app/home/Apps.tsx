@@ -1,4 +1,5 @@
-import { Icon, Link, SimpleGrid, SystemProps, Text } from '@chakra-ui/react'
+import type { SystemProps } from '@chakra-ui/react'
+import { Icon, Link, SimpleGrid, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
 import { HomeCard } from '~/components/common/containers/HomeCard'

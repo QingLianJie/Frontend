@@ -13,27 +13,28 @@ type AppLink = {
   href: string
   color: string
   icon: IconType
+  mobile?: boolean
 }
 
 export const appLinks: AppLink[] = [
   {
     name: '全部课程',
     short: '课程',
-    href: '/cources',
+    href: '/courses',
     color: 'red',
     icon: RiBookOpenLine,
   },
   {
     name: '我的成绩',
     short: '成绩',
-    href: '/scores',
+    href: '/member/scores',
     color: 'green',
     icon: RiBarChartBoxLine,
   },
   {
     name: '我的课表',
     short: '课表',
-    href: '/timetable',
+    href: '/member/timetable',
     color: 'blue',
     icon: RiTableLine,
   },
@@ -50,5 +51,6 @@ export const appLinks: AppLink[] = [
     href: '#links',
     color: 'yellow',
     icon: RiBuildingLine,
+    mobile: true,
   },
 ]

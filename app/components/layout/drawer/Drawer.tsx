@@ -1,4 +1,6 @@
 import {
+  Box,
+  Divider,
   Drawer as CharkraDrawer,
   DrawerBody,
   DrawerCloseButton,
@@ -36,7 +38,11 @@ export const Drawer = () => {
       />
       <CharkraDrawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent
+          bg="white"
+          _dark={{ bg: 'gray.700' }}
+          transition="background 0.2s"
+        >
           <DrawerCloseButton
             top="5"
             right="7"
@@ -50,6 +56,7 @@ export const Drawer = () => {
               color: 'gray.400',
             }}
           />
+
           <DrawerHeader
             px="8"
             pt="8"
@@ -61,6 +68,7 @@ export const Drawer = () => {
           >
             清廉街
           </DrawerHeader>
+
           <DrawerBody
             py="8"
             px="5"
@@ -70,10 +78,16 @@ export const Drawer = () => {
           >
             <DrawerNav />
           </DrawerBody>
+
+          <Box px="4">
+            <Divider transition="all 0.2s" />
+          </Box>
+
           <DrawerFooter
             px="8"
             py="5"
             bg="white"
+            flexDir="column"
             _dark={{ bg: 'gray.700' }}
             transition="all 0.2s"
           >

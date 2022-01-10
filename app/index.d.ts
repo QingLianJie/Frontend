@@ -3,7 +3,10 @@ type INotes = INote[]
 interface INote {
   date: string
   content: string
-  link?: string
+  links?: {
+    text: string
+    href: string
+  }[]
 }
 
 type IFeeds = ICommentFeed[]

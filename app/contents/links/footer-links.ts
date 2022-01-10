@@ -37,7 +37,7 @@ export const footerLinks: FooterLink[] = [
         href: 'https://github.com/QingLianJie',
       },
       {
-        name: '插件',
+        name: 'Bridge',
         description:
           '开发中，获取一个用户脚本（UserScript）插件，可以在本地解析学校数据',
         href: 'https://github.com/QingLianJie/Bridge',
