@@ -52,7 +52,6 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
         {comment.content}
       </Text>
       <Divider transition="all 0.2s" />
-
       <HStack
         w="full"
         px="2"

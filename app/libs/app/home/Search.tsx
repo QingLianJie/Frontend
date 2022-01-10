@@ -1,3 +1,4 @@
+import type { SystemProps } from '@chakra-ui/react'
 import {
   Flex,
   Icon,
@@ -11,7 +12,9 @@ import { useKeyPress } from 'ahooks'
 import { useRef } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
 
-export const HomeSearch = () => {
+interface HomeSearchProps extends SystemProps {}
+
+export const HomeSearch = (props: HomeSearchProps) => {
   const ref = useRef<HTMLInputElement>(null)
   useKeyPress(['ctrl.k'], e => {
     e.preventDefault()
@@ -19,7 +22,7 @@ export const HomeSearch = () => {
   })
 
   return (
-    <Flex w="full">
+    <Flex w="full" {...props}>
       <InputGroup>
         <InputLeftElement pointerEvents="none" h="full" w="12">
           <Icon
@@ -42,6 +45,10 @@ export const HomeSearch = () => {
           py="3"
           bg="white"
           _dark={{ bg: 'gray.700', borderColor: 'gray.700' }}
+          _placeholder={{
+            color: 'gray.500',
+            _dark: 'gray.400',
+          }}
         />
         <InputRightElement
           pointerEvents="none"

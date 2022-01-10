@@ -1,12 +1,15 @@
-import { VStack, Text, Icon, Link } from '@chakra-ui/react'
+import type { SystemProps } from '@chakra-ui/react'
+import { Icon, Link, Text, VStack } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
-import { tips } from '~/contents/links/tips-links'
+import { tipsLinks } from '~/contents/links/tips-links'
 import { HomeCard } from '~/libs/common/containers/HomeCard'
 
-export const HomeTips = () => (
-  <HomeCard title="帮助">
+interface HomeTipsProps extends SystemProps {}
+
+export const HomeTips = (props: HomeTipsProps) => (
+  <HomeCard title="帮助" {...props}>
     <VStack w="full" px="0" pb="4" pt="2" align="flex-start" spacing="0">
-      {tips.map(tip => (
+      {tipsLinks.map(tip => (
         <HomeTipsLink {...tip} key={tip.name} />
       ))}
       <Text
@@ -25,11 +28,10 @@ export const HomeTips = () => (
           color="blue.500"
           _hover={{ textDecor: 'none' }}
           _dark={{ color: 'blue.400' }}
-          mx="1"
         >
-          「清廉街」知识库
+          「清廉街」
         </Link>
-        看看。
+        知识库看看。
       </Text>
     </VStack>
   </HomeCard>

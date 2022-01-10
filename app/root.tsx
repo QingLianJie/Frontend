@@ -19,6 +19,12 @@ export const theme = extendTheme({
     body: fontFamily,
     heading: fontFamily,
   },
+  fontSizes: { smd: '0.925rem' },
+  styles: {
+    glboal: {
+      body: { scrollPadding: '1rem' },
+    },
+  },
   initialColorMode: 'system',
   useSystemColorMode: true,
 })
@@ -43,6 +49,18 @@ export const links: LinksFunction = () => [
     rel: 'shortcut icon',
     type: 'image/x-icon',
     href: '/favicon.ico',
+  },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.googleapis.com',
+  },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+  },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css?family=Inter:400,700|Noto+Sans+SC:400,700&display=swap',
   },
 ]
 

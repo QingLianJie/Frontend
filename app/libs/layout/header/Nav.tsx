@@ -13,7 +13,7 @@ import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/links/nav-links'
-import { LanTag } from '~/libs/common/tags/LanTag'
+import { LANTag } from '~/libs/common/tags/LANTag'
 
 export const HeaderNav = () => (
   <HStack as="nav">
@@ -81,7 +81,7 @@ const HeaderNavMenu = ({ name, children }: HeaderNavMenuProps) => (
     >
       {name}
     </MenuButton>
-    <MenuList py="3">{children}</MenuList>
+    <MenuList py="2">{children}</MenuList>
   </Menu>
 )
 
@@ -98,7 +98,7 @@ const HeaderNavMenuItem = ({ href, name, lan }: HeaderNavItemProps) => (
       }}
     >
       {name}
-      {lan && <LanTag />}
+      {lan && <LANTag />}
     </Link>
   </MenuItem>
 )

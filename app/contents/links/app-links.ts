@@ -3,6 +3,7 @@ import {
   RiAccountCircleLine,
   RiBarChartBoxLine,
   RiBookOpenLine,
+  RiBuildingLine,
   RiTableLine,
 } from 'react-icons/ri'
 
@@ -40,7 +41,14 @@ export const appLinks: AppLink[] = [
     name: '账号管理',
     short: '账号',
     href: '/member',
-    color: 'yellow',
+    color: 'pink',
     icon: RiAccountCircleLine,
+  },
+  {
+    name: '学校链接',
+    short: '学校',
+    href: '#links',
+    color: 'yellow',
+    icon: RiBuildingLine,
   },
 ]

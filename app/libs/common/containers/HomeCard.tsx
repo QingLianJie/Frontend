@@ -4,11 +4,13 @@ import type { ReactNode } from 'react'
 
 interface HomeCardProps extends SystemProps {
   title?: string
+  id?: string
   children: ReactNode
 }
 
-export const HomeCard = ({ title, children, ...props }: HomeCardProps) => (
+export const HomeCard = ({ title, id, children, ...props }: HomeCardProps) => (
   <VStack
+    id={id}
     w="full"
     align="flex-start"
     rounded="md"

@@ -14,7 +14,7 @@ import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/links/nav-links'
-import { LanTag } from '~/libs/common/tags/LanTag'
+import { LANTag } from '~/libs/common/tags/LANTag'
 
 export const DrawerNav = () => (
   <VStack as="nav" spacing="0">
@@ -139,6 +139,6 @@ const DrawerNavAccordionItem = ({ href, name, lan }: DrawerNavItemProps) => (
     isTruncated
   >
     {name}
-    {lan && <LanTag />}
+    {lan && <LANTag />}
   </Link>
 )

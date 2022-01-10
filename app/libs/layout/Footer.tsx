@@ -24,8 +24,9 @@ export const Footer = () => {
       as="footer"
       w="full"
       maxW="72rem"
-      px={{ base: '6', sm: '8' }}
-      py={{ base: '8', sm: '12' }}
+      px={{ base: '8', sm: '8' }}
+      pt={{ base: '12', sm: '12' }}
+      pb={{ base: '8', sm: '12' }}
       gap="8"
       justify="space-between"
       color="gray.500"
@@ -36,6 +37,7 @@ export const Footer = () => {
           src={colorMode === 'light' ? Logo : LogoDark}
           alt={`清廉街 Logo`}
           w="28"
+          mb="5"
           userSelect="none"
           pointerEvents="none"
         />
@@ -44,9 +46,9 @@ export const Footer = () => {
           href="http://www.beian.miit.gov.cn/"
           name="黑ICP备2021003925号-1"
         />
-        <Text fontWeight="bold">清廉街 © 2022</Text>
+        <Text fontWeight="bold">清廉街 © {new Date().getFullYear()}</Text>
       </VStack>
-      <Wrap spacing={{ base: '8', md: '12' }}>
+      <Wrap d={{ base: 'none', sm: 'flex' }} spacing={{ base: '8', md: '12' }}>
         {footerLinks.map(link => (
           <WrapItem key={link.name}>
             <VStack align="flex-start">

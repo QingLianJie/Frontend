@@ -1,3 +1,4 @@
+import type { ButtonProps, SystemProps } from '@chakra-ui/react'
 import {
   Button,
   ButtonGroup,
@@ -7,14 +8,17 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { RiLinkM, RiLinkUnlinkM, RiTimeLine } from 'react-icons/ri'
+import type { IconType } from 'react-icons'
+import { RiLinkM, RiLinkUnlinkM, RiPlugLine, RiTimeLine } from 'react-icons/ri'
 import { HomeCard } from '~/libs/common/containers/HomeCard'
 
-export const HomeMember = () => {
+interface HomeMemberProps extends SystemProps {}
+
+export const HomeMember = (props: HomeMemberProps) => {
   const [isBind, setBind] = useState(false)
 
   return (
-    <HomeCard title="HEU 账号">
+    <HomeCard title="HEU 账号" {...props}>
       <VStack w="full" align="flex-start" px="4" pt="3" pb="4" spacing="3">
         {isBind ? (
           <Text px="2" lineHeight="tall">
@@ -32,45 +36,61 @@ export const HomeMember = () => {
         )}
         <Divider pt="1" />
         <ButtonGroup w="full" variant="ghost" isAttached>
-          {isBind && (
+          {isBind ? (
             <>
-              <Button isFullWidth colorScheme="green">
-                <Icon
-                  aria-label="更新"
-                  as={RiTimeLine}
-                  ml="-2"
-                  mr="2"
-                  fontSize="xl"
-                  d={{
-                    md: 'none',
-                    lg: 'flex',
-                  }}
-                />
-                <Text isTruncated>更新</Text>
-              </Button>
-              <Divider h="10" orientation="vertical" />
+              <HomeMemberButton
+                colorScheme="green"
+                icon={RiTimeLine}
+                text="更新"
+              />
+              <Divider h="9" orientation="vertical" />
+              <HomeMemberButton
+                colorScheme="red"
+                icon={RiLinkUnlinkM}
+                text="解绑"
+                onClick={() => setBind(false)}
+              />
+            </>
+          ) : (
+            <>
+              <HomeMemberButton
+                colorScheme="purple"
+                icon={RiLinkM}
+                text="绑定"
+                onClick={() => setBind(true)}
+              />
+              <Divider h="9" orientation="vertical" />
+              <HomeMemberButton
+                colorScheme="orange"
+                icon={RiPlugLine}
+                text="插件"
+              />
             </>
           )}
-          <Button
-            isFullWidth
-            colorScheme={isBind ? 'red' : 'purple'}
-            onClick={() => setBind(v => !v)}
-          >
-            <Icon
-              aria-label="绑定与解绑"
-              as={isBind ? RiLinkUnlinkM : RiLinkM}
-              ml="-2"
-              mr="2"
-              fontSize="xl"
-              d={{
-                md: 'none',
-                lg: 'flex',
-              }}
-            />
-            <Text isTruncated>{isBind ? '解绑' : '绑定 HEU 账号'}</Text>
-          </Button>
         </ButtonGroup>
       </VStack>
     </HomeCard>
   )
 }
+
+interface HomeMemberButtonProps extends ButtonProps {
+  icon: IconType
+  text: string
+}
+
+const HomeMemberButton = ({ icon, text, ...props }: HomeMemberButtonProps) => (
+  <Button isFullWidth py="2" h="auto" {...props}>
+    <Icon
+      aria-label={text}
+      as={icon}
+      ml="-2"
+      mr="2"
+      fontSize="xl"
+      d={{
+        md: 'none',
+        lg: 'flex',
+      }}
+    />
+    <Text isTruncated>{text}</Text>
+  </Button>
+)

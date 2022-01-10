@@ -26,7 +26,7 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => (
     justify="stretch"
     px={{ base: '6', sm: '8' }}
     pt="5"
-    pb={{ base: '20vh', sm: '5' }}
+    pb={{ base: '12vh', sm: '5' }}
     gap="8"
     zIndex="100"
   >
@@ -89,7 +89,11 @@ const HeaderAvatar = ({ name, avatar }: HeaderAvatarProps) => (
     rounded="md"
     maxW="48"
   >
-    <Link as={RemixLink} to={name ? `/@${name}` : '/login'} rounded="full">
+    <Link
+      as={RemixLink}
+      to={name ? `/@${name}` : '/member/login'}
+      rounded="full"
+    >
       <ChakraAvatar
         aria-label={name ?? '陌生人'}
         src={avatar}
