@@ -19,7 +19,7 @@ export const theme = extendTheme({
     body: fontFamily,
     heading: fontFamily,
   },
-  fontSizes: { smd: '0.925rem' },
+  fontSizes: { smd: '0.925rem', mdl: '1.075rem' },
   styles: {
     global: {
       html: { scrollPadding: '1rem' },

@@ -10,13 +10,20 @@ import { HomeSearch } from '~/components/app/home/Search'
 import { HomeTips } from '~/components/app/home/Tips'
 import { Layout } from '~/components/layout/Layout'
 import feeds from '~/contents/mocks/feeds/feeds.json'
+import notes from '~/contents/mocks/notes/notes.json'
+
+interface HomeLoader {
+  feeds: IFeeds
+  notes: INotes
+}
 
 export const loader: LoaderFunction = () => {
-  return { feeds }
+  // TODO: 获取 feeds
+  return { feeds, notes }
 }
 
 export default function IndexPage() {
-  const { feeds } = useLoaderData()
+  const { feeds, notes } = useLoaderData<HomeLoader>()
 
   const isPhone = { base: 'flex', sm: 'none' }
   const isNotPhone = { base: 'none', sm: 'flex' }
@@ -43,33 +50,26 @@ export default function IndexPage() {
         <GridItem>
           <HomeApps d={isPhone} />
           <Spacer h="4" d={isPhone} />
-
           <HomeSearch d={isMobile} />
           <Spacer h="4" d={isMobile} />
-
           <HomeNav d={isNotPhone} />
           <Spacer h="4" d={isNotPhone} />
-
           <HomeMember d={isMobile} />
           <Spacer h="4" d={isMobile} />
-
           <HomeLinks id="links" />
         </GridItem>
 
-        <GridItem>
+        <GridItem rowSpan={{ base: 1, sm: 2, md: 1 }}>
           <HomeSearch d={isDesktop} />
           <Spacer h="4" d={isDesktop} />
-
           <HomeFeeds feeds={feeds} />
         </GridItem>
 
         <GridItem>
           <HomeMember d={isDesktop} />
           <Spacer h="4" d={isDesktop} />
-
-          <HomeNotes />
+          <HomeNotes notes={notes} />
           <Spacer h="4" d={isNotPhone} />
-
           <HomeTips d={isNotPhone} />
         </GridItem>
       </Grid>

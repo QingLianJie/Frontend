@@ -5,7 +5,7 @@ import {
   Divider,
   Icon,
   Text,
-  VStack
+  VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import type { IconType } from 'react-icons'
@@ -43,7 +43,7 @@ export const HomeMember = (props: HomeMemberProps) => {
                 icon={RiTimeLine}
                 text="更新"
               />
-              <Divider h="9" orientation="vertical" />
+              <Divider h="9" orientation="vertical" transition="all 0.2s" />
               <HomeMemberButton
                 colorScheme="red"
                 icon={RiLinkUnlinkM}
@@ -59,7 +59,7 @@ export const HomeMember = (props: HomeMemberProps) => {
                 text="绑定"
                 onClick={() => setBind(true)}
               />
-              <Divider h="9" orientation="vertical" />
+              <Divider h="9" orientation="vertical" transition="all 0.2s" />
               <HomeMemberButton
                 colorScheme="orange"
                 icon={RiPlugLine}

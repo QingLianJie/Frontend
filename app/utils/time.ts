@@ -14,3 +14,13 @@ export const calendarTime = (time: string) =>
     lastWeek: 'YYYY 年 M 月 D 日 HH:mm',
     sameElse: 'YYYY 年 M 月 D 日 HH:mm',
   })
+
+export const calendarDate = (time: string) =>
+  dayjs(time).calendar(dayjs(), {
+    sameDay: '[今天]',
+    nextDay: '[明天]',
+    nextWeek: 'YYYY 年 M 月 D 日',
+    lastDay: '[昨天]',
+    lastWeek: 'YYYY 年 M 月 D 日',
+    sameElse: 'YYYY 年 M 月 D 日',
+  })

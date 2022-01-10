@@ -1,7 +1,7 @@
 import type { IconType } from 'react-icons'
 import {
   RiAtLine,
-  RiComputerLine,
+  RiCupLine,
   RiGithubLine,
   RiQuestionLine,
 } from 'react-icons/ri'
@@ -27,7 +27,7 @@ export const tipsLinks: tipLink[] = [
     short: '坏了么',
     href: '#',
     color: 'green',
-    icon: RiComputerLine,
+    icon: RiCupLine,
   },
   {
     name: '联系我们',

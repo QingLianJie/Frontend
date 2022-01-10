@@ -1,0 +1,8 @@
+{
+    "description": "获取主页公告板",
+    "method": "GET",
+    "path": "/notes",
+    "response": {
+        "200": "获取成功"
+    }
+}

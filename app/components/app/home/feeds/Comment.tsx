@@ -5,9 +5,9 @@ import {
   Icon,
   Link,
   Text,
-  VStack
+  VStack,
 } from '@chakra-ui/react'
-import { RiBookOpenLine, RiUserLine } from 'react-icons/ri'
+import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
 import { HomeCard } from '~/components/common/containers/HomeCard'
 import { CourseCard } from '~/components/common/widgets/CourseCard'
@@ -26,7 +26,13 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
           src={comment.author.avatar}
           w="10"
           h="10"
-          icon={<Icon as={RiUserLine} fontSize="lg" />}
+          icon={
+            comment.author.id === -1 ? (
+              <Icon as={RiSpyLine} fontSize="lg" />
+            ) : (
+              <Icon as={RiUserLine} fontSize="lg" />
+            )
+          }
           bg="gray.200"
           color="gray.500"
           _hover={{
@@ -43,12 +49,12 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
           userSelect="none"
           pointerEvents="none"
         />
-        <VStack align="flex-start" spacing="0">
+        <VStack align="flex-start" spacing="0" lineHeight="tall">
           <Text fontWeight="bold">{comment.author.name}</Text>
           <Text fontSize="sm">{calendarTime(comment.date)}</Text>
         </VStack>
       </HStack>
-      <Text lineHeight="tall" px="2">
+      <Text lineHeight="tall" px="2" fontSize="mdl">
         {comment.content}
       </Text>
       <Divider transition="all 0.2s" />
