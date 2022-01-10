@@ -42,7 +42,7 @@ const Timetable = () => {
   const toast = useToast()
   const { user } = useUser()
   const { timetable, isLoading, isError } = useTimetable()
-  const [week, setWeek] = useState(getWeek() || 1)
+  const [week, setWeek] = useState(getWeek(timetable.result.length ?? 30) || 1)
 
   const timeMap = [
     '第一大节',
