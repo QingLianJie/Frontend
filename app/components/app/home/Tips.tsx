@@ -1,8 +1,8 @@
 import type { SystemProps } from '@chakra-ui/react'
 import { Icon, Link, Text, VStack } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
+import { HomeCard } from '~/components/common/containers/HomeCard'
 import { tipsLinks } from '~/contents/links/tips-links'
-import { HomeCard } from '~/libs/common/containers/HomeCard'
 
 interface HomeTipsProps extends SystemProps {}
 

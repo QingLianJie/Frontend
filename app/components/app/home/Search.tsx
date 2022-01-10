@@ -6,7 +6,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Kbd,
+  Kbd
 } from '@chakra-ui/react'
 import { useKeyPress } from 'ahooks'
 import { useRef } from 'react'

@@ -1,7 +1,7 @@
 import type { SystemProps } from '@chakra-ui/react'
 import { Text } from '@chakra-ui/react'
+import { HomeCard } from '~/components/common/containers/HomeCard'
 import Note from '~/contents/notes/home-note.md'
-import { HomeCard } from '~/libs/common/containers/HomeCard'
 
 interface HomeNotesProps extends SystemProps {}
 

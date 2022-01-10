@@ -5,12 +5,12 @@ import {
   Icon,
   Link,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react'
 import { RiBookOpenLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
-import { HomeCard } from '~/libs/common/containers/HomeCard'
-import { CourseCard } from '~/libs/common/widgets/CourseCard'
+import { HomeCard } from '~/components/common/containers/HomeCard'
+import { CourseCard } from '~/components/common/widgets/CourseCard'
 import { calendarTime } from '~/utils/time'
 
 interface FeedCommentProps {

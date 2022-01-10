@@ -5,12 +5,12 @@ import {
   Divider,
   Icon,
   Text,
-  VStack,
+  VStack
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import type { IconType } from 'react-icons'
 import { RiLinkM, RiLinkUnlinkM, RiPlugLine, RiTimeLine } from 'react-icons/ri'
-import { HomeCard } from '~/libs/common/containers/HomeCard'
+import { HomeCard } from '~/components/common/containers/HomeCard'
 
 interface HomeMemberProps extends SystemProps {}
 

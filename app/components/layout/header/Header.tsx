@@ -5,12 +5,12 @@ import {
   Heading,
   Icon,
   Link,
-  Tooltip,
+  Tooltip
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
-import { SwitchTheme } from '~/libs/common/actions/SwitchTheme'
+import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
 import { Drawer } from '../drawer/Drawer'
 import { HeaderNav } from './Nav'
 

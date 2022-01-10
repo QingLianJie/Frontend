@@ -1,8 +1,8 @@
 import type { SystemProps } from '@chakra-ui/react'
 import { Link, VStack } from '@chakra-ui/react'
+import { HomeCard } from '~/components/common/containers/HomeCard'
+import { LANTag } from '~/components/common/tags/LANTag'
 import { schoolLinks } from '~/contents/links/school-links'
-import { HomeCard } from '~/libs/common/containers/HomeCard'
-import { LANTag } from '~/libs/common/tags/LANTag'
 
 interface HomeLinksProps extends SystemProps {
   id: string

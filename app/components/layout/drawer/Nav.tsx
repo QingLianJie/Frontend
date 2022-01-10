@@ -13,8 +13,8 @@ import {
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
+import { LANTag } from '~/components/common/tags/LANTag'
 import { navLinks } from '~/contents/links/nav-links'
-import { LANTag } from '~/libs/common/tags/LANTag'
 
 export const DrawerNav = () => (
   <VStack as="nav" spacing="0">

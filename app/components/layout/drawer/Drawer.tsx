@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { RiMenuLine } from 'react-icons/ri'
-import { SwitchThemeText } from '~/libs/common/actions/SwitchTheme'
+import { SwitchThemeText } from '~/components/common/actions/SwitchTheme'
 import { DrawerNav } from './Nav'
 
 export const Drawer = () => {
