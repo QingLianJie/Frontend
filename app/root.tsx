@@ -21,8 +21,8 @@ export const theme = extendTheme({
   },
   fontSizes: { smd: '0.925rem' },
   styles: {
-    glboal: {
-      body: { scrollPadding: '1rem' },
+    global: {
+      html: { scrollPadding: '1rem' },
     },
   },
   initialColorMode: 'system',

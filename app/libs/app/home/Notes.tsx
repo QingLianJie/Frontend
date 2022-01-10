@@ -13,7 +13,6 @@ export const HomeNotes = (props: HomeNotesProps) => (
       px="6"
       pb="6"
       pt="4"
-      textAlign="justify"
       overflowWrap="break-word"
       lineHeight="tall"
     >
