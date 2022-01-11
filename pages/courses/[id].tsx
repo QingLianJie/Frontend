@@ -5,10 +5,18 @@ import CourseCommentList from '../../components/app/course/comment/List'
 import CourseInfo from '../../components/app/course/Info'
 import CourseTable from '../../components/app/course/Table'
 import MainContainer from '../../components/common/container/Main'
+import useCourse from '../../hooks/useCourse'
 
 const CoursePage = () => {
   const router = useRouter()
   const id = router.asPath.replace(/\/courses\//g, '')
+  const { courseInfo } = useCourse(id)
+
+  const isExam =
+    Object.entries(courseInfo?.statistics?.all?.exam || []).length > 0
+  const isTest =
+    Object.entries(courseInfo?.statistics?.all?.test || []).length > 0
+  const isDouble = isExam && isTest
 
   return (
     <>
@@ -22,7 +30,9 @@ const CoursePage = () => {
             <GridItem colSpan={{ base: 3, md: 2 }} h="full" minW="0">
               <CourseInfo id={id} />
               <Spacer h={{ base: 6, md: 9 }} />
-              <CourseChart id={id} />
+              {isExam && <CourseChart id={id} type="exam" double={isDouble} />}
+              {isDouble && <Spacer h="4" />}
+              {isTest && <CourseChart id={id} type="test" double={isDouble} />}
               <Spacer h="4" />
               <CourseTable id={id} />
               <Text

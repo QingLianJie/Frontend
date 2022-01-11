@@ -1,5 +1,6 @@
 export const calcChartData = (
   info: ICourseInfo,
+  type: 'test' | 'exam',
   time?: string
 ): CourseStatChartData[] => {
   const data = info.statistics[time || 'all']
@@ -8,7 +9,7 @@ export const calcChartData = (
   const arr: CourseStatChartData[] = []
   if (!data) return arr
 
-  if (Object.keys(data.exam).length !== 0) {
+  if (type === 'exam') {
     // 考试课
     let lastIndex = 0
     for (const [score, count] of Object.entries(data.exam)) {

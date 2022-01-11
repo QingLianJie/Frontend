@@ -16,13 +16,16 @@ import { ChangeEvent, useEffect, useState } from 'react'
 import { RiBarChartBoxLine } from 'react-icons/ri'
 import useCourse from '../../../hooks/useCourse'
 import { calcChartData } from '../../../utils/calc/course-chart'
+import { calcCourseMember } from '../../../utils/calc/course-member'
 import CardContainer from '../../common/container/Card'
 
 interface CourseChartProps {
   id: string
+  type: 'exam' | 'test'
+  double?: boolean
 }
 
-const CourseChart = ({ id }: CourseChartProps) => {
+const CourseChart = ({ id, type, double }: CourseChartProps) => {
   const theme = useTheme()
   const { colorMode } = useColorMode()
   const { courseInfo, isLoading, isError } = useCourse(id)
@@ -31,14 +34,14 @@ const CourseChart = ({ id }: CourseChartProps) => {
 
   useEffect(() => {
     if (courseInfo) {
-      setChartData(calcChartData(courseInfo, 'all'))
+      setChartData(calcChartData(courseInfo, type, 'all'))
     }
   }, [courseInfo])
 
   const handleSelectChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement
     setSelect(target.value)
-    setChartData(calcChartData(courseInfo, target.value || 'all'))
+    setChartData(calcChartData(courseInfo, type, target.value || 'all'))
   }
 
   return (
@@ -51,6 +54,7 @@ const CourseChart = ({ id }: CourseChartProps) => {
                 <Icon as={RiBarChartBoxLine} w="5" h="5" ms="1" me="3" />
                 <Heading as="p" fontSize="lg" fontWeight="600">
                   成绩分布图
+                  {double && <>（{type === 'exam' ? '分数' : '等级'}）</>}
                 </Heading>
               </WrapItem>
 
@@ -166,7 +170,7 @@ const CourseChart = ({ id }: CourseChartProps) => {
                   >{`${
                     select === '腐败街' ? '腐败街数据' : select || '所有时间'
                   } 的成绩分布图，统计人数 ${
-                    courseInfo.statistics[select || 'all']?.total || '0'
+                   calcCourseMember(courseInfo,type, select || 'all')
                   } 人`}</Text>
                 </>
               )}

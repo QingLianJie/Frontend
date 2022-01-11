@@ -24,9 +24,11 @@ export const calcRate = (info: ICourseInfo, time?: string): CourseInfoRate => {
         excellent += count
       }
     }
-  } else {
-    excellent = data.test['优秀'] || 0
-    fail = data.test['不及格'] || 0
+  }
+
+  if (Object.keys(data.test).length !== 0) {
+    excellent += data.test['优秀'] || 0
+    fail += data.test['不及格'] || 0
   }
 
   const formatter = (d: number) => ((d / total) * 100).toFixed(2) + '%'
