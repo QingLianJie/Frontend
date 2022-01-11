@@ -1,8 +1,10 @@
 import {
   Flex,
+  Icon,
   Image,
   Link,
   List,
+  ListIcon,
   ListItem,
   Spacer,
   Text,
@@ -12,6 +14,7 @@ import {
   Wrap,
   WrapItem,
 } from '@chakra-ui/react'
+import { RiArrowRightSLine } from 'react-icons/ri'
 import LogoDark from '~/assets/logo-dark.svg'
 import Logo from '~/assets/logo.svg'
 import { footerLinks } from '~/contents/links/footer-links'
@@ -52,12 +55,25 @@ export const Footer = () => {
         {footerLinks.map(link => (
           <WrapItem key={link.name}>
             <VStack align="flex-start">
-              <Text fontWeight="bold" pb="1">
+              <Text fontWeight="bold" pb="1" d="flex" alignItems="center">
+                <Icon
+                  as={link.icon}
+                  aria-label={link.name}
+                  fontSize="lg"
+                  mr="3"
+                />
                 {link.name}
               </Text>
               <List>
                 {link.links.map(item => (
-                  <ListItem key={item.name} py="1" maxW="64">
+                  <ListItem
+                    key={item.name}
+                    d="flex"
+                    alignItems="center"
+                    py="1"
+                    maxW="64"
+                  >
+                    <ListIcon as={RiArrowRightSLine} aria-label="列表项" />
                     <FooterLink {...item} />
                   </ListItem>
                 ))}

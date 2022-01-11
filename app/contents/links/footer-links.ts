@@ -1,5 +1,9 @@
+import type { IconType } from 'react-icons'
+import { RiAtLine, RiBookmarkLine, RiOpenSourceLine } from 'react-icons/ri'
+
 type FooterLink = {
   name: string
+  icon: IconType
   links: {
     name: string
     description?: string
@@ -10,6 +14,7 @@ type FooterLink = {
 export const footerLinks: FooterLink[] = [
   {
     name: '联系',
+    icon: RiAtLine,
     links: [
       {
         name: 'QQ 群',
@@ -22,6 +27,11 @@ export const footerLinks: FooterLink[] = [
         href: 'mailto:bakedviolin@foxmail.com',
       },
       {
+        name: 'GitHub',
+        description: '这是我们的项目主页，欢迎来提 Issue 和 Pull Request',
+        href: 'https://github.com/QingLianJie',
+      },
+      {
         name: '问卷',
         description: '更简单的反馈方式，但是可能不能及时回应',
         href: 'https://wj.qq.com/s2/9542270/79ad',
@@ -30,11 +40,12 @@ export const footerLinks: FooterLink[] = [
   },
   {
     name: '开源',
+    icon: RiOpenSourceLine,
     links: [
       {
-        name: 'GitHub',
-        description: '这是我们的项目主页，欢迎来看看',
-        href: 'https://github.com/QingLianJie',
+        name: 'Backend',
+        description: '这里是主站的后端代码',
+        href: 'https://github.com/QingLianJie/Backend',
       },
       {
         name: 'Bridge',
@@ -43,7 +54,12 @@ export const footerLinks: FooterLink[] = [
         href: 'https://github.com/QingLianJie/Bridge',
       },
       {
-        name: 'Android',
+        name: 'Frontend',
+        description: '这里是主站的前端代码',
+        href: 'https://github.com/QingLianJie/Frontend',
+      },
+      {
+        name: 'Mobile',
         description:
           '开发中，获取 Android 应用程序，功能与网页版相同，自带插件',
         href: 'https://github.com/QingLianJie/Mobile',
@@ -52,14 +68,20 @@ export const footerLinks: FooterLink[] = [
   },
   {
     name: '页面',
+    icon: RiBookmarkLine,
     links: [
       {
-        name: '有问题',
+        name: '常见问题',
         description: '有问题？看看这个，说不定就知道了',
         href: 'https://www.yuque.com/lifeni/qing/faq',
       },
       {
-        name: '坏了么',
+        name: '知识库',
+        description: '存放在语雀上的文档，方便分享和修改，不定期更新',
+        href: 'https://www.yuque.com/lifeni/qing/faq',
+      },
+      {
+        name: '网站坏掉了么',
         description: '未开放，看看网站是不是坏掉了',
         href: '#',
       },
