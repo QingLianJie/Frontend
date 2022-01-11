@@ -46,8 +46,13 @@ export const schoolLinks: SchoolLink[] = [
     lan: false,
   },
   {
-    name: '知网',
+    name: '中国知网 CNKI',
     href: 'https://www-cnki-net-443.wvpn.hrbeu.edu.cn/',
+    lan: false,
+  },
+  {
+    name: '本科生毕业设计（论文）管理系统',
+    href: 'https://co2.cnki.net/Login.html?dp=hrbeu',
     lan: false,
   },
   {

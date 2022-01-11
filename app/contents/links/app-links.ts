@@ -13,7 +13,7 @@ type AppLink = {
   href: string
   color: string
   icon: IconType
-  mobile?: boolean
+  mobile?: 'yes'
 }
 
 export const appLinks: AppLink[] = [
@@ -42,15 +42,15 @@ export const appLinks: AppLink[] = [
     name: '账号管理',
     short: '账号',
     href: '/member',
-    color: 'pink',
+    color: 'yellow',
     icon: RiAccountCircleLine,
   },
   {
     name: '学校链接',
     short: '学校',
     href: '#links',
-    color: 'yellow',
+    color: 'purple',
     icon: RiBuildingLine,
-    mobile: true,
+    mobile: 'yes',
   },
 ]

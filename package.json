@@ -2,6 +2,7 @@
   "private": true,
   "name": "qing-web",
   "description": "清廉街的前端部分",
+  "version": "2.0.0",
   "license": "MIT",
   "scripts": {
     "build": "remix build",

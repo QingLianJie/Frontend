@@ -19,7 +19,7 @@ export const HomeApps = (props: HomeAppsProps) => (
         <HomeAppsLink {...link} key={link.name} />
       ))}
       {tipsLinks.map(tip => (
-        <HomeAppsLink isExternal {...tip} key={tip.name} />
+        <HomeAppsLink external {...tip} key={tip.name} />
       ))}
     </SimpleGrid>
   </HomeCard>
@@ -31,7 +31,7 @@ interface HomeAppsLinkProps extends SystemProps {
   short: string
   icon: IconType
   color: string
-  isExternal?: boolean
+  external?: boolean
 }
 
 const HomeAppsLink = ({
@@ -40,15 +40,15 @@ const HomeAppsLink = ({
   short,
   icon,
   color,
-  isExternal,
+  external,
   ...props
 }: HomeAppsLinkProps) => (
   <Link
-    as={isExternal ? undefined : RemixLink}
+    as={external ? undefined : RemixLink}
     to={href}
     href={href}
     key={name}
-    isExternal={isExternal}
+    isExternal={external}
     d="flex"
     alignItems="center"
     flexDir="column"

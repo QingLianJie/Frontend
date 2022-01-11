@@ -34,7 +34,7 @@ export const HomeMember = (props: HomeMemberProps) => {
             账号。
           </Text>
         )}
-        <Divider pt="1" />
+        <Divider pt="1" transition="all 0.2s" />
         <ButtonGroup w="full" variant="ghost" isAttached>
           {isBind ? (
             <>

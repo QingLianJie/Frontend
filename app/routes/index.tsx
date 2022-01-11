@@ -18,7 +18,7 @@ interface HomeLoader {
 }
 
 export const loader: LoaderFunction = () => {
-  // TODO: 获取 feeds
+  // TODO: 获取 feeds 和 notes
   return { feeds, notes }
 }
 
