@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
-import { Link as RemixLink } from 'remix'
+import { Link as RemixLink, useLocation } from 'remix'
 import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
 import { Drawer } from '../drawer/Drawer'
 import { HeaderNav } from './Nav'
@@ -83,43 +83,49 @@ interface HeaderAvatarProps {
   avatar?: string
 }
 
-const HeaderAvatar = ({ name, avatar }: HeaderAvatarProps) => (
-  <Tooltip
-    hasArrow
-    placement="bottom-end"
-    label={
-      name ? `已登录到 ${name}` : '考虑登录到「清廉街」吗？可以发评论和上传成绩'
-    }
-    px="2.5"
-    py="1.5"
-    rounded="md"
-    maxW="48"
-  >
-    <Link
-      as={RemixLink}
-      to={name ? `/@${name}` : '/member/login'}
-      rounded="full"
+const HeaderAvatar = ({ name, avatar }: HeaderAvatarProps) => {
+  const { pathname } = useLocation()
+
+  return (
+    <Tooltip
+      hasArrow
+      placement="bottom-end"
+      label={
+        name
+          ? `已登录到 ${name}`
+          : '考虑登录到「清廉街」吗？可以发评论和上传成绩'
+      }
+      px="2.5"
+      py="1.5"
+      rounded="md"
+      maxW="48"
     >
-      <ChakraAvatar
-        aria-label={name ?? '陌生人'}
-        src={avatar}
-        icon={<Icon as={RiUserLine} fontSize="xl" />}
-        size="md"
-        bg="gray.200"
-        color="gray.500"
-        _hover={{
-          color: 'gray.700',
-        }}
-        _dark={{
-          bg: 'gray.800',
-          color: 'gray.400',
-          _hover: {
-            color: 'gray.200',
-          },
-        }}
-        cursor="pointer"
-        transition="all 0.2s"
-      />
-    </Link>
-  </Tooltip>
-)
+      <Link
+        as={RemixLink}
+        to={name ? `/member` : `/member/login?from=${pathname}`}
+        rounded="full"
+      >
+        <ChakraAvatar
+          aria-label={name ?? '陌生人'}
+          src={avatar}
+          icon={<Icon as={RiUserLine} fontSize="xl" />}
+          size="md"
+          bg="gray.200"
+          color="gray.500"
+          _hover={{
+            color: 'gray.700',
+          }}
+          _dark={{
+            bg: 'gray.800',
+            color: 'gray.400',
+            _hover: {
+              color: 'gray.200',
+            },
+          }}
+          cursor="pointer"
+          transition="all 0.2s"
+        />
+      </Link>
+    </Tooltip>
+  )
+}

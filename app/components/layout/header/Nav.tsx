@@ -16,7 +16,7 @@ import { LANTag } from '~/components/common/widgets/LANTag'
 import { navLinks } from '~/contents/links/nav-links'
 
 export const HeaderNav = () => (
-  <HStack as="nav">
+  <HStack as="nav" mr="-6">
     {navLinks.map(link =>
       link.type === 'LINK' ? (
         <HeaderNavLink {...link} key={link.name} />

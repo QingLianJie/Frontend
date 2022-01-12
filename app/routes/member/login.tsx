@@ -2,8 +2,8 @@ import {
   Button,
   ButtonProps,
   Center,
-  Divider,
   Heading,
+  Input,
   Spacer,
   StackProps,
   SystemProps,
@@ -12,20 +12,36 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
   VStack,
 } from '@chakra-ui/react'
-import { MetaFunction } from '@remix-run/server-runtime'
-import { ReactNode } from 'react'
 import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
-import { Form } from 'remix'
+import {
+  ActionFunction,
+  Form,
+  MetaFunction,
+  redirect,
+  useSearchParams,
+} from 'remix'
 import { FormInput } from '~/components/common/forms/FormInput'
+import { ColorfulBalls } from '~/components/common/widgets/ColorfulBalls'
 
 export const meta: MetaFunction = () => ({
   title: '登录与注册 | 清廉街',
 })
 
+export const action: ActionFunction = async ({ request }) => {
+  const body = await request.formData()
+  const name = body.get('name')
+  const password = body.get('password')
+  const from = body.get('from') as string
+  console.log(name, password, from)
+
+  return redirect(from ?? '/')
+}
+
 export default function LoginPage() {
+  const [params] = useSearchParams()
+
   return (
     <Center
       w="full"
@@ -35,6 +51,7 @@ export default function LoginPage() {
       pb={{ base: '0', sm: '8' }}
     >
       <VStack
+        pos="relative"
         w="full"
         maxW="96"
         bg="white"
@@ -46,24 +63,35 @@ export default function LoginPage() {
           as="h2"
           fontSize="2xl"
           fontWeight="normal"
-          mt={{ base: '16', sm: '20' }}
-          mb={{ base: '8', sm: '12' }}
+          mt="20"
+          mb="12"
+          lineHeight="1.25"
           textAlign="center"
+          userSelect="none"
+          pointerEvents="none"
+          zIndex="1"
         >
           欢迎加入 <strong>清廉街</strong>
         </Heading>
 
-        <Tabs w="full" variant="enclosed" isLazy>
+        <ColorfulBalls h="52" top="-2" count={30} />
+
+        <Tabs w="full" variant="enclosed" isLazy zIndex="1">
           <TabList transition="border-color 0.2s" px={{ base: '6', sm: '8' }}>
-            <Tab fontWeight="bold">登录</Tab>
-            <Tab fontWeight="bold">注册</Tab>
+            <Tab {...TabStyles}>登录</Tab>
+            <Tab {...TabStyles}>注册</Tab>
             <Spacer />
-            <Tab fontWeight="bold">重置密码</Tab>
+            <Tab {...TabStyles}>重置密码</Tab>
           </TabList>
 
           <TabPanels>
             <TabPanel p="0">
-              <VStack as={Form} {...FormStyles}>
+              <VStack
+                as={Form}
+                method="POST"
+                action="/member/login"
+                {...FormStyles}
+              >
                 <FormInput
                   type="text"
                   name="name"
@@ -78,13 +106,22 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   icon={RiLockPasswordLine}
                 />
-
+                <Input
+                  type="hidden"
+                  name="from"
+                  value={params.get('from') ?? '/'}
+                />
                 <SubmitButton colorScheme="green">登录</SubmitButton>
               </VStack>
             </TabPanel>
 
             <TabPanel p="0">
-              <VStack as={Form} {...FormStyles}>
+              <VStack
+                as={Form}
+                method="POST"
+                action="/member/signup"
+                {...FormStyles}
+              >
                 <FormInput
                   type="text"
                   name="name"
@@ -115,13 +152,22 @@ export default function LoginPage() {
                   autoComplete="new-password"
                   icon={RiLockPasswordLine}
                 />
-
+                <Input
+                  type="hidden"
+                  name="from"
+                  value={params.get('from') ?? '/'}
+                />
                 <SubmitButton colorScheme="blue">注册</SubmitButton>
               </VStack>
             </TabPanel>
 
             <TabPanel p="0">
-              <VStack as={Form} {...FormStyles}>
+              <VStack
+                as={Form}
+                method="POST"
+                action="/member/reset-password"
+                {...FormStyles}
+              >
                 <FormInput
                   type="email"
                   name="email"
@@ -144,6 +190,24 @@ const FormStyles: SystemProps & StackProps = {
   w: 'full',
   spacing: '4',
   align: 'flex-start',
+}
+
+const TabStyles: SystemProps = {
+  fontWeight: 'bold',
+  _selected: {
+    bg: 'white',
+    color: 'blue.600',
+    borderColor: 'inherit',
+    borderBottomColor: 'white',
+  },
+  _dark: {
+    _selected: {
+      bg: 'gray.800',
+      color: 'blue.300',
+      borderColor: 'inherit',
+      borderBottomColor: 'gray.800',
+    },
+  },
 }
 
 interface SubmitButtonProps extends SystemProps, ButtonProps {}
