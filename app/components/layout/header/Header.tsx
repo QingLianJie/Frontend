@@ -21,13 +21,20 @@ interface HeaderProps {
 export const Header = ({ title = '清廉街' }: HeaderProps) => (
   <Flex
     as="header"
+    position="sticky"
+    top={{ base: '0', md: '-2' }}
     w="full"
     align="center"
     justify="stretch"
     px={{ base: '6', sm: '8' }}
-    py="5"
+    pt={{ base: '5', md: '5' }}
+    pb={{ base: '5', md: '3' }}
     gap="8"
     zIndex="100"
+    backdropFilter="blur(12px)"
+    bg="#EDF2F7AA"
+    _dark={{ bg: '#171923AA' }}
+    transition="all 0.2s"
   >
     <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>
       <Drawer />

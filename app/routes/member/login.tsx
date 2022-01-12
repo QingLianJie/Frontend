@@ -81,10 +81,6 @@ export default function LoginPage() {
 
                 <SubmitButton colorScheme="green">登录</SubmitButton>
               </VStack>
-              <HelperText>
-                提示：这里不是绑定 HEU
-                账号的地方哦，如有需要，请到主页或者账号管理页面进行绑定
-              </HelperText>
             </TabPanel>
 
             <TabPanel p="0">
@@ -129,15 +125,12 @@ export default function LoginPage() {
                 <FormInput
                   type="email"
                   name="email"
-                  placeholder="邮箱"
+                  placeholder="注册时用的邮箱"
                   autoComplete="email"
                   icon={RiMailLine}
                 />
                 <SubmitButton colorScheme="yellow">发送重置链接</SubmitButton>
               </VStack>
-              <HelperText>
-                提示：你的邮箱会收到一封重置邮件，请打开收到邮件中的链接，在页面中填入新密码
-              </HelperText>
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -147,9 +140,7 @@ export default function LoginPage() {
 }
 
 const FormStyles: SystemProps & StackProps = {
-  px: { base: '6', sm: '8' },
-  pt: { base: '6', sm: '8' },
-  pb: { base: '6', sm: '8' },
+  p: { base: '6', sm: '8' },
   w: 'full',
   spacing: '4',
   align: 'flex-start',
@@ -161,25 +152,4 @@ const SubmitButton = ({ children, ...props }: SubmitButtonProps) => (
   <Button isFullWidth variant="solid" type="submit" {...props}>
     {children}
   </Button>
-)
-
-interface HelperTextProps {
-  children: ReactNode
-}
-
-const HelperText = ({ children }: HelperTextProps) => (
-  <>
-    <Divider transition="all 0.2s" />
-    <Text
-      color="gray.500"
-      _dark={{ color: 'gray.400' }}
-      fontSize="sm"
-      lineHeight="tall"
-      px={{ base: '6', sm: '8' }}
-      py="5"
-      overflowWrap="break-word"
-    >
-      {children}
-    </Text>
-  </>
 )
