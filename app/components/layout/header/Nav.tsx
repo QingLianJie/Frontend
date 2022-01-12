@@ -12,7 +12,7 @@ import {
 import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
-import { LANTag } from '~/components/common/tags/LANTag'
+import { LANTag } from '~/components/common/widgets/LANTag'
 import { navLinks } from '~/contents/links/nav-links'
 
 export const HeaderNav = () => (
@@ -53,10 +53,10 @@ const HeaderNavItemStyles: SystemProps = {
   },
   _dark: {
     _hover: {
-      bg: 'gray.700',
+      bg: 'gray.800',
     },
     _active: {
-      bg: 'gray.700',
+      bg: 'gray.800',
     },
   },
 }
@@ -81,7 +81,9 @@ const HeaderNavMenu = ({ name, children }: HeaderNavMenuProps) => (
     >
       {name}
     </MenuButton>
-    <MenuList py="2">{children}</MenuList>
+    <MenuList py="2" _dark={{ bg: 'gray.800' }}>
+      {children}
+    </MenuList>
   </Menu>
 )
 

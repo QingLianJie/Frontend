@@ -64,7 +64,7 @@ const HomeAppsLink = ({
     }}
     _dark={{
       _hover: {
-        bg: 'gray.600',
+        bg: 'gray.700',
       },
     }}
     {...props}

@@ -39,7 +39,7 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
             color: 'gray.700',
           }}
           _dark={{
-            bg: 'gray.600',
+            bg: 'gray.700',
             color: 'gray.400',
             _hover: {
               color: 'gray.200',

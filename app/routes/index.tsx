@@ -8,7 +8,6 @@ import { HomeNav } from '~/components/app/home/Nav'
 import { HomeNotes } from '~/components/app/home/Notes'
 import { HomeSearch } from '~/components/app/home/Search'
 import { HomeTips } from '~/components/app/home/Tips'
-import { Layout } from '~/components/layout/Layout'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 
@@ -31,48 +30,47 @@ export default function IndexPage() {
   const isDesktop = { base: 'none', md: 'flex' }
 
   return (
-    <Layout>
-      <Grid
-        w="full"
-        maxW="72rem"
-        px={{ base: '4', sm: 6, md: '8' }}
-        py={{ base: '0', sm: '8' }}
-        alignItems="start"
-        alignContent="start"
-        justifyContent="center"
-        templateColumns={{
-          base: '1fr',
-          sm: 'minmax(0, 3fr) minmax(0, 5fr)',
-          md: 'minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)',
-        }}
-        gap="4"
-      >
-        <GridItem>
-          <HomeApps d={isPhone} />
-          <Spacer h="4" d={isPhone} />
-          <HomeSearch d={isMobile} />
-          <Spacer h="4" d={isMobile} />
-          <HomeNav d={isNotPhone} />
-          <Spacer h="4" d={isNotPhone} />
-          <HomeMember d={isMobile} />
-          <Spacer h="4" d={isMobile} />
-          <HomeLinks id="links" />
-        </GridItem>
+    <Grid
+      w="full"
+      maxW="72rem"
+      px={{ base: '4', sm: '6', md: '8' }}
+      pb={{ base: '0', sm: '8' }}
+      pt={{ base: '12vh', sm: '8' }}
+      alignItems="start"
+      alignContent="start"
+      justifyContent="center"
+      templateColumns={{
+        base: '1fr',
+        sm: 'minmax(0, 3fr) minmax(0, 5fr)',
+        md: 'minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr)',
+      }}
+      gap="4"
+    >
+      <GridItem>
+        <HomeApps d={isPhone} />
+        <Spacer h="4" d={isPhone} />
+        <HomeSearch d={isMobile} />
+        <Spacer h="4" d={isMobile} />
+        <HomeNav d={isNotPhone} />
+        <Spacer h="4" d={isNotPhone} />
+        <HomeMember d={isMobile} />
+        <Spacer h="4" d={isMobile} />
+        <HomeLinks id="links" />
+      </GridItem>
 
-        <GridItem rowSpan={{ base: 1, sm: 2, md: 1 }}>
-          <HomeSearch d={isDesktop} />
-          <Spacer h="4" d={isDesktop} />
-          <HomeFeeds feeds={feeds} />
-        </GridItem>
+      <GridItem rowSpan={{ base: 1, sm: 2, md: 1 }}>
+        <HomeSearch d={isDesktop} />
+        <Spacer h="4" d={isDesktop} />
+        <HomeFeeds feeds={feeds} />
+      </GridItem>
 
-        <GridItem>
-          <HomeMember d={isDesktop} />
-          <Spacer h="4" d={isDesktop} />
-          <HomeNotes notes={notes} />
-          <Spacer h="4" d={isNotPhone} />
-          <HomeTips d={isNotPhone} />
-        </GridItem>
-      </Grid>
-    </Layout>
+      <GridItem>
+        <HomeMember d={isDesktop} />
+        <Spacer h="4" d={isDesktop} />
+        <HomeNotes notes={notes} />
+        <Spacer h="4" d={isNotPhone} />
+        <HomeTips d={isNotPhone} />
+      </GridItem>
+    </Grid>
   )
 }

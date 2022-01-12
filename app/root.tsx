@@ -8,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
+import { Layout } from './components/layout/Layout'
 
 const fontFamily = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
@@ -75,7 +76,9 @@ export default function App() {
       </head>
       <body>
         <ChakraProvider theme={theme}>
-          <Outlet />
+          <Layout>
+            <Outlet />
+          </Layout>
         </ChakraProvider>
         <ScrollRestoration />
         <Scripts />

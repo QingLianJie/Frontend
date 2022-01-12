@@ -32,7 +32,7 @@ export const Drawer = () => {
         bg="gray.200"
         color="gray.500"
         _dark={{
-          bg: 'gray.700',
+          bg: 'gray.800',
           color: 'gray.400',
         }}
       />
@@ -40,7 +40,7 @@ export const Drawer = () => {
         <DrawerOverlay />
         <DrawerContent
           bg="white"
-          _dark={{ bg: 'gray.700' }}
+          _dark={{ bg: 'gray.800' }}
           transition="background 0.2s"
         >
           <DrawerCloseButton
@@ -52,7 +52,7 @@ export const Drawer = () => {
             bg="gray.200"
             color="gray.500"
             _dark={{
-              bg: 'gray.700',
+              bg: 'gray.800',
               color: 'gray.400',
             }}
           />
@@ -63,7 +63,7 @@ export const Drawer = () => {
             pb="20vh"
             fontSize="lg"
             bg="gray.100"
-            _dark={{ bg: 'gray.800' }}
+            _dark={{ bg: 'gray.900' }}
             transition="all 0.2s"
           >
             清廉街
@@ -73,7 +73,7 @@ export const Drawer = () => {
             py="8"
             px="5"
             bg="white"
-            _dark={{ bg: 'gray.700' }}
+            _dark={{ bg: 'gray.800' }}
             transition="all 0.2s"
           >
             <DrawerNav />
@@ -88,7 +88,7 @@ export const Drawer = () => {
             py="5"
             bg="white"
             flexDir="column"
-            _dark={{ bg: 'gray.700' }}
+            _dark={{ bg: 'gray.800' }}
             transition="all 0.2s"
           >
             <SwitchThemeText />

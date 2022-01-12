@@ -35,10 +35,10 @@ export const Footer = () => {
       color="gray.500"
       flexDir={{ base: 'column', sm: 'row' }}
     >
-      <VStack align="flex-start" pb="1">
+      <VStack align={{ base: 'center', sm: 'flex-start' }} pb="1">
         <Image
           src={colorMode === 'light' ? Logo : LogoDark}
-          alt={`清廉街 Logo`}
+          alt="清廉街 Logo"
           w="28"
           mb="5"
           userSelect="none"
@@ -46,7 +46,7 @@ export const Footer = () => {
         />
         <Spacer />
         <FooterLink
-          href="http://www.beian.miit.gov.cn/"
+          href="https://beian.miit.gov.cn/"
           name="黑ICP备2021003925号-1"
         />
         <Text fontWeight="bold">清廉街 © {new Date().getFullYear()}</Text>

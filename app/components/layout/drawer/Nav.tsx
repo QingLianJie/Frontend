@@ -13,7 +13,7 @@ import {
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
-import { LANTag } from '~/components/common/tags/LANTag'
+import { LANTag } from '~/components/common/widgets/LANTag'
 import { navLinks } from '~/contents/links/nav-links'
 
 export const DrawerNav = () => (
@@ -55,7 +55,7 @@ const DrawerNavItemStyles: SystemProps = {
       bg: 'gray.800',
     },
     _active: {
-      bg: 'gray.700',
+      bg: 'gray.800',
     },
   },
 }
@@ -73,6 +73,7 @@ const DrawerNavItemIcon = ({ icon, name, color }: DrawerNavItemIconProps) => (
 interface DrawerNavItemProps {
   href: string
   name: string
+  long?: string
   icon?: IconType
   color?: string
   lan?: boolean
@@ -83,15 +84,17 @@ const DrawerNavLink = ({
   color = 'gray',
   icon,
   name,
+  long = name,
 }: DrawerNavItemProps) => (
   <Link as={RemixLink} to={href} {...DrawerNavItemStyles}>
-    {icon && <DrawerNavItemIcon icon={icon} name={name} color={color} />}
-    {name}
+    {icon && <DrawerNavItemIcon icon={icon} name={long} color={color} />}
+    {long}
   </Link>
 )
 
 interface DrawerNavAccordionProps {
   name: string
+  long: string
   color: string
   icon: IconType
   children: ReactNode
@@ -99,6 +102,7 @@ interface DrawerNavAccordionProps {
 
 const DrawerNavAccordion = ({
   name,
+  long,
   color,
   icon,
   children,
@@ -106,8 +110,8 @@ const DrawerNavAccordion = ({
   <Accordion allowToggle w="full">
     <AccordionItem border="none" w="full">
       <AccordionButton {...DrawerNavItemStyles}>
-        <DrawerNavItemIcon icon={icon} name={name} color={color} />
-        {name}
+        <DrawerNavItemIcon icon={icon} name={long} color={color} />
+        {long}
         <Spacer />
         <AccordionIcon
           fontSize="xl"

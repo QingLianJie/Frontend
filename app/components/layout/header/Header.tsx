@@ -5,7 +5,7 @@ import {
   Heading,
   Icon,
   Link,
-  Tooltip
+  Tooltip,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
@@ -25,8 +25,7 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => (
     align="center"
     justify="stretch"
     px={{ base: '6', sm: '8' }}
-    pt="5"
-    pb={{ base: '12vh', sm: '5' }}
+    py="5"
     gap="8"
     zIndex="100"
   >
@@ -105,7 +104,7 @@ const HeaderAvatar = ({ name, avatar }: HeaderAvatarProps) => (
           color: 'gray.700',
         }}
         _dark={{
-          bg: 'gray.700',
+          bg: 'gray.800',
           color: 'gray.400',
           _hover: {
             color: 'gray.200',

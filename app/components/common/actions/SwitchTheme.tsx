@@ -44,7 +44,7 @@ export const SwitchTheme = ({ hasTooltip, ...props }: SwitchThemeProps) => {
           color: 'gray.400',
           _hover: {
             color: 'gray.200',
-            bg: 'gray.700',
+            bg: 'gray.800',
           },
         }}
         {...props}

@@ -6,7 +6,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Kbd
+  Kbd,
 } from '@chakra-ui/react'
 import { useKeyPress } from 'ahooks'
 import { useRef } from 'react'
@@ -44,7 +44,7 @@ export const HomeSearch = (props: HomeSearchProps) => {
           pr="4"
           py="3"
           bg="white"
-          _dark={{ bg: 'gray.700', borderColor: 'gray.700' }}
+          _dark={{ bg: 'gray.800', borderColor: 'gray.800' }}
           _placeholder={{
             color: 'gray.500',
             _dark: 'gray.400',

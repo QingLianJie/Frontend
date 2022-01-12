@@ -15,7 +15,7 @@ export const HomeCard = ({ title, id, children, ...props }: HomeCardProps) => (
     align="flex-start"
     rounded="md"
     bg="white"
-    _dark={{ bg: 'gray.700' }}
+    _dark={{ bg: 'gray.800' }}
     transition="all 0.2s"
     {...props}
   >

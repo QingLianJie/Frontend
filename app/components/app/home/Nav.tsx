@@ -53,7 +53,7 @@ const HomeNavLink = ({ href, name, icon, color }: HomeNavLinkProps) => (
     }}
     _dark={{
       _hover: {
-        bg: 'gray.600',
+        bg: 'gray.700',
       },
     }}
   >

@@ -1,7 +1,7 @@
 import type { SystemProps } from '@chakra-ui/react'
 import { Link, VStack } from '@chakra-ui/react'
 import { HomeCard } from '~/components/common/containers/HomeCard'
-import { LANTag } from '~/components/common/tags/LANTag'
+import { LANTag } from '~/components/common/widgets/LANTag'
 import { schoolLinks } from '~/contents/links/school-links'
 
 interface HomeLinksProps extends SystemProps {
@@ -27,7 +27,7 @@ export const HomeLinks = ({ id, ...props }: HomeLinksProps) => (
           }}
           _dark={{
             _hover: {
-              bg: 'gray.600',
+              bg: 'gray.700',
             },
           }}
         >

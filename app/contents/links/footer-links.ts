@@ -1,5 +1,5 @@
 import type { IconType } from 'react-icons'
-import { RiAtLine, RiBookmarkLine, RiOpenSourceLine } from 'react-icons/ri'
+import { RiAtLine, RiLinksLine, RiOpenSourceLine } from 'react-icons/ri'
 
 type FooterLink = {
   name: string
@@ -68,7 +68,7 @@ export const footerLinks: FooterLink[] = [
   },
   {
     name: '页面',
-    icon: RiBookmarkLine,
+    icon: RiLinksLine,
     links: [
       {
         name: '常见问题',
