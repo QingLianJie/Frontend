@@ -11,12 +11,12 @@ import {
 import type { ReactNode } from 'react'
 import { calcRate } from '~/utils/math'
 
-interface CourseCardProps {
+interface CoursePopoverProps {
   course: ICourse
   children: ReactNode
 }
 
-export const CourseCard = ({ course, children }: CourseCardProps) => (
+export const CoursePopover = ({ course, children }: CoursePopoverProps) => (
   <Popover trigger="hover" placement="top-start">
     <PopoverTrigger>{children}</PopoverTrigger>
     <PopoverContent shadow="xl" _dark={{ bg: 'gray.800', shadow: 'dark-lg' }}>

@@ -10,7 +10,7 @@ import {
 import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/containers/Card'
-import { CourseCard } from '~/components/common/widgets/CourseCard'
+import { CoursePopover } from '~/components/common/widgets/popovers/Course'
 import { calendarTime } from '~/utils/time'
 
 interface FeedCommentProps {
@@ -68,7 +68,7 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
         justify="space-between"
         transition="all 0.2s"
       >
-        <CourseCard course={comment.course}>
+        <CoursePopover course={comment.course}>
           <Link
             as={RemixLink}
             to={`/courses/${comment.course.id}`}
@@ -95,7 +95,7 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
             />
             {comment.course.name}
           </Link>
-        </CourseCard>
+        </CoursePopover>
         <Text
           fontSize="sm"
           color="gray.500"

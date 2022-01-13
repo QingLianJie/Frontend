@@ -10,7 +10,7 @@ import {
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink, useLocation } from 'remix'
-import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
+import { SwitchTheme } from '~/components/common/widgets/actions/SwitchTheme'
 import { Drawer } from '../drawer/Drawer'
 import { HeaderNav } from './Nav'
 

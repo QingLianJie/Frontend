@@ -23,7 +23,7 @@ import {
   useSearchParams,
 } from 'remix'
 import { Input } from '~/components/common/forms/Input'
-import { ColorfulBalls } from '~/components/common/widgets/ColorfulBalls'
+import { ColorfulBalls } from '~/components/common/widgets/backgrounds/ColorfulBalls'
 
 export const meta: MetaFunction = () => ({
   title: '登录与注册 | 清廉街',

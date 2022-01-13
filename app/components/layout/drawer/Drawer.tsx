@@ -16,7 +16,7 @@ import {
 import { useEffect } from 'react'
 import { RiMenuLine } from 'react-icons/ri'
 import { useLocation } from 'remix'
-import { SwitchThemeText } from '~/components/common/actions/SwitchTheme'
+import { SwitchThemeText } from '~/components/common/widgets/actions/SwitchTheme'
 import { DrawerNav } from './Nav'
 
 export const Drawer = () => {
