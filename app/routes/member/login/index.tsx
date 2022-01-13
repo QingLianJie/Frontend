@@ -22,7 +22,7 @@ import {
   redirect,
   useSearchParams,
 } from 'remix'
-import { FormInput } from '~/components/common/forms/FormInput'
+import { Input } from '~/components/common/forms/Input'
 import { ColorfulBalls } from '~/components/common/widgets/ColorfulBalls'
 
 export const meta: MetaFunction = () => ({
@@ -92,14 +92,14 @@ export default function LoginPage() {
                 action="/member/login"
                 {...FormStyles}
               >
-                <FormInput
+                <Input
                   type="text"
                   name="name"
                   placeholder="用户名或邮箱"
                   autoComplete="username"
                   icon={RiMailLine}
                 />
-                <FormInput
+                <Input
                   type="password"
                   name="password"
                   placeholder="密码"
@@ -122,7 +122,7 @@ export default function LoginPage() {
                 action="/member/signup"
                 {...FormStyles}
               >
-                <FormInput
+                <Input
                   type="text"
                   name="name"
                   placeholder="用户名"
@@ -130,14 +130,14 @@ export default function LoginPage() {
                   autoComplete="username"
                   icon={RiUserLine}
                 />
-                <FormInput
+                <Input
                   type="email"
                   name="email"
                   placeholder="邮箱"
                   autoComplete="email"
                   icon={RiMailLine}
                 />
-                <FormInput
+                <Input
                   type="password"
                   name="password"
                   placeholder="密码"
@@ -145,7 +145,7 @@ export default function LoginPage() {
                   autoComplete="new-password"
                   icon={RiLockPasswordLine}
                 />
-                <FormInput
+                <Input
                   type="password"
                   name="password-again"
                   placeholder="再次输入密码"
@@ -168,7 +168,7 @@ export default function LoginPage() {
                 action="/member/reset-password"
                 {...FormStyles}
               >
-                <FormInput
+                <Input
                   type="email"
                   name="email"
                   placeholder="注册时用的邮箱"

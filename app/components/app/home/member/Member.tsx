@@ -1,24 +1,25 @@
-import type { ButtonProps, SystemProps } from '@chakra-ui/react'
 import {
   Button,
   ButtonGroup,
+  ButtonProps,
   Divider,
   Icon,
+  SystemProps,
   Text,
   VStack,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import type { IconType } from 'react-icons'
 import { RiLinkM, RiLinkUnlinkM, RiPlugLine, RiTimeLine } from 'react-icons/ri'
-import { HomeCard } from '~/components/common/containers/HomeCard'
+import { Card } from '~/components/common/containers/Card'
 
-interface HomeMemberProps extends SystemProps {}
+interface MemberProps extends SystemProps {}
 
-export const HomeMember = (props: HomeMemberProps) => {
+export const Member = (props: MemberProps) => {
   const [isBind, setBind] = useState(false)
 
   return (
-    <HomeCard title="HEU 账号" {...props}>
+    <Card title="HEU 账号" {...props}>
       <VStack w="full" align="flex-start" px="4" pt="3" pb="4" spacing="3">
         {isBind ? (
           <Text px="2" lineHeight="tall">
@@ -42,12 +43,14 @@ export const HomeMember = (props: HomeMemberProps) => {
                 colorScheme="green"
                 icon={RiTimeLine}
                 text="更新"
+                long="更新数据"
               />
               <Divider h="9" orientation="vertical" transition="all 0.2s" />
               <HomeMemberButton
                 colorScheme="red"
                 icon={RiLinkUnlinkM}
                 text="解绑"
+                long="解绑账号"
                 onClick={() => setBind(false)}
               />
             </>
@@ -57,6 +60,7 @@ export const HomeMember = (props: HomeMemberProps) => {
                 colorScheme="purple"
                 icon={RiLinkM}
                 text="绑定"
+                long="绑定账号"
                 onClick={() => setBind(true)}
               />
               <Divider h="9" orientation="vertical" transition="all 0.2s" />
@@ -64,21 +68,28 @@ export const HomeMember = (props: HomeMemberProps) => {
                 colorScheme="orange"
                 icon={RiPlugLine}
                 text="插件"
+                long="获取插件"
               />
             </>
           )}
         </ButtonGroup>
       </VStack>
-    </HomeCard>
+    </Card>
   )
 }
 
 interface HomeMemberButtonProps extends ButtonProps {
   icon: IconType
   text: string
+  long?: string
 }
 
-const HomeMemberButton = ({ icon, text, ...props }: HomeMemberButtonProps) => (
+const HomeMemberButton = ({
+  icon,
+  text,
+  long,
+  ...props
+}: HomeMemberButtonProps) => (
   <Button isFullWidth py="2" h="auto" {...props}>
     <Icon
       aria-label={text}
@@ -91,6 +102,11 @@ const HomeMemberButton = ({ icon, text, ...props }: HomeMemberButtonProps) => (
         lg: 'flex',
       }}
     />
-    <Text isTruncated>{text}</Text>
+    <Text isTruncated d={{ base: 'none', sm: 'inline' }}>
+      {text}
+    </Text>
+    <Text isTruncated d={{ base: 'inline', sm: 'none' }}>
+      {long}
+    </Text>
   </Button>
 )

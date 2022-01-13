@@ -2,30 +2,30 @@ import type { LinkProps, SystemProps } from '@chakra-ui/react'
 import { Icon, Link, SimpleGrid, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
-import { HomeCard } from '~/components/common/containers/HomeCard'
+import { Card } from '~/components/common/containers/Card'
 import { appLinks } from '~/contents/links/app-links'
 import { tipsLinks } from '~/contents/links/tips-links'
 
-interface HomeAppsProps extends SystemProps {}
+interface MobileLinksProps extends SystemProps {}
 
-export const HomeApps = (props: HomeAppsProps) => (
-  <HomeCard {...props}>
+export const MobileLinks = (props: MobileLinksProps) => (
+  <Card {...props}>
     <SimpleGrid
       templateColumns="repeat(auto-fill, minmax(20%, 1fr))"
       w="full"
       p="3.5"
     >
       {appLinks.map(link => (
-        <HomeAppsLink {...link} key={link.name} />
+        <MobileLink {...link} key={link.name} />
       ))}
       {tipsLinks.map(tip => (
-        <HomeAppsLink isExternal {...tip} key={tip.name} />
+        <MobileLink isExternal {...tip} key={tip.name} />
       ))}
     </SimpleGrid>
-  </HomeCard>
+  </Card>
 )
 
-interface HomeAppsLinkProps extends SystemProps, LinkProps {
+interface MobileLinkProps extends SystemProps, LinkProps {
   href: string
   name: string
   short: string
@@ -33,7 +33,7 @@ interface HomeAppsLinkProps extends SystemProps, LinkProps {
   color: string
 }
 
-const HomeAppsLink = ({
+const MobileLink = ({
   href,
   name,
   short,
@@ -41,7 +41,7 @@ const HomeAppsLink = ({
   color,
   isExternal,
   ...props
-}: HomeAppsLinkProps) => (
+}: MobileLinkProps) => (
   <Link
     as={isExternal ? undefined : RemixLink}
     to={href}

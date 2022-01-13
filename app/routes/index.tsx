@@ -1,13 +1,13 @@
-import { Grid, GridItem, Spacer } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import { LoaderFunction, useLoaderData } from 'remix'
-import { HomeApps } from '~/components/app/home/Apps'
-import { HomeFeeds } from '~/components/app/home/feeds/Feeds'
-import { HomeLinks } from '~/components/app/home/Links'
-import { HomeMember } from '~/components/app/home/Member'
-import { HomeNav } from '~/components/app/home/Nav'
-import { HomeNotes } from '~/components/app/home/Notes'
-import { HomeSearch } from '~/components/app/home/Search'
-import { HomeTips } from '~/components/app/home/Tips'
+import { Feeds } from '~/components/app/home/feeds/Feeds'
+import { ExternalLinks } from '~/components/app/home/links/External'
+import { HelpLinks } from '~/components/app/home/links/Help'
+import { MobileLinks } from '~/components/app/home/links/Mobile'
+import { NavLinks } from '~/components/app/home/links/Nav'
+import { Member } from '~/components/app/home/member/Member'
+import { Notes } from '~/components/app/home/Notes'
+import { Search } from '~/components/app/home/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 
@@ -46,37 +46,28 @@ export default function IndexPage() {
       }}
       gap="4"
     >
-      <GridItem>
-        <HomeApps d={isPhone} />
-        <Spacer h="4" d={isPhone} />
-
-        <HomeSearch d={isMobile} />
-        <Spacer h="4" d={isMobile} />
-
-        <HomeNav d={isNotPhone} />
-        <Spacer h="4" d={isNotPhone} />
-
-        <HomeMember d={isMobile} />
-        <Spacer h="4" d={isMobile} />
-
-        <HomeLinks id="links" />
+      <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
+        <Search d={isMobile} />
+        <MobileLinks d={isPhone} />
+        <NavLinks d={isNotPhone} />
+        <Member d={isMobile} />
+        <ExternalLinks id="links" />
       </GridItem>
 
-      <GridItem rowSpan={{ base: 1, sm: 2, md: 1 }}>
-        <HomeSearch d={isDesktop} />
-        <Spacer h="4" d={isDesktop} />
-
-        <HomeFeeds feeds={feeds} />
+      <GridItem
+        rowSpan={{ base: 1, sm: 2, md: 1 }}
+        d="grid"
+        gridTemplateColumns="100%"
+        gridGap="4"
+      >
+        <Search d={isDesktop} />
+        <Feeds feeds={feeds} />
       </GridItem>
 
-      <GridItem>
-        <HomeMember d={isDesktop} />
-        <Spacer h="4" d={isDesktop} />
-
-        <HomeNotes notes={notes} />
-
-        <Spacer h="4" d={isNotPhone} />
-        <HomeTips d={isNotPhone} />
+      <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
+        <Member d={isDesktop} />
+        <Notes notes={notes} />
+        <HelpLinks d={isNotPhone} />
       </GridItem>
     </Grid>
   )

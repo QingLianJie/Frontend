@@ -1,17 +1,24 @@
-import type { SystemProps } from '@chakra-ui/react'
-import { Divider, HStack, Link, Text, VStack } from '@chakra-ui/react'
-import { HomeCard } from '~/components/common/containers/HomeCard'
+import {
+  Divider,
+  HStack,
+  Link,
+  SystemProps,
+  Tag,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
+import { Card } from '~/components/common/containers/Card'
 import { calendarDate } from '~/utils/time'
 
-interface HomeNotesProps extends SystemProps {
+interface NotesProps extends SystemProps {
   notes: INotes
 }
 
-export const HomeNotes = ({ notes, ...props }: HomeNotesProps) => {
+export const Notes = ({ notes, ...props }: NotesProps) => {
   const isNoNotes = notes === undefined || notes.length === 0
 
   return (
-    <HomeCard title="公告" {...props}>
+    <Card title="公告" {...props}>
       <VStack
         w="full"
         px="4"
@@ -32,15 +39,27 @@ export const HomeNotes = ({ notes, ...props }: HomeNotesProps) => {
               spacing="2"
               key={note.content}
             >
-              <Text
-                as="time"
-                fontSize="sm"
-                color="gray.500"
-                _dark={{ color: 'gray.400' }}
-                isTruncated
+              <HStack
+                align="center"
+                justify="space-between"
+                spacing="4"
+                w="full"
               >
-                {calendarDate(note.date)}
-              </Text>
+                <Text
+                  as="time"
+                  fontSize="sm"
+                  color="gray.500"
+                  _dark={{ color: 'gray.400' }}
+                  isTruncated
+                >
+                  {calendarDate(note.date)}
+                </Text>
+                {note.tag && (
+                  <Tag size="sm" colorScheme="green" transition="all 0.2s">
+                    {note.tag}
+                  </Tag>
+                )}
+              </HStack>
               <Text
                 as="article"
                 w="full"
@@ -50,7 +69,7 @@ export const HomeNotes = ({ notes, ...props }: HomeNotesProps) => {
                 {note.content}
               </Text>
               {note.links && (
-                <HStack align="flex-start" spacing="4" w="full" px="0.5">
+                <HStack justify="flex-start" spacing="4" w="full" px="0.5">
                   {note.links?.map(link => (
                     <Link
                       key={link.text}
@@ -73,6 +92,6 @@ export const HomeNotes = ({ notes, ...props }: HomeNotesProps) => {
           ))
         )}
       </VStack>
-    </HomeCard>
+    </Card>
   )
 }

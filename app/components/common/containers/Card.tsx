@@ -2,13 +2,13 @@ import type { SystemProps } from '@chakra-ui/react'
 import { Heading, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 
-interface HomeCardProps extends SystemProps {
+interface CardProps extends SystemProps {
   title?: string
   id?: string
   children: ReactNode
 }
 
-export const HomeCard = ({ title, id, children, ...props }: HomeCardProps) => (
+export const Card = ({ title, id, children, ...props }: CardProps) => (
   <VStack
     id={id}
     w="full"

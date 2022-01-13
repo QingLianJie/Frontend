@@ -6,27 +6,27 @@ import {
   Input as ChakraInput,
   InputGroup,
   InputLeftElement,
-  InputProps,
+  InputProps as ChakraInputProps,
   InputRightElement,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { IconType } from 'react-icons'
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri'
 
-interface FormInputProps extends InputProps {
+interface InputProps extends ChakraInputProps {
   icon: IconType
   help?: string
   disabled?: boolean
 }
 
-export const FormInput = ({
+export const Input = ({
   type,
   icon,
   help,
   name,
   disabled,
   ...props
-}: FormInputProps) => {
+}: InputProps) => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (

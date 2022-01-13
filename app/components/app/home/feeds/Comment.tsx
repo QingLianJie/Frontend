@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
-import { HomeCard } from '~/components/common/containers/HomeCard'
+import { Card } from '~/components/common/containers/Card'
 import { CourseCard } from '~/components/common/widgets/CourseCard'
 import { calendarTime } from '~/utils/time'
 
@@ -18,7 +18,7 @@ interface FeedCommentProps {
 }
 
 export const FeedComment = ({ comment }: FeedCommentProps) => (
-  <HomeCard>
+  <Card>
     <VStack align="flex-start" w="full" px="4" py="4" spacing="4">
       <HStack w="full" spacing="4" px="2" pt="2">
         <Avatar
@@ -107,5 +107,5 @@ export const FeedComment = ({ comment }: FeedCommentProps) => (
         </Text>
       </HStack>
     </VStack>
-  </HomeCard>
+  </Card>
 )

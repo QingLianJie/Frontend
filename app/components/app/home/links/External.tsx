@@ -1,15 +1,15 @@
 import type { SystemProps } from '@chakra-ui/react'
 import { Link, VStack } from '@chakra-ui/react'
-import { HomeCard } from '~/components/common/containers/HomeCard'
+import { Card } from '~/components/common/containers/Card'
 import { LANTag } from '~/components/common/widgets/LANTag'
 import { schoolLinks } from '~/contents/links/school-links'
 
-interface HomeLinksProps extends SystemProps {
+interface ExternalLinksProps extends SystemProps {
   id: string
 }
 
-export const HomeLinks = ({ id, ...props }: HomeLinksProps) => (
-  <HomeCard title="学校" id={id} {...props}>
+export const ExternalLinks = ({ id, ...props }: ExternalLinksProps) => (
+  <Card title="学校" id={id} {...props}>
     <VStack align="flex-start" spacing="0" w="full" pt="2" pb="4">
       {schoolLinks.map(link => (
         <Link
@@ -36,5 +36,5 @@ export const HomeLinks = ({ id, ...props }: HomeLinksProps) => (
         </Link>
       ))}
     </VStack>
-  </HomeCard>
+  </Card>
 )

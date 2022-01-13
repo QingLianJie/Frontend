@@ -2,13 +2,13 @@ import type { SystemProps } from '@chakra-ui/react'
 import { Flex, Icon, Link, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
-import { HomeCard } from '~/components/common/containers/HomeCard'
+import { Card } from '~/components/common/containers/Card'
 import { appLinks } from '~/contents/links/app-links'
 
-interface HomeNavProps extends SystemProps {}
+interface NavLinksProps extends SystemProps {}
 
-export const HomeNav = (props: HomeNavProps) => (
-  <HomeCard title="页面" {...props}>
+export const NavLinks = (props: NavLinksProps) => (
+  <Card title="页面" {...props}>
     <Flex
       flexDir="column"
       alignItems="flex-start"
@@ -20,20 +20,20 @@ export const HomeNav = (props: HomeNavProps) => (
       gap="0"
     >
       {appLinks.map(link =>
-        link.mobile ? null : <HomeNavLink {...link} key={link.name} />
+        link.mobile ? null : <NavLink {...link} key={link.name} />
       )}
     </Flex>
-  </HomeCard>
+  </Card>
 )
 
-interface HomeNavLinkProps {
+interface NavLinkProps {
   href: string
   name: string
   icon: IconType
   color: string
 }
 
-const HomeNavLink = ({ href, name, icon, color }: HomeNavLinkProps) => (
+const NavLink = ({ href, name, icon, color }: NavLinkProps) => (
   <Link
     as={RemixLink}
     to={href}

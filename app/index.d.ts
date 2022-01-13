@@ -3,6 +3,7 @@ type INotes = INote[]
 interface INote {
   date: string
   content: string
+  tag?: string
   links?: {
     text: string
     href: string
