@@ -1,4 +1,4 @@
-import type { SystemProps } from '@chakra-ui/react'
+import type { LinkProps, SystemProps } from '@chakra-ui/react'
 import { Icon, Link, SimpleGrid, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
@@ -19,19 +19,18 @@ export const HomeApps = (props: HomeAppsProps) => (
         <HomeAppsLink {...link} key={link.name} />
       ))}
       {tipsLinks.map(tip => (
-        <HomeAppsLink external {...tip} key={tip.name} />
+        <HomeAppsLink isExternal {...tip} key={tip.name} />
       ))}
     </SimpleGrid>
   </HomeCard>
 )
 
-interface HomeAppsLinkProps extends SystemProps {
+interface HomeAppsLinkProps extends SystemProps, LinkProps {
   href: string
   name: string
   short: string
   icon: IconType
   color: string
-  external?: boolean
 }
 
 const HomeAppsLink = ({
@@ -40,15 +39,15 @@ const HomeAppsLink = ({
   short,
   icon,
   color,
-  external,
+  isExternal,
   ...props
 }: HomeAppsLinkProps) => (
   <Link
-    as={external ? undefined : RemixLink}
+    as={isExternal ? undefined : RemixLink}
     to={href}
     href={href}
     key={name}
-    isExternal={external}
+    isExternal={isExternal}
     d="flex"
     alignItems="center"
     flexDir="column"

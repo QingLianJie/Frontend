@@ -1,12 +1,14 @@
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import type { LinksFunction, MetaFunction } from 'remix'
+import { ChakraProvider, extendTheme, Heading } from '@chakra-ui/react'
 import {
   Links,
+  LinksFunction,
   LiveReload,
   Meta,
+  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useCatch,
 } from 'remix'
 import { Layout } from './components/layout/Layout'
 
@@ -83,6 +85,32 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === 'development' && <LiveReload />}
+      </body>
+    </html>
+  )
+}
+
+export function CatchBoundary() {
+  const caught = useCatch()
+
+  return (
+    <html lang="zh-cn">
+      <head>
+        <meta charSet="utf-8" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <title>
+          {caught.status} {caught.statusText}
+        </title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <ChakraProvider theme={theme}>
+          <Heading as="h1" px="12" pt="12" pb="2" size="md">
+            {caught.status} {caught.statusText}
+          </Heading>
+        </ChakraProvider>
+        <Scripts />
       </body>
     </html>
   )

@@ -17,10 +17,10 @@ interface CourseCardProps {
 }
 
 export const CourseCard = ({ course, children }: CourseCardProps) => (
-  <Popover trigger="hover" isLazy={true} placement="top-start">
+  <Popover trigger="hover" placement="top-start">
     <PopoverTrigger>{children}</PopoverTrigger>
-    <PopoverContent shadow="xl" _dark={{ bg: 'gray.800' }}>
-      <PopoverArrow _dark={{ borderColor: 'gray.800' }} />
+    <PopoverContent shadow="xl" _dark={{ bg: 'gray.800', shadow: 'dark-lg' }}>
+      <PopoverArrow _dark={{ bg: 'inherit !important' }} />
       <PopoverBody py="4" px="5">
         <VStack w="full" align="flex-start" spacing="1">
           <HStack w="full" justify="space-between" pb="2">

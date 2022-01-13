@@ -1,6 +1,5 @@
 import type { SystemProps } from '@chakra-ui/react'
-import { Divider, HStack, Icon, Link, Text, VStack } from '@chakra-ui/react'
-import { RiLinksLine } from 'react-icons/ri'
+import { Divider, HStack, Link, Text, VStack } from '@chakra-ui/react'
 import { HomeCard } from '~/components/common/containers/HomeCard'
 import { calendarDate } from '~/utils/time'
 

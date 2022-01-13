@@ -27,19 +27,19 @@ export const appLinks: AppLink[] = [
   {
     name: '我的成绩',
     short: '成绩',
-    href: '/member/scores',
+    href: '/scores',
     color: 'green',
     icon: RiBarChartBoxLine,
   },
   {
     name: '我的课表',
     short: '课表',
-    href: '/member/timetable',
+    href: '/timetable',
     color: 'blue',
     icon: RiTableLine,
   },
   {
-    name: '账号管理',
+    name: '我的账号',
     short: '账号',
     href: '/member',
     color: 'yellow',

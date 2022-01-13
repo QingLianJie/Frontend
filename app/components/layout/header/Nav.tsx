@@ -18,7 +18,7 @@ import { navLinks } from '~/contents/links/nav-links'
 export const HeaderNav = () => (
   <HStack as="nav" mr="-6">
     {navLinks.map(link =>
-      link.type === 'LINK' ? (
+     !link.drawer && (link.type === 'LINK' ? (
         <HeaderNavLink {...link} key={link.name} />
       ) : (
         <HeaderNavMenu {...link} key={link.name}>
@@ -26,7 +26,7 @@ export const HeaderNav = () => (
             <HeaderNavMenuItem {...item} key={item.name} />
           ))}
         </HeaderNavMenu>
-      )
+      ))
     )}
   </HStack>
 )

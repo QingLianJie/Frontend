@@ -1,34 +1,29 @@
 type SchoolLink = {
   name: string
   href: string
-  lan: boolean
+  lan?: boolean
 }
 
 export const schoolLinks: SchoolLink[] = [
   {
     name: '学生个人中心',
     href: 'https://edusys.wvpn.hrbeu.edu.cn/jsxsd/framework/xsMain.jsp',
-    lan: false,
   },
   {
     name: '网上办事中心',
     href: 'https://one.wvpn.hrbeu.edu.cn/',
-    lan: false,
   },
   {
     name: '轻教平台',
     href: 'https://qingj.wvpn.hrbeu.edu.cn/',
-    lan: false,
   },
   {
     name: '学校电子邮箱',
     href: 'https://mail.hrbeu.edu.cn/',
-    lan: false,
   },
   {
     name: '图书馆',
     href: 'https://lib.wvpn.hrbeu.edu.cn/',
-    lan: false,
   },
   {
     name: '实验室综合管理系统',
@@ -43,21 +38,17 @@ export const schoolLinks: SchoolLink[] = [
   {
     name: '研究生教育培养与服务信息系统',
     href: 'https://yjs.wvpn.hrbeu.edu.cn/cas/CASLogin.ashx',
-    lan: false,
   },
   {
     name: '中国知网 CNKI',
     href: 'https://www-cnki-net-443.wvpn.hrbeu.edu.cn/',
-    lan: false,
   },
   {
     name: '本科生毕业设计（论文）管理系统',
     href: 'https://co2.cnki.net/Login.html?dp=hrbeu',
-    lan: false,
   },
   {
     name: '学校官网',
     href: 'http://www.hrbeu.edu.cn/',
-    lan: false,
   },
 ]

@@ -11,6 +11,7 @@ import { schoolLinks } from './school-links'
 
 type NavLink = {
   type: 'LINK'
+  drawer?: boolean
   name: string
   long: string
   href: string
@@ -20,6 +21,7 @@ type NavLink = {
 
 type NavMenu = {
   type: 'MENU'
+  drawer?: boolean
   name: string
   long: string
   color: string
@@ -53,7 +55,7 @@ export const navLinks: (NavLink | NavMenu)[] = [
     type: 'LINK',
     name: '成绩',
     long: '我的成绩',
-    href: '/member/scores',
+    href: '/scores',
     color: 'green',
     icon: RiBarChartBoxLine,
   },
@@ -61,16 +63,17 @@ export const navLinks: (NavLink | NavMenu)[] = [
     type: 'LINK',
     name: '课表',
     long: '我的课表',
-    href: '/member/timetable',
+    href: '/timetable',
     color: 'blue',
     icon: RiTableLine,
   },
   {
     type: 'LINK',
-    name: '管理',
-    long: '账号管理',
+    name: '账号',
+    long: '我的账号',
     href: '/member',
     color: 'yellow',
+    drawer: true,
     icon: RiAccountCircleLine,
   },
   {

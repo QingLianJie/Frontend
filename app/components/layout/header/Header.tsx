@@ -32,8 +32,8 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => (
     gap="8"
     zIndex="100"
     backdropFilter="blur(12px)"
-    bg="#EDF2F7AA"
-    _dark={{ bg: '#171923AA' }}
+    bg="#EDF2F788"
+    _dark={{ bg: '#17192388' }}
     transition="all 0.2s"
   >
     <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>

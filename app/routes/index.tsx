@@ -49,25 +49,32 @@ export default function IndexPage() {
       <GridItem>
         <HomeApps d={isPhone} />
         <Spacer h="4" d={isPhone} />
+
         <HomeSearch d={isMobile} />
         <Spacer h="4" d={isMobile} />
+
         <HomeNav d={isNotPhone} />
         <Spacer h="4" d={isNotPhone} />
+
         <HomeMember d={isMobile} />
         <Spacer h="4" d={isMobile} />
+
         <HomeLinks id="links" />
       </GridItem>
 
       <GridItem rowSpan={{ base: 1, sm: 2, md: 1 }}>
         <HomeSearch d={isDesktop} />
         <Spacer h="4" d={isDesktop} />
+
         <HomeFeeds feeds={feeds} />
       </GridItem>
 
       <GridItem>
         <HomeMember d={isDesktop} />
         <Spacer h="4" d={isDesktop} />
+
         <HomeNotes notes={notes} />
+
         <Spacer h="4" d={isNotPhone} />
         <HomeTips d={isNotPhone} />
       </GridItem>
