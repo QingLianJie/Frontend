@@ -2,7 +2,7 @@ import type { SystemProps } from '@chakra-ui/react'
 import { Link, VStack } from '@chakra-ui/react'
 import { Card } from '~/components/common/containers/Card'
 import { LANTag } from '~/components/common/widgets/LANTag'
-import { schoolLinks } from '~/contents/links/school-links'
+import { schoolLinks } from '~/contents/links/external/school'
 
 interface ExternalLinksProps extends SystemProps {
   id: string

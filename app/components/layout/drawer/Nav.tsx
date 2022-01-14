@@ -14,7 +14,7 @@ import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { NavLink as RemixLink } from 'remix'
 import { LANTag } from '~/components/common/widgets/LANTag'
-import { navLinks } from '~/contents/links/nav-links'
+import { navLinks } from '~/contents/links/nav/nav'
 
 export const DrawerNav = () => (
   <VStack as="nav" spacing="0">

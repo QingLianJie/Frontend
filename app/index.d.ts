@@ -1,3 +1,13 @@
+type ResponseStatus = '可以' | '不行' | '有问题'
+
+type AuthType = '登录' | '注册' | '重置密码' | '修改密码'
+
+interface IResponse<T> {
+  status: ResponseStatus
+  type: T
+  message?: string
+}
+
 type INotes = INote[]
 
 interface INote {

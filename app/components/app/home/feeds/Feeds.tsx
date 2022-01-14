@@ -1,13 +1,13 @@
 import type { SystemProps } from '@chakra-ui/react'
 import { VStack } from '@chakra-ui/react'
+import { useLoaderData } from 'remix'
 import { FeedComment } from './Comment'
 import { NoContent } from './NoContent'
 
-interface FeedsProps extends SystemProps {
-  feeds: IFeeds
-}
+interface FeedsProps extends SystemProps {}
 
-export const Feeds = ({ feeds, ...props }: FeedsProps) => {
+export const Feeds = ({ ...props }: FeedsProps) => {
+  const { feeds } = useLoaderData<{ feeds: IFeeds }>()
   const isNoFeeds = feeds === undefined || feeds.length === 0
 
   return (

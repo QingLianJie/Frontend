@@ -1,5 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import { LoaderFunction, useLoaderData } from 'remix'
+import type { LoaderFunction } from 'remix'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { ExternalLinks } from '~/components/app/home/links/External'
 import { HelpLinks } from '~/components/app/home/links/Help'
@@ -11,19 +11,12 @@ import { Search } from '~/components/app/home/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 
-interface HomeLoader {
-  feeds: IFeeds
-  notes: INotes
-}
-
 export const loader: LoaderFunction = () => {
   // TODO: 获取 feeds 和 notes
   return { feeds, notes }
 }
 
 export default function IndexPage() {
-  const { feeds, notes } = useLoaderData<HomeLoader>()
-
   const isPhone = { base: 'flex', sm: 'none' }
   const isNotPhone = { base: 'none', sm: 'flex' }
   const isMobile = { base: 'flex', md: 'none' }
@@ -61,12 +54,12 @@ export default function IndexPage() {
         gridGap="4"
       >
         <Search d={isDesktop} />
-        <Feeds feeds={feeds} />
+        <Feeds />
       </GridItem>
 
       <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
         <Member d={isDesktop} />
-        <Notes notes={notes} />
+        <Notes />
         <HelpLinks d={isNotPhone} />
       </GridItem>
     </Grid>

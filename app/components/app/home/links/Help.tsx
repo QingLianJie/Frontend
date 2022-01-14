@@ -2,15 +2,15 @@ import type { SystemProps } from '@chakra-ui/react'
 import { Icon, Link, Text, VStack } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Card } from '~/components/common/containers/Card'
-import { tipsLinks } from '~/contents/links/tips-links'
+import { helpLinks } from '~/contents/links/external/help'
 
 interface HelpLinksProps extends SystemProps {}
 
 export const HelpLinks = (props: HelpLinksProps) => (
   <Card title="帮助" {...props}>
     <VStack w="full" px="0" pb="4" pt="2" align="flex-start" spacing="0">
-      {tipsLinks.map(tip => (
-        <HelpLink {...tip} key={tip.name} />
+      {helpLinks.map(link => (
+        <HelpLink {...link} key={link.name} />
       ))}
       <Text
         px="6"

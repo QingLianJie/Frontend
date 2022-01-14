@@ -7,7 +7,7 @@ import {
   RiLayoutMasonryLine,
   RiTableLine,
 } from 'react-icons/ri'
-import { schoolLinks } from './school-links'
+import { schoolLinks } from '../external/school'
 
 type NavLink = {
   type: 'LINK'

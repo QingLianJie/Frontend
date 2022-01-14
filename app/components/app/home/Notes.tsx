@@ -7,14 +7,14 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/containers/Card'
 import { calendarDate } from '~/utils/time'
 
-interface NotesProps extends SystemProps {
-  notes: INotes
-}
+interface NotesProps extends SystemProps {}
 
-export const Notes = ({ notes, ...props }: NotesProps) => {
+export const Notes = ({ ...props }: NotesProps) => {
+  const { notes } = useLoaderData<{ notes: INotes }>()
   const isNoNotes = notes === undefined || notes.length === 0
 
   return (

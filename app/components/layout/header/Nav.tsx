@@ -13,20 +13,22 @@ import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
 import { LANTag } from '~/components/common/widgets/LANTag'
-import { navLinks } from '~/contents/links/nav-links'
+import { navLinks } from '~/contents/links/nav/nav'
 
 export const HeaderNav = () => (
   <HStack as="nav" mr="-6">
-    {navLinks.map(link =>
-     !link.drawer && (link.type === 'LINK' ? (
-        <HeaderNavLink {...link} key={link.name} />
-      ) : (
-        <HeaderNavMenu {...link} key={link.name}>
-          {link.children.map(item => (
-            <HeaderNavMenuItem {...item} key={item.name} />
-          ))}
-        </HeaderNavMenu>
-      ))
+    {navLinks.map(
+      link =>
+        !link.drawer &&
+        (link.type === 'LINK' ? (
+          <HeaderNavLink {...link} key={link.name} />
+        ) : (
+          <HeaderNavMenu {...link} key={link.name}>
+            {link.children.map(item => (
+              <HeaderNavMenuItem {...item} key={item.name} />
+            ))}
+          </HeaderNavMenu>
+        ))
     )}
   </HStack>
 )

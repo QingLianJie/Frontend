@@ -3,8 +3,8 @@ import { Icon, Link, SimpleGrid, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/containers/Card'
-import { appLinks } from '~/contents/links/app-links'
-import { tipsLinks } from '~/contents/links/tips-links'
+import { helpLinks } from '~/contents/links/external/help'
+import { mobileLinks } from '~/contents/links/nav/mobile'
 
 interface MobileLinksProps extends SystemProps {}
 
@@ -15,11 +15,11 @@ export const MobileLinks = (props: MobileLinksProps) => (
       w="full"
       p="3.5"
     >
-      {appLinks.map(link => (
+      {mobileLinks.map(link => (
         <MobileLink {...link} key={link.name} />
       ))}
-      {tipsLinks.map(tip => (
-        <MobileLink isExternal {...tip} key={tip.name} />
+      {helpLinks.map(link => (
+        <MobileLink isExternal {...link} key={link.name} />
       ))}
     </SimpleGrid>
   </Card>

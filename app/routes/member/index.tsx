@@ -1,3 +1,3 @@
 export default function MemberPage() {
-  return <>member</>
-}
+    return <>member</>
+  }

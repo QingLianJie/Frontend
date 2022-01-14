@@ -3,7 +3,7 @@ import { Flex, Icon, Link, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/containers/Card'
-import { appLinks } from '~/contents/links/app-links'
+import { mobileLinks } from '~/contents/links/nav/mobile'
 
 interface NavLinksProps extends SystemProps {}
 
@@ -19,7 +19,7 @@ export const NavLinks = (props: NavLinksProps) => (
       pb="4"
       gap="0"
     >
-      {appLinks.map(link =>
+      {mobileLinks.map(link =>
         link.mobile ? null : <NavLink {...link} key={link.name} />
       )}
     </Flex>

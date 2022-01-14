@@ -1,5 +1,7 @@
 import { ChakraProvider, extendTheme, Heading } from '@chakra-ui/react'
 import {
+  ActionFunction,
+  json,
   Links,
   LinksFunction,
   LiveReload,
@@ -17,7 +19,7 @@ const fontFamily = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFon
     "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji"`
 
-export const theme = extendTheme({
+const chakraTheme = extendTheme({
   fonts: {
     body: fontFamily,
     heading: fontFamily,
@@ -67,6 +69,10 @@ export const links: LinksFunction = () => [
   },
 ]
 
+export const action: ActionFunction = async () => {
+  return json({ status: 200 })
+}
+
 export default function App() {
   return (
     <html lang="zh-cn">
@@ -77,7 +83,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider theme={chakraTheme}>
           <Layout>
             <Outlet />
           </Layout>
@@ -105,7 +111,7 @@ export function CatchBoundary() {
         <Links />
       </head>
       <body>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider theme={chakraTheme}>
           <Heading as="h1" px="12" pt="12" pb="2" size="md">
             {caught.status} {caught.statusText}
           </Heading>

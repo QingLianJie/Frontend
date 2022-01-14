@@ -6,7 +6,7 @@ import {
   RiQuestionLine,
 } from 'react-icons/ri'
 
-type tipLink = {
+type HelpLink = {
   name: string
   short: string
   href: string
@@ -14,7 +14,7 @@ type tipLink = {
   icon: IconType
 }
 
-export const tipsLinks: tipLink[] = [
+export const helpLinks: HelpLink[] = [
   {
     name: '联系我们',
     short: '联系',

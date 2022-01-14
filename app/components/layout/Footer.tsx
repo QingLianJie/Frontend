@@ -17,7 +17,7 @@ import {
 import { RiArrowRightSLine } from 'react-icons/ri'
 import LogoDark from '~/assets/logo-dark.svg'
 import Logo from '~/assets/logo.svg'
-import { footerLinks } from '~/contents/links/footer-links'
+import { footerLinks } from '~/contents/links/external/footer'
 
 export const Footer = () => {
   const { colorMode } = useColorMode()

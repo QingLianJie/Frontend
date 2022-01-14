@@ -7,7 +7,7 @@ import {
   RiTableLine,
 } from 'react-icons/ri'
 
-type AppLink = {
+type MobileLink = {
   name: string
   short: string
   href: string
@@ -16,7 +16,7 @@ type AppLink = {
   mobile?: 'yes'
 }
 
-export const appLinks: AppLink[] = [
+export const mobileLinks: MobileLink[] = [
   {
     name: '全部课程',
     short: '课程',
