@@ -6,12 +6,11 @@ import {
   Form,
   json,
   useActionData,
-  useNavigate,
   useSearchParams,
   useTransition,
 } from 'remix'
 import { Input } from '~/components/common/forms/Input'
-import { useToast } from '~/utils/hooks'
+import { useNavToast } from '~/utils/hooks'
 import { sleep } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
@@ -35,22 +34,14 @@ export default function SignupPage() {
   const [params] = useSearchParams()
   const from = params.get('from') ?? '/'
 
-  const navigate = useNavigate()
   const action = useActionData<IResponse<AuthType>>()
   const transition = useTransition()
-  const toast = useToast()
 
   const isLoading = transition.state === 'submitting'
+  const redirectTo = action?.status === '可以' && '/'
 
-  useEffect(() => {
-    if (action) {
-      toast({
-        status: action.status,
-        title: action.message ?? `${action.type}${action.status}`,
-      })
-      if (action.status === '可以') navigate('/')
-    }
-  }, [action])
+  const toast = useNavToast<AuthType>()
+  useEffect(() => action && toast({ to: redirectTo, ...action }), [action])
 
   return (
     <Form method="post">
@@ -66,6 +57,7 @@ export default function SignupPage() {
           placeholder="用户名"
           help="独一无二的名字，3 到 16 个字符"
           autoComplete="username"
+          autoFocus
           icon={RiUserLine}
         />
         <Input

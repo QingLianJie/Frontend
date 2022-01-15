@@ -1,17 +1,10 @@
 import { Button, VStack } from '@chakra-ui/react'
-import { RiMailLine } from 'react-icons/ri'
-import {
-  ActionFunction,
-  Form,
-  json,
-  useActionData,
-  useNavigate,
-  useTransition,
-} from 'remix'
-import { Input } from '~/components/common/forms/Input'
-import { sleep } from '~/utils/system'
-import { useToast } from '~/utils/hooks'
 import { useEffect } from 'react'
+import { RiMailLine } from 'react-icons/ri'
+import { ActionFunction, Form, json, useActionData, useTransition } from 'remix'
+import { Input } from '~/components/common/forms/Input'
+import { useNavToast } from '~/utils/hooks'
+import { sleep } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
@@ -28,21 +21,13 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function ResetPasswordPage() {
-  const navigate = useNavigate()
   const action = useActionData<IResponse<AuthType>>()
   const transition = useTransition()
-  const toast = useToast()
 
   const isLoading = transition.state === 'submitting'
 
-  useEffect(() => {
-    if (action) {
-      toast({
-        status: action.status,
-        title: action.message ?? `${action.type}${action.status}`,
-      })
-    }
-  }, [action])
+  const toast = useNavToast<AuthType>()
+  useEffect(() => action && toast({ ...action }), [action])
 
   return (
     <Form method="post">
@@ -57,6 +42,7 @@ export default function ResetPasswordPage() {
           name="email"
           placeholder="注册时用的邮箱"
           autoComplete="email"
+          autoFocus
           icon={RiMailLine}
         />
         <Button

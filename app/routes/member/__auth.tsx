@@ -8,17 +8,8 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
-import { useEffect } from 'react'
-import {
-  Link,
-  MetaFunction,
-  Outlet,
-  useActionData,
-  useLocation,
-  useNavigate,
-} from 'remix'
+import { Link, MetaFunction, Outlet, useLocation } from 'remix'
 import { ColorfulBalls } from '~/components/common/widgets/backgrounds/ColorfulBalls'
-import { useToast } from '~/utils/hooks'
 
 export const meta: MetaFunction = () => ({
   title: '登录与注册 - 清廉街',
@@ -26,8 +17,10 @@ export const meta: MetaFunction = () => ({
 
 export default function AuthPage() {
   const location = useLocation()
+
   const tabMap = ['login', 'signup', 'reset-password']
   const currentTab = tabMap.findIndex(t => location.pathname.includes(t))
+  const isResetPassword = location.pathname.includes('reset-password')
 
   return (
     <Center
@@ -58,7 +51,13 @@ export default function AuthPage() {
           pointerEvents="none"
           zIndex="1"
         >
-          欢迎加入 <strong>清廉街</strong>
+          {isResetPassword ? (
+            <strong>重置密码</strong>
+          ) : (
+            <span>
+              欢迎加入 <strong>清廉街</strong>
+            </span>
+          )}
         </Heading>
 
         <ColorfulBalls h="52" top="-2" count={30} />
@@ -77,7 +76,7 @@ interface TabBoxProps {
 }
 
 export const TabBox = ({ index, children }: TabBoxProps) => (
-  <Tabs w="full" variant="enclosed" zIndex="1" defaultIndex={index}>
+  <Tabs w="full" variant="enclosed" zIndex="1" index={index}>
     <TabList transition="border-color 0.2s" px={{ base: '6', sm: '8' }}>
       <TabLink to="/member/login" text="登录" />
       <TabLink to="/member/signup" text="注册" />
