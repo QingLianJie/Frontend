@@ -1,0 +1,14 @@
+{
+    "method": "POST",
+    "path": "/member/reset-password/[token]",
+    "payload": {
+        "token": "重置令牌",
+        "old_password": "旧密码",
+        "new_password": "新密码"
+    },
+    "response": {
+        "200": "重置成功",
+        "401": "密码错误",
+        "404": "用户不存在"
+    }
+}

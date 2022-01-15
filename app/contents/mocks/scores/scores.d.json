@@ -1,7 +1,7 @@
 {
     "description": "获取当前登录用户所有的成绩",
     "method": "GET",
-    "path": "/member/scores",
+    "path": "/scores",
     "response": {
         "200": "获取成功",
         "401": "没有登录"

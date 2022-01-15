@@ -33,8 +33,7 @@
             "date": "2022-01-06T09:35:09.421Z",
             "author": {
                 "id": 0,
-                "name": "测试用户",
-                "avatar": "https://source.boringavatars.com/beam"
+                "name": "测试用户"
             },
             "course": {
                 "name": "程序设计基础",
@@ -60,8 +59,7 @@
             "date": "2022-01-06T04:22:56.421Z",
             "author": {
                 "id": 1,
-                "name": "张三",
-                "avatar": "https://source.boringavatars.com/beam"
+                "name": "张三"
             },
             "course": {
                 "name": "日语初级（入门）",
@@ -87,8 +85,7 @@
             "date": "2022-01-06T02:24:16.421Z",
             "author": {
                 "id": 2,
-                "name": "李四",
-                "avatar": "https://source.boringavatars.com/beam"
+                "name": "李四"
             },
             "course": {
                 "name": "计算机图形学",
@@ -114,8 +111,7 @@
             "date": "2022-01-05T09:09:35.421Z",
             "author": {
                 "id": 51,
-                "name": "王五",
-                "avatar": "https://source.boringavatars.com/beam"
+                "name": "王五"
             },
             "course": {
                 "name": "复变函数",

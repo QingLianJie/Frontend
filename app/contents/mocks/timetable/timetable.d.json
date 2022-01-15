@@ -1,7 +1,7 @@
 {
-    "description": "获取当前登录用户指定学期课表",
+    "description": "获取当前登录用户最新课表",
     "method": "GET",
-    "path": "/member/timetable/[term]",
+    "path": "/timetable",
     "response": {
         "200": "获取成功",
         "401": "没有登录"
