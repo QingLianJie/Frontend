@@ -17,9 +17,13 @@ interface CoursePopoverProps {
 }
 
 export const CoursePopover = ({ course, children }: CoursePopoverProps) => (
-  <Popover trigger="hover" placement="top-start">
+  <Popover trigger="hover" placement="top-start" strategy="fixed">
     <PopoverTrigger>{children}</PopoverTrigger>
-    <PopoverContent shadow="xl" _dark={{ bg: 'gray.800', shadow: 'dark-lg' }}>
+    <PopoverContent
+      shadow="xl"
+      _dark={{ bg: 'gray.800', shadow: 'dark-lg' }}
+      zIndex="3000"
+    >
       <PopoverArrow _dark={{ bg: 'inherit !important' }} />
       <PopoverBody py="4" px="5">
         <VStack w="full" align="flex-start" spacing="1">

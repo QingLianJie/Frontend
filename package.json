@@ -20,6 +20,7 @@
     "ahooks": "^3.1.4",
     "dayjs": "^1.10.7",
     "framer-motion": "^5",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",

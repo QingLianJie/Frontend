@@ -1,17 +1,19 @@
 import { ChakraProvider, extendTheme, Heading } from '@chakra-ui/react'
 import {
-  ActionFunction,
   json,
   Links,
   LinksFunction,
   LiveReload,
+  LoaderFunction,
   Meta,
   MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from 'remix'
+import version from '~/version.json'
 import { Layout } from './components/layout/Layout'
 
 const fontFamily = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
@@ -69,13 +71,19 @@ export const links: LinksFunction = () => [
   },
 ]
 
-export const action: ActionFunction = async () => {
-  return json({ status: 200 })
+interface RootLoad {
+  version: string
+}
+
+export const loader: LoaderFunction = async () => {
+  return json<RootLoad>({ ...version })
 }
 
 export default function App() {
+  const { version } = useLoaderData<RootLoad>()
+
   return (
-    <html lang="zh-cn">
+    <html lang="zh-cn" data-version={version}>
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -98,9 +106,10 @@ export default function App() {
 
 export function CatchBoundary() {
   const caught = useCatch()
+  const { version } = useLoaderData<RootLoad>()
 
   return (
-    <html lang="zh-cn">
+    <html lang="zh-cn" data-version={version}>
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />

@@ -1,9 +1,11 @@
 import dayjs from 'dayjs'
-import calendar from 'dayjs/plugin/calendar'
 import 'dayjs/locale/zh-cn'
+import calendar from 'dayjs/plugin/calendar'
+import relative from 'dayjs/plugin/relativeTime'
 
 dayjs.locale('zh-cn')
 dayjs.extend(calendar)
+dayjs.extend(relative)
 
 export const calendarTime = (time: string) =>
   dayjs(time).calendar(dayjs(), {
@@ -24,3 +26,5 @@ export const calendarDate = (time: string) =>
     lastWeek: 'YYYY 年 M 月 D 日',
     sameElse: 'YYYY 年 M 月 D 日',
   })
+
+export const relativeTime = (time: string) => dayjs(time).fromNow()

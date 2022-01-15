@@ -23,11 +23,11 @@ export const Search = ({ ...props }: SearchProps) => {
 
   return (
     <InputGroup>
-      <InputLeftElement pointerEvents="none" h="full" w="12">
+      <InputLeftElement pointerEvents="none" h="full" w="16" mx="0.5">
         <Icon
           as={RiSearchLine}
           aria-label="搜索"
-          fontSize="lg"
+          fontSize="mdl"
           color="gray.500"
           _dark={{ color: 'gray.400' }}
         />
@@ -38,8 +38,8 @@ export const Search = ({ ...props }: SearchProps) => {
         w="full"
         h="auto"
         borderColor="white"
-        pl="12"
-        pr="4"
+        pl="3.375rem"
+        pr="6"
         py="3"
         bg="white"
         _dark={{ bg: 'gray.800', borderColor: 'gray.800' }}
@@ -54,7 +54,7 @@ export const Search = ({ ...props }: SearchProps) => {
         d={{ base: 'none', md: 'flex' }}
         h="full"
         w="auto"
-        px="4"
+        px="6"
         color="gray.500"
         _dark={{ color: 'gray.400' }}
       >

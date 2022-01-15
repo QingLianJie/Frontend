@@ -1,4 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react'
+import _ from 'lodash'
 import type { LoaderFunction } from 'remix'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { ExternalLinks } from '~/components/app/home/links/External'
@@ -13,7 +14,8 @@ import notes from '~/contents/mocks/notes/notes.json'
 
 export const loader: LoaderFunction = () => {
   // TODO: 获取 feeds 和 notes
-  return { feeds, notes }
+  const group = _.groupBy(feeds, f => f.course.id)
+  return { feeds, group, notes }
 }
 
 export default function IndexPage() {
@@ -28,7 +30,7 @@ export default function IndexPage() {
       maxW="72rem"
       px={{ base: '4', sm: '6', md: '8' }}
       pb={{ base: '0', sm: '8' }}
-      pt={{ base: '12vh', sm: '8' }}
+      pt={{ base: '12vh', sm: '8vh' }}
       alignItems="start"
       alignContent="start"
       justifyContent="center"

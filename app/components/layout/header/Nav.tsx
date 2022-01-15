@@ -83,7 +83,7 @@ const HeaderNavMenu = ({ name, children }: HeaderNavMenuProps) => (
     >
       {name}
     </MenuButton>
-    <MenuList py="2" _dark={{ bg: 'gray.800' }}>
+    <MenuList py="2.5" _dark={{ bg: 'gray.800' }}>
       {children}
     </MenuList>
   </Menu>

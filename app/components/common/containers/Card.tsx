@@ -12,6 +12,7 @@ export const Card = ({ title, id, children, ...props }: CardProps) => (
   <VStack
     id={id}
     w="full"
+    maxW="full"
     align="flex-start"
     rounded="md"
     bg="white"

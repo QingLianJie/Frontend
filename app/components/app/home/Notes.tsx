@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/containers/Card'
-import { calendarDate } from '~/utils/time'
+import { calendarDate, relativeTime } from '~/utils/time'
 
 interface NotesProps extends SystemProps {}
 
@@ -39,12 +39,12 @@ export const Notes = ({ ...props }: NotesProps) => {
               spacing="2"
               key={note.content}
             >
-              <HStack
-                align="center"
-                justify="space-between"
-                spacing="4"
-                w="full"
-              >
+              <HStack align="center" justify="flex-start" spacing="3" w="full">
+                {note.tag && (
+                  <Tag size="sm" colorScheme="green" transition="all 0.2s">
+                    {note.tag}
+                  </Tag>
+                )}
                 <Text
                   as="time"
                   fontSize="sm"
@@ -52,13 +52,8 @@ export const Notes = ({ ...props }: NotesProps) => {
                   _dark={{ color: 'gray.400' }}
                   isTruncated
                 >
-                  {calendarDate(note.date)}
+                  发布于 {relativeTime(note.date)}
                 </Text>
-                {note.tag && (
-                  <Tag size="sm" colorScheme="green" transition="all 0.2s">
-                    {note.tag}
-                  </Tag>
-                )}
               </HStack>
               <Text
                 as="article"
@@ -79,7 +74,7 @@ export const Notes = ({ ...props }: NotesProps) => {
                       alignItems="center"
                       fontSize="sm"
                       color="purple.500"
-                      _dark={{ color: 'purple.400' }}
+                      _dark={{ color: 'blue.400' }}
                       textUnderlineOffset="0.25rem"
                       isTruncated
                     >

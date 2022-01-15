@@ -7,7 +7,9 @@ import { NoContent } from './NoContent'
 interface FeedsProps extends SystemProps {}
 
 export const Feeds = ({ ...props }: FeedsProps) => {
-  const { feeds } = useLoaderData<{ feeds: IFeeds }>()
+  const { feeds, group } =
+    useLoaderData<{ feeds: IFeeds; group: { [key: string]: IFeeds } }>()
+
   const isNoFeeds = feeds === undefined || feeds.length === 0
 
   return (
@@ -15,11 +17,9 @@ export const Feeds = ({ ...props }: FeedsProps) => {
       {isNoFeeds ? (
         <NoContent />
       ) : (
-        feeds.map(feed =>
-          feed.type === '课程评论' ? (
-            <FeedComment comment={feed.data} key={feed.data.id} />
-          ) : null
-        )
+        Object.entries(group).map(([id, comments]) => (
+          <FeedComment comments={comments} key={id} />
+        ))
       )}
     </VStack>
   )

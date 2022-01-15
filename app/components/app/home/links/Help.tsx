@@ -26,7 +26,7 @@ export const HelpLinks = (props: HelpLinksProps) => (
           href="https://www.yuque.com/lifeni/qing"
           isExternal
           color="purple.500"
-          _dark={{ color: 'purple.400' }}
+          _dark={{ color: 'blue.400' }}
           textUnderlineOffset="0.25rem"
         >
           「清廉街」

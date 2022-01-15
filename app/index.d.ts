@@ -20,7 +20,7 @@ interface INote {
   }[]
 }
 
-type IFeeds = ICommentFeed[]
+type IFeeds = IComment[]
 
 interface IComment {
   id: number
@@ -28,11 +28,6 @@ interface IComment {
   date: string
   author: IMember
   course: ICourse
-}
-
-interface ICommentFeed {
-  type: '课程评论'
-  data: IComment
 }
 
 interface IMember {

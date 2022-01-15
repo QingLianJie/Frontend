@@ -1,5 +1,5 @@
 import {
-  Avatar,
+  Box,
   Divider,
   HStack,
   Icon,
@@ -11,101 +11,113 @@ import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/containers/Card'
 import { CoursePopover } from '~/components/common/widgets/popovers/Course'
-import { calendarTime } from '~/utils/time'
+import { relativeTime } from '~/utils/time'
 
 interface FeedCommentProps {
-  comment: IComment
+  comments: IComment[]
 }
 
-export const FeedComment = ({ comment }: FeedCommentProps) => (
-  <Card>
-    <VStack align="flex-start" w="full" px="4" py="4" spacing="4">
-      <HStack w="full" spacing="4" px="2" pt="2">
-        <Avatar
-          aria-label={comment.author.name}
-          src={comment.author.avatar}
-          w="10"
-          h="10"
-          icon={
-            comment.author.id === -1 ? (
-              <Icon as={RiSpyLine} fontSize="lg" />
-            ) : (
-              <Icon as={RiUserLine} fontSize="lg" />
-            )
-          }
-          bg="gray.200"
-          color="gray.500"
-          _hover={{
-            color: 'gray.700',
-          }}
-          _dark={{
-            bg: 'gray.700',
-            color: 'gray.400',
-            _hover: {
-              color: 'gray.200',
-            },
-          }}
+export const FeedComment = ({ comments }: FeedCommentProps) => {
+  const course = comments[0].course
+
+  return (
+    <Card>
+      <VStack align="flex-start" w="full" px="4" pt="5" pb="5" spacing="4">
+        <HStack
+          w="full"
+          px="2"
+          rounded="md"
+          justify="space-between"
           transition="all 0.2s"
-          userSelect="none"
-          pointerEvents="none"
-        />
-        <VStack align="flex-start" spacing="0" lineHeight="tall">
-          <Text fontWeight="bold">{comment.author.name}</Text>
-          <Text fontSize="sm" color="gray.500" _dark={{ color: 'gray.400' }}>
-            {calendarTime(comment.date)}
-          </Text>
-        </VStack>
-      </HStack>
-      <Text lineHeight="tall" px="2" fontSize="mdl">
-        {comment.content}
-      </Text>
-      <Divider transition="all 0.2s" />
-      <HStack
-        w="full"
-        px="2"
-        pb="1"
-        rounded="md"
-        justify="space-between"
-        transition="all 0.2s"
-      >
-        <CoursePopover course={comment.course}>
-          <Link
-            as={RemixLink}
-            to={`/courses/${comment.course.id}`}
-            d="flex"
-            alignItems="center"
-            fontWeight="bold"
-            fontSize="sm"
+        >
+          <CourseLink course={course} />
+          <Text
+            fontSize="smd"
             color="gray.500"
-            _hover={{
-              color: 'gray.700',
-            }}
             _dark={{
               color: 'gray.400',
-              _hover: {
-                color: 'gray.200',
-              },
             }}
           >
-            <Icon
-              as={RiBookOpenLine}
-              aria-label="课程名"
-              fontSize="md"
-              mr="3"
-            />
-            {comment.course.name}
-          </Link>
-        </CoursePopover>
-        <Text
-          fontSize="sm"
-          color="gray.500"
-          _dark={{
-            color: 'gray.400',
-          }}
-        >
-          {comment.course.statistics.total} 人学过
-        </Text>
-      </HStack>
-    </VStack>
-  </Card>
+            {course.statistics.total} 人学过
+          </Text>
+        </HStack>
+        <Divider transition="all 0.2s" />
+        <VStack align="flex-start" w="full" py="1" spacing="4">
+          {comments.map(comment => (
+            <VStack w="full" align="flex-start" spacing="3" px="2">
+              <HStack w="full" align="center" spacing="3">
+                <Text
+                  fontSize="smd"
+                  d="flex"
+                  alignItems="center"
+                  color="gray.500"
+                  _dark={{ color: 'gray.400' }}
+                >
+                  <Icon
+                    as={comment.author.id === -1 ? RiSpyLine : RiUserLine}
+                    aria-label="用户标识"
+                    fontSize="lg"
+                    mr="3"
+                    color="gray.500"
+                    _dark={{ color: 'gray.400' }}
+                  />
+                  {comment.author.name}
+                </Text>
+                <Text
+                  fontSize="smd"
+                  color="gray.500"
+                  _dark={{ color: 'gray.400' }}
+                >
+                  {relativeTime(comment.date)}
+                </Text>
+              </HStack>
+
+              <Box>
+                <Text
+                  lineHeight="tall"
+                  fontSize="md"
+                  borderLeftWidth="1px"
+                  ml="2"
+                  pl="5"
+                  transition="all 0.2s"
+                >
+                  {comment.content}
+                </Text>
+              </Box>
+            </VStack>
+          ))}
+        </VStack>
+      </VStack>
+    </Card>
+  )
+}
+
+interface CourseLinkProps {
+  course: ICourse
+}
+
+const CourseLink = ({ course }: CourseLinkProps) => (
+  <CoursePopover course={course}>
+    <Link
+      as={RemixLink}
+      to={`/courses/${course.id}`}
+      d="flex"
+      alignItems="center"
+      fontWeight="bold"
+      fontSize="smd"
+      color="purple.500"
+      _hover={{
+        color: 'purple.700',
+      }}
+      _dark={{
+        color: 'blue.400',
+        _hover: {
+          color: 'blue.200',
+        },
+      }}
+    >
+      <Icon as={RiBookOpenLine} aria-label="课程名" fontSize="lg" mr="3" />
+      {course.name}
+    </Link>
+  </CoursePopover>
 )

@@ -39,14 +39,14 @@ export const Member = (props: MemberProps) => {
         <ButtonGroup w="full" variant="ghost" isAttached>
           {isBind ? (
             <>
-              <HomeMemberButton
+              <MemberButton
                 colorScheme="green"
                 icon={RiTimeLine}
                 text="更新"
                 long="更新数据"
               />
               <Divider h="9" orientation="vertical" transition="all 0.2s" />
-              <HomeMemberButton
+              <MemberButton
                 colorScheme="red"
                 icon={RiLinkUnlinkM}
                 text="解绑"
@@ -56,7 +56,7 @@ export const Member = (props: MemberProps) => {
             </>
           ) : (
             <>
-              <HomeMemberButton
+              <MemberButton
                 colorScheme="purple"
                 icon={RiLinkM}
                 text="绑定"
@@ -64,7 +64,7 @@ export const Member = (props: MemberProps) => {
                 onClick={() => setBind(true)}
               />
               <Divider h="9" orientation="vertical" transition="all 0.2s" />
-              <HomeMemberButton
+              <MemberButton
                 colorScheme="orange"
                 icon={RiPlugLine}
                 text="插件"
@@ -78,18 +78,13 @@ export const Member = (props: MemberProps) => {
   )
 }
 
-interface HomeMemberButtonProps extends ButtonProps {
+interface MemberButtonProps extends ButtonProps {
   icon: IconType
   text: string
   long?: string
 }
 
-const HomeMemberButton = ({
-  icon,
-  text,
-  long,
-  ...props
-}: HomeMemberButtonProps) => (
+const MemberButton = ({ icon, text, long, ...props }: MemberButtonProps) => (
   <Button isFullWidth py="2" h="auto" {...props}>
     <Icon
       aria-label={text}
