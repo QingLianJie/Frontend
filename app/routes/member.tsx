@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router'
+import { Outlet } from 'remix'
 
 export default function MemberLayout() {
   return <Outlet />
