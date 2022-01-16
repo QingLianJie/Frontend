@@ -41,7 +41,7 @@ export const NoContent = () => {
 
   return (
     <>
-      <Card title="出现问题">
+      <Card title="出现问题！">
         <VStack
           align="flex-start"
           w="full"
@@ -54,11 +54,11 @@ export const NoContent = () => {
           divider={<Divider transition="all 0.2s" />}
         >
           <Text px="2" lineHeight="tall" textAlign="justify">
-            这里曾经有一些课程评论，但是现在什么都没有，可能是因为无法连接到「清廉街」的
-            API 。请检查「清廉街」运行状态，或者使用「自定义 API」进行连接。
+            这里曾经有一些课程评论，但是现在什么都没有。可能是因为无法连接到「清廉街」的服务器，所以请检查「网站坏掉了吗」页面，或者使用「自定义
+            API」进行连接。
           </Text>
 
-          <ButtonGroup w="full" gap="0">
+          <ButtonGroup w="full" gap="2" p="1">
             <NoContentButton
               onClick={() => location.reload()}
               text="刷新页面"
@@ -76,7 +76,13 @@ export const NoContent = () => {
       <Card title="调试信息">
         <Flex pt="3" pb="6" px="6" fontFamily="mono" fontSize="sm">
           {message.length !== 0 ? (
-            <Text as="ul" lineHeight="tall">
+            <VStack
+              as="ul"
+              align="flex-start"
+              w="full"
+              spacing="0.5"
+              lineHeight="tall"
+            >
               {message.map(item => (
                 <Text
                   as="li"
@@ -87,7 +93,7 @@ export const NoContent = () => {
                   - {item}
                 </Text>
               ))}
-            </Text>
+            </VStack>
           ) : (
             <Text>- Loading ...</Text>
           )}
@@ -105,8 +111,8 @@ interface NoContentButtonProps extends ButtonProps {
 const NoContentButton = ({ text, icon, ...props }: NoContentButtonProps) => (
   <Button
     variant="link"
-    p="2"
-    py="1"
+    p="1"
+    py="0"
     rounded="sm"
     fontSize="smd"
     lineHeight="tall"

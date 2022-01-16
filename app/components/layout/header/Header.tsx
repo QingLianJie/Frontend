@@ -93,7 +93,6 @@ const Avatar = ({ name, avatar }: HeaderAvatarProps) => {
       label={name ? `已登录到 ${name}` : '考虑登录到「清廉街」吗'}
       px="2.5"
       py="1.5"
-      rounded="md"
       maxW="48"
     >
       <Link

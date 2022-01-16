@@ -43,12 +43,14 @@ interface CourseInfoProps {
 }
 
 const CourseInfo = ({ course }: CourseInfoProps) => (
-  <VStack align="flex-start" w="full" px="2" spacing="2">
+  <VStack align="flex-start" w="full" px="1" spacing="2">
     <HStack w="full" pb="2" justify="space-between" transition="all 0.2s">
       <Link
         as={RemixLink}
         to={`/courses/${course.id}`}
         d="flex"
+        px="1"
+        rounded="sm"
         alignItems="center"
         fontWeight="bold"
         color="purple.500"
@@ -66,6 +68,7 @@ const CourseInfo = ({ course }: CourseInfoProps) => (
         {course.name}
       </Link>
       <Text
+        px="1"
         fontSize="smd"
         color="gray.500"
         _dark={{
@@ -75,7 +78,7 @@ const CourseInfo = ({ course }: CourseInfoProps) => (
         {course.id}
       </Text>
     </HStack>
-    <Wrap w="full" justify="flex-start" spacing="2" fontSize="smd">
+    <Wrap w="full" justify="flex-start" spacing="2" px="1" fontSize="smd">
       <WrapItem pr="2">{course.type}</WrapItem>
       <WrapItem pr="2">
         学分
@@ -92,14 +95,13 @@ const CourseInfo = ({ course }: CourseInfoProps) => (
       <WrapItem pr="2">{course.test}</WrapItem>
       <WrapItem pr="2">{course.category}</WrapItem>
     </Wrap>
-    <Wrap w="full" justify="flex-start" spacing="2" fontSize="smd">
+    <Wrap w="full" justify="flex-start" spacing="2" px="1" fontSize="smd">
       <WrapItem pr="2">
         <Tooltip
           hasArrow
           label={`${course.statistics.excellent} / ${course.statistics.total}`}
           px="2.5"
           py="1.5"
-          rounded="md"
           placement="top"
         >
           <Text>
@@ -121,7 +123,6 @@ const CourseInfo = ({ course }: CourseInfoProps) => (
           label={`${course.statistics.fail} / ${course.statistics.total}`}
           px="2.5"
           py="1.5"
-          rounded="md"
           placement="top"
         >
           <Text>

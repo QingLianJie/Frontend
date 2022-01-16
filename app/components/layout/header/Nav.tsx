@@ -41,8 +41,8 @@ interface HeaderNavItemProps {
 
 const HeaderNavItemStyles: SystemProps = {
   px: '3',
-  py: '2',
-  rounded: 'md',
+  py: '1.5',
+  rounded: 'sm',
   fontWeight: 'bold',
   whiteSpace: 'nowrap',
   bg: 'transparent',

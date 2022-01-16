@@ -111,7 +111,6 @@ const FooterLink = ({ href, description, name }: FooterLinkProps) => (
       label={description}
       px="2.5"
       py="1.5"
-      rounded="md"
       maxW="64"
       placement="top"
     >

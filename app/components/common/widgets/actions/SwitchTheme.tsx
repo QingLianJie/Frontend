@@ -24,7 +24,6 @@ export const SwitchTheme = ({ hasTooltip, ...props }: SwitchThemeProps) => {
       label={isLight ? '变暗' : '变亮'}
       px="2.5"
       py="1.5"
-      rounded="md"
       isDisabled={!hasTooltip}
     >
       <IconButton

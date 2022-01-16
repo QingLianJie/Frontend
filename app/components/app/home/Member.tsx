@@ -12,11 +12,19 @@ import { useState } from 'react'
 import type { IconType } from 'react-icons'
 import { RiLink, RiLinkUnlink, RiPercentLine, RiTimeLine } from 'react-icons/ri'
 import { Card } from '~/components/common/containers/Card'
+import { BindHEUModal } from '~/components/common/widgets/modals/BindHEU'
 
 interface MemberProps extends SystemProps {}
 
 export const Member = (props: MemberProps) => {
   const [isBind, setBind] = useState(false)
+
+  const handleUnbind = () => {
+    if (confirm('确认取消绑定账号并删除本地数据？')) {
+      // TODO: 删除操作
+      setBind(false)
+    }
+  }
 
   return (
     <Card title="HEU 账号" {...props}>
@@ -44,7 +52,7 @@ export const Member = (props: MemberProps) => {
           </Text>
         )}
 
-        <ButtonGroup w="full" gap="0">
+        <ButtonGroup w="full" gap="2" p="1">
           {isBind ? (
             <>
               <MemberButton
@@ -58,18 +66,23 @@ export const Member = (props: MemberProps) => {
                 icon={RiLinkUnlink}
                 text="解绑"
                 long="解绑账号"
-                onClick={() => setBind(false)}
+                onClick={handleUnbind}
               />
             </>
           ) : (
             <>
-              <MemberButton
-                color="purple"
-                icon={RiLink}
-                text="绑定"
-                long="绑定账号"
-                onClick={() => setBind(true)}
-              />
+              <BindHEUModal>
+                {props => (
+                  <MemberButton
+                    color="purple"
+                    icon={RiLink}
+                    text="绑定"
+                    long="绑定账号"
+                    {...props}
+                  />
+                )}
+              </BindHEUModal>
+
               <MemberButton
                 color="orange"
                 icon={RiPercentLine}
@@ -88,6 +101,7 @@ interface MemberButtonProps extends ButtonProps {
   icon: IconType
   text: string
   long?: string
+  href?: string
 }
 
 const MemberButton = ({
@@ -98,11 +112,12 @@ const MemberButton = ({
   ...props
 }: MemberButtonProps) => (
   <Button
-    p="2"
-    py="1"
+    p="1"
+    py="0"
     color={`${color}.500`}
     _hover={{
       color: `${color}.600`,
+      textDecor: 'none',
     }}
     _active={{
       color: `${color}.600`,

@@ -9,7 +9,7 @@ import {
   InputProps as ChakraInputProps,
   InputRightElement,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { ForwardedRef, forwardRef, useState } from 'react'
 import { IconType } from 'react-icons'
 import { RiEyeLine, RiEyeOffLine } from 'react-icons/ri'
 
@@ -19,65 +19,64 @@ interface InputProps extends ChakraInputProps {
   disabled?: boolean
 }
 
-export const Input = ({
-  type,
-  icon,
-  help,
-  name,
-  disabled,
-  ...props
-}: InputProps) => {
-  const [showPassword, setShowPassword] = useState(false)
+export const Input = forwardRef(
+  (
+    { type, icon, help, name, disabled, ...props }: InputProps,
+    ref: ForwardedRef<HTMLInputElement>
+  ) => {
+    const [showPassword, setShowPassword] = useState(false)
 
-  return (
-    <FormControl isDisabled={disabled}>
-      <InputGroup>
-        <InputLeftElement pointerEvents="none">
-          <Icon
-            as={icon}
-            color="gray.400"
-            _dark={{
-              color: 'gray.500',
-            }}
-            transition="all 0.2s"
-          />
-        </InputLeftElement>
-
-        <ChakraInput
-          type={
-            type === 'password' ? (showPassword ? 'text' : 'password') : type
-          }
-          isRequired
-          name={name}
-          {...props}
-        />
-
-        {type === 'password' && (
-          <InputRightElement>
-            <IconButton
-              aria-label="显示 / 隐藏密码"
-              icon={showPassword ? <RiEyeOffLine /> : <RiEyeLine />}
-              onClick={() => setShowPassword(!showPassword)}
-              variant="ghost"
-              size="sm"
-              fontSize="md"
-              rounded="md"
-              tabIndex={-1}
+    return (
+      <FormControl isDisabled={disabled}>
+        <InputGroup>
+          <InputLeftElement pointerEvents="none">
+            <Icon
+              as={icon}
               color="gray.400"
               _dark={{
                 color: 'gray.500',
               }}
-              title={showPassword ? '隐藏密码' : '显示密码'}
+              transition="all 0.2s"
             />
-          </InputRightElement>
-        )}
-      </InputGroup>
+          </InputLeftElement>
 
-      {help && (
-        <FormHelperText px="2" transition="all 0.2s">
-          {help}
-        </FormHelperText>
-      )}
-    </FormControl>
-  )
-}
+          <ChakraInput
+            ref={ref}
+            type={
+              type === 'password' ? (showPassword ? 'text' : 'password') : type
+            }
+            isRequired
+            name={name}
+            {...props}
+          />
+
+          {type === 'password' && (
+            <InputRightElement>
+              <IconButton
+                aria-label="显示 / 隐藏密码"
+                icon={showPassword ? <RiEyeOffLine /> : <RiEyeLine />}
+                onClick={() => setShowPassword(!showPassword)}
+                variant="ghost"
+                size="sm"
+                fontSize="md"
+                rounded="md"
+                tabIndex={-1}
+                color="gray.400"
+                _dark={{
+                  color: 'gray.500',
+                }}
+                title={showPassword ? '隐藏密码' : '显示密码'}
+              />
+            </InputRightElement>
+          )}
+        </InputGroup>
+
+        {help && (
+          <FormHelperText px="2" transition="all 0.2s">
+            {help}
+          </FormHelperText>
+        )}
+      </FormControl>
+    )
+  }
+)

@@ -1,12 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import _ from 'lodash'
+import { groupBy, sortBy } from 'lodash'
 import type { LoaderFunction } from 'remix'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { ExternalLinks } from '~/components/app/home/links/External'
 import { HelpLinks } from '~/components/app/home/links/Help'
 import { MobileLinks } from '~/components/app/home/links/Mobile'
 import { NavLinks } from '~/components/app/home/links/Nav'
-import { Member } from '~/components/app/home/member/Member'
+import { Member } from '~/components/app/home/Member'
 import { Notes } from '~/components/app/home/Notes'
 import { Search } from '~/components/app/home/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
@@ -19,8 +19,8 @@ export function links() {
 
 export const loader: LoaderFunction = () => {
   // TODO: 获取 feeds 和 notes
-  const group = _.sortBy(
-    _.groupBy(feeds, f => f.course.id),
+  const group = sortBy(
+    groupBy(feeds, f => f.course.id),
     g => g[0].id
   ).reverse()
 
