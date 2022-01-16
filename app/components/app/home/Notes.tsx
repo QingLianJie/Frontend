@@ -1,7 +1,6 @@
 import {
   Divider,
   HStack,
-  Link,
   SystemProps,
   Tag,
   Text,
@@ -9,21 +8,23 @@ import {
 } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/containers/Card'
-import { calendarDate, relativeTime } from '~/utils/time'
+import { relativeTime } from '~/utils/time'
 
-interface NotesProps extends SystemProps {}
+interface NotesProps extends SystemProps {
+  id: string
+}
 
-export const Notes = ({ ...props }: NotesProps) => {
+export const Notes = ({ id, ...props }: NotesProps) => {
   const { notes } = useLoaderData<{ notes: INotes }>()
   const isNoNotes = notes === undefined || notes.length === 0
 
   return (
-    <Card title="公告" {...props}>
+    <Card title="公告" id={id} {...props}>
       <VStack
         w="full"
         px="4"
         pb="6"
-        pt="4"
+        pt="3"
         align="flex-start"
         divider={<Divider transition="all 0.2s" />}
         spacing="4"
@@ -41,7 +42,12 @@ export const Notes = ({ ...props }: NotesProps) => {
             >
               <HStack align="center" justify="flex-start" spacing="3" w="full">
                 {note.tag && (
-                  <Tag size="sm" colorScheme="green" transition="all 0.2s">
+                  <Tag
+                    size="sm"
+                    colorScheme="green"
+                    mx="1px"
+                    transition="all 0.2s"
+                  >
                     {note.tag}
                   </Tag>
                 )}
@@ -55,34 +61,17 @@ export const Notes = ({ ...props }: NotesProps) => {
                   发布于 {relativeTime(note.date)}
                 </Text>
               </HStack>
+
               <Text
+                className="markdown-body"
                 as="article"
                 w="full"
+                fontSize="smd"
+                textAlign="justify"
                 overflowWrap="break-word"
                 lineHeight="tall"
-              >
-                {note.content}
-              </Text>
-              {note.links && (
-                <HStack justify="flex-start" spacing="4" w="full" px="0.5">
-                  {note.links?.map(link => (
-                    <Link
-                      key={link.text}
-                      href={link.href}
-                      isExternal
-                      d="flex"
-                      alignItems="center"
-                      fontSize="sm"
-                      color="purple.500"
-                      _dark={{ color: 'blue.400' }}
-                      textUnderlineOffset="0.25rem"
-                      isTruncated
-                    >
-                      # {link.text}
-                    </Link>
-                  ))}
-                </HStack>
-              )}
+                dangerouslySetInnerHTML={{ __html: note.content }}
+              />
             </VStack>
           ))
         )}

@@ -49,15 +49,16 @@ export const NoContent = () => {
           px="4"
           pt="3"
           pb="4"
-          spacing="4"
+          spacing="3"
           lineHeight="tall"
+          divider={<Divider transition="all 0.2s" />}
         >
-          <Text px="2">
-            这里什么都没有，可能是因为无法连接到「清廉街」。请检查网络连接和「清廉街」运行状态，或者使用「自定义
-            API」进行连接。
+          <Text px="2" lineHeight="tall" textAlign="justify">
+            这里曾经有一些课程评论，但是现在什么都没有，可能是因为无法连接到「清廉街」的
+            API 。请检查「清廉街」运行状态，或者使用「自定义 API」进行连接。
           </Text>
-          <Divider transition="all 0.2s" />
-          <ButtonGroup w="full" px="2" pb="1" size="sm" gap="4">
+
+          <ButtonGroup w="full" gap="0">
             <NoContentButton
               onClick={() => location.reload()}
               text="刷新页面"
@@ -104,7 +105,11 @@ interface NoContentButtonProps extends ButtonProps {
 const NoContentButton = ({ text, icon, ...props }: NoContentButtonProps) => (
   <Button
     variant="link"
-    rounded="none"
+    p="2"
+    py="1"
+    rounded="sm"
+    fontSize="smd"
+    lineHeight="tall"
     color="gray.500"
     _hover={{
       color: 'gray.700',
@@ -117,7 +122,7 @@ const NoContentButton = ({ text, icon, ...props }: NoContentButtonProps) => (
     }}
     {...props}
   >
-    <Icon as={icon} aria-label={text} mr="3" fontSize="md" />
+    <Icon as={icon} aria-label={text} mr="3" fontSize="lg" />
     {text}
   </Button>
 )

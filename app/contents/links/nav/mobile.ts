@@ -4,6 +4,7 @@ import {
   RiBarChartBoxLine,
   RiBookOpenLine,
   RiBuildingLine,
+  RiFileList3Line,
   RiTableLine,
 } from 'react-icons/ri'
 
@@ -51,6 +52,14 @@ export const mobileLinks: MobileLink[] = [
     href: '#links',
     color: 'purple',
     icon: RiBuildingLine,
+    mobile: 'yes',
+  },
+  {
+    name: '网站公告',
+    short: '公告',
+    href: '#notes',
+    color: 'cyan',
+    icon: RiFileList3Line,
     mobile: 'yes',
   },
 ]

@@ -11,10 +11,19 @@ import { Notes } from '~/components/app/home/Notes'
 import { Search } from '~/components/app/home/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
+import styles from '~/libs/markdown.css'
+
+export function links() {
+  return [{ rel: 'stylesheet', href: styles }]
+}
 
 export const loader: LoaderFunction = () => {
   // TODO: 获取 feeds 和 notes
-  const group = _.groupBy(feeds, f => f.course.id)
+  const group = _.sortBy(
+    _.groupBy(feeds, f => f.course.id),
+    g => g[0].id
+  ).reverse()
+
   return { feeds, group, notes }
 }
 
@@ -30,7 +39,7 @@ export default function IndexPage() {
       maxW="72rem"
       px={{ base: '4', sm: '6', md: '8' }}
       pb={{ base: '0', sm: '8' }}
-      pt={{ base: '12vh', sm: '8vh' }}
+      pt={{ base: '12vh', sm: '8' }}
       alignItems="start"
       alignContent="start"
       justifyContent="center"
@@ -61,7 +70,7 @@ export default function IndexPage() {
 
       <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
         <Member d={isDesktop} />
-        <Notes />
+        <Notes id="notes" />
         <HelpLinks d={isNotPhone} />
       </GridItem>
     </Grid>

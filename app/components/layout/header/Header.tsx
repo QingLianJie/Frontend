@@ -36,21 +36,21 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => (
     _dark={{ bg: '#17192388' }}
     transition="all 0.2s"
   >
-    <HeaderSection align="left" d={{ base: 'flex', md: 'none' }}>
+    <Section align="left" d={{ base: 'flex', md: 'none' }}>
       <Drawer />
-    </HeaderSection>
-    <HeaderSection align={{ base: 'center', md: 'left' }}>
+    </Section>
+    <Section align={{ base: 'center', md: 'left' }}>
       <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
         {title}
       </Heading>
-    </HeaderSection>
-    <HeaderSection align="center" d={{ base: 'none', md: 'flex' }}>
+    </Section>
+    <Section align="center" d={{ base: 'none', md: 'flex' }}>
       <HeaderNav />
-    </HeaderSection>
-    <HeaderSection align="right">
+    </Section>
+    <Section align="right">
       <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
-      <HeaderAvatar />
-    </HeaderSection>
+      <Avatar />
+    </Section>
   </Flex>
 )
 
@@ -61,7 +61,7 @@ interface HeaderSectionProps extends SystemProps {
   children: ReactNode
 }
 
-const HeaderSection = ({
+const Section = ({
   align = 'center',
   children,
   ...props
@@ -83,18 +83,14 @@ interface HeaderAvatarProps {
   avatar?: string
 }
 
-const HeaderAvatar = ({ name, avatar }: HeaderAvatarProps) => {
+const Avatar = ({ name, avatar }: HeaderAvatarProps) => {
   const { pathname } = useLocation()
 
   return (
     <Tooltip
       hasArrow
       placement="bottom-end"
-      label={
-        name
-          ? `已登录到 ${name}`
-          : '考虑登录到「清廉街」吗？可以发评论和上传成绩'
-      }
+      label={name ? `已登录到 ${name}` : '考虑登录到「清廉街」吗'}
       px="2.5"
       py="1.5"
       rounded="md"

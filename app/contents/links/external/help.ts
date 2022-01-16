@@ -19,7 +19,7 @@ export const helpLinks: HelpLink[] = [
     name: '联系我们',
     short: '联系',
     href: 'https://www.yuque.com/lifeni/qing/contact',
-    color: 'red',
+    color: 'orange',
     icon: RiAtLine,
   },
   {

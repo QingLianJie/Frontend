@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import type { IconType } from 'react-icons'
-import { RiLinkM, RiLinkUnlinkM, RiPlugLine, RiTimeLine } from 'react-icons/ri'
+import { RiLink, RiLinkUnlink, RiPercentLine, RiTimeLine } from 'react-icons/ri'
 import { Card } from '~/components/common/containers/Card'
 
 interface MemberProps extends SystemProps {}
@@ -20,7 +20,15 @@ export const Member = (props: MemberProps) => {
 
   return (
     <Card title="HEU 账号" {...props}>
-      <VStack w="full" align="flex-start" px="4" pt="3" pb="4" spacing="3">
+      <VStack
+        w="full"
+        align="flex-start"
+        px="4"
+        pt="3"
+        pb="4"
+        spacing="3"
+        divider={<Divider transition="all 0.2s" />}
+      >
         {isBind ? (
           <Text px="2" lineHeight="tall">
             已绑定到：<Text as="strong">20180000XX</Text>
@@ -35,20 +43,19 @@ export const Member = (props: MemberProps) => {
             账号。
           </Text>
         )}
-        <Divider pt="1" transition="all 0.2s" />
-        <ButtonGroup w="full" variant="ghost" isAttached>
+
+        <ButtonGroup w="full" gap="0">
           {isBind ? (
             <>
               <MemberButton
-                colorScheme="green"
+                color="green"
                 icon={RiTimeLine}
                 text="更新"
                 long="更新数据"
               />
-              <Divider h="9" orientation="vertical" transition="all 0.2s" />
               <MemberButton
-                colorScheme="red"
-                icon={RiLinkUnlinkM}
+                color="red"
+                icon={RiLinkUnlink}
                 text="解绑"
                 long="解绑账号"
                 onClick={() => setBind(false)}
@@ -57,16 +64,15 @@ export const Member = (props: MemberProps) => {
           ) : (
             <>
               <MemberButton
-                colorScheme="purple"
-                icon={RiLinkM}
+                color="purple"
+                icon={RiLink}
                 text="绑定"
                 long="绑定账号"
                 onClick={() => setBind(true)}
               />
-              <Divider h="9" orientation="vertical" transition="all 0.2s" />
               <MemberButton
-                colorScheme="orange"
-                icon={RiPlugLine}
+                color="orange"
+                icon={RiPercentLine}
                 text="插件"
                 long="获取插件"
               />
@@ -84,23 +90,50 @@ interface MemberButtonProps extends ButtonProps {
   long?: string
 }
 
-const MemberButton = ({ icon, text, long, ...props }: MemberButtonProps) => (
-  <Button isFullWidth py="2" h="auto" {...props}>
-    <Icon
-      aria-label={text}
-      as={icon}
-      ml="-2"
-      mr="2"
-      fontSize="xl"
-      d={{
-        md: 'none',
-        lg: 'flex',
-      }}
-    />
-    <Text isTruncated d={{ base: 'none', sm: 'inline' }}>
+const MemberButton = ({
+  icon,
+  text,
+  long,
+  color,
+  ...props
+}: MemberButtonProps) => (
+  <Button
+    p="2"
+    py="1"
+    color={`${color}.500`}
+    _hover={{
+      color: `${color}.600`,
+    }}
+    _active={{
+      color: `${color}.600`,
+    }}
+    _dark={{
+      color: `${color}.400`,
+      _hover: {
+        color: `${color}.300`,
+      },
+      _active: {
+        color: `${color}.300`,
+      },
+    }}
+    variant="link"
+    lineHeight="tall"
+    rounded="sm"
+    {...props}
+  >
+    <Icon aria-label={text} as={icon} mr="3" fontSize="lg" />
+    <Text
+      isTruncated
+      fontSize="smd"
+      d={{ base: 'none', sm: 'inline', xl: 'none' }}
+    >
       {text}
     </Text>
-    <Text isTruncated d={{ base: 'inline', sm: 'none' }}>
+    <Text
+      isTruncated
+      fontSize="smd"
+      d={{ base: 'inline', sm: 'none', xl: 'inline' }}
+    >
       {long}
     </Text>
   </Button>

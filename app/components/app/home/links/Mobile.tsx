@@ -55,7 +55,7 @@ const MobileLink = ({
     w="full"
     px="3.5"
     pt="4"
-    pb="3"
+    pb="2.5"
     rounded="md"
     _hover={{
       textDecor: 'none',

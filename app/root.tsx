@@ -16,20 +16,23 @@ import {
 import version from '~/version.json'
 import { Layout } from './components/layout/Layout'
 
-const fontFamily = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
+const fontSans = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
     "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji"`
 
+const fontMono = `"JetBrains Mono", "Courier New", "Fira Mono", Consolas, "Droid Sans Mono", ${fontSans}`
+
 const chakraTheme = extendTheme({
   fonts: {
-    body: fontFamily,
-    heading: fontFamily,
+    body: fontSans,
+    heading: fontSans,
+    mono: fontMono,
   },
   fontSizes: { smd: '0.925rem', mdl: '1.075rem' },
   styles: {
     global: {
-      html: { scrollPadding: '1rem' },
+      html: { scrollPadding: '6.5rem' },
     },
   },
   initialColorMode: 'system',

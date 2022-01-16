@@ -1,0 +1,19 @@
+.markdown-body {
+  color: inherit;
+}
+
+.markdown-body a {
+  color: #805ad5;
+  text-underline-offset: 0.25rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.markdown-body a:hover {
+  color: #805ad5;
+  text-decoration: underline;
+}
+
+.chakra-ui-dark .markdown-body a {
+  color: #4299e1;
+}
