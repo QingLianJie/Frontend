@@ -8,11 +8,11 @@ import {
   MenuItem,
   MenuList,
   SystemProps,
+  Tag,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
-import { LANTag } from '~/components/common/widgets/LANTag'
 import { navLinks } from '~/contents/links/nav/nav'
 
 export const HeaderNav = () => (
@@ -105,4 +105,16 @@ const HeaderNavMenuItem = ({ href, name, lan }: HeaderNavItemProps) => (
       {lan && <LANTag />}
     </Link>
   </MenuItem>
+)
+
+const LANTag = () => (
+  <Tag
+    fontSize="xs"
+    ml="2"
+    colorScheme="gray"
+    transition="all 0.2s"
+    title="需要校园网才能访问"
+  >
+    校园网
+  </Tag>
 )

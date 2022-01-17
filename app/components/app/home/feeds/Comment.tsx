@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
-import { Card } from '~/components/common/containers/Card'
+import { Card } from '~/components/common/Card'
 import { calcRate } from '~/utils/math'
 import { relativeTime } from '~/utils/time'
 

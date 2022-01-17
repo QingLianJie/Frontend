@@ -9,6 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
+import type { ICourse } from '~/types'
 import { calcRate } from '~/utils/math'
 
 interface CoursePopoverProps {

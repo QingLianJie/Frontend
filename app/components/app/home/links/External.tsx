@@ -1,6 +1,6 @@
 import { Icon, Link, SystemProps, Text, VStack } from '@chakra-ui/react'
 import { RiBuildingLine, RiGlobalLine } from 'react-icons/ri'
-import { Card } from '~/components/common/containers/Card'
+import { Card } from '~/components/common/Card'
 import { schoolLinks } from '~/contents/links/external/school'
 
 interface ExternalLinksProps extends SystemProps {

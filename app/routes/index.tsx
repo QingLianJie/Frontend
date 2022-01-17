@@ -1,36 +1,107 @@
 import { Grid, GridItem } from '@chakra-ui/react'
 import { groupBy, sortBy } from 'lodash'
-import type { LoaderFunction } from 'remix'
+import type { ActionFunction, LoaderFunction } from 'remix'
+import { json } from 'remix'
+import { Bridge } from '~/components/app/home/Bridge'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { ExternalLinks } from '~/components/app/home/links/External'
 import { HelpLinks } from '~/components/app/home/links/Help'
 import { MobileLinks } from '~/components/app/home/links/Mobile'
 import { NavLinks } from '~/components/app/home/links/Nav'
-import { Member } from '~/components/app/home/Member'
 import { Notes } from '~/components/app/home/Notes'
 import { Search } from '~/components/app/home/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
+import { commitSession, getSession } from '~/sessions'
+import type { BridgeType, IAccount, IFeeds, INotes, IResponse } from '~/types'
+import { decodeHEUAccount, encodeHEUAccount } from '~/utils/bridge'
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles }]
 }
 
-export const loader: LoaderFunction = () => {
+export const action: ActionFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get('Cookie'))
+
+  switch (request.method) {
+    case 'POST': {
+      const body = await request.formData()
+      const id = body.get('id') as string
+      const password = body.get('password') as string
+      session.set('account', encodeHEUAccount(id, password))
+
+      return json<IResponse<BridgeType>>(
+        {
+          status: '可以',
+          type: '绑定账号',
+          message: '已绑定账号到这个设备',
+        },
+        {
+          headers: {
+            'Set-Cookie': await commitSession(session),
+          },
+        }
+      )
+    }
+    case 'DELETE': {
+      session.unset('account')
+      return json(
+        {
+          status: '可以',
+          type: '解绑账号',
+          message: '已解绑账号并删除数据',
+        },
+        {
+          headers: {
+            'Set-Cookie': await commitSession(session),
+          },
+        }
+      )
+    }
+    default: {
+      return null
+    }
+  }
+}
+
+export type IndexLoader = {
+  feeds: IFeeds
+  group: { [key: string]: IFeeds }
+  notes: INotes
+  account: IAccount | null
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
   // TODO: 获取 feeds 和 notes
   const group = sortBy(
     groupBy(feeds, f => f.course.id),
     g => g[0].id
   ).reverse()
 
-  return { feeds, group, notes }
+  const session = await getSession(request.headers.get('Cookie'))
+  const account = session.get('account') || null
+
+  return json(
+    {
+      feeds,
+      group,
+      notes,
+      account: decodeHEUAccount(account),
+      error: null,
+    },
+    {
+      headers: {
+        'Set-Cookie': await commitSession(session),
+      },
+    }
+  )
 }
 
 export default function IndexPage() {
   const isPhone = { base: 'flex', sm: 'none' }
   const isNotPhone = { base: 'none', sm: 'flex' }
-  const isMobile = { base: 'flex', md: 'none' }
+  const isPad = { base: 'none', sm: 'flex', md: 'none' }
   const isDesktop = { base: 'none', md: 'flex' }
 
   return (
@@ -51,10 +122,8 @@ export default function IndexPage() {
       gap="4"
     >
       <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
-        <Search d={isMobile} />
-        <MobileLinks d={isPhone} />
+        <Search d={isPad} />
         <NavLinks d={isNotPhone} />
-        <Member d={isMobile} />
         <ExternalLinks id="links" />
       </GridItem>
 
@@ -68,8 +137,15 @@ export default function IndexPage() {
         <Feeds />
       </GridItem>
 
-      <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
-        <Member d={isDesktop} />
+      <GridItem
+        d="grid"
+        gridTemplateColumns="100%"
+        gridGap="4"
+        rowStart={{ base: 1, sm: 'auto' }}
+      >
+        <Search d={isPhone} />
+        <MobileLinks d={isPhone} />
+        <Bridge id="bridge" />
         <Notes id="notes" />
         <HelpLinks d={isNotPhone} />
       </GridItem>

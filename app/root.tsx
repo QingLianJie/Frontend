@@ -15,6 +15,9 @@ import {
 } from 'remix'
 import version from '~/version.json'
 import { Layout } from './components/layout/Layout'
+import { commitSession, getSession } from './sessions'
+import type { IAccount } from './types'
+import { decodeHEUAccount } from './utils/bridge'
 
 const fontSans = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
@@ -74,16 +77,16 @@ export const links: LinksFunction = () => [
   },
 ]
 
-interface RootLoad {
+export interface RootLoader {
   version: string
 }
 
-export const loader: LoaderFunction = async () => {
-  return json<RootLoad>({ ...version })
+export const loader: LoaderFunction = async ({ request }) => {
+  return json<RootLoader>({ ...version })
 }
 
 export default function App() {
-  const { version } = useLoaderData<RootLoad>()
+  const { version } = useLoaderData<RootLoader>()
 
   return (
     <html lang="zh-cn" data-version={version}>
@@ -109,7 +112,7 @@ export default function App() {
 
 export function CatchBoundary() {
   const caught = useCatch()
-  const { version } = useLoaderData<RootLoad>()
+  const { version } = useLoaderData<RootLoader>()
 
   return (
     <html lang="zh-cn" data-version={version}>

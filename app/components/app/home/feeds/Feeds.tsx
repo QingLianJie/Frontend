@@ -1,7 +1,7 @@
 import type { SystemProps } from '@chakra-ui/react'
-import { VStack, Text } from '@chakra-ui/react'
+import { VStack } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
-import { Card } from '~/components/common/containers/Card'
+import type { IFeeds } from '~/types'
 import { FeedComment } from './Comment'
 import { NoContent } from './NoContent'
 

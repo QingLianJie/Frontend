@@ -8,12 +8,13 @@ import {
   Link,
   Spacer,
   SystemProps,
+  Text,
   VStack,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
+import { RiBuildingLine, RiGlobalLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
-import { LANTag } from '~/components/common/widgets/LANTag'
 import { navLinks } from '~/contents/links/nav/nav'
 
 export const DrawerNav = () => (
@@ -122,7 +123,7 @@ const DrawerNavAccordion = ({
           }}
         />
       </AccordionButton>
-      <AccordionPanel py="1" ml="6">
+      <AccordionPanel py="2" px="0">
         <VStack spacing="0">{children}</VStack>
       </AccordionPanel>
     </AccordionItem>
@@ -132,6 +133,8 @@ const DrawerNavAccordion = ({
 const DrawerNavAccordionItem = ({ href, name, lan }: DrawerNavItemProps) => (
   <Link
     href={href}
+    d="flex"
+    alignItems="center"
     isExternal
     w="full"
     px="3"
@@ -142,7 +145,16 @@ const DrawerNavAccordionItem = ({ href, name, lan }: DrawerNavItemProps) => (
     }}
     isTruncated
   >
-    {name}
-    {lan && <LANTag />}
+    <Icon
+      as={lan ? RiBuildingLine : RiGlobalLine}
+      aria-label="外部链接"
+      mr="5"
+      fontSize="xl"
+      color="gray.500"
+      title={lan ? '需要校园网' : '无需校园网'}
+    />
+    <Text as="span" w="full" isTruncated>
+      {name}
+    </Text>
   </Link>
 )

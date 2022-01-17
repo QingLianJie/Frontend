@@ -2,7 +2,7 @@ import type { LinkProps, SystemProps } from '@chakra-ui/react'
 import { Icon, Link, SimpleGrid, Text } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
-import { Card } from '~/components/common/containers/Card'
+import { Card } from '~/components/common/Card'
 import { helpLinks } from '~/contents/links/external/help'
 import { mobileLinks } from '~/contents/links/nav/mobile'
 

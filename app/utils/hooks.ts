@@ -1,6 +1,7 @@
 import { useToast as useChakraToast, UseToastOptions } from '@chakra-ui/react'
 import { useNavigate } from 'remix'
-import { statusMap } from './map'
+import type { ResponseStatus } from '~/types'
+import { statusMap } from './dictionary'
 
 interface UseNavToastOptions<T> extends Omit<UseToastOptions, 'status'> {
   status: ResponseStatus

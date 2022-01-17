@@ -1,21 +1,15 @@
-import {
-  Button,
-  ButtonGroup,
-  ButtonProps,
-  Divider,
-  Flex,
-  Icon,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { ButtonGroup, Divider, Flex, Text, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import type { IconType } from 'react-icons'
 import { RiLoginBoxLine, RiRefreshLine } from 'react-icons/ri'
-import { Card } from '~/components/common/containers/Card'
+import { useLoaderData } from 'remix'
+import { Card } from '~/components/common/Card'
+import { IconButton } from '~/components/common/IconButton'
 import version from '~/version.json'
 
 export const NoContent = () => {
+  const { error } = useLoaderData()
   const [message, setMessage] = useState<string[]>([])
+
   useEffect(
     () =>
       setMessage([
@@ -27,6 +21,7 @@ export const NoContent = () => {
         `Scr. ${screen.width}x${screen.height} ${devicePixelRatio * 100}% ${
           screen.orientation.type
         }`,
+        `Err. ${error || 'Unknown Error'}`,
       ]),
     []
   )
@@ -53,28 +48,28 @@ export const NoContent = () => {
           lineHeight="tall"
           divider={<Divider transition="all 0.2s" />}
         >
-          <Text px="2" lineHeight="tall" textAlign="justify">
+          <Text px="2" lineHeight="tall" fontSize="smd" textAlign="justify">
             这里曾经有一些课程评论，但是现在什么都没有。可能是因为无法连接到「清廉街」的服务器，所以请检查「网站坏掉了吗」页面，或者使用「自定义
             API」进行连接。
           </Text>
 
           <ButtonGroup w="full" gap="2" p="1">
-            <NoContentButton
-              onClick={() => location.reload()}
+            <IconButton
               text="刷新页面"
               icon={RiRefreshLine}
+              onClick={() => location.reload()}
             />
-            <NoContentButton
-              onClick={handleCustomAPI}
+            <IconButton
               text="自定义 API"
               icon={RiLoginBoxLine}
+              onClick={handleCustomAPI}
             />
           </ButtonGroup>
         </VStack>
       </Card>
 
       <Card title="调试信息">
-        <Flex pt="3" pb="6" px="6" fontFamily="mono" fontSize="sm">
+        <Flex pt="3" pb="2" px="6" fontFamily="mono" fontSize="sm">
           {message.length !== 0 ? (
             <VStack
               as="ul"
@@ -98,37 +93,19 @@ export const NoContent = () => {
             <Text>- Loading ...</Text>
           )}
         </Flex>
+
+        <Text
+          px="6"
+          pb="6"
+          lineHeight="tall"
+          textAlign="justify"
+          fontSize="sm"
+          color="gray.500"
+          _dark={{ color: 'gray.400' }}
+        >
+          反馈问题的时候，可以把上面的信息截图或者复制发给我们。
+        </Text>
       </Card>
     </>
   )
 }
-
-interface NoContentButtonProps extends ButtonProps {
-  text: string
-  icon: IconType
-}
-
-const NoContentButton = ({ text, icon, ...props }: NoContentButtonProps) => (
-  <Button
-    variant="link"
-    p="1"
-    py="0"
-    rounded="sm"
-    fontSize="smd"
-    lineHeight="tall"
-    color="gray.500"
-    _hover={{
-      color: 'gray.700',
-    }}
-    _dark={{
-      color: 'gray.400',
-      _hover: {
-        color: 'gray.200',
-      },
-    }}
-    {...props}
-  >
-    <Icon as={icon} aria-label={text} mr="3" fontSize="lg" />
-    {text}
-  </Button>
-)

@@ -1,6 +1,5 @@
 import {
   Button,
-  ButtonProps,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -8,27 +7,31 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
   VStack,
-  Text,
 } from '@chakra-ui/react'
-import { FC, useRef } from 'react'
-import { RiLockPasswordLine, RiUserLine } from 'react-icons/ri'
-import { Input } from '~/components/common/forms/Input'
+import { useRef } from 'react'
+import { RiLink, RiLockPasswordLine, RiUserLine } from 'react-icons/ri'
+import { Form, useTransition } from 'remix'
+import { Input } from '~/components/common/Input'
+import { IconButton } from '~/components/common/IconButton'
 
-interface BindHEUModalProps {
-  children: FC<ButtonProps>
-}
-
-export const BindHEUModal = ({ children }: BindHEUModalProps) => {
-  const Action = children
-
+export const BindHEUModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef<HTMLInputElement>(null)
 
+  const transition = useTransition()
+  const isLoading = transition.state === 'submitting'
+
   return (
     <>
-      <Action onClick={onOpen} />
+      <IconButton
+        color="purple"
+        icon={RiLink}
+        text="绑定账号"
+        onClick={onOpen}
+      />
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}
@@ -44,7 +47,13 @@ export const BindHEUModal = ({ children }: BindHEUModalProps) => {
           <ModalCloseButton right="6" top="5" />
 
           <ModalBody py="0">
-            <VStack align="flex-start" spacing="4">
+            <VStack
+              as={Form}
+              id="bind-account"
+              method="post"
+              align="flex-start"
+              spacing="4"
+            >
               <Text
                 px="1"
                 lineHeight="tall"
@@ -54,22 +63,33 @@ export const BindHEUModal = ({ children }: BindHEUModalProps) => {
               >
                 账号和密码将会保存在浏览器中，解绑后会自动删除，也可以自行手动删除。
               </Text>
+
               <Input
+                name="id"
                 ref={initialRef}
                 placeholder="学号"
                 type="text"
+                autoComplete="username"
                 icon={RiUserLine}
               />
               <Input
+                name="password"
                 placeholder="密码"
                 type="password"
+                autoComplete="current-password"
                 icon={RiLockPasswordLine}
               />
             </VStack>
           </ModalBody>
 
           <ModalFooter py="6">
-            <Button colorScheme="purple" mr="4" onClick={onClose}>
+            <Button
+              colorScheme="purple"
+              mr="4"
+              type="submit"
+              form="bind-account"
+              isLoading={isLoading}
+            >
               绑定
             </Button>
             <Button onClick={onClose}>取消</Button>

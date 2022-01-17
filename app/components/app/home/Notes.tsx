@@ -7,7 +7,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
-import { Card } from '~/components/common/containers/Card'
+import { Card } from '~/components/common/Card'
 import { relativeTime } from '~/utils/time'
 
 interface NotesProps extends SystemProps {

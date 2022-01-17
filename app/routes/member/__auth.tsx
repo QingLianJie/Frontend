@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link, MetaFunction, Outlet, useLocation } from 'remix'
-import { ColorfulBalls } from '~/components/common/widgets/backgrounds/ColorfulBalls'
+import { ColorfulBalls } from '~/components/common/backgrounds/ColorfulBalls'
 
 export const meta: MetaFunction = () => ({
   title: '登录与注册 - 清廉街',

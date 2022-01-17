@@ -9,7 +9,8 @@ import {
   useSearchParams,
   useTransition,
 } from 'remix'
-import { Input } from '~/components/common/forms/Input'
+import { Input } from '~/components/common/Input'
+import type { IResponse, AuthType } from '~/types'
 import { useNavToast } from '~/utils/hooks'
 import { sleep } from '~/utils/system'
 

@@ -1,3 +1,5 @@
+import type { ResponseStatus } from '~/types'
+
 export const statusMap: {
   [key in ResponseStatus]: 'success' | 'error' | 'warning'
 } = {
