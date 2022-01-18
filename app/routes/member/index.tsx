@@ -28,16 +28,10 @@ export const loader: LoaderFunction = async ({ request }) => {
   if (member)
     return json<MemberLoader>(
       { notes, member, comments },
-      {
-        headers: {
-          'Set-Cookie': await commitSession(session),
-        },
-      }
+      { headers: { 'Set-Cookie': await commitSession(session) } }
     )
-  return redirect('/member/login', {
-    headers: {
-      'Set-Cookie': await commitSession(session),
-    },
+  return redirect('/member/login?from=/member', {
+    headers: { 'Set-Cookie': await commitSession(session) },
   })
 }
 

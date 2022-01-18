@@ -6,12 +6,13 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
-import { useActionData, useLoaderData, useSubmit, useTransition } from 'remix'
+import { useActionData, useLoaderData } from 'remix'
 import { BindHEUModal } from '~/components/app/bridge/modals/BindHEU'
 import { Card } from '~/components/common/Card'
+import { RootLoader } from '~/root'
 import type { IndexLoader } from '~/routes'
 import type { BridgeType } from '~/types'
-import { useNavToast } from '~/utils/hooks'
+import { useResponseToast } from '~/utils/hooks'
 import { GetBridgeModal } from '../bridge/modals/GetBridge'
 import { UnbindBridge } from '../bridge/Unbind'
 import { UpdateBridge } from '../bridge/Update'
@@ -21,9 +22,9 @@ interface BridgeProps extends SystemProps {
 }
 
 export const Bridge = ({ id, ...props }: BridgeProps) => {
-  const { account } = useLoaderData<IndexLoader>()
+  const { account } = useLoaderData<RootLoader>()
   const action = useActionData()
-  const toast = useNavToast<BridgeType>()
+  const toast = useResponseToast<BridgeType>()
 
   useEffect(() => action && toast({ ...action }), [action])
 

@@ -68,7 +68,6 @@ export type IndexLoader = {
   feeds: IFeeds
   group: { [key: string]: IFeeds }
   notes: INotes
-  account: IAccount | null
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -78,29 +77,17 @@ export const loader: LoaderFunction = async ({ request }) => {
     g => g[0].id
   ).reverse()
 
-  const session = await getSession(request.headers.get('Cookie'))
-  const account = session.get('account') || null
+  const error = null
 
-  return json(
-    {
-      feeds,
-      group,
-      notes,
-      account,
-      error: null,
-    },
-    {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    }
-  )
+  return json({ feeds, group, notes, error })
 }
 
 export default function IndexPage() {
   const isPhone = { base: 'flex', sm: 'none' }
   const isNotPhone = { base: 'none', sm: 'flex' }
   const isPad = { base: 'none', sm: 'flex', md: 'none' }
+
+  const isMobile = { base: 'flex', md: 'none' }
   const isDesktop = { base: 'none', md: 'flex' }
 
   return (
@@ -120,9 +107,13 @@ export default function IndexPage() {
       }}
       gap="4"
     >
-      <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
-        <SearchBar d={isPad} />
-        <NavLinks d={isNotPhone} />
+      <GridItem
+        d="grid"
+        gridTemplateColumns="100%"
+        gridGap="4"
+        rowStart={{ base: 2, md: 'auto' }}
+      >
+        <NavLinks d={isDesktop} />
         <ExternalLinks id="links" />
       </GridItem>
 
@@ -140,9 +131,10 @@ export default function IndexPage() {
         d="grid"
         gridTemplateColumns="100%"
         gridGap="4"
-        rowStart={{ base: 1, sm: 'auto' }}
+        rowStart={{ base: 1, md: 'auto' }}
       >
-        <SearchBar d={isPhone} />
+        <SearchBar d={isMobile} />
+        <NavLinks d={isPad} />
         <MobileLinks d={isPhone} />
         <Bridge id="bridge" />
         <Notes id="notes" />

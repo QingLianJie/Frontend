@@ -1,23 +1,25 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { RiLockPasswordLine, RiMailLine } from 'react-icons/ri'
 import {
-  ActionFunction,
   Form,
   json,
   useActionData,
+  useNavigate,
   useSearchParams,
   useTransition,
 } from 'remix'
+import type { ActionFunction } from 'remix'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
 import type { AuthType, IResponse } from '~/types'
-import { useNavToast } from '~/utils/hooks'
+import { useEffect } from 'react'
+import { useResponseToast } from '~/utils/hooks'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
   const name = body.get('name')
   const password = body.get('password')
+  const from = (body.get('from') as string) ?? '/'
 
   // TODO: 接入后端登录
   // await sleep(1000)
@@ -29,12 +31,9 @@ export const action: ActionFunction = async ({ request }) => {
       status: '可以',
       type: '登录',
       message: '已登录到「清廉街」',
+      to: from,
     },
-    {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    }
+    { headers: { 'Set-Cookie': await commitSession(session) } }
   )
 }
 
@@ -42,14 +41,19 @@ export default function LoginPage() {
   const [params] = useSearchParams()
   const from = params.get('from') ?? '/'
 
-  const action = useActionData<IResponse<AuthType>>()
   const transition = useTransition()
-
   const isLoading = transition.state === 'submitting'
-  const redirectTo = action?.status === '可以' && from
 
-  const toast = useNavToast<AuthType>()
-  useEffect(() => action && toast({ to: redirectTo, ...action }), [action])
+  const action = useActionData<IResponse<AuthType>>()
+  const navigate = useNavigate()
+  const toast = useResponseToast<AuthType>()
+
+  useEffect(() => {
+    if (action && transition.state === 'idle') {
+      toast({ ...action })
+      if (action.status === '可以' && action.to) navigate(action.to)
+    }
+  }, [action, transition])
 
   return (
     <Form method="post">
@@ -74,6 +78,7 @@ export default function LoginPage() {
           autoComplete="current-password"
           icon={RiLockPasswordLine}
         />
+        <ChakraInput type="hidden" name="from" value={from} />
         <Button
           isFullWidth
           isLoading={isLoading}

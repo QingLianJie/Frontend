@@ -6,6 +6,7 @@ import {
   SimpleGrid,
   Text,
 } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { IconType } from 'react-icons'
 import {
   RiDeleteBinLine,
@@ -13,9 +14,34 @@ import {
   RiLogoutBoxRLine,
   RiUpload2Line,
 } from 'react-icons/ri'
+import { useActionData, useLoaderData, useSubmit, useTransition } from 'remix'
 import { Card } from '~/components/common/Card'
+import type { MemberLoader } from '~/routes/member/index'
+import type { AuthType } from '~/types'
+import { useResponseToast } from '~/utils/hooks'
 
 export const Actions = () => {
+  const { member } = useLoaderData<MemberLoader>()
+
+  const submit = useSubmit()
+  const action = useActionData()
+  const toast = useResponseToast<AuthType>()
+  useEffect(() => action && toast({ ...action }), [action])
+
+  const transition = useTransition()
+  const isLoading = transition.state !== 'idle'
+
+  const handleLogout = () =>
+    submit(null, { method: 'post', action: '/member/logout' })
+
+  const handleDeleteMember = () => {
+    if (member?.email) {
+      const ans = prompt('输入你的邮箱来确认删除账号，这个操作不可逆。')
+      if (ans === member.email)
+        submit(null, { method: 'delete', action: '/member' })
+    }
+  }
+
   return (
     <Card title="账号管理">
       <SimpleGrid
@@ -28,10 +54,32 @@ export const Actions = () => {
         pb="0"
         pt={{ base: '2', sm: '2' }}
       >
-        <ActionItem text="退出登录" icon={RiLogoutBoxRLine} color="blue" />
-        <ActionItem text="上传成绩" icon={RiUpload2Line} color="yellow" />
-        <ActionItem text="修改密码" icon={RiLockLine} color="green" />
-        <ActionItem text="删除账号" icon={RiDeleteBinLine} color="red" />
+        <ActionItem
+          text="退出登录"
+          onClick={handleLogout}
+          icon={RiLogoutBoxRLine}
+          color="blue"
+          disabled={isLoading}
+        />
+        <ActionItem
+          text="上传成绩"
+          icon={RiUpload2Line}
+          color="yellow"
+          disabled={isLoading}
+        />
+        <ActionItem
+          text="修改密码"
+          icon={RiLockLine}
+          color="green"
+          disabled={isLoading}
+        />
+        <ActionItem
+          text="删除账号"
+          onClick={handleDeleteMember}
+          icon={RiDeleteBinLine}
+          color="red"
+          disabled={isLoading}
+        />
       </SimpleGrid>
 
       <Text

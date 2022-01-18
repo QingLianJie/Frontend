@@ -8,7 +8,8 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
-import { Link, MetaFunction, Outlet, useLocation } from 'remix'
+import type { MetaFunction } from 'remix'
+import { Link, Outlet, useLocation, useSearchParams } from 'remix'
 import { ColorfulBalls } from '~/components/common/backgrounds/ColorfulBalls'
 
 export const meta: MetaFunction = () => ({
@@ -16,9 +17,9 @@ export const meta: MetaFunction = () => ({
 })
 
 export default function AuthPage() {
-  const location = useLocation()
-
   const tabMap = ['login', 'signup', 'reset-password']
+
+  const location = useLocation()
   const currentTab = tabMap.findIndex(t => location.pathname.includes(t))
   const isResetPassword = location.pathname.includes('reset-password')
 
@@ -75,17 +76,22 @@ interface TabBoxProps {
   children: ReactNode
 }
 
-export const TabBox = ({ index, children }: TabBoxProps) => (
-  <Tabs w="full" variant="enclosed" zIndex="1" index={index}>
-    <TabList transition="border-color 0.2s" px={{ base: '6', sm: '8' }}>
-      <TabLink to="/member/login" text="登录" />
-      <TabLink to="/member/signup" text="注册" />
-      <Spacer />
-      <TabLink to="/member/reset-password" text="重置密码" />
-    </TabList>
-    {children}
-  </Tabs>
-)
+const TabBox = ({ index, children }: TabBoxProps) => {
+  const [params] = useSearchParams()
+  const from = params.get('from') ? `?from=${params.get('from')}` : ''
+
+  return (
+    <Tabs w="full" variant="enclosed" zIndex="1" index={index}>
+      <TabList transition="border-color 0.2s" px={{ base: '6', sm: '8' }}>
+        <TabLink to={`/member/login${from}`} text="登录" />
+        <TabLink to={`/member/signup${from}`} text="注册" />
+        <Spacer />
+        <TabLink to={`/member/reset-password${from}`} text="重置密码" />
+      </TabList>
+      {children}
+    </Tabs>
+  )
+}
 
 interface TabLinkProps {
   to: string

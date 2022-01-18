@@ -1,5 +1,4 @@
 import { useToast as useChakraToast, UseToastOptions } from '@chakra-ui/react'
-import { useNavigate } from 'remix'
 import type { ResponseStatus } from '~/types'
 
 export const statusMap: {
@@ -10,15 +9,13 @@ export const statusMap: {
   有问题: 'warning',
 }
 
-interface UseNavToastOptions<T> extends Omit<UseToastOptions, 'status'> {
+interface UseResponseToastOptions<T> extends Omit<UseToastOptions, 'status'> {
   status: ResponseStatus
   type?: T
   message?: string
-  to?: string | false
 }
 
-export const useNavToast = <T>() => {
-  const navigate = useNavigate()
+export const useResponseToast = <T>() => {
   const toast = useChakraToast({
     position: 'bottom',
     variant: 'solid',
@@ -30,12 +27,11 @@ export const useNavToast = <T>() => {
     },
   })
 
-  return ({ status, type, message, to, ...props }: UseNavToastOptions<T>) => {
+  return ({ status, type, message, ...props }: UseResponseToastOptions<T>) => {
     toast({
       status: statusMap[status],
       title: message ?? `${type}${status}`,
       ...props,
     })
-    if (to) navigate(to)
   }
 }

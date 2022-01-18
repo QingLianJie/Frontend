@@ -1,10 +1,11 @@
 import { Button, VStack } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { RiMailLine } from 'react-icons/ri'
-import { ActionFunction, Form, json, useActionData, useTransition } from 'remix'
+import type { ActionFunction } from 'remix'
+import { Form, json, useActionData, useTransition } from 'remix'
 import { Input } from '~/components/common/Input'
 import type { AuthType, IResponse } from '~/types'
-import { useNavToast } from '~/utils/hooks'
+import { useResponseToast } from '~/utils/hooks'
 import { sleep } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
@@ -22,13 +23,15 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function ResetPasswordPage() {
-  const action = useActionData<IResponse<AuthType>>()
   const transition = useTransition()
-
   const isLoading = transition.state === 'submitting'
 
-  const toast = useNavToast<AuthType>()
-  useEffect(() => action && toast({ ...action }), [action])
+  const action = useActionData<IResponse<AuthType>>()
+  const toast = useResponseToast<AuthType>()
+
+  useEffect(() => {
+    if (action && transition.state === 'idle') toast({ ...action })
+  }, [action, transition])
 
   return (
     <Form method="post">

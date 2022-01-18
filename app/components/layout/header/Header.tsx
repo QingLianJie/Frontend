@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
-import { RiUserLine } from 'react-icons/ri'
+import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink, useLoaderData, useLocation } from 'remix'
 import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
 import { AVATAT_BASE_URL } from '~/const'
@@ -106,7 +106,7 @@ const Avatar = () => {
               ? `${AVATAT_BASE_URL}${calcEmailMd5(member.email)}?d=404`
               : undefined
           }
-          icon={<Icon as={RiUserLine} fontSize="xl" />}
+          icon={<Icon as={member ? RiUserLine : RiSpyLine} fontSize="xl" />}
           size="md"
           bg="gray.200"
           color="gray.500"

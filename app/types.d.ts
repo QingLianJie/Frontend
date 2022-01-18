@@ -5,7 +5,13 @@ export interface IAccount {
 
 export type ResponseStatus = '可以' | '不行' | '有问题'
 
-export type AuthType = '登录' | '注册' | '重置密码' | '修改密码'
+export type AuthType =
+  | '登录'
+  | '登出'
+  | '注册'
+  | '删除账号'
+  | '重置密码'
+  | '修改密码'
 
 export type BridgeType = '绑定账号' | '解绑账号' | '更新数据'
 
@@ -13,6 +19,7 @@ export interface IResponse<T> {
   status: ResponseStatus
   type: T
   message?: string
+  to?: string
 }
 
 export type INotes = INote[]

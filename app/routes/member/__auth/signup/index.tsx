@@ -1,48 +1,60 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
+import type { ActionFunction } from 'remix'
 import {
-  ActionFunction,
   Form,
   json,
   useActionData,
+  useNavigate,
   useSearchParams,
   useTransition,
 } from 'remix'
 import { Input } from '~/components/common/Input'
-import type { IResponse, AuthType } from '~/types'
-import { useNavToast } from '~/utils/hooks'
-import { sleep } from '~/utils/system'
+import { commitSession, getSession } from '~/sessions'
+import type { AuthType, IResponse } from '~/types'
+import { useResponseToast } from '~/utils/hooks'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
   const email = body.get('email')
   const name = body.get('name')
   const password = body.get('password')
-  const from = body.get('from') as string
+  const from = (body.get('from') as string) ?? '/'
 
   // TODO: 接入后端注册
-  await sleep(1000)
+  // await sleep(1000)
+  const session = await getSession(request.headers.get('Cookie'))
+  session.set('member', { email, id: 1, name })
 
-  return json<IResponse<AuthType>>({
-    status: '可以',
-    type: '注册',
-    message: '欢迎加入「清廉街」',
-  })
+  return json<IResponse<AuthType>>(
+    {
+      status: '可以',
+      type: '注册',
+      message: '欢迎加入「清廉街」',
+      to: from,
+    },
+    { headers: { 'Set-Cookie': await commitSession(session) } }
+  )
 }
 
 export default function SignupPage() {
   const [params] = useSearchParams()
   const from = params.get('from') ?? '/'
 
-  const action = useActionData<IResponse<AuthType>>()
   const transition = useTransition()
-
   const isLoading = transition.state === 'submitting'
-  const redirectTo = action?.status === '可以' && '/'
 
-  const toast = useNavToast<AuthType>()
-  useEffect(() => action && toast({ to: redirectTo, ...action }), [action])
+  const action = useActionData<IResponse<AuthType>>()
+  const navigate = useNavigate()
+  const toast = useResponseToast<AuthType>()
+
+  useEffect(() => {
+    if (action && transition.state === 'idle') {
+      toast({ ...action })
+      if (action.status === '可以' && action.to) navigate(action.to)
+    }
+  }, [action, transition])
 
   return (
     <Form method="post">
