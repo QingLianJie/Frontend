@@ -51,7 +51,6 @@ const MobileLink = ({
     d="flex"
     alignItems="center"
     flexDir="column"
-    gap="3"
     w="full"
     px="3.5"
     pt="4"
@@ -69,7 +68,7 @@ const MobileLink = ({
     {...props}
   >
     <Icon as={icon} aria-label={name} color={`${color}.500`} fontSize="2xl" />
-    <Text fontSize="smd" whiteSpace="nowrap">
+    <Text pt="3" fontSize="smd" whiteSpace="nowrap">
       {short}
     </Text>
   </Link>

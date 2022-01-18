@@ -33,6 +33,13 @@ export interface IComment {
   course: ICourse
 }
 
+export interface IMemberComment {
+  id: number
+  content: string
+  date: string
+  course: ICourse
+}
+
 export interface IMember {
   id: number
   name: string

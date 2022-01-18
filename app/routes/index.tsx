@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Grid, GridItem, InputProps, SystemProps } from '@chakra-ui/react'
 import { groupBy, sortBy } from 'lodash'
 import type { ActionFunction, LoaderFunction } from 'remix'
 import { json } from 'remix'
@@ -9,7 +9,7 @@ import { HelpLinks } from '~/components/app/home/links/Help'
 import { MobileLinks } from '~/components/app/home/links/Mobile'
 import { NavLinks } from '~/components/app/home/links/Nav'
 import { Notes } from '~/components/app/home/Notes'
-import { Search } from '~/components/app/home/Search'
+import { Search } from '~/components/common/actions/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
@@ -121,7 +121,7 @@ export default function IndexPage() {
       gap="4"
     >
       <GridItem d="grid" gridTemplateColumns="100%" gridGap="4">
-        <Search d={isPad} />
+        <SearchBar d={isPad} />
         <NavLinks d={isNotPhone} />
         <ExternalLinks id="links" />
       </GridItem>
@@ -132,7 +132,7 @@ export default function IndexPage() {
         gridTemplateColumns="100%"
         gridGap="4"
       >
-        <Search d={isDesktop} />
+        <SearchBar d={isDesktop} />
         <Feeds />
       </GridItem>
 
@@ -142,7 +142,7 @@ export default function IndexPage() {
         gridGap="4"
         rowStart={{ base: 1, sm: 'auto' }}
       >
-        <Search d={isPhone} />
+        <SearchBar d={isPhone} />
         <MobileLinks d={isPhone} />
         <Bridge id="bridge" />
         <Notes id="notes" />
@@ -151,3 +151,9 @@ export default function IndexPage() {
     </Grid>
   )
 }
+
+interface SearchProps extends SystemProps, InputProps {}
+
+const SearchBar = ({ ...props }: SearchProps) => (
+  <Search placeholder="搜索课程" {...props} />
+)

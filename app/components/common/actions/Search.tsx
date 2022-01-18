@@ -1,4 +1,4 @@
-import type { SystemProps } from '@chakra-ui/react'
+import type { InputProps, SystemProps } from '@chakra-ui/react'
 import {
   Flex,
   Icon,
@@ -12,7 +12,7 @@ import { useKeyPress } from 'ahooks'
 import { useRef } from 'react'
 import { RiSearchLine } from 'react-icons/ri'
 
-interface SearchProps extends SystemProps {}
+interface SearchProps extends SystemProps, InputProps {}
 
 export const Search = (props: SearchProps) => {
   const ref = useRef<HTMLInputElement>(null)
@@ -48,7 +48,6 @@ export const Search = (props: SearchProps) => {
             color: 'gray.500',
             _dark: 'gray.400',
           }}
-          placeholder="搜索课程"
           {...props}
         />
         <InputRightElement

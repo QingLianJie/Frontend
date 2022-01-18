@@ -103,12 +103,11 @@ const Avatar = () => {
           aria-label={member ? member.name : '陌生人'}
           src={
             member && member.email
-              ? `${AVATAT_BASE_URL}${calcEmailMd5(member.email)}`
+              ? `${AVATAT_BASE_URL}${calcEmailMd5(member.email)}?d=404`
               : undefined
           }
           icon={<Icon as={RiUserLine} fontSize="xl" />}
           size="md"
-          p="1"
           bg="gray.200"
           color="gray.500"
           _hover={{

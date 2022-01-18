@@ -34,7 +34,7 @@ const chakraTheme = extendTheme({
   fontSizes: { smd: '0.925rem', mdl: '1.075rem' },
   styles: {
     global: {
-      html: { scrollPadding: '6.5rem' },
+      html: { scrollPadding: '6.5rem', overflowY: 'overlay' },
     },
   },
   initialColorMode: 'system',

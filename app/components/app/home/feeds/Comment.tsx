@@ -13,6 +13,7 @@ import {
 import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/Card'
+import type { IComment, ICourse } from '~/types'
 import { calcRate } from '~/utils/math'
 import { relativeTime } from '~/utils/time'
 
@@ -44,7 +45,7 @@ interface CourseInfoProps {
 
 const CourseInfo = ({ course }: CourseInfoProps) => (
   <VStack align="flex-start" w="full" px="1" spacing="2">
-    <HStack w="full" pb="2" justify="space-between" transition="all 0.2s">
+    <HStack w="full" pb="3" justify="space-between" transition="all 0.2s">
       <Link
         as={RemixLink}
         to={`/courses/${course.id}`}

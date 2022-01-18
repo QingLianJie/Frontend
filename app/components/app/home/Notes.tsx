@@ -8,10 +8,11 @@ import {
 } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
+import type { INotes } from '~/types'
 import { relativeTime } from '~/utils/time'
 
 interface NotesProps extends SystemProps {
-  id: string
+  id?: string
 }
 
 export const Notes = ({ id, ...props }: NotesProps) => {
@@ -30,7 +31,9 @@ export const Notes = ({ id, ...props }: NotesProps) => {
         spacing="4"
       >
         {isNoNotes ? (
-          <Text px="2">目前没有什么值得说的事。</Text>
+          <Text px="2" fontSize="smd">
+            目前没有什么值得说的事。
+          </Text>
         ) : (
           notes.map(note => (
             <VStack
