@@ -15,9 +15,8 @@ import {
 } from 'remix'
 import version from '~/version.json'
 import { Layout } from './components/layout/Layout'
-import { commitSession, getSession } from './sessions'
-import type { IAccount } from './types'
-import { decodeHEUAccount } from './utils/bridge'
+import { getSession } from './sessions'
+import type { IMember } from './types'
 
 const fontSans = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
@@ -77,12 +76,16 @@ export const links: LinksFunction = () => [
   },
 ]
 
-export interface RootLoader {
+export type RootLoader = {
   version: string
+  member: IMember | null
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-  return json<RootLoader>({ ...version })
+  const session = await getSession(request.headers.get('Cookie'))
+  const member = session.get('member') || null
+
+  return json<RootLoader>({ ...version, member })
 }
 
 export default function App() {

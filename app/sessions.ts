@@ -5,5 +5,6 @@ export const { getSession, commitSession, destroySession } =
     cookie: {
       name: 'qing',
       httpOnly: true,
+      path: '/',
     },
   })

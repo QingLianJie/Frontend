@@ -36,7 +36,7 @@ export interface IComment {
 export interface IMember {
   id: number
   name: string
-  avatar?: string
+  email?: string
 }
 
 export interface ICourse {

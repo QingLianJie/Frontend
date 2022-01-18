@@ -9,8 +9,11 @@ import {
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiUserLine } from 'react-icons/ri'
-import { Link as RemixLink, useLocation } from 'remix'
+import { Link as RemixLink, useLoaderData, useLocation } from 'remix'
 import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
+import { AVATAT_BASE_URL } from '~/const'
+import { RootLoader } from '~/root'
+import { calcEmailMd5 } from '~/utils/math'
 import { Drawer } from '../drawer/Drawer'
 import { HeaderNav } from './Nav'
 
@@ -78,33 +81,34 @@ const Section = ({
   </Flex>
 )
 
-interface HeaderAvatarProps {
-  name?: string
-  avatar?: string
-}
-
-const Avatar = ({ name, avatar }: HeaderAvatarProps) => {
+const Avatar = () => {
   const { pathname } = useLocation()
+  const { member } = useLoaderData<RootLoader>()
 
   return (
     <Tooltip
       hasArrow
       placement="bottom-end"
-      label={name ? `已登录到 ${name}` : '考虑登录到「清廉街」吗'}
+      label={member ? `已登录到 ${member.name}` : '考虑登录到「清廉街」吗'}
       px="2.5"
       py="1.5"
       maxW="48"
     >
       <Link
         as={RemixLink}
-        to={name ? `/member` : `/member/login?from=${pathname}`}
+        to={member ? `/member` : `/member/login?from=${pathname}`}
         rounded="full"
       >
         <ChakraAvatar
-          aria-label={name ?? '陌生人'}
-          src={avatar}
+          aria-label={member ? member.name : '陌生人'}
+          src={
+            member && member.email
+              ? `${AVATAT_BASE_URL}${calcEmailMd5(member.email)}`
+              : undefined
+          }
           icon={<Icon as={RiUserLine} fontSize="xl" />}
           size="md"
+          p="1"
           bg="gray.200"
           color="gray.500"
           _hover={{

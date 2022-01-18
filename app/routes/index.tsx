@@ -15,7 +15,6 @@ import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
 import { commitSession, getSession } from '~/sessions'
 import type { BridgeType, IAccount, IFeeds, INotes, IResponse } from '~/types'
-import { decodeHEUAccount, encodeHEUAccount } from '~/utils/bridge'
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles }]
@@ -29,7 +28,7 @@ export const action: ActionFunction = async ({ request }) => {
       const body = await request.formData()
       const id = body.get('id') as string
       const password = body.get('password') as string
-      session.set('account', encodeHEUAccount(id, password))
+      session.set('account', { id, password })
 
       return json<IResponse<BridgeType>>(
         {
@@ -87,7 +86,7 @@ export const loader: LoaderFunction = async ({ request }) => {
       feeds,
       group,
       notes,
-      account: decodeHEUAccount(account),
+      account,
       error: null,
     },
     {

@@ -10,24 +10,32 @@ import {
   useTransition,
 } from 'remix'
 import { Input } from '~/components/common/Input'
-import { IResponse, AuthType } from '~/types'
+import { commitSession, getSession } from '~/sessions'
+import type { AuthType, IResponse } from '~/types'
 import { useNavToast } from '~/utils/hooks'
-import { sleep } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
   const name = body.get('name')
   const password = body.get('password')
-  const from = body.get('from') as string
 
   // TODO: 接入后端登录
-  await sleep(1000)
+  // await sleep(1000)
+  const session = await getSession(request.headers.get('Cookie'))
+  session.set('member', { email: name, id: 0, name: 'Test' })
 
-  return json<IResponse<AuthType>>({
-    status: '可以',
-    type: '登录',
-    message: '已登录到「清廉街」',
-  })
+  return json<IResponse<AuthType>>(
+    {
+      status: '可以',
+      type: '登录',
+      message: '已登录到「清廉街」',
+    },
+    {
+      headers: {
+        'Set-Cookie': await commitSession(session),
+      },
+    }
+  )
 }
 
 export default function LoginPage() {
@@ -38,7 +46,7 @@ export default function LoginPage() {
   const transition = useTransition()
 
   const isLoading = transition.state === 'submitting'
-  const redirectTo = action?.status === '可以' && '/'
+  const redirectTo = action?.status === '可以' && from
 
   const toast = useNavToast<AuthType>()
   useEffect(() => action && toast({ to: redirectTo, ...action }), [action])
@@ -66,7 +74,6 @@ export default function LoginPage() {
           autoComplete="current-password"
           icon={RiLockPasswordLine}
         />
-        <ChakraInput type="hidden" name="from" value={from} />
         <Button
           isFullWidth
           isLoading={isLoading}
