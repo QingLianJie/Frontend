@@ -1,18 +1,10 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { RiLockPasswordLine } from 'react-icons/ri'
 import type { ActionFunction } from 'remix'
-import {
-  Form,
-  json,
-  useActionData,
-  useNavigate,
-  useParams,
-  useTransition,
-} from 'remix'
+import { Form, json, useActionData, useParams, useTransition } from 'remix'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
-import type { MemberType, IResponse } from '~/types'
-import { useResponseToast } from '~/utils/hooks'
+import type { IResponse, MemberType } from '~/types'
 import { sleep } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
@@ -27,28 +19,22 @@ export const action: ActionFunction = async ({ request }) => {
     status: '可以',
     type: '重置密码',
     message: '重置成功，请重新登录',
+    to: '/member/login',
   })
 }
 
 export default function ResetPasswordTokenPage() {
   const { token } = useParams()
 
-  const transition = useTransition()
-  const isLoading = transition.state === 'submitting'
-
   const action = useActionData<IResponse<MemberType>>()
-  const navigate = useNavigate()
-  const toast = useResponseToast<MemberType>()
+  const transition = useTransition()
 
-  useEffect(() => {
-    if (action && transition.state === 'idle') {
-      toast({ ...action })
-      if (action.status === '可以') navigate('/member/login')
-    }
-  }, [action, transition])
+  const isLoading = transition.state === 'submitting'
+  const isDone = transition.state === 'idle'
 
   return (
     <Form method="post">
+      <ResponseToast action={action} state={isDone} />
       <VStack
         p={{ base: '6', sm: '8' }}
         w="full"

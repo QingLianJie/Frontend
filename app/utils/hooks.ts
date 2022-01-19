@@ -20,7 +20,7 @@ export const useResponseToast = <T>() => {
     position: 'bottom',
     variant: 'solid',
     containerStyle: {
-      margin: '1.5rem',
+      margin: '0 1.5rem 1.5rem 1.5rem',
       zIndex: '100',
       width: 'calc(100vw - 3rem)',
       maxWidth: '20rem',

@@ -1,5 +1,6 @@
 import { RiLogoutBoxRLine } from 'react-icons/ri'
 import { useFetcher } from 'remix'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { ListButton } from '~/components/common/ListButton'
 import type { MemberType, IResponse } from '~/types'
 
@@ -9,12 +10,12 @@ export const Logout = () => {
 
   return (
     <fetcher.Form method="post" action="/member/logout?index">
+      <ResponseToast action={fetcher.data} />
       <ListButton
         text="退出登录"
         icon={RiLogoutBoxRLine}
         color="blue"
         disabled={isLoading}
-        action={fetcher.data}
         type="submit"
       />
     </fetcher.Form>

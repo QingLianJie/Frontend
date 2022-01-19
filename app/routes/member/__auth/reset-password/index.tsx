@@ -1,19 +1,17 @@
 import { Button, VStack } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { RiMailLine } from 'react-icons/ri'
 import type { ActionFunction } from 'remix'
 import { Form, json, useActionData, useTransition } from 'remix'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
-import type { MemberType, IResponse } from '~/types'
-import { useResponseToast } from '~/utils/hooks'
-import { sleep } from '~/utils/system'
+import type { IResponse, MemberType } from '~/types'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
   const email = body.get('email')
 
   // TODO: 接入后端重置密码
-  await sleep(1000)
+  // await sleep(1000)
 
   return json<IResponse<MemberType>>({
     status: '可以',
@@ -23,18 +21,15 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function ResetPasswordPage() {
-  const transition = useTransition()
-  const isLoading = transition.state === 'submitting'
-
   const action = useActionData<IResponse<MemberType>>()
-  const toast = useResponseToast<MemberType>()
+  const transition = useTransition()
 
-  useEffect(() => {
-    if (action && transition.state === 'idle') toast({ ...action })
-  }, [action, transition])
+  const isLoading = transition.state === 'submitting'
+  const isDone = transition.state === 'idle'
 
   return (
     <Form method="post">
+      <ResponseToast action={action} state={isDone} />
       <VStack
         p={{ base: '6', sm: '8' }}
         w="full"

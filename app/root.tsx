@@ -133,7 +133,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <Document>
       <Heading as="h1" px="12" pt="12" pb="2" size="md">
-        Error {error.message}
+        {error.message}
       </Heading>
     </Document>
   )

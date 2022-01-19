@@ -1,8 +1,9 @@
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { useFetcher, useLoaderData } from 'remix'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { ListButton } from '~/components/common/ListButton'
 import type { MemberLoader } from '~/routes/member/index'
-import type { MemberType, IResponse } from '~/types'
+import type { IResponse, MemberType } from '~/types'
 
 export const DeleteMember = () => {
   const { member } = useLoaderData<MemberLoader>()
@@ -19,13 +20,15 @@ export const DeleteMember = () => {
   }
 
   return (
-    <ListButton
-      text="删除账号"
-      icon={RiDeleteBinLine}
-      color="red"
-      disabled={isLoading}
-      action={fetcher.data}
-      onClick={handleDeleteMember}
-    />
+    <>
+      <ResponseToast action={fetcher.data} />
+      <ListButton
+        text="删除账号"
+        icon={RiDeleteBinLine}
+        color="red"
+        disabled={isLoading}
+        onClick={handleDeleteMember}
+      />
+    </>
   )
 }

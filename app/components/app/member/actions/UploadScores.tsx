@@ -1,7 +1,8 @@
 import { RiUpload2Line } from 'react-icons/ri'
 import { useFetcher } from 'remix'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { ListButton } from '~/components/common/ListButton'
-import type { MemberType, IResponse } from '~/types'
+import type { IResponse, MemberType } from '~/types'
 
 export const UploadScores = () => {
   const fetcher = useFetcher<IResponse<MemberType>>()
@@ -17,13 +18,15 @@ export const UploadScores = () => {
   }
 
   return (
-    <ListButton
-      text="上传成绩"
-      icon={RiUpload2Line}
-      color="yellow"
-      disabled={isLoading}
-      action={fetcher.data}
-      onClick={handleUploadScores}
-    />
+    <>
+      <ResponseToast action={fetcher.data} />
+      <ListButton
+        text="上传成绩"
+        icon={RiUpload2Line}
+        color="yellow"
+        disabled={isLoading}
+        onClick={handleUploadScores}
+      />
+    </>
   )
 }

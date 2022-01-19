@@ -32,12 +32,14 @@ export const BindHEU = () => {
         text="绑定账号"
         onClick={onOpen}
       />
+
       <Modal
         initialFocusRef={initialRef}
         isOpen={isOpen}
         onClose={onClose}
         size="xs"
         isCentered
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent _dark={{ bg: 'gray.800' }}>

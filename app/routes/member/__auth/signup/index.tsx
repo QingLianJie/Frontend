@@ -1,19 +1,17 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
 import type { ActionFunction } from 'remix'
 import {
   Form,
   json,
   useActionData,
-  useNavigate,
   useSearchParams,
   useTransition,
 } from 'remix'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
-import type { MemberType, IResponse } from '~/types'
-import { useResponseToast } from '~/utils/hooks'
+import type { IResponse, MemberType } from '~/types'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
@@ -42,22 +40,15 @@ export default function SignupPage() {
   const [params] = useSearchParams()
   const from = params.get('from') ?? '/'
 
-  const transition = useTransition()
-  const isLoading = transition.state === 'submitting'
-
   const action = useActionData<IResponse<MemberType>>()
-  const navigate = useNavigate()
-  const toast = useResponseToast<MemberType>()
+  const transition = useTransition()
 
-  useEffect(() => {
-    if (action && transition.state === 'idle') {
-      toast({ ...action })
-      if (action.status === '可以' && action.to) navigate(action.to)
-    }
-  }, [action, transition])
+  const isLoading = transition.state === 'submitting'
+  const isDone = transition.state === 'idle'
 
   return (
     <Form method="post">
+      <ResponseToast action={action} state={isDone} />
       <VStack
         p={{ base: '6', sm: '8' }}
         w="full"
