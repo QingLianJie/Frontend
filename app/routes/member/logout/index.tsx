@@ -11,7 +11,7 @@ export const action: ActionFunction = async ({ request }) => {
     {
       status: '可以',
       type: '登出',
-      message: '已退出登录，正在跳转登录页面',
+      message: '已退出登录',
       to: '/member/login?from=/member',
     },
     { headers: { 'Set-Cookie': await commitSession(session) } }

@@ -9,7 +9,12 @@ import {
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
-import { Link as RemixLink, useLoaderData, useLocation } from 'remix'
+import {
+  Link as RemixLink,
+  useLoaderData,
+  useLocation,
+  useSearchParams,
+} from 'remix'
 import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
 import { AVATAT_BASE_URL } from '~/const'
 import { RootLoader } from '~/root'
@@ -87,6 +92,9 @@ const Avatar = () => {
   const { pathname } = useLocation()
   const { member } = useLoaderData<RootLoader>()
 
+  const [params] = useSearchParams()
+  const from = params.get('from')
+
   return (
     <Tooltip
       hasArrow
@@ -98,7 +106,7 @@ const Avatar = () => {
     >
       <Link
         as={RemixLink}
-        to={member ? `/member` : `/member/login?from=${pathname}`}
+        to={member ? `/member` : `/member/login?from=${from ?? pathname}`}
         rounded="full"
       >
         <ChakraAvatar
