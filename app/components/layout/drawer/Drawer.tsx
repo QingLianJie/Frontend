@@ -44,9 +44,16 @@ export const Drawer = () => {
           bg: 'gray.800',
           color: 'gray.400',
         }}
+        pointerEvents="auto"
       />
       {isMobile && (
-        <CharkraDrawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <CharkraDrawer
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          blockScrollOnMount={false}
+          returnFocusOnClose={false}
+        >
           <DrawerOverlay />
           <DrawerContent
             bg="white"

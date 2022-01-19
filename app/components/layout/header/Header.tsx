@@ -7,6 +7,7 @@ import {
   Link,
   Tooltip,
 } from '@chakra-ui/react'
+import { useScroll } from 'ahooks'
 import type { ReactNode } from 'react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import {
@@ -26,43 +27,60 @@ interface HeaderProps {
   title?: string
 }
 
-export const Header = ({ title = '清廉街' }: HeaderProps) => (
-  <Flex
-    as="header"
-    position="sticky"
-    top={{ base: '0', md: '-2' }}
-    w="full"
-    align="center"
-    justify="stretch"
-    px={{ base: '6', sm: '8' }}
-    pt={{ base: '5', md: '5' }}
-    pb={{ base: '5', md: '3' }}
-    gap="8"
-    zIndex="100"
-    backdropFilter="blur(12px)"
-    bg="#EDF2F788"
-    _dark={{ bg: '#17192388' }}
-    transition="all 0.2s"
-  >
-    <Section align="left" d={{ base: 'flex', md: 'none' }}>
-      <Drawer />
-    </Section>
-    <Section align={{ base: 'center', md: 'left' }}>
-      <RemixLink to="/">
-        <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
-          {title}
-        </Heading>
-      </RemixLink>
-    </Section>
-    <Section align="center" d={{ base: 'none', md: 'flex' }}>
-      <HeaderNav />
-    </Section>
-    <Section align="right">
-      <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
-      <Avatar />
-    </Section>
-  </Flex>
-)
+export const Header = ({ title = '清廉街' }: HeaderProps) => {
+  const scroll = useScroll()
+
+  return (
+    <Flex
+      as="header"
+      position="sticky"
+      top={{ base: '0', md: '-2' }}
+      w="full"
+      align="center"
+      justify="stretch"
+      px={{ base: '6', sm: '8' }}
+      pt={{ base: '5', md: '5' }}
+      pb={{ base: '5', md: '3' }}
+      gap="8"
+      zIndex="100"
+      backdropFilter={{ base: 'none', md: 'blur(12px)' }}
+      bg={{ base: 'transparent', md: '#EDF2F788' }}
+      _dark={{ bg: { base: 'transparent', md: '#17192388' } }}
+      transition="all 0.2s"
+      pointerEvents={{ base: 'none', md: 'auto' }}
+    >
+      <Section align="left" d={{ base: 'flex', md: 'none' }}>
+        <Drawer />
+      </Section>
+      <Section
+        align={{ base: 'center', md: 'left' }}
+        d={{
+          base: scroll ? (scroll.top < 96 ? 'flex' : 'none') : 'flex',
+          md: 'flex',
+        }}
+      >
+        <RemixLink to="/">
+          <Heading
+            as="h1"
+            fontSize="1.125rem"
+            whiteSpace="nowrap"
+            pointerEvents="auto"
+          >
+            {title}
+          </Heading>
+        </RemixLink>
+      </Section>
+
+      <Section align="center" d={{ base: 'none', md: 'flex' }}>
+        <HeaderNav />
+      </Section>
+      <Section align="right">
+        <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
+        <Avatar />
+      </Section>
+    </Flex>
+  )
+}
 
 type AlignType = 'left' | 'center' | 'right'
 
@@ -103,11 +121,13 @@ const Avatar = () => {
       px="2.5"
       py="1.5"
       maxW="48"
+      pointerEvents="auto"
     >
       <Link
         as={RemixLink}
         to={member ? `/member` : `/member/login?from=${from ?? pathname}`}
         rounded="full"
+        pointerEvents="auto"
       >
         <ChakraAvatar
           aria-label={member ? member.name : '陌生人'}
