@@ -17,6 +17,7 @@ import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { ListButton } from '~/components/common/ListButton'
 import type { IResponse, MemberType } from '~/types'
+import { PasswordRegexText } from '~/utils/system'
 
 export const ChangePassword = () => {
   const fetcher = useFetcher<IResponse<MemberType>>()
@@ -69,6 +70,7 @@ export const ChangePassword = () => {
                 placeholder="旧密码"
                 type="password"
                 autoComplete="old-password"
+                isInvalid={action?.error?.includes('旧密码')}
                 icon={RiLockPasswordLine}
               />
               <Input
@@ -77,6 +79,10 @@ export const ChangePassword = () => {
                 type="password"
                 help="8 到 24 个字符，且不能为纯数字"
                 autoComplete="new-password"
+                minLength={8}
+                maxLength={24}
+                pattern={PasswordRegexText}
+                isInvalid={action?.error?.includes('新密码')}
                 icon={RiLockPasswordLine}
               />
               <Input
@@ -84,6 +90,10 @@ export const ChangePassword = () => {
                 placeholder="再次输入新密码"
                 type="password"
                 autoComplete="new-password"
+                minLength={8}
+                maxLength={24}
+                pattern={PasswordRegexText}
+                isInvalid={action?.error?.includes('重复新密码')}
                 icon={RiLockPasswordLine}
               />
             </VStack>

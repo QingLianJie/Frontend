@@ -1,5 +1,6 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
-import { RiLockPasswordLine, RiMailLine } from 'react-icons/ri'
+import { useState } from 'react'
+import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
 import type { ActionFunction } from 'remix'
 import {
   Form,
@@ -12,12 +13,31 @@ import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
 import type { IResponse, MemberType } from '~/types'
+import { EmailRegex, NameRegex, PasswordRegex } from '~/utils/system'
+
+type NameType = 'username' | 'email'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
-  const name = body.get('name')
-  const password = body.get('password')
+  const name = body.get('name') as string
+  const password = body.get('password') as string
   const from = (body.get('from') as string) ?? '/'
+
+  const error = []
+
+  // 登录暂时无需验证格式
+  //
+  // if (!NameRegex.test(name) && !EmailRegex.test(name)) error.push('用户名或邮箱')
+  // if (!PasswordRegex.test(password)) error.push('密码')
+
+  // if (error.length !== 0) {
+  //   return json<IResponse<MemberType>>({
+  //     status: '有问题',
+  //     type: '登录',
+  //     message: `${listIt(error)}格式错误`,
+  //     error,
+  //   })
+  // }
 
   // TODO: 接入后端登录
   // await sleep(1000)
@@ -45,6 +65,9 @@ export default function LoginPage() {
   const isLoading = transition.state === 'submitting'
   const isDone = transition.state === 'idle'
 
+  const [nameType, setNameType] = useState<NameType>('username')
+  const isEmail = nameType === 'email'
+
   return (
     <Form method="post">
       <ResponseToast action={action} state={isDone} />
@@ -55,18 +78,23 @@ export default function LoginPage() {
         align="flex-start"
       >
         <Input
-          type="text"
+          type={isEmail ? 'email' : 'text'}
           name="name"
           placeholder="用户名或邮箱"
-          autoComplete="username"
+          autoComplete={nameType}
           autoFocus
-          icon={RiMailLine}
+          isInvalid={action?.error?.includes('用户名或邮箱')}
+          icon={isEmail ? RiMailLine : RiUserLine}
+          onChange={e =>
+            setNameType(EmailRegex.test(e.target.value) ? 'email' : 'username')
+          }
         />
         <Input
           type="password"
           name="password"
           placeholder="密码"
           autoComplete="current-password"
+          isInvalid={action?.error?.includes('密码')}
           icon={RiLockPasswordLine}
         />
         <ChakraInput type="hidden" name="from" value={from} />

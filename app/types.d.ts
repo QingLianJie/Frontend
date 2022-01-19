@@ -16,6 +16,7 @@ export interface IResponse<T> {
   type: T
   message?: string
   to?: string
+  error?: string[]
 }
 
 export type INotes = INote[]

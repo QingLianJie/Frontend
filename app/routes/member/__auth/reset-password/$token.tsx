@@ -5,12 +5,32 @@ import { Form, json, useActionData, useParams, useTransition } from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import type { IResponse, MemberType } from '~/types'
-import { sleep } from '~/utils/system'
+import { listIt, PasswordRegex, PasswordRegexText, sleep } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
-  const password = body.get('password')
+  const password = body.get('password') as string
+  const password2 = body.get('password-again') as string
   const token = body.get('token') as string
+
+  const error = []
+  let message = ''
+
+  if (!PasswordRegex.test(password)) error.push('密码')
+
+  if (password !== password2) {
+    error.push('重复密码')
+    message = '两次密码不一致'
+  }
+
+  if (error.length !== 0) {
+    return json<IResponse<MemberType>>({
+      status: '有问题',
+      type: '重置密码',
+      message: message || `${listIt(error)}格式错误`,
+      error,
+    })
+  }
 
   // TODO: 接入后端注册
   await sleep(1000)
@@ -48,6 +68,10 @@ export default function ResetPasswordTokenPage() {
           help="8 到 24 个字符，且不能为纯数字"
           autoComplete="new-password"
           autoFocus
+          minLength={8}
+          maxLength={24}
+          pattern={PasswordRegexText}
+          isInvalid={action?.error?.includes('密码')}
           icon={RiLockPasswordLine}
         />
         <Input
@@ -55,6 +79,10 @@ export default function ResetPasswordTokenPage() {
           name="password-again"
           placeholder="再次输入密码"
           autoComplete="new-password"
+          minLength={8}
+          maxLength={24}
+          pattern={PasswordRegexText}
+          isInvalid={action?.error?.includes('重复密码')}
           icon={RiLockPasswordLine}
         />
         <ChakraInput type="hidden" name="token" value={token} />

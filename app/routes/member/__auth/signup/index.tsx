@@ -12,13 +12,42 @@ import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
 import type { IResponse, MemberType } from '~/types'
+import {
+  EmailRegex,
+  listIt,
+  NameRegex,
+  PasswordRegex,
+  PasswordRegexText,
+} from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()
-  const email = body.get('email')
-  const name = body.get('name')
-  const password = body.get('password')
+  const email = body.get('email') as string
+  const name = body.get('name') as string
+  const password = body.get('password') as string
+  const password2 = body.get('password-again') as string
   const from = (body.get('from') as string) ?? '/'
+
+  const error = []
+  let message = ''
+
+  if (!NameRegex.test(name)) error.push('用户名')
+  if (!EmailRegex.test(email)) error.push('邮箱')
+  if (!PasswordRegex.test(password)) error.push('密码')
+
+  if (password !== password2) {
+    error.push('重复密码')
+    message = '两次密码不一致'
+  }
+
+  if (error.length !== 0) {
+    return json<IResponse<MemberType>>({
+      status: '有问题',
+      type: '注册',
+      message: message || `${listIt(error)}格式错误`,
+      error,
+    })
+  }
 
   // TODO: 接入后端注册
   // await sleep(1000)
@@ -62,6 +91,9 @@ export default function SignupPage() {
           help="独一无二的名字，3 到 16 个字符"
           autoComplete="username"
           autoFocus
+          maxLength={16}
+          minLength={3}
+          isInvalid={action?.error?.includes('用户名')}
           icon={RiUserLine}
         />
         <Input
@@ -69,6 +101,7 @@ export default function SignupPage() {
           name="email"
           placeholder="邮箱"
           autoComplete="email"
+          isInvalid={action?.error?.includes('邮箱')}
           icon={RiMailLine}
         />
         <Input
@@ -77,6 +110,10 @@ export default function SignupPage() {
           placeholder="密码"
           help="8 到 24 个字符，且不能为纯数字"
           autoComplete="new-password"
+          minLength={8}
+          maxLength={24}
+          pattern={PasswordRegexText}
+          isInvalid={action?.error?.includes('密码')}
           icon={RiLockPasswordLine}
         />
         <Input
@@ -84,6 +121,10 @@ export default function SignupPage() {
           name="password-again"
           placeholder="再次输入密码"
           autoComplete="new-password"
+          minLength={8}
+          maxLength={24}
+          pattern={PasswordRegexText}
+          isInvalid={action?.error?.includes('重复密码')}
           icon={RiLockPasswordLine}
         />
         <ChakraInput type="hidden" name="from" value={from} />
