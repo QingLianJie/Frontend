@@ -5,9 +5,9 @@ import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/Card'
 import { mobileLinks } from '~/contents/links/nav/mobile'
 
-interface NavLinksProps extends SystemProps {}
+interface NavProps extends SystemProps {}
 
-export const NavLinks = (props: NavLinksProps) => (
+export const Nav = (props: NavProps) => (
   <Card title="页面" {...props}>
     <Flex
       flexDir="column"

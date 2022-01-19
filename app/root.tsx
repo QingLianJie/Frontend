@@ -21,7 +21,7 @@ import {
 import version from '~/version.json'
 import { Layout } from './components/layout/Layout'
 import { getSession } from './sessions'
-import type { IAccount, IMember } from './types'
+import type { IMember } from './types'
 
 const fontSans = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
@@ -62,20 +62,21 @@ export const links: LinksFunction = () => [
 export type RootLoader = {
   version: string
   member: IMember | null
-  account: IAccount | null
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))
   const member = session.get('member') || null
-  const account = session.get('account') || null
 
-  return json<RootLoader>({ ...version, member, account })
+  return json<RootLoader>({ ...version, member })
 }
 
-const Document = ({ children }: { children: ReactNode }) => {
-  const { version } = useLoaderData<RootLoader>()
+interface DocumentProps {
+  version?: string
+  children: ReactNode
+}
 
+const Document = ({ version, children }: DocumentProps) => {
   return (
     <html lang="zh-cn" data-version={version}>
       <head>
@@ -96,6 +97,7 @@ const Document = ({ children }: { children: ReactNode }) => {
 
 export default function App() {
   const transition = useTransition()
+  const { version } = useLoaderData<RootLoader>()
 
   useEffect(() => {
     NProgress.configure({ showSpinner: false })
@@ -107,7 +109,7 @@ export default function App() {
   }, [transition.state])
 
   return (
-    <Document>
+    <Document version={version}>
       <Layout>
         <Outlet />
       </Layout>

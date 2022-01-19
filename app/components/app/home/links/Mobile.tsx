@@ -6,9 +6,9 @@ import { Card } from '~/components/common/Card'
 import { helpLinks } from '~/contents/links/external/help'
 import { mobileLinks } from '~/contents/links/nav/mobile'
 
-interface MobileLinksProps extends SystemProps {}
+interface MobileProps extends SystemProps {}
 
-export const MobileLinks = (props: MobileLinksProps) => (
+export const Mobile = (props: MobileProps) => (
   <Card {...props}>
     <SimpleGrid
       templateColumns="repeat(auto-fill, minmax(20%, 1fr))"

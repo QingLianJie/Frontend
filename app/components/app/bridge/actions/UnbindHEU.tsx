@@ -2,7 +2,7 @@ import { RiLinkUnlink } from 'react-icons/ri'
 import { useSubmit, useTransition } from 'remix'
 import { IconButton } from '~/components/common/IconButton'
 
-export const UnbindBridge = () => {
+export const UnbindHEU = () => {
   const submit = useSubmit()
   const handleUnbind = () => {
     if (confirm('确认取消绑定账号并删除本地数据？'))

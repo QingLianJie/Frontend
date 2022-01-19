@@ -23,7 +23,7 @@ export const useResponseToast = <T>() => {
       margin: '1.5rem',
       zIndex: '100',
       width: 'calc(100vw - 3rem)',
-      maxWidth: '18rem',
+      maxWidth: '20rem',
     },
   })
 

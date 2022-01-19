@@ -1,14 +1,10 @@
-export interface IAccount {
-  id: string
-  password: string
-}
-
 export type ResponseStatus = '可以' | '不行' | '有问题'
 
-export type AuthType =
+export type MemberType =
   | '登录'
   | '登出'
   | '注册'
+  | '上传成绩'
   | '删除账号'
   | '重置密码'
   | '修改密码'

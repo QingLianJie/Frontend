@@ -17,7 +17,7 @@ import { useRef } from 'react'
 import { RiPercentLine } from 'react-icons/ri'
 import { IconButton } from '~/components/common/IconButton'
 
-export const GetBridgeModal = () => {
+export const GetExtension = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef<HTMLInputElement>(null)
 

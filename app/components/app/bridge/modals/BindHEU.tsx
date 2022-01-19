@@ -17,7 +17,7 @@ import { Form, useTransition } from 'remix'
 import { Input } from '~/components/common/Input'
 import { IconButton } from '~/components/common/IconButton'
 
-export const BindHEUModal = () => {
+export const BindHEU = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef<HTMLInputElement>(null)
 

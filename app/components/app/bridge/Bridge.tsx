@@ -1,21 +1,15 @@
-import {
-  ButtonGroup,
-  Divider,
-  SystemProps,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import type { SystemProps } from '@chakra-ui/react'
+import { ButtonGroup, Divider, Text, VStack } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useActionData, useLoaderData } from 'remix'
-import { BindHEUModal } from '~/components/app/bridge/modals/BindHEU'
+import { BindHEU } from '~/components/app/bridge/modals/BindHEU'
 import { Card } from '~/components/common/Card'
 import { RootLoader } from '~/root'
-import type { IndexLoader } from '~/routes'
 import type { BridgeType } from '~/types'
 import { useResponseToast } from '~/utils/hooks'
-import { GetBridgeModal } from '../bridge/modals/GetBridge'
-import { UnbindBridge } from '../bridge/Unbind'
-import { UpdateBridge } from '../bridge/Update'
+import { UnbindHEU } from './actions/UnbindHEU'
+import { UpdateBridge } from './actions/UpdateBridge'
+import { GetExtension } from './modals/GetExtension'
 
 interface BridgeProps extends SystemProps {
   id: string
@@ -58,12 +52,12 @@ export const Bridge = ({ id, ...props }: BridgeProps) => {
           {account ? (
             <>
               <UpdateBridge />
-              <UnbindBridge />
+              <UnbindHEU />
             </>
           ) : (
             <>
-              <BindHEUModal />
-              <GetBridgeModal />
+              <BindHEU />
+              <GetExtension />
             </>
           )}
         </ButtonGroup>

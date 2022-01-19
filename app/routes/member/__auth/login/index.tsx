@@ -11,7 +11,7 @@ import {
 import type { ActionFunction } from 'remix'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
-import type { AuthType, IResponse } from '~/types'
+import type { MemberType, IResponse } from '~/types'
 import { useEffect } from 'react'
 import { useResponseToast } from '~/utils/hooks'
 
@@ -26,7 +26,7 @@ export const action: ActionFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))
   session.set('member', { email: name, id: 0, name: 'Test' })
 
-  return json<IResponse<AuthType>>(
+  return json<IResponse<MemberType>>(
     {
       status: '可以',
       type: '登录',
@@ -44,9 +44,9 @@ export default function LoginPage() {
   const transition = useTransition()
   const isLoading = transition.state === 'submitting'
 
-  const action = useActionData<IResponse<AuthType>>()
+  const action = useActionData<IResponse<MemberType>>()
   const navigate = useNavigate()
-  const toast = useResponseToast<AuthType>()
+  const toast = useResponseToast<MemberType>()
 
   useEffect(() => {
     if (action && transition.state === 'idle') {

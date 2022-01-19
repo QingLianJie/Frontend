@@ -11,7 +11,7 @@ import {
   useTransition,
 } from 'remix'
 import { Input } from '~/components/common/Input'
-import type { AuthType, IResponse } from '~/types'
+import type { MemberType, IResponse } from '~/types'
 import { useResponseToast } from '~/utils/hooks'
 import { sleep } from '~/utils/system'
 
@@ -23,7 +23,7 @@ export const action: ActionFunction = async ({ request }) => {
   // TODO: 接入后端注册
   await sleep(1000)
 
-  return json<IResponse<AuthType>>({
+  return json<IResponse<MemberType>>({
     status: '可以',
     type: '重置密码',
     message: '重置成功，请重新登录',
@@ -36,9 +36,9 @@ export default function ResetPasswordTokenPage() {
   const transition = useTransition()
   const isLoading = transition.state === 'submitting'
 
-  const action = useActionData<IResponse<AuthType>>()
+  const action = useActionData<IResponse<MemberType>>()
   const navigate = useNavigate()
-  const toast = useResponseToast<AuthType>()
+  const toast = useResponseToast<MemberType>()
 
   useEffect(() => {
     if (action && transition.state === 'idle') {

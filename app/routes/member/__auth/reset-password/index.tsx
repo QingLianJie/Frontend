@@ -4,7 +4,7 @@ import { RiMailLine } from 'react-icons/ri'
 import type { ActionFunction } from 'remix'
 import { Form, json, useActionData, useTransition } from 'remix'
 import { Input } from '~/components/common/Input'
-import type { AuthType, IResponse } from '~/types'
+import type { MemberType, IResponse } from '~/types'
 import { useResponseToast } from '~/utils/hooks'
 import { sleep } from '~/utils/system'
 
@@ -15,7 +15,7 @@ export const action: ActionFunction = async ({ request }) => {
   // TODO: 接入后端重置密码
   await sleep(1000)
 
-  return json<IResponse<AuthType>>({
+  return json<IResponse<MemberType>>({
     status: '可以',
     type: '重置密码',
     message: '已将重置链接发送到邮箱',
@@ -26,8 +26,8 @@ export default function ResetPasswordPage() {
   const transition = useTransition()
   const isLoading = transition.state === 'submitting'
 
-  const action = useActionData<IResponse<AuthType>>()
-  const toast = useResponseToast<AuthType>()
+  const action = useActionData<IResponse<MemberType>>()
+  const toast = useResponseToast<MemberType>()
 
   useEffect(() => {
     if (action && transition.state === 'idle') toast({ ...action })

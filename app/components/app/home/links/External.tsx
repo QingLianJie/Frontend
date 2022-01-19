@@ -3,11 +3,11 @@ import { RiBuildingLine, RiGlobalLine } from 'react-icons/ri'
 import { Card } from '~/components/common/Card'
 import { schoolLinks } from '~/contents/links/external/school'
 
-interface ExternalLinksProps extends SystemProps {
+interface ExternalProps extends SystemProps {
   id: string
 }
 
-export const ExternalLinks = ({ id, ...props }: ExternalLinksProps) => (
+export const External = ({ id, ...props }: ExternalProps) => (
   <Card title="学校" id={id} {...props}>
     <VStack
       align="flex-start"

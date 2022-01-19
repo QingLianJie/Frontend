@@ -1,67 +1,23 @@
-import { Grid, GridItem, InputProps, SystemProps } from '@chakra-ui/react'
+import type { InputProps, SystemProps } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import { groupBy, sortBy } from 'lodash'
-import type { ActionFunction, LoaderFunction } from 'remix'
+import type { LoaderFunction } from 'remix'
 import { json } from 'remix'
-import { Bridge } from '~/components/app/home/Bridge'
+import { Bridge } from '~/components/app/bridge/Bridge'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
-import { ExternalLinks } from '~/components/app/home/links/External'
-import { HelpLinks } from '~/components/app/home/links/Help'
-import { MobileLinks } from '~/components/app/home/links/Mobile'
-import { NavLinks } from '~/components/app/home/links/Nav'
+import { External } from '~/components/app/home/links/External'
+import { Help } from '~/components/app/home/links/Help'
+import { Mobile } from '~/components/app/home/links/Mobile'
+import { Nav } from '~/components/app/home/links/Nav'
 import { Notes } from '~/components/app/home/Notes'
 import { Search } from '~/components/common/actions/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
-import { commitSession, getSession } from '~/sessions'
-import type { BridgeType, IAccount, IFeeds, INotes, IResponse } from '~/types'
+import type { IFeeds, INotes } from '~/types'
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles }]
-}
-
-export const action: ActionFunction = async ({ request }) => {
-  const session = await getSession(request.headers.get('Cookie'))
-
-  switch (request.method) {
-    case 'POST': {
-      const body = await request.formData()
-      const id = body.get('id') as string
-      const password = body.get('password') as string
-      session.set('account', { id, password })
-
-      return json<IResponse<BridgeType>>(
-        {
-          status: '可以',
-          type: '绑定账号',
-          message: '已绑定账号到这个设备',
-        },
-        {
-          headers: {
-            'Set-Cookie': await commitSession(session),
-          },
-        }
-      )
-    }
-    case 'DELETE': {
-      session.unset('account')
-      return json(
-        {
-          status: '可以',
-          type: '解绑账号',
-          message: '已解绑账号并删除数据',
-        },
-        {
-          headers: {
-            'Set-Cookie': await commitSession(session),
-          },
-        }
-      )
-    }
-    default: {
-      return null
-    }
-  }
 }
 
 export type IndexLoader = {
@@ -87,8 +43,8 @@ export default function IndexPage() {
   const isNotPhone = { base: 'none', sm: 'flex' }
   const isPad = { base: 'none', sm: 'flex', md: 'none' }
 
-  const isMobile = { base: 'flex', md: 'none' }
-  const isDesktop = { base: 'none', md: 'flex' }
+  const isMobile = { base: 'flex', md: 'none' } // Phone + Pad
+  const isDesktop = { base: 'none', md: 'flex' } // !Mobile
 
   return (
     <Grid
@@ -113,8 +69,8 @@ export default function IndexPage() {
         gridGap="4"
         rowStart={{ base: 2, md: 'auto' }}
       >
-        <NavLinks d={isDesktop} />
-        <ExternalLinks id="links" />
+        <Nav d={isDesktop} />
+        <External id="links" />
       </GridItem>
 
       <GridItem
@@ -134,11 +90,11 @@ export default function IndexPage() {
         rowStart={{ base: 1, md: 'auto' }}
       >
         <SearchBar d={isMobile} />
-        <NavLinks d={isPad} />
-        <MobileLinks d={isPhone} />
+        <Nav d={isPad} />
+        <Mobile d={isPhone} />
         <Bridge id="bridge" />
         <Notes id="notes" />
-        <HelpLinks d={isNotPhone} />
+        <Help d={isNotPhone} />
       </GridItem>
     </Grid>
   )

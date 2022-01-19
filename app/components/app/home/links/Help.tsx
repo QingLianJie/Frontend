@@ -4,9 +4,9 @@ import type { IconType } from 'react-icons'
 import { Card } from '~/components/common/Card'
 import { helpLinks } from '~/contents/links/external/help'
 
-interface HelpLinksProps extends SystemProps {}
+interface HelpProps extends SystemProps {}
 
-export const HelpLinks = (props: HelpLinksProps) => (
+export const Help = (props: HelpProps) => (
   <Card title="帮助" {...props}>
     <VStack w="full" px="0" pb="4" pt="2" align="flex-start" spacing="0">
       {helpLinks.map(link => (

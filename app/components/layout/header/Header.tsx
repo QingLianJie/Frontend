@@ -43,9 +43,11 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => (
       <Drawer />
     </Section>
     <Section align={{ base: 'center', md: 'left' }}>
-      <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
-        {title}
-      </Heading>
+      <RemixLink to="/">
+        <Heading as="h1" fontSize="1.125rem" whiteSpace="nowrap">
+          {title}
+        </Heading>
+      </RemixLink>
     </Section>
     <Section align="center" d={{ base: 'none', md: 'flex' }}>
       <HeaderNav />
