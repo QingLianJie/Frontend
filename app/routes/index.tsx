@@ -92,7 +92,7 @@ export default function IndexPage() {
         <SearchBar d={isMobile} />
         <Nav d={isPad} />
         <Mobile d={isPhone} />
-        <Bridge id="bridge" />
+        <Bridge />
         <Notes id="notes" />
         <Help d={isNotPhone} />
       </GridItem>

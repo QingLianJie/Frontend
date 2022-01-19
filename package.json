@@ -21,6 +21,7 @@
     "crypto-js": "^4.1.1",
     "dayjs": "^1.10.7",
     "framer-motion": "^5",
+    "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",

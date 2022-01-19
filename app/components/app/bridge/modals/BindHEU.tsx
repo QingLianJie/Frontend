@@ -11,18 +11,34 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
+import localforage from 'localforage'
+import { useContext, useRef, useState } from 'react'
 import { RiLink, RiLockPasswordLine, RiUserLine } from 'react-icons/ri'
-import { Form, useTransition } from 'remix'
-import { Input } from '~/components/common/Input'
 import { IconButton } from '~/components/common/IconButton'
+import { Input } from '~/components/common/Input'
+import { useResponseToast } from '~/utils/hooks'
+import { encodeBase64 } from '~/utils/system'
+import { BridgeContext } from '../Bridge'
 
 export const BindHEU = () => {
+  const [id, setId] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = useRef<HTMLInputElement>(null)
 
-  const transition = useTransition()
-  const isLoading = transition.state === 'submitting'
+  const toast = useResponseToast<ResponseType>()
+  const { setId: setContextId } = useContext(BridgeContext)
+
+  const handleBind = async () => {
+    await localforage.setItem('account', {
+      id: encodeBase64(id),
+      password: encodeBase64(password),
+    })
+    setContextId(encodeBase64(id))
+    toast({ status: '可以', title: '已绑定 HEU 账号到此设备' })
+    onClose()
+  }
 
   return (
     <>
@@ -49,13 +65,7 @@ export const BindHEU = () => {
           <ModalCloseButton right="6" top="5" />
 
           <ModalBody py="0">
-            <VStack
-              as={Form}
-              id="bind-account"
-              method="post"
-              align="flex-start"
-              spacing="4"
-            >
+            <VStack align="flex-start" spacing="4">
               <Text
                 px="1"
                 lineHeight="tall"
@@ -72,6 +82,8 @@ export const BindHEU = () => {
                 placeholder="学号"
                 type="text"
                 autoComplete="username"
+                value={id}
+                onChange={e => setId(e.target.value)}
                 icon={RiUserLine}
               />
               <Input
@@ -79,19 +91,15 @@ export const BindHEU = () => {
                 placeholder="密码"
                 type="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 icon={RiLockPasswordLine}
               />
             </VStack>
           </ModalBody>
 
           <ModalFooter py="6">
-            <Button
-              colorScheme="purple"
-              mr="4"
-              type="submit"
-              form="bind-account"
-              isLoading={isLoading}
-            >
+            <Button colorScheme="purple" mr="4" onClick={handleBind}>
               绑定
             </Button>
             <Button onClick={onClose}>取消</Button>

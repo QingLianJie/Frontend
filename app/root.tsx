@@ -1,21 +1,19 @@
 import { ChakraProvider, extendTheme, Heading } from '@chakra-ui/react'
 import NProgress from 'nprogress'
 import styles from 'nprogress/nprogress.css'
-import { ReactNode, useEffect } from 'react'
+import type { ReactNode } from 'react'
+import { useEffect } from 'react'
+import type { LinksFunction, LoaderFunction, MetaFunction } from 'remix'
 import {
   json,
   Links,
-  LinksFunction,
   LiveReload,
-  LoaderFunction,
   Meta,
-  MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
   useCatch,
   useLoaderData,
-  useLocation,
   useTransition,
 } from 'remix'
 import version from '~/version.json'
@@ -34,10 +32,18 @@ const chakraTheme = extendTheme({
   fonts: { body: fontSans, heading: fontSans, mono: fontMono },
   fontSizes: { smd: '0.925rem', mdl: '1.075rem' },
   styles: {
-    global: { html: { scrollPadding: '6.5rem', overflowY: 'scroll' } },
+    global: {
+      html: { scrollPadding: '6.5rem', overflowY: 'scroll' },
+      'a:hover': { textDecoration: 'none' },
+    },
   },
   initialColorMode: 'system',
   useSystemColorMode: true,
+  components: {
+    Link: {
+      baseStyle: { _hover: { textDecoration: 'none' } },
+    },
+  },
 })
 
 export const meta: MetaFunction = () => ({

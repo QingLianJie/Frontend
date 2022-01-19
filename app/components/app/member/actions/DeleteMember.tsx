@@ -9,6 +9,7 @@ export const DeleteMember = () => {
   const { member } = useLoaderData<MemberLoader>()
   const fetcher = useFetcher<IResponse<MemberType>>()
   const isLoading = fetcher.state !== 'idle'
+  const isDone = fetcher.state === 'loading'
 
   const handleDeleteMember = () => {
     if (member?.email) {
@@ -21,7 +22,7 @@ export const DeleteMember = () => {
 
   return (
     <>
-      <ResponseToast action={fetcher.data} />
+      <ResponseToast action={fetcher.data} state={isDone} />
       <ListButton
         text="删除账号"
         icon={RiDeleteBinLine}

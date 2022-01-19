@@ -1,3 +1,8 @@
+export interface IAccount {
+  id: string
+  password: string
+}
+
 export type ResponseStatus = '可以' | '不行' | '有问题'
 
 export type MemberType =

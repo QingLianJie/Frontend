@@ -1,30 +1,23 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import type { ActionFunction, LoaderFunction } from 'remix'
-import {
-  json,
-  redirect,
-  useActionData,
-  useNavigate,
-  useTransition,
-} from 'remix'
+import { json, redirect, useActionData, useTransition } from 'remix'
 import { Notes } from '~/components/app/home/Notes'
-import { Controls } from '~/components/app/member/Controls'
 import { Comments } from '~/components/app/member/comments/Comments'
+import { Controls } from '~/components/app/member/Controls'
 import { Help } from '~/components/app/member/Help'
 import { Profile } from '~/components/app/member/Profile'
+import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import comments from '~/contents/mocks/member/comments/comments.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
 import { commitSession, getSession } from '~/sessions'
 import type {
-  MemberType,
   IMember,
   IMemberComment,
   INotes,
   IResponse,
+  MemberType,
 } from '~/types'
-import { useResponseToast } from '~/utils/hooks'
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles }]
@@ -41,7 +34,6 @@ export const action: ActionFunction = async ({ request }) => {
         status: '可以',
         type: '删除账号',
         message: '已删除账号及评论数据',
-        to: '/',
       },
       { headers: { 'Set-Cookie': await commitSession(session) } }
     )
@@ -60,31 +52,17 @@ export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))
   const member = session.get('member')
 
-  if (member)
+  if (member) {
     return json<MemberLoader>(
       { notes, member, comments },
       { headers: { 'Set-Cookie': await commitSession(session) } }
     )
+  }
 
-  return redirect('/member/login?from=/member', {
-    headers: { 'Set-Cookie': await commitSession(session) },
-  })
+  return redirect('/member/login?from=/member')
 }
 
 export default function MemberPage() {
-  const transition = useTransition()
-
-  const action = useActionData<IResponse<MemberType>>()
-  const navigate = useNavigate()
-  const toast = useResponseToast<MemberType>()
-
-  useEffect(() => {
-    if (action && transition.state === 'idle') {
-      toast({ ...action })
-      if (action.status === '可以' && action.to) navigate(action.to)
-    }
-  }, [action, transition])
-
   return (
     <Grid
       w="full"

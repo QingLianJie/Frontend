@@ -35,6 +35,7 @@ export const GetExtension = () => {
         onClose={onClose}
         size="sm"
         isCentered
+        blockScrollOnMount={false}
       >
         <ModalOverlay />
         <ModalContent _dark={{ bg: 'gray.800' }} mx="4">
@@ -60,22 +61,16 @@ export const GetExtension = () => {
             <Button
               mr="4"
               as={Link}
-              href="https://yuque.com/lifeni/qing/app"
+              href="https://yuque.com/lifeni/qing/extension"
               isExternal
-              _hover={{
-                textDecor: 'none',
-              }}
             >
               插件
             </Button>
             <Button
               mr="4"
               as={Link}
-              href="https://yuque.com/lifeni/qing/extension"
+              href="https://yuque.com/lifeni/qing/app"
               isExternal
-              _hover={{
-                textDecor: 'none',
-              }}
             >
               App
             </Button>
