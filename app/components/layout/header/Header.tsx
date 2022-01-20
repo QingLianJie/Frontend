@@ -54,10 +54,23 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => {
       </Section>
       <Section
         align={{ base: 'center', md: 'left' }}
-        d={{
-          base: scroll ? (scroll.top < 96 ? 'flex' : 'none') : 'flex',
-          md: 'flex',
+        visibility={{
+          base: scroll ? (scroll.top < 48 ? 'visible' : 'hidden') : 'visible',
+          md: 'visible',
         }}
+        opacity={{
+          base: scroll ? (scroll.top < 48 ? '1' : '0') : '1',
+          md: '1',
+        }}
+        transform={{
+          base: scroll
+            ? scroll.top < 48
+              ? 'translateY(0)'
+              : 'translateY(-36px)'
+            : 'none',
+          md: 'none',
+        }}
+        transition="all 0.2s"
       >
         <RemixLink to="/">
           <Heading

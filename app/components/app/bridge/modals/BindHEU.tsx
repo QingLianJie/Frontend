@@ -11,6 +11,7 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
+import { useKeyPress } from 'ahooks'
 import localforage from 'localforage'
 import { useContext, useRef, useState } from 'react'
 import { RiLink, RiLockPasswordLine, RiUserLine } from 'react-icons/ri'
@@ -39,6 +40,12 @@ export const BindHEU = () => {
     toast({ status: '可以', title: '已绑定 HEU 账号到此设备' })
     onClose()
   }
+
+  const ref = useRef<HTMLButtonElement>(null)
+  useKeyPress(['enter'], e => {
+    e.preventDefault()
+    ref.current?.click()
+  })
 
   return (
     <>
@@ -99,7 +106,7 @@ export const BindHEU = () => {
           </ModalBody>
 
           <ModalFooter py="6">
-            <Button colorScheme="purple" mr="4" onClick={handleBind}>
+            <Button ref={ref} colorScheme="purple" mr="4" onClick={handleBind}>
               绑定
             </Button>
             <Button onClick={onClose}>取消</Button>
