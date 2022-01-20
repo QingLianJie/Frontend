@@ -1,7 +1,8 @@
 import type { InputProps, SystemProps } from '@chakra-ui/react'
-import { Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Flex, Grid, GridItem, Input } from '@chakra-ui/react'
 import { groupBy, sortBy } from 'lodash'
-import { Form, json, LoaderFunction } from 'remix'
+import type { LoaderFunction } from 'remix'
+import { Form, json } from 'remix'
 import { Bridge } from '~/components/app/bridge/Bridge'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { External } from '~/components/app/home/links/External'
@@ -103,6 +104,6 @@ interface SearchProps extends SystemProps, InputProps {}
 
 const SearchBar = ({ ...props }: SearchProps) => (
   <Flex as={Form} method="get" action="/courses" {...props}>
-    <Search name="name" placeholder="搜索课程数据" />
+    <Search name="name" placeholder="搜索课程名称或 ID" />
   </Flex>
 )

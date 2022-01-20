@@ -79,12 +79,12 @@ export default function CoursesPage() {
       </GridItem>
 
       <GridItem
-        rowSpan={{ base: 1, sm: 2, md: 1 }}
         rowStart={{ base: 1, sm: 1, md: 1 }}
         colStart={{ base: 1, sm: 2, md: 2 }}
         d="grid"
         gridTemplateColumns="100%"
         gridGap="4"
+        rowSpan={{ base: 1, sm: 2, md: 1 }}
       >
         <TableContext.Provider value={{ columns, setColumns }}>
           <ToolBar />

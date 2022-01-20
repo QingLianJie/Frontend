@@ -43,8 +43,10 @@ export const BindHEU = () => {
 
   const ref = useRef<HTMLButtonElement>(null)
   useKeyPress(['enter'], e => {
-    e.preventDefault()
-    ref.current?.click()
+    if (isOpen) {
+      e.preventDefault()
+      ref.current?.click()
+    }
   })
 
   return (
