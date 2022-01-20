@@ -1,8 +1,7 @@
 import type { InputProps, SystemProps } from '@chakra-ui/react'
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
 import { groupBy, sortBy } from 'lodash'
-import type { LoaderFunction } from 'remix'
-import { json } from 'remix'
+import { Form, json, LoaderFunction } from 'remix'
 import { Bridge } from '~/components/app/bridge/Bridge'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { External } from '~/components/app/home/links/External'
@@ -103,5 +102,7 @@ export default function IndexPage() {
 interface SearchProps extends SystemProps, InputProps {}
 
 const SearchBar = ({ ...props }: SearchProps) => (
-  <Search placeholder="搜索课程" {...props} />
+  <Flex as={Form} method="get" action="/courses" {...props}>
+    <Search name="name" placeholder="搜索课程数据" />
+  </Flex>
 )

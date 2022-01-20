@@ -19,6 +19,8 @@ export const EmailRegex =
 export const PasswordRegexText = '^.*(?=.{8,24})(?=.*[A-Za-z!@#$%^&*?]).*$'
 
 export const listIt = (arr: string[]) => {
+  // VSCode 提示 Intl 没有 ListFormat 类型，明明 Node 已经支持了
+  // @ts-ignore
   const intl = new Intl.ListFormat('zh-CN', { style: 'long' })
   return intl.format(arr)
 }

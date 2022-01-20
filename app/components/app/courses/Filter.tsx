@@ -6,7 +6,11 @@ import { Card } from '~/components/common/Card'
 import { NumberInput } from '~/components/common/NumberInput'
 import { courseType } from '~/contents/courses/query'
 
-export const Filter = () => {
+interface FilterProps {
+  id: string
+}
+
+export const Filter = ({ id }: FilterProps) => {
   const transition = useTransition()
 
   useEffect(() => {
@@ -21,7 +25,7 @@ export const Filter = () => {
   }, [transition])
 
   return (
-    <Card title="筛选课程">
+    <Card title="筛选课程" id={id}>
       <VStack
         as={Form}
         method="get"
@@ -38,7 +42,8 @@ export const Filter = () => {
           placeholder="输入课程名或课程 ID"
           bg="white"
           _dark={{ bg: 'gray.800' }}
-          size="sm"
+          fontSize="smd"
+          h="9"
           transition="all 0.2s"
           rounded="md"
         />
@@ -48,7 +53,8 @@ export const Filter = () => {
           placeholder="课程类型"
           bg="white"
           _dark={{ bg: 'gray.800' }}
-          size="sm"
+          fontSize="smd"
+          h="9"
           rounded="md"
           transition="all 0.2s"
         >
@@ -64,7 +70,8 @@ export const Filter = () => {
           placeholder="考核方式"
           bg="white"
           _dark={{ bg: 'gray.800' }}
-          size="sm"
+          fontSize="smd"
+          h="9"
           rounded="md"
           transition="all 0.2s"
         >
@@ -80,7 +87,8 @@ export const Filter = () => {
           placeholder="课程分类"
           bg="white"
           _dark={{ bg: 'gray.800' }}
-          size="sm"
+          fontSize="smd"
+          h="9"
           rounded="md"
           transition="all 0.2s"
         >
@@ -99,7 +107,8 @@ export const Filter = () => {
           max={10}
           step={0.5}
           rounded="md"
-          size="sm"
+          fontSize="smd"
+          h="9"
         />
 
         <NumberInput
@@ -110,14 +119,16 @@ export const Filter = () => {
           max={200}
           step={1}
           rounded="md"
-          size="sm"
+          fontSize="smd"
+          h="9"
         />
 
         <Button
           type="submit"
           colorScheme="red"
           isFullWidth
-          size="sm"
+          fontSize="smd"
+          h="9"
           pr="6"
           leftIcon={<Icon as={RiSearchLine} aria-label="搜索" fontSize="smd" />}
           iconSpacing="3"
@@ -127,7 +138,8 @@ export const Filter = () => {
         <Button
           type="reset"
           isFullWidth
-          size="sm"
+          fontSize="smd"
+          h="9"
           pr="6"
           leftIcon={<Icon as={RiEraserLine} aria-label="清空" fontSize="smd" />}
           iconSpacing="3"

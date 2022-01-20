@@ -17,14 +17,21 @@ interface NumberInputProps extends ChakraNumberInputProps {
 export const NumberInput = ({
   addon,
   size,
+  h,
+  fontSize,
   rounded,
   placeholder,
   ...props
 }: NumberInputProps) => {
   return (
-    <InputGroup w="full" size={size} rounded={rounded}>
+    <InputGroup w="full" size={size} h={h} rounded={rounded}>
       {addon && (
-        <InputLeftAddon rounded={rounded} transform="all 0.2s">
+        <InputLeftAddon
+          rounded={rounded}
+          fontSize={fontSize}
+          h={h}
+          transform="all 0.2s"
+        >
           {addon}
         </InputLeftAddon>
       )}
@@ -33,11 +40,13 @@ export const NumberInput = ({
           bg="white"
           _dark={{ bg: 'gray.800' }}
           placeholder={placeholder}
+          h={h}
           roundedLeft="0"
           roundedRight={rounded}
+          fontSize={fontSize}
           transform="all 0.2s"
         />
-        <NumberInputStepper>
+        <NumberInputStepper h={h}>
           <NumberIncrementStepper />
           <NumberDecrementStepper />
         </NumberInputStepper>

@@ -35,8 +35,8 @@ export const Bridge = ({ ...props }: BridgeProps) => {
       const store = await localforage.getItem<IAccount>('account')
       if (store) {
         setId(store.id)
-        setIsLoaded(true)
       }
+      setIsLoaded(true)
     }
     check()
   }, [])

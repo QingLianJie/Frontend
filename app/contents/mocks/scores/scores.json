@@ -13,9 +13,9 @@
                 "period": "48",
                 "score": "优秀",
                 "statistics": {
-                    "excellent": "634",
-                    "fail": "24",
-                    "total": "2145"
+                    "excellent": 634,
+                    "fail": 24,
+                    "total": 2145
                 }
             }
         ]

@@ -1,7 +1,7 @@
 {
     "total": 452,
     "pages": {
-        "total": 6,
+        "total": 24,
         "current": 1
     },
     "courses": [
@@ -14,9 +14,135 @@
             "credit": "3",
             "period": "48",
             "statistics": {
-                "excellent": "634",
-                "fail": "24",
-                "total": "2145"
+                "excellent": 634,
+                "fail": 24,
+                "total": 2145
+            }
+        },
+        {
+            "name": "计算机图形学",
+            "id": "201406322",
+            "type": "限选",
+            "category": "专业选修课程",
+            "test": "考查",
+            "credit": "2",
+            "period": "32",
+            "statistics": {
+                "excellent": 33,
+                "fail": 1,
+                "total": 106
+            }
+        },
+        {
+            "name": "日语初级（入门）",
+            "id": "201412061",
+            "type": "公选",
+            "category": "专业拓展类",
+            "test": "考查",
+            "credit": "2.5",
+            "period": "56",
+            "statistics": {
+                "excellent": 25,
+                "fail": 5,
+                "total": 120
+            }
+        },
+        {
+            "id": "201910600201",
+            "name": "计算思维（一）",
+            "credit": "1",
+            "period": "24",
+            "test": "考查",
+            "type": "必修",
+            "category": "19大类教育课程",
+            "statistics": {
+                "total": 6216,
+                "excellent": 216,
+                "fail": 62
+            }
+        },
+        {
+            "id": "201911200001",
+            "name": "大学英语（一）",
+            "credit": "2",
+            "period": "32",
+            "test": "考试",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 5945,
+                "excellent": 945,
+                "fail": 59
+            }
+        },
+        {
+            "id": "201912200001",
+            "name": "思想道德修养与法律基础",
+            "credit": "3",
+            "period": "48",
+            "test": "考试",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 5935,
+                "excellent": 935,
+                "fail": 59
+            }
+        },
+        {
+            "id": "201912400203",
+            "name": "线性代数与解析几何A",
+            "credit": "3.5",
+            "period": "72",
+            "test": "考试",
+            "type": "必修",
+            "category": "19大类教育课程",
+            "statistics": {
+                "total": 5406,
+                "excellent": 406,
+                "fail": 54
+            }
+        },
+        {
+            "id": "201912400201",
+            "name": "工科数学分析（一）",
+            "credit": "4.5",
+            "period": "88",
+            "test": "考试",
+            "type": "必修",
+            "category": "19大类教育课程",
+            "statistics": {
+                "total": 5405,
+                "excellent": 405,
+                "fail": 54
+            }
+        },
+        {
+            "id": "201911700001",
+            "name": "工程伦理与工程认识",
+            "credit": "1",
+            "period": "1",
+            "test": "考查",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 5324,
+                "excellent": 324,
+                "fail": 53
+            }
+        },
+        {
+            "id": "201912200002",
+            "name": "中国近现代史纲要",
+            "credit": "3",
+            "period": "48",
+            "test": "考试",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 4400,
+                "excellent": 400,
+                "fail": 44
             }
         }
     ]

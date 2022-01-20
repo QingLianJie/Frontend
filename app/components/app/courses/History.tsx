@@ -1,4 +1,4 @@
-import { Text, Skeleton, VStack, Link } from '@chakra-ui/react'
+import { Link, List, ListItem, Skeleton, Text, VStack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Link as RemixLink, useTransition } from 'remix'
 import { Card } from '~/components/common/Card'
@@ -33,25 +33,26 @@ export const History = () => {
   }
 
   return (
-    <Card title="历史搜索">
+    <Card title="历史筛选">
       <VStack w="full" px="5" pb="6" pt="3">
         {history.length !== 0 ? (
-          <VStack w="full" px="1" spacing="2" align="flex-start">
-            {history.map(item => (
-              <Link
-                as={RemixLink}
-                to={item}
-                key={item}
-                w="fit-content"
-                isTruncated
-                fontSize="smd"
-                color="purple.500"
-                _dark={{ color: 'blue.400' }}
-                _hover={{ textDecor: 'underline' }}
-                textUnderlineOffset="0.25rem"
-              >
-                {parseSearchParams(item)}
-              </Link>
+          <VStack as={List} w="full" px="1" spacing="2" align="flex-start">
+            {history.map((item, index) => (
+              <ListItem key={index}>
+                <Link
+                  as={RemixLink}
+                  to={item}
+                  w="fit-content"
+                  isTruncated
+                  fontSize="smd"
+                  color="purple.500"
+                  _dark={{ color: 'blue.400' }}
+                  _hover={{ textDecor: 'underline' }}
+                  textUnderlineOffset="0.25rem"
+                >
+                  {parseSearchParams(item)}
+                </Link>
+              </ListItem>
             ))}
           </VStack>
         ) : (

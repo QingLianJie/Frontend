@@ -55,6 +55,15 @@ export interface IMember {
   email?: string
 }
 
+export interface IPaginatedCourses {
+  total: number
+  pages: {
+    total: number
+    current: number
+  }
+  courses: ICourse[]
+}
+
 export interface ICourse {
   name: string
   id: string
@@ -68,4 +77,20 @@ export interface ICourse {
     fail: number
     total: number
   }
+}
+
+type TableRow = {
+  excellent: string
+  fail: string
+  tooltip: {
+    excellent: string
+    fail: string
+  }
+} & Omit<ICourse, 'statistics'>
+
+type TableColumn = {
+  name: string
+  key: keyof TableRow
+  numeric?: boolean
+  hide?: boolean
 }
