@@ -62,7 +62,7 @@ export const External = ({ id, ...props }: ExternalProps) => (
         color="gray.500"
         _dark={{ color: 'gray.400' }}
       >
-        想要添加其他与学校有关的链接？通过&nbsp;
+        想要添加其他与学校有关的链接？通过{' '}
         <Link
           href="https://www.yuque.com/lifeni/qing/contact"
           isExternal
@@ -77,8 +77,8 @@ export const External = ({ id, ...props }: ExternalProps) => (
           textUnderlineOffset="0.25rem"
         >
           联系方式
-        </Link>
-        &nbsp;告诉我们。
+        </Link>{' '}
+        告诉我们。
       </Text>
     </VStack>
   </Card>

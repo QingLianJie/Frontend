@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { RiFilterLine, RiPhoneFindLine } from 'react-icons/ri'
-import { useLoaderData } from 'remix'
+import { Link as RemixLink, useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
 import type { CoursesLoader } from '~/routes/courses'
 import { TableContext } from '~/routes/courses'
@@ -36,19 +36,30 @@ export const ToolBar = () => {
   return (
     <Card>
       <HStack px="0" py="0" justify="space-between" w="full">
-        <Text
+        <Button
+          as={RemixLink}
+          to="#filter"
           color="gray.500"
           _dark={{ color: 'gray.400' }}
+          h="auto"
           d="flex"
           alignItems="center"
+          variant="ghost"
+          py="4"
           px="6"
-          isTruncated
           fontSize="smd"
           fontWeight="bold"
+          rounded="none"
+          roundedLeft="md"
         >
           <Icon as={RiPhoneFindLine} aria-label="搜索" mr="4" fontSize="lg" />
-          查询到 {courses.total} 个课程，共 {courses.pages.total} 页
-        </Text>
+          <Text as="span" d={{ base: 'inline', md: 'none' }} isTruncated>
+            {courses.total} 个课程，点击跳转搜索
+          </Text>
+          <Text as="span" d={{ base: 'none', md: 'inline' }} isTruncated>
+            查询到 {courses.total} 个课程，共 {courses.pages.total} 页
+          </Text>
+        </Button>
         <Menu closeOnSelect={false}>
           <MenuButton
             as={Button}

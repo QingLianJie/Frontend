@@ -46,7 +46,7 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => {
       pb={{ base: '5', md: isNotTop ? '2' : '5' }}
       gap="8"
       zIndex="100"
-      backdropFilter={{ base: 'none', md: isNotTop ? 'blur(12px)' : 'none' }}
+      backdropFilter={{ base: 'none', md: 'blur(12px)' }}
       bg={{ base: 'transparent', md: '#EDF2F788' }}
       _dark={{ bg: { base: 'transparent', md: '#17192388' } }}
       transition="all 0.2s"

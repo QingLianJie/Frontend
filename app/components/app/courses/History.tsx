@@ -33,7 +33,7 @@ export const History = () => {
   }
 
   return (
-    <Card title="历史筛选">
+    <Card title="筛选历史">
       <VStack w="full" px="5" pb="6" pt="3">
         {history.length !== 0 ? (
           <VStack as={List} w="full" px="1" spacing="2" align="flex-start">

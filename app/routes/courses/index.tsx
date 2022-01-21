@@ -1,5 +1,13 @@
 import type { ButtonProps, SystemProps } from '@chakra-ui/react'
-import { Grid, GridItem, Icon, IconButton, Tooltip } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertIcon,
+  Grid,
+  GridItem,
+  Icon,
+  IconButton,
+  Tooltip,
+} from '@chakra-ui/react'
 import { createContext, Dispatch, useState } from 'react'
 import { RiFullscreenLine } from 'react-icons/ri'
 import type { LoaderFunction } from 'remix'
@@ -13,13 +21,13 @@ import courses from '~/contents/mocks/courses/courses.json'
 import type { IPaginatedCourses, TableColumn } from '~/types'
 
 const defaultColumns: TableColumn[] = [
+  { name: '课程 ID', key: 'id' },
   { name: '课程名', key: 'name' },
-  { name: '类型', key: 'type' },
   { name: '学分', key: 'credit', numeric: true },
   { name: '学时', key: 'period', numeric: true },
+  { name: '类型', key: 'type' },
   { name: '考核', key: 'test' },
   { name: '分类', key: 'category' },
-  { name: '课程 ID', key: 'id' },
   { name: '优秀率', key: 'excellent', numeric: true },
   { name: '挂科率', key: 'fail', numeric: true },
 ]
@@ -61,26 +69,15 @@ export default function CoursesPage() {
       justifyContent="center"
       templateColumns={{
         base: 'minmax(0, 1fr)',
-        sm: 'minmax(0, 3fr) minmax(0, 5fr)',
-        md: 'minmax(0, 1fr) minmax(0, 3fr)',
-        xl: 'minmax(0, 18rem) minmax(0, 3fr)',
+        sm: 'minmax(0, 5fr) minmax(0, 3fr)',
+        md: 'minmax(0, 3fr) minmax(0, 1fr)',
+        xl: 'minmax(0, 3fr) minmax(0, 18rem)',
       }}
       gap="4"
     >
       <GridItem
-        d="grid"
-        gridTemplateColumns="100%"
-        gridGap="4"
-        rowStart={{ base: 2, sm: 1, md: 1 }}
-        colStart={{ base: 1, sm: 1, md: 1 }}
-      >
-        <Filter id="filter" />
-        <History />
-      </GridItem>
-
-      <GridItem
         rowStart={{ base: 1, sm: 1, md: 1 }}
-        colStart={{ base: 1, sm: 2, md: 2 }}
+        colStart={{ base: 1, sm: 1, md: 1 }}
         d="grid"
         gridTemplateColumns="100%"
         gridGap="4"
@@ -92,6 +89,18 @@ export default function CoursesPage() {
           <Pagination />
         </TableContext.Provider>
       </GridItem>
+
+      <GridItem
+        d="grid"
+        gridTemplateColumns="100%"
+        gridGap="4"
+        rowStart={{ base: 2, sm: 1, md: 1 }}
+        colStart={{ base: 1, sm: 2, md: 2 }}
+      >
+        <Filter id="filter" />
+        <History />
+      </GridItem>
+
       <MaxWidthFab
         d={{ base: 'none', xl: 'flex' }}
         onClick={() => setIsMaxWidth(v => !v)}

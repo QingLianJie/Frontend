@@ -1,7 +1,15 @@
-import { Button, Icon, Input, Select, VStack } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import {
+  Button,
+  Icon,
+  Input,
+  Select,
+  VStack,
+  Text,
+  Link,
+} from '@chakra-ui/react'
+import { useEffect, useRef } from 'react'
 import { RiEraserLine, RiSearchLine } from 'react-icons/ri'
-import { Form, useTransition } from 'remix'
+import { Form, useLocation, useTransition } from 'remix'
 import { Card } from '~/components/common/Card'
 import { NumberInput } from '~/components/common/NumberInput'
 import { courseType } from '~/contents/courses/query'
@@ -11,7 +19,9 @@ interface FilterProps {
 }
 
 export const Filter = ({ id }: FilterProps) => {
+  const ref = useRef<HTMLInputElement>(null)
   const transition = useTransition()
+  const location = useLocation()
 
   useEffect(() => {
     if (transition.state === 'submitting') {
@@ -24,6 +34,12 @@ export const Filter = ({ id }: FilterProps) => {
     }
   }, [transition])
 
+  useEffect(() => {
+    if (location.hash === '#filter' && ref.current) {
+      ref.current.focus()
+    }
+  }, [location])
+
   return (
     <Card title="筛选课程" id={id}>
       <VStack
@@ -32,11 +48,12 @@ export const Filter = ({ id }: FilterProps) => {
         w="full"
         align="flex-start"
         px="5"
-        pt="3"
+        pt="4"
         pb="5"
         spacing="3"
       >
         <Input
+          ref={ref}
           type="search"
           name="name"
           placeholder="输入课程名或课程 ID"
@@ -146,6 +163,34 @@ export const Filter = ({ id }: FilterProps) => {
         >
           重置筛选
         </Button>
+
+        <Text
+          px="1"
+          pb="1"
+          pt="2"
+          fontSize="sm"
+          lineHeight="tall"
+          color="gray.500"
+          _dark={{ color: 'gray.400' }}
+        >
+          由于新版网站统计方式变化，所以部分课程数据可能会出现误差或错误，仅供参考，
+          <Link
+            href="https://www.yuque.com/lifeni/qing/collect-data"
+            isExternal
+            color="purple.500"
+            _hover={{ color: 'purple.700' }}
+            _dark={{
+              color: 'blue.400',
+              _hover: {
+                color: 'blue.300',
+              },
+            }}
+            textUnderlineOffset="0.25rem"
+          >
+            点击这里
+          </Link>{' '}
+          了解更多。
+        </Text>
       </VStack>
     </Card>
   )

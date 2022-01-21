@@ -15,7 +15,7 @@
             "category": "19大类教育课程",
             "statistics": {
                 "total": 6216,
-                "excellent": 216,
+                "excellent": 654,
                 "fail": 62
             }
         },
@@ -29,8 +29,8 @@
             "category": "19通识教育必修课程",
             "statistics": {
                 "total": 5945,
-                "excellent": 945,
-                "fail": 59
+                "excellent": 752,
+                "fail": 68
             }
         },
         {
@@ -71,8 +71,8 @@
             "category": "19大类教育课程",
             "statistics": {
                 "total": 3873,
-                "excellent": 123,
-                "fail": 45
+                "excellent": 478,
+                "fail": 298
             }
         },
         {
@@ -85,8 +85,8 @@
             "category": "19人文素质与文化传承（A）",
             "statistics": {
                 "total": 3862,
-                "excellent": 123,
-                "fail": 45
+                "excellent": 598,
+                "fail": 23
             }
         },
         {
@@ -99,8 +99,8 @@
             "category": "19通识教育必修课程",
             "statistics": {
                 "total": 3701,
-                "excellent": 123,
-                "fail": 45
+                "excellent": 602,
+                "fail": 24
             }
         },
         {
@@ -113,8 +113,8 @@
             "category": "19通识教育必修课程",
             "statistics": {
                 "total": 3484,
-                "excellent": 123,
-                "fail": 45
+                "excellent": 368,
+                "fail": 72
             }
         },
         {
@@ -127,8 +127,8 @@
             "category": "19大类教育课程",
             "statistics": {
                 "total": 3266,
-                "excellent": 123,
-                "fail": 45
+                "excellent": 289,
+                "fail": 320
             }
         },
         {
@@ -141,8 +141,8 @@
             "category": "19通识教育必修课程",
             "statistics": {
                 "total": 3527,
-                "excellent": 123,
-                "fail": 45
+                "excellent": 528,
+                "fail": 30
             }
         }
     ]

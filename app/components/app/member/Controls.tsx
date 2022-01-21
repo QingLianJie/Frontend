@@ -33,7 +33,7 @@ export const Controls = () => {
         color="gray.500"
         _dark={{ color: 'gray.400' }}
       >
-        没有头像？我们使用&nbsp;
+        没有头像？我们使用{' '}
         <Link
           href="https://gravatar.com/"
           isExternal
@@ -48,8 +48,8 @@ export const Controls = () => {
           textUnderlineOffset="0.25rem"
         >
           Gravatar
-        </Link>
-        &nbsp;来提供头像，可以去注册一个。
+        </Link>{' '}
+        来提供头像，可以去注册一个。
       </Text>
     </Card>
   )
