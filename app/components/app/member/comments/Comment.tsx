@@ -18,11 +18,10 @@ export const Comment = ({ content, date, course }: CommentProps) => (
       <Text fontSize="sm" px="1" color="gray.500" _dark={{ color: 'gray.400' }}>
         {calendarTime(date)}
       </Text>
-      <Text lineHeight="tall" px="1">
+      <Text lineHeight="tall" p="1">
         {content}
       </Text>
       <HStack w="full" justifyContent="space-between" alignItems="center">
-        \
         <CoursePopover course={course}>
           <Link
             as={RemixLink}

@@ -11,6 +11,7 @@ interface LayoutProps {
 
 export const Layout = ({ title, isCenter, children }: LayoutProps) => (
   <Flex
+    pt="20"
     minH="100vh"
     flexDir="column"
     align="center"
@@ -29,6 +30,7 @@ export const Layout = ({ title, isCenter, children }: LayoutProps) => (
       align="center"
       justify={isCenter ? 'center' : 'flex-start'}
       flex="1"
+      pt="2"
     >
       {children}
     </Flex>

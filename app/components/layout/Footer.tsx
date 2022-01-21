@@ -17,16 +17,18 @@ export const Footer = () => {
     <HStack
       as="footer"
       px={{ base: '8', sm: '10' }}
-      pt={{ base: '12', sm: '4' }}
+      pt={{ base: '8', sm: '4' }}
       pb={{ base: '8', sm: '8' }}
       color="gray.500"
       fontSize="smd"
       align="center"
       justify="stretch"
       w="full"
-      spacing="4"
+      spacing="0"
     >
-      <Text flex="1">清廉街 © {new Date().getFullYear()}</Text>
+      <Text flex="1" d={{ base: 'none', md: 'flex' }} alignItems="center">
+        清廉街 © {new Date().getFullYear()}
+      </Text>
 
       <Flex flex="1" justify="center">
         <Image
@@ -38,7 +40,12 @@ export const Footer = () => {
         />
       </Flex>
 
-      <Flex flex="1" justify="flex-end">
+      <Flex
+        flex="1"
+        justify="flex-end"
+        d={{ base: 'none', md: 'flex' }}
+        alignItems="center"
+      >
         <FooterLink
           href="https://beian.miit.gov.cn/"
           name="黑ICP备2021003925号-1"

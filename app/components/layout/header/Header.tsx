@@ -29,21 +29,24 @@ interface HeaderProps {
 
 export const Header = ({ title = '清廉街' }: HeaderProps) => {
   const scroll = useScroll()
+  const isTop = scroll && scroll?.top < 48
+  const isNotTop = scroll && scroll?.top >= 4
 
   return (
     <Flex
       as="header"
-      position="sticky"
-      top={{ base: '0', md: '-2' }}
+      position="fixed"
+      top="0 "
+      left="0"
       w="full"
       align="center"
       justify="stretch"
       px={{ base: '6', sm: '8' }}
-      pt={{ base: '5', md: '5' }}
-      pb={{ base: '5', md: '3' }}
+      pt={{ base: '5', md: isNotTop ? '2' : '5' }}
+      pb={{ base: '5', md: isNotTop ? '2' : '5' }}
       gap="8"
       zIndex="100"
-      backdropFilter={{ base: 'none', md: 'blur(12px)' }}
+      backdropFilter={{ base: 'none', md: isNotTop ? 'blur(12px)' : 'none' }}
       bg={{ base: 'transparent', md: '#EDF2F788' }}
       _dark={{ bg: { base: 'transparent', md: '#17192388' } }}
       transition="all 0.2s"
@@ -55,16 +58,16 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => {
       <Section
         align={{ base: 'center', md: 'left' }}
         visibility={{
-          base: scroll ? (scroll.top < 48 ? 'visible' : 'hidden') : 'visible',
+          base: scroll ? (isTop ? 'visible' : 'hidden') : 'visible',
           md: 'visible',
         }}
         opacity={{
-          base: scroll ? (scroll.top < 48 ? '1' : '0') : '1',
+          base: scroll ? (isTop ? '1' : '0') : '1',
           md: '1',
         }}
         transform={{
           base: scroll
-            ? scroll.top < 48
+            ? isTop
               ? 'translateY(0)'
               : 'translateY(-36px)'
             : 'none',

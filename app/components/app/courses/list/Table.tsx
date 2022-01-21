@@ -1,4 +1,4 @@
-import type { CSSObject, SystemProps } from '@chakra-ui/react'
+import { CSSObject, SystemProps } from '@chakra-ui/react'
 import {
   Flex,
   Link,
@@ -9,6 +9,7 @@ import {
   Thead,
   Tooltip,
   Tr,
+  Tfoot,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { Link as RemixLink, useLoaderData } from 'remix'
@@ -69,14 +70,7 @@ export const Table = () => {
           </Thead>
           <Tbody>
             {rows.map(row => (
-              <Tr
-                key={row.id}
-                sx={{
-                  ':last-of-type td': {
-                    borderBottomWidth: 0,
-                  },
-                }}
-              >
+              <Tr key={row.id}>
                 {columns.map(({ key }) =>
                   key === 'excellent' || key === 'fail' ? (
                     <ScoreCell
@@ -104,6 +98,23 @@ export const Table = () => {
               </Tr>
             ))}
           </Tbody>
+          <Tfoot>
+            <Tr>
+              {columns.map(({ name, key, numeric }) => (
+                <Th
+                  key={key}
+                  whiteSpace="nowrap"
+                  fontSize="smd"
+                  px="3"
+                  py="4"
+                  transition="all 0.2s"
+                  isNumeric={numeric}
+                >
+                  {name}
+                </Th>
+              ))}
+            </Tr>
+          </Tfoot>
         </ChakraTable>
       </Flex>
     </Card>
@@ -113,7 +124,7 @@ export const Table = () => {
 const CellStyles: SystemProps & { sx: CSSObject } = {
   whiteSpace: 'nowrap',
   px: '3',
-  py: '3.5',
+  py: '4',
   sx: { fontVariantNumeric: 'normal' },
   fontSize: 'smd',
   transition: 'all 0.2s',

@@ -6,48 +6,6 @@
     },
     "courses": [
         {
-            "name": "程序设计基础",
-            "id": "201406011",
-            "type": "必修",
-            "category": "自然科学与技术基础必修课",
-            "test": "考查",
-            "credit": "3",
-            "period": "48",
-            "statistics": {
-                "excellent": 634,
-                "fail": 24,
-                "total": 2145
-            }
-        },
-        {
-            "name": "计算机图形学",
-            "id": "201406322",
-            "type": "限选",
-            "category": "专业选修课程",
-            "test": "考查",
-            "credit": "2",
-            "period": "32",
-            "statistics": {
-                "excellent": 33,
-                "fail": 1,
-                "total": 106
-            }
-        },
-        {
-            "name": "日语初级（入门）",
-            "id": "201412061",
-            "type": "公选",
-            "category": "专业拓展类",
-            "test": "考查",
-            "credit": "2.5",
-            "period": "56",
-            "statistics": {
-                "excellent": 25,
-                "fail": 5,
-                "total": 120
-            }
-        },
-        {
             "id": "201910600201",
             "name": "计算思维（一）",
             "credit": "1",
@@ -90,48 +48,6 @@
             }
         },
         {
-            "id": "201912400203",
-            "name": "线性代数与解析几何A",
-            "credit": "3.5",
-            "period": "72",
-            "test": "考试",
-            "type": "必修",
-            "category": "19大类教育课程",
-            "statistics": {
-                "total": 5406,
-                "excellent": 406,
-                "fail": 54
-            }
-        },
-        {
-            "id": "201912400201",
-            "name": "工科数学分析（一）",
-            "credit": "4.5",
-            "period": "88",
-            "test": "考试",
-            "type": "必修",
-            "category": "19大类教育课程",
-            "statistics": {
-                "total": 5405,
-                "excellent": 405,
-                "fail": 54
-            }
-        },
-        {
-            "id": "201911700001",
-            "name": "工程伦理与工程认识",
-            "credit": "1",
-            "period": "1",
-            "test": "考查",
-            "type": "必修",
-            "category": "19通识教育必修课程",
-            "statistics": {
-                "total": 5324,
-                "excellent": 324,
-                "fail": 53
-            }
-        },
-        {
             "id": "201912200002",
             "name": "中国近现代史纲要",
             "credit": "3",
@@ -143,6 +59,90 @@
                 "total": 4400,
                 "excellent": 400,
                 "fail": 44
+            }
+        },
+        {
+            "id": "201912500201",
+            "name": "大学物理（一）",
+            "credit": "4",
+            "period": "72",
+            "test": "考试",
+            "type": "必修",
+            "category": "19大类教育课程",
+            "statistics": {
+                "total": 3873,
+                "excellent": 123,
+                "fail": 45
+            }
+        },
+        {
+            "id": "201931600001",
+            "name": "大学生心理健康教育",
+            "credit": "1.5",
+            "period": "24",
+            "test": "考查",
+            "type": "公选",
+            "category": "19人文素质与文化传承（A）",
+            "statistics": {
+                "total": 3862,
+                "excellent": 123,
+                "fail": 45
+            }
+        },
+        {
+            "id": "201911000001",
+            "name": "环境保护与可持续发展",
+            "credit": "2",
+            "period": "40",
+            "test": "考试",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 3701,
+                "excellent": 123,
+                "fail": 45
+            }
+        },
+        {
+            "id": "201911200003",
+            "name": "大学英语（三）",
+            "credit": "1.5",
+            "period": "32",
+            "test": "考试",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 3484,
+                "excellent": 123,
+                "fail": 45
+            }
+        },
+        {
+            "id": "201912500202",
+            "name": "大学物理（二）",
+            "credit": "4",
+            "period": "72",
+            "test": "考试",
+            "type": "必修",
+            "category": "19大类教育课程",
+            "statistics": {
+                "total": 3266,
+                "excellent": 123,
+                "fail": 45
+            }
+        },
+        {
+            "id": "201912200003",
+            "name": "马克思主义基本原理概论",
+            "credit": "3",
+            "period": "48",
+            "test": "考试",
+            "type": "必修",
+            "category": "19通识教育必修课程",
+            "statistics": {
+                "total": 3527,
+                "excellent": 123,
+                "fail": 45
             }
         }
     ]

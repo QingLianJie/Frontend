@@ -13,13 +13,13 @@ import courses from '~/contents/mocks/courses/courses.json'
 import type { IPaginatedCourses, TableColumn } from '~/types'
 
 const defaultColumns: TableColumn[] = [
-  { name: 'ID', key: 'id' },
   { name: '课程名', key: 'name' },
   { name: '类型', key: 'type' },
   { name: '学分', key: 'credit', numeric: true },
   { name: '学时', key: 'period', numeric: true },
   { name: '考核', key: 'test' },
   { name: '分类', key: 'category' },
+  { name: '课程 ID', key: 'id' },
   { name: '优秀率', key: 'excellent', numeric: true },
   { name: '挂科率', key: 'fail', numeric: true },
 ]

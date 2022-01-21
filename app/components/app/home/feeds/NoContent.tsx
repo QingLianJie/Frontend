@@ -56,11 +56,13 @@ export const NoContent = () => {
             <IconButton
               text="刷新页面"
               icon={RiRefreshLine}
+              fontSize="smd"
               onClick={() => location.reload()}
             />
             <IconButton
               text="自定义 API"
               icon={RiLoginBoxLine}
+              fontSize="smd"
               onClick={handleCustomAPI}
             />
           </ButtonGroup>
