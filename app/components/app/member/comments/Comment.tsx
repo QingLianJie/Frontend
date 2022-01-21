@@ -22,6 +22,7 @@ export const Comment = ({ content, date, course }: CommentProps) => (
         {content}
       </Text>
       <HStack w="full" justifyContent="space-between" alignItems="center">
+        \
         <CoursePopover course={course}>
           <Link
             as={RemixLink}

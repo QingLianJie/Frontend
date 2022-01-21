@@ -46,14 +46,13 @@ export const NoContent = () => {
           pb="4"
           spacing="3"
           lineHeight="tall"
-          divider={<Divider transition="all 0.2s" />}
         >
           <Text px="2" lineHeight="tall" fontSize="smd" textAlign="justify">
-            这里曾经有一些课程评论，但是现在什么都没有。可能是因为无法连接到「清廉街」的服务器，所以请检查「网站坏掉了吗」页面，或者使用「自定义
-            API」进行连接。
+            这里曾经有一些课程评论，但是现在什么都没有。可能是因为无法连接到服务器，所以请检查「网站坏掉了吗」页面，或者使用「自定义
+            API」连接到自定义服务器。
           </Text>
 
-          <ButtonGroup w="full" gap="2" p="1">
+          <ButtonGroup w="full" gap="2" p="1" pt="2">
             <IconButton
               text="刷新页面"
               icon={RiRefreshLine}
@@ -69,7 +68,7 @@ export const NoContent = () => {
       </Card>
 
       <Card title="调试信息">
-        <Flex pt="3" pb="2" px="6" fontFamily="mono" fontSize="sm">
+        <Flex pt="3" pb="6" px="6" fontFamily="mono" fontSize="sm">
           {message.length !== 0 ? (
             <VStack
               as="ul"
@@ -93,18 +92,6 @@ export const NoContent = () => {
             <Text>- Loading ...</Text>
           )}
         </Flex>
-
-        <Text
-          px="6"
-          pb="6"
-          lineHeight="tall"
-          textAlign="justify"
-          fontSize="sm"
-          color="gray.500"
-          _dark={{ color: 'gray.400' }}
-        >
-          反馈问题的时候，可以把上面的信息截图或者复制发给我们。
-        </Text>
       </Card>
     </>
   )

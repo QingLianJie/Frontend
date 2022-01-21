@@ -43,15 +43,7 @@ export const Bridge = ({ ...props }: BridgeProps) => {
 
   return (
     <Card title="HEU 账号" {...props}>
-      <VStack
-        w="full"
-        align="flex-start"
-        px="5"
-        pt="3"
-        pb="4"
-        spacing="4"
-        divider={<Divider transition="all 0.2s" />}
-      >
+      <VStack w="full" align="flex-start" px="5" pt="3" pb="4" spacing="4">
         <Skeleton isLoaded={isLoaded}>
           {id ? (
             <Text as="div" px="1" lineHeight="tall">
@@ -71,7 +63,7 @@ export const Bridge = ({ ...props }: BridgeProps) => {
         </Skeleton>
         <BridgeContext.Provider value={{ id, setId }}>
           <Skeleton isLoaded={isLoaded}>
-            <ButtonGroup w="full" gap="2">
+            <ButtonGroup w="full" gap="2" py="1">
               {id ? (
                 <>
                   <UpdateBridge />

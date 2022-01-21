@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
-import { RiFilterLine, RiInformationLine } from 'react-icons/ri'
+import { RiFilterLine, RiPhoneFindLine } from 'react-icons/ri'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
 import type { CoursesLoader } from '~/routes/courses'
@@ -44,8 +44,9 @@ export const ToolBar = () => {
           px="6"
           isTruncated
           fontSize="smd"
+          fontWeight="bold"
         >
-          <Icon as={RiInformationLine} aria-label="搜索" mr="4" fontSize="lg" />
+          <Icon as={RiPhoneFindLine} aria-label="搜索" mr="4" fontSize="lg" />
           查询到 {courses.total} 个课程，共 {courses.pages.total} 页
         </Text>
         <Menu closeOnSelect={false}>
@@ -61,7 +62,7 @@ export const ToolBar = () => {
             alignItems="center"
             rounded="none"
             roundedRight="md"
-            fontWeight="normal"
+            fontWeight="bold"
             leftIcon={<Icon as={RiFilterLine} aria-label="列" fontSize="lg" />}
             fontSize="smd"
             iconSpacing={{ base: '0', md: '4' }}

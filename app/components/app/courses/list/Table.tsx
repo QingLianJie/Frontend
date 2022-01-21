@@ -113,7 +113,7 @@ export const Table = () => {
 const CellStyles: SystemProps & { sx: CSSObject } = {
   whiteSpace: 'nowrap',
   px: '3',
-  py: '4',
+  py: '3.5',
   sx: { fontVariantNumeric: 'normal' },
   fontSize: 'smd',
   transition: 'all 0.2s',

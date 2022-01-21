@@ -1,4 +1,6 @@
+import type { SystemProps } from '@chakra-ui/react'
 import {
+  Box,
   Button,
   HStack,
   Icon,
@@ -7,7 +9,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  SystemProps,
   Tag,
 } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
@@ -23,11 +24,13 @@ export const HeaderNav = () => (
         (link.type === 'LINK' ? (
           <HeaderNavLink {...link} key={link.name} />
         ) : (
-          <HeaderNavMenu {...link} key={link.name}>
-            {link.children.map(item => (
-              <HeaderNavMenuItem {...item} key={item.name} />
-            ))}
-          </HeaderNavMenu>
+          <Box key={link.name}>
+            <HeaderNavMenu {...link}>
+              {link.children.map(item => (
+                <HeaderNavMenuItem {...item} key={item.name} />
+              ))}
+            </HeaderNavMenu>
+          </Box>
         ))
     )}
   </HStack>

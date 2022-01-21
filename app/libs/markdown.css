@@ -10,10 +10,14 @@
 }
 
 .markdown-body a:hover {
-  color: #805ad5;
-  text-decoration: underline;
+  color: #553c9a;
+  text-decoration: none;
 }
 
 .chakra-ui-dark .markdown-body a {
   color: #4299e1;
+}
+
+.chakra-ui-dark .markdown-body a:hover {
+  color: #63b3ed;
 }

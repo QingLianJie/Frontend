@@ -52,7 +52,7 @@ export default function CoursesPage() {
   return (
     <Grid
       w="full"
-      maxW={isMaxWidth ? '96rem' : '72rem'}
+      maxW={isMaxWidth ? '100%' : '84rem'}
       px={{ base: '4', sm: '6', md: '8' }}
       pb={{ base: '0', sm: '8' }}
       pt={{ base: '0', sm: '8' }}

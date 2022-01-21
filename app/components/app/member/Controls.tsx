@@ -38,7 +38,13 @@ export const Controls = () => {
           href="https://gravatar.com/"
           isExternal
           color="purple.500"
-          _dark={{ color: 'blue.400' }}
+          _hover={{ color: 'purple.700' }}
+          _dark={{
+            color: 'blue.400',
+            _hover: {
+              color: 'blue.300',
+            },
+          }}
           textUnderlineOffset="0.25rem"
         >
           Gravatar
