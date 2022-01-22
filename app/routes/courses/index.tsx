@@ -2,7 +2,7 @@ import type { ButtonProps, SystemProps } from '@chakra-ui/react'
 import { Grid, GridItem, Icon, IconButton, Tooltip } from '@chakra-ui/react'
 import { createContext, Dispatch, useState } from 'react'
 import { RiFullscreenLine } from 'react-icons/ri'
-import type { LoaderFunction } from 'remix'
+import type { LoaderFunction, MetaFunction } from 'remix'
 import { json } from 'remix'
 import { Filter } from '~/components/app/courses/Filter'
 import { History } from '~/components/app/courses/History'
@@ -12,6 +12,10 @@ import { ToolBar } from '~/components/app/courses/list/ToolBar'
 import { Tip } from '~/components/app/courses/Tip'
 import courses from '~/contents/mocks/courses/courses.json'
 import type { IPaginatedCourses, TableColumn } from '~/types'
+
+export const meta: MetaFunction = () => ({
+  title: '课程 - 清廉街',
+})
 
 const defaultColumns: TableColumn[] = [
   { name: '课程 ID', key: 'id' },

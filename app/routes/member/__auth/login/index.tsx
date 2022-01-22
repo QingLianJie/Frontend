@@ -1,7 +1,7 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
-import type { ActionFunction } from 'remix'
+import type { ActionFunction, MetaFunction } from 'remix'
 import {
   Form,
   json,
@@ -13,7 +13,11 @@ import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
 import type { IResponse, MemberType } from '~/types'
-import { EmailRegex, NameRegex, PasswordRegex } from '~/utils/system'
+import { EmailRegex } from '~/utils/system'
+
+export const meta: MetaFunction = () => ({
+  title: '登录 - 清廉街',
+})
 
 type NameType = 'username' | 'email'
 

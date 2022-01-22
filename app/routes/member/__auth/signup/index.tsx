@@ -1,6 +1,6 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
 import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
-import type { ActionFunction } from 'remix'
+import type { ActionFunction, MetaFunction } from 'remix'
 import {
   Form,
   json,
@@ -19,6 +19,10 @@ import {
   PasswordRegex,
   PasswordRegexText,
 } from '~/utils/system'
+
+export const meta: MetaFunction = () => ({
+  title: '注册 - 清廉街',
+})
 
 export const action: ActionFunction = async ({ request }) => {
   const body = await request.formData()

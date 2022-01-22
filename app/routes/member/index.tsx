@@ -1,12 +1,16 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import type { ActionFunction, LoaderFunction } from 'remix'
-import { json, redirect, useActionData, useTransition } from 'remix'
+import type {
+  ActionFunction,
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from 'remix'
+import { json, redirect } from 'remix'
 import { Notes } from '~/components/app/home/Notes'
 import { Comments } from '~/components/app/member/comments/Comments'
 import { Controls } from '~/components/app/member/Controls'
 import { Help } from '~/components/app/member/Help'
 import { Profile } from '~/components/app/member/Profile'
-import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import comments from '~/contents/mocks/member/comments/comments.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
@@ -19,9 +23,11 @@ import type {
   MemberType,
 } from '~/types'
 
-export function links() {
-  return [{ rel: 'stylesheet', href: styles }]
-}
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
+
+export const meta: MetaFunction = () => ({
+  title: '账号 - 清廉街',
+})
 
 export const action: ActionFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))

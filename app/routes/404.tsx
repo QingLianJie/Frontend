@@ -1,4 +1,9 @@
 import { Center, Heading, Text } from '@chakra-ui/react'
+import type { MetaFunction } from 'remix'
+
+export const meta: MetaFunction = () => ({
+  title: '404 - 清廉街',
+})
 
 export default function MemberLayout() {
   return (
