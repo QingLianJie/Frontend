@@ -1,12 +1,4 @@
-import {
-  Button,
-  Icon,
-  Input,
-  Select,
-  VStack,
-  Text,
-  Link,
-} from '@chakra-ui/react'
+import { Button, Icon, Input, Select, VStack } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
 import { RiEraserLine, RiSearchLine } from 'react-icons/ri'
 import { Form, useLocation, useTransition } from 'remix'
@@ -163,34 +155,6 @@ export const Filter = ({ id }: FilterProps) => {
         >
           重置筛选
         </Button>
-
-        <Text
-          px="1"
-          pb="1"
-          pt="2"
-          fontSize="sm"
-          lineHeight="tall"
-          color="gray.500"
-          _dark={{ color: 'gray.400' }}
-        >
-          由于新版网站统计方式变化，所以部分课程数据可能会出现误差或错误，仅供参考，
-          <Link
-            href="https://www.yuque.com/lifeni/qing/collect-data"
-            isExternal
-            color="purple.500"
-            _hover={{ color: 'purple.700' }}
-            _dark={{
-              color: 'blue.400',
-              _hover: {
-                color: 'blue.300',
-              },
-            }}
-            textUnderlineOffset="0.25rem"
-          >
-            点击这里
-          </Link>{' '}
-          了解更多。
-        </Text>
       </VStack>
     </Card>
   )

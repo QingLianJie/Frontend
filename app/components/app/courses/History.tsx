@@ -38,7 +38,7 @@ export const History = () => {
         {history.length !== 0 ? (
           <VStack as={List} w="full" px="1" spacing="2" align="flex-start">
             {history.map((item, index) => (
-              <ListItem key={index}>
+              <ListItem key={index} w="full" isTruncated>
                 <Link
                   as={RemixLink}
                   to={item}
@@ -54,6 +54,7 @@ export const History = () => {
                     },
                   }}
                   textUnderlineOffset="0.25rem"
+                  title={parseSearchParams(item)}
                 >
                   {parseSearchParams(item)}
                 </Link>

@@ -1,11 +1,11 @@
 import type { ButtonProps, SystemProps } from '@chakra-ui/react'
 import {
-  Alert,
-  AlertIcon,
   Grid,
   GridItem,
   Icon,
   IconButton,
+  Link,
+  Text,
   Tooltip,
 } from '@chakra-ui/react'
 import { createContext, Dispatch, useState } from 'react'
@@ -63,21 +63,21 @@ export default function CoursesPage() {
       maxW={isMaxWidth ? '100%' : '84rem'}
       px={{ base: '4', sm: '6', md: '8' }}
       pb={{ base: '0', sm: '8' }}
-      pt={{ base: '0', sm: '8' }}
+      pt={{ base: '0', sm: '4' }}
       alignItems="start"
       alignContent="start"
       justifyContent="center"
       templateColumns={{
         base: 'minmax(0, 1fr)',
-        sm: 'minmax(0, 5fr) minmax(0, 3fr)',
-        md: 'minmax(0, 3fr) minmax(0, 1fr)',
-        xl: 'minmax(0, 3fr) minmax(0, 18rem)',
+        sm: 'minmax(0, 3fr) minmax(0, 5fr)',
+        md: 'minmax(0, 1fr) minmax(0, 3fr)',
+        xl: 'minmax(0, 18rem) minmax(0, 3fr)',
       }}
       gap="4"
     >
       <GridItem
         rowStart={{ base: 1, sm: 1, md: 1 }}
-        colStart={{ base: 1, sm: 1, md: 1 }}
+        colStart={{ base: 1, sm: 2, md: 2 }}
         d="grid"
         gridTemplateColumns="100%"
         gridGap="4"
@@ -95,10 +95,11 @@ export default function CoursesPage() {
         gridTemplateColumns="100%"
         gridGap="4"
         rowStart={{ base: 2, sm: 1, md: 1 }}
-        colStart={{ base: 1, sm: 2, md: 2 }}
+        colStart={{ base: 1, sm: 1, md: 1 }}
       >
         <Filter id="filter" />
         <History />
+        <Help />
       </GridItem>
 
       <MaxWidthFab
@@ -129,4 +130,33 @@ const MaxWidthFab = ({ ...props }: MaxWidthFabProps) => (
       {...props}
     />
   </Tooltip>
+)
+
+const Help = () => (
+  <Text
+    px="4"
+    pt="1"
+    fontSize="sm"
+    lineHeight="tall"
+    color="gray.500"
+    _dark={{ color: 'gray.400' }}
+  >
+    由于新版网站统计方式变化，所以部分课程数据可能会出现误差或错误，数据仅供参考，
+    <Link
+      href="https://www.yuque.com/lifeni/qing/collect-data"
+      isExternal
+      color="purple.500"
+      _hover={{ color: 'purple.700' }}
+      _dark={{
+        color: 'blue.400',
+        _hover: {
+          color: 'blue.300',
+        },
+      }}
+      textUnderlineOffset="0.25rem"
+    >
+      点击这里
+    </Link>{' '}
+    了解更多。
+  </Text>
 )

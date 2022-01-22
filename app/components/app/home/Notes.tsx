@@ -70,8 +70,6 @@ export const Notes = ({ id, ...props }: NotesProps) => {
                 as="article"
                 w="full"
                 fontSize="smd"
-                textAlign="justify"
-                overflowWrap="break-word"
                 lineHeight="tall"
                 dangerouslySetInnerHTML={{ __html: note.content }}
               />

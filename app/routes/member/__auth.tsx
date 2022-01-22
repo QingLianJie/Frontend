@@ -28,7 +28,7 @@ export default function AuthPage() {
       w="full"
       maxW="72rem"
       px={{ base: '4', sm: '6', md: '8' }}
-      pt="8"
+      pt={{ base: '0', sm: '4' }}
       pb={{ base: '0', sm: '8' }}
     >
       <VStack

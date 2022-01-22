@@ -47,7 +47,7 @@ export const NoContent = () => {
           spacing="3"
           lineHeight="tall"
         >
-          <Text px="2" lineHeight="tall" fontSize="smd" textAlign="justify">
+          <Text px="2" lineHeight="tall" fontSize="smd">
             这里曾经有一些课程评论，但是现在什么都没有。可能是因为无法连接到服务器，所以请检查「网站坏掉了吗」页面，或者使用「自定义
             API」连接到自定义服务器。
           </Text>

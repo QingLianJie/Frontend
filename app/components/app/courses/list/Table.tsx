@@ -70,7 +70,12 @@ export const Table = () => {
           </Thead>
           <Tbody>
             {rows.map(row => (
-              <Tr key={row.id}>
+              <Tr
+                key={row.id}
+                sx={{
+                  ':last-of-type td': { borderBottom: 'none' },
+                }}
+              >
                 {columns.map(({ key }) =>
                   key === 'excellent' || key === 'fail' ? (
                     <ScoreCell
@@ -98,23 +103,6 @@ export const Table = () => {
               </Tr>
             ))}
           </Tbody>
-          <Tfoot>
-            <Tr>
-              {columns.map(({ name, key, numeric }) => (
-                <Th
-                  key={key}
-                  whiteSpace="nowrap"
-                  fontSize="smd"
-                  px="3"
-                  py="4"
-                  transition="all 0.2s"
-                  isNumeric={numeric}
-                >
-                  {name}
-                </Th>
-              ))}
-            </Tr>
-          </Tfoot>
         </ChakraTable>
       </Flex>
     </Card>
