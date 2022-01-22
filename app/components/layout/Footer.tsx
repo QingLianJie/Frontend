@@ -27,7 +27,7 @@ export const Footer = () => {
       spacing="0"
     >
       <Text flex="1" d={{ base: 'none', md: 'flex' }} alignItems="center">
-        清廉街 © {new Date().getFullYear()}
+        © {new Date().getFullYear()} QingLianJie
       </Text>
 
       <Flex flex="1" justify="center">

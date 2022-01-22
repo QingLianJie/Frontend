@@ -1,5 +1,25 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import { useParams } from 'remix'
+import type { LoaderFunction } from 'remix'
+import { json, useParams } from 'remix'
+import { Info } from '~/components/app/courses/Info'
+import { Tip } from '~/components/app/courses/Tip'
+import comments from '~/contents/mocks/courses/[id]/comments/comments.json'
+import statistics from '~/contents/mocks/courses/[id]/statistics/statistics.json'
+import info from '~/contents/mocks/courses/[id]/[id].json'
+import type { ICourse, ICourseComment, IStatictics } from '~/types'
+
+export type CourseLoader = {
+  info: ICourse
+  statictics: IStatictics
+  comments: ICourseComment[]
+}
+
+export const loader: LoaderFunction = async ({ request }) => {
+  // TODO: 获取 courses
+  const error = null
+
+  return json({ info, statistics, comments })
+}
 
 export default function CoursePage() {
   const { id } = useParams()
@@ -26,7 +46,10 @@ export default function CoursePage() {
         gridTemplateColumns="100%"
         gridGap="4"
         rowStart={{ base: 2, md: 'auto' }}
-      ></GridItem>
+      >
+        <Info />
+        <Tip />
+      </GridItem>
 
       <GridItem
         rowSpan={{ base: 1, sm: 2, md: 1 }}

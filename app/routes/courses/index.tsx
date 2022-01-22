@@ -1,13 +1,5 @@
 import type { ButtonProps, SystemProps } from '@chakra-ui/react'
-import {
-  Grid,
-  GridItem,
-  Icon,
-  IconButton,
-  Link,
-  Text,
-  Tooltip,
-} from '@chakra-ui/react'
+import { Grid, GridItem, Icon, IconButton, Tooltip } from '@chakra-ui/react'
 import { createContext, Dispatch, useState } from 'react'
 import { RiFullscreenLine } from 'react-icons/ri'
 import type { LoaderFunction } from 'remix'
@@ -17,6 +9,7 @@ import { History } from '~/components/app/courses/History'
 import { Pagination } from '~/components/app/courses/list/Pagination'
 import { Table } from '~/components/app/courses/list/Table'
 import { ToolBar } from '~/components/app/courses/list/ToolBar'
+import { Tip } from '~/components/app/courses/Tip'
 import courses from '~/contents/mocks/courses/courses.json'
 import type { IPaginatedCourses, TableColumn } from '~/types'
 
@@ -99,7 +92,7 @@ export default function CoursesPage() {
       >
         <Filter id="filter" />
         <History />
-        <Help />
+        <Tip />
       </GridItem>
 
       <MaxWidthFab
@@ -130,33 +123,4 @@ const MaxWidthFab = ({ ...props }: MaxWidthFabProps) => (
       {...props}
     />
   </Tooltip>
-)
-
-const Help = () => (
-  <Text
-    px="4"
-    pt="1"
-    fontSize="sm"
-    lineHeight="tall"
-    color="gray.500"
-    _dark={{ color: 'gray.400' }}
-  >
-    由于新版网站统计方式变化，所以部分课程数据可能会出现误差或错误，数据仅供参考，
-    <Link
-      href="https://www.yuque.com/lifeni/qing/collect-data"
-      isExternal
-      color="purple.500"
-      _hover={{ color: 'purple.700' }}
-      _dark={{
-        color: 'blue.400',
-        _hover: {
-          color: 'blue.300',
-        },
-      }}
-      textUnderlineOffset="0.25rem"
-    >
-      点击这里
-    </Link>{' '}
-    了解更多。
-  </Text>
 )

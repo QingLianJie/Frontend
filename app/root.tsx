@@ -21,7 +21,7 @@ import { Layout } from './components/layout/Layout'
 import { getSession } from './sessions'
 import type { IMember } from './types'
 
-const fontSans = `Inter, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
+const fontSans = `Outfit, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
     "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji"`
@@ -60,7 +60,7 @@ export const links: LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
   {
     rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css?family=Inter:400,700|Noto+Sans+SC:400,700&display=swap',
+    href: 'https://fonts.googleapis.com/css?family=Outfit:400,700|Noto+Sans+SC:400,700&display=swap',
   },
   { rel: 'stylesheet', href: styles },
 ]

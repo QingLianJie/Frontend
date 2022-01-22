@@ -49,6 +49,13 @@ export interface IMemberComment {
   course: ICourse
 }
 
+export interface ICourseComment {
+  id: number
+  content: string
+  date: string
+  author: IMember
+}
+
 export interface IMember {
   id: number
   name: string
@@ -79,7 +86,7 @@ export interface ICourse {
   }
 }
 
-type TableRow = {
+export type TableRow = {
   excellent: string
   fail: string
   tooltip: {
@@ -88,9 +95,55 @@ type TableRow = {
   }
 } & Omit<ICourse, 'statistics'>
 
-type TableColumn = {
+export type TableColumn = {
   name: string
   key: keyof TableRow
   numeric?: boolean
   hide?: boolean
+}
+
+export type CourseTestType = '考试' | '考查' | '其他'
+
+export interface IStatictics {
+  overview: {
+    excellent: number
+    fail: number
+    total: number
+  }
+  statistics: 考查[]
+}
+
+type 考查 = {
+  name: string
+  type: '考查'
+  excellent: number
+  fail: number
+  total: number
+  data: {
+    不及格: number
+    中等: number
+    优秀: number
+    及格: number
+    良好: number
+  }
+}
+
+type 考试 = {
+  name: string
+  type: '考试'
+  excellent: number
+  fail: number
+  total: number
+  data: number[]
+}
+
+type 其他 = {
+  name: string
+  type: '其他'
+  excellent: number
+  fail: number
+  total: number
+  data: {
+    [key: string]: number
+  }
 }
