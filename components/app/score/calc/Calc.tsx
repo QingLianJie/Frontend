@@ -1,11 +1,12 @@
-import { Box, Button, Text, Wrap } from '@chakra-ui/react'
-import { useContext, useEffect, useState } from 'react'
+import {Box, Button, Select, Text, Wrap} from '@chakra-ui/react'
+import {ChangeEvent, useContext, useEffect, useState} from 'react'
 import { RiCalculatorLine } from 'react-icons/ri'
 import useScore from '../../../../hooks/useScore'
 import { ScoresContext } from '../../../../pages/scores'
 import CardContainer from '../../../common/container/Card'
 import GroupContainer from '../../../common/container/Group'
 import ScoreStat from './Stat'
+import {courseQuery} from "../../../../data/course-query";
 
 const gradeMap = {
   不及格: 30,
@@ -20,6 +21,18 @@ const ScoreCalc = () => {
   const { scores } = useScore()
   const [credit, setCredit] = useState(0)
   const [average, setAverage] = useState(0)
+  const [typeFilter, setTypeFilter] = useState("")
+
+  const handleTypeFilterChanged = (value: string) => {
+    setTypeFilter(value)
+    const result = scores.lists.filter(x =>
+        x.kind === value &&
+        x.grade !== "不及格" &&
+        x.grade !== "---" &&
+        (isNaN(Number(x.grade)) || Number(x.grade) >= 60)
+    ).map((item)=>item.index)
+    context.setCheckList(result)
+  }
 
   useEffect(() => {
     const totalCredit = context.checkList.reduce(
@@ -71,7 +84,23 @@ const ScoreCalc = () => {
           点击进入计算成绩模式
         </Button>
       )}
-
+      {
+        context.calcMode ? (
+            <Select
+                placeholder="课程类型快速筛选"
+                bg="white"
+                _dark={{ bg: 'gray.800' }}
+                value={typeFilter}
+                onChange={e => handleTypeFilterChanged(e.target.value)}
+                mb="4"
+            >
+              {courseQuery.class.map((value, index) => (
+                  <option value={value} key={index}>
+                    {value}
+                  </option>
+              ))}
+            </Select>) : null
+      }
       <CardContainer>
         {scores && (
           <Wrap spacing="4" py="1">
