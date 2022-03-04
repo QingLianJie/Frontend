@@ -111,6 +111,7 @@ interface IScore {
   kind: string // 课程性质
   general_category: string // 通识教育选修课程类别
   grade_mark: string // 成绩标记
+  [index: string]:any
 }
 
 type Scores = { [key: string]: IScore[] }
