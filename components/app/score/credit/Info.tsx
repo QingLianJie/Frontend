@@ -23,16 +23,18 @@ const CreditInfo = () => {
                 w="full"
                 overflowX="auto"
             >
-                <Tabs isFitted variant='soft-rounded'>
-                    <TabPanels mb={4}>
-                        <TabPanel>
-                            <CreditChart data={DATA_BEFORE_2019}/>
-                        </TabPanel>
-                        <TabPanel>
-                            <CreditChart data={DATA_AFTER_2019}/>
-                        </TabPanel>
-                    </TabPanels>
-                    <TabList>
+                <Tabs isFitted variant='soft-rounded' maxW={'100%'}>
+                    <Box overflow={'auto'} mb={4} maxW={'100%'}>
+                        <TabPanels minW={600}>
+                            <TabPanel>
+                                <CreditChart data={DATA_BEFORE_2019}/>
+                            </TabPanel>
+                            <TabPanel>
+                                <CreditChart data={DATA_AFTER_2019}/>
+                            </TabPanel>
+                        </TabPanels>
+                    </Box>
+                    <TabList >
                         <Tab _selected={{'color':'white', 'bg':'#38a169'}} borderRadius={6}>旧课程分类（19之前）</Tab>
                         <Tab _selected={{'color':'white', 'bg':'#38a169'}} borderRadius={6}>新课程分类（19及之后）</Tab>
                     </TabList>

@@ -99,7 +99,7 @@ const CreditChart = ({data}: ChartProps) => {
                                 top: '1%',
                                 left: '1%',
                                 bottom: '1%',
-                                right: '22%',
+                                right: '30%',
                                 symbolSize: 10,
                                 label: {
                                     position: 'right',
