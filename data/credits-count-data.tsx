@@ -111,7 +111,14 @@ export const DATA_AFTER_2019: TreeNode = {
             "rule": {
                 "key": "kind",
                 "value": ["19人文素质与文化传承（A）", "中华传统文化", "19中华传统文化类（A0）"],
-            }
+            },
+            "children": [{
+                "name": "A0 中华传统文化类",
+                "rule": {
+                    "key": "kind",
+                    "value": ["19中华传统文化类（A0）"],
+                }
+            }]
         }, {
             "name": "B 艺术鉴赏与审美体验",
             "rule": {
