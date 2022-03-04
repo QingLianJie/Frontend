@@ -124,6 +124,9 @@ const ScoreCalc = () => {
         <Text as="li" pt="2" fontSize="sm" color="gray.500" ps="1">
           补考、缺考等的成绩仍会出现在成绩列表中，在计算时需要手动剔除无效成绩。
         </Text>
+        <Text as="li" pt="2" fontSize="sm" color="gray.500" ps="1">
+          在计算成绩模式下点击学分统计中的类别名称可快速选中该分类的课程。
+        </Text>
       </Box>
     </GroupContainer>
   )

@@ -16,6 +16,7 @@ import ScoreInfo from '../components/app/score/Info'
 import ButtonLink from '../components/common/action/link/ButtonLink'
 import MainContainer from '../components/common/container/Main'
 import useUser from '../hooks/useUser'
+import CreditInfo from "../components/app/score/credit/Info";
 
 interface IScoresContext {
   checkList: number[]
@@ -90,6 +91,8 @@ const ScoresPage = () => {
                 <ScoreInfo />
                 <Spacer h={{ base: 6, md: 9 }} />
                 <ScoreList />
+                <Spacer h={{ base: 2, md: 4 }} />
+                <CreditInfo />
               </GridItem>
               <GridItem colSpan={{ base: 3, md: 1 }} h="full" minW="0">
                 <VStack
