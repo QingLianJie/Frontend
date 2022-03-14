@@ -1,6 +1,5 @@
-import type { SystemProps } from '@chakra-ui/react'
-import { Heading, VStack } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
+import { Heading, VStack, type SystemProps } from '@chakra-ui/react'
+import { type ReactNode } from 'react'
 
 interface CardProps extends SystemProps {
   title?: string

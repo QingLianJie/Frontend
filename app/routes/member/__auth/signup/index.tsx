@@ -1,17 +1,18 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
 import { RiLockPasswordLine, RiMailLine, RiUserLine } from 'react-icons/ri'
-import type { ActionFunction, MetaFunction } from 'remix'
 import {
   Form,
   json,
   useActionData,
   useSearchParams,
   useTransition,
+  type ActionFunction,
+  type MetaFunction,
 } from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { commitSession, getSession } from '~/sessions'
-import type { IResponse, MemberType } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 import {
   EmailRegex,
   listIt,

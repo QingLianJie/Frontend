@@ -1,10 +1,17 @@
 import { Button, Input as ChakraInput, VStack } from '@chakra-ui/react'
 import { RiLockPasswordLine } from 'react-icons/ri'
-import type { ActionFunction, MetaFunction } from 'remix'
-import { Form, json, useActionData, useParams, useTransition } from 'remix'
+import {
+  Form,
+  json,
+  useActionData,
+  useParams,
+  useTransition,
+  type ActionFunction,
+  type MetaFunction,
+} from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
-import type { IResponse, MemberType } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 import { listIt, PasswordRegex, PasswordRegexText, sleep } from '~/utils/system'
 
 export const meta: MetaFunction = () => ({

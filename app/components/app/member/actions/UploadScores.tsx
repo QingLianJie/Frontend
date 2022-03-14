@@ -2,7 +2,7 @@ import { RiUpload2Line } from 'react-icons/ri'
 import { useFetcher } from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { ListButton } from '~/components/common/ListButton'
-import type { IResponse, MemberType } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 
 export const UploadScores = () => {
   const fetcher = useFetcher<IResponse<MemberType>>()

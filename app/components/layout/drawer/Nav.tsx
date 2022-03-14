@@ -7,12 +7,12 @@ import {
   Icon,
   Link,
   Spacer,
-  SystemProps,
   Text,
   VStack,
+  type SystemProps,
 } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
-import type { IconType } from 'react-icons'
+import { type ReactNode } from 'react'
+import { type IconType } from 'react-icons'
 import { RiBuildingLine, RiGlobalLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/links/nav/nav'

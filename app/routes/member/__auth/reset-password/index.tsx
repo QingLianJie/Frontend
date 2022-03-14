@@ -1,10 +1,16 @@
 import { Button, VStack } from '@chakra-ui/react'
 import { RiMailLine } from 'react-icons/ri'
-import type { ActionFunction, MetaFunction } from 'remix'
-import { Form, json, useActionData, useTransition } from 'remix'
+import {
+  Form,
+  json,
+  useActionData,
+  useTransition,
+  type ActionFunction,
+  type MetaFunction,
+} from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
-import type { IResponse, MemberType } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 
 export const meta: MetaFunction = () => ({
   title: '重置密码 - 清廉街',

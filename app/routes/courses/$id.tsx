@@ -1,12 +1,11 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import type { LoaderFunction, MetaFunction } from 'remix'
-import { json, useParams } from 'remix'
+import { json, useParams, type LoaderFunction, type MetaFunction } from 'remix'
 import { Info } from '~/components/app/courses/Info'
 import { Tip } from '~/components/app/courses/Tip'
 import comments from '~/contents/mocks/courses/[id]/comments/comments.json'
 import statistics from '~/contents/mocks/courses/[id]/statistics/statistics.json'
 import info from '~/contents/mocks/courses/[id]/[id].json'
-import type { ICourse, ICourseComment, IStatictics } from '~/types'
+import { type ICourse, type ICourseComment, type IStatictics } from '~/types'
 
 export const meta: MetaFunction = ({ data }) => ({
   title: `${data.info.name} - 清廉街`,

@@ -8,7 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-  VStack,
+  VStack
 } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { RiLockLine, RiLockPasswordLine } from 'react-icons/ri'
@@ -16,7 +16,7 @@ import { useFetcher } from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { Input } from '~/components/common/Input'
 import { ListButton } from '~/components/common/ListButton'
-import type { IResponse, MemberType } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 import { PasswordRegexText } from '~/utils/system'
 
 export const ChangePassword = () => {

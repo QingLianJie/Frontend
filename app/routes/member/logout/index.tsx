@@ -1,7 +1,6 @@
-import type { ActionFunction, LoaderFunction } from 'remix'
-import { json, redirect } from 'remix'
+import { json, redirect, type ActionFunction, type LoaderFunction } from 'remix'
 import { commitSession, getSession } from '~/sessions'
-import type { MemberType, IResponse } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 
 export const action: ActionFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))

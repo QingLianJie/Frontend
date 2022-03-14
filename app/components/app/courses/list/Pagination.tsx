@@ -1,9 +1,15 @@
-import type { ButtonProps, SystemProps } from '@chakra-ui/react'
-import { Button, HStack, Text, useBreakpointValue } from '@chakra-ui/react'
+import {
+  Button,
+  HStack,
+  Text,
+  useBreakpointValue,
+  type ButtonProps,
+  type SystemProps,
+} from '@chakra-ui/react'
 import { Pagination as GhostPagination } from '@makotot/ghostui'
 import { Link as RemixLink, useLoaderData, useLocation } from 'remix'
 import { Card } from '~/components/common/Card'
-import type { CoursesLoader } from '~/routes/courses'
+import { type CoursesLoader } from '~/routes/courses'
 
 export const Pagination = () => {
   const { courses } = useLoaderData<CoursesLoader>()

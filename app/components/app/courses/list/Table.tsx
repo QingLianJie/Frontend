@@ -1,4 +1,3 @@
-import { CSSObject, SystemProps } from '@chakra-ui/react'
 import {
   Flex,
   Link,
@@ -9,13 +8,14 @@ import {
   Thead,
   Tooltip,
   Tr,
-  Tfoot,
+  type CSSObject,
+  type SystemProps,
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { Link as RemixLink, useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
 import { CoursesLoader, TableContext } from '~/routes/courses'
-import type { TableRow } from '~/types'
+import { type TableRow } from '~/types'
 import { calcRate } from '~/utils/math'
 
 export const Table = () => {

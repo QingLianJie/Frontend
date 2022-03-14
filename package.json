@@ -13,6 +13,7 @@
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11",
+    "@emotion/server": "^11",
     "@emotion/styled": "^11",
     "@makotot/ghostui": "^2.0.0",
     "@remix-run/react": "^1.2.3",

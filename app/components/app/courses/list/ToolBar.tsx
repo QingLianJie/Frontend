@@ -7,14 +7,13 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-  Text,
+  Text
 } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { RiFilterLine, RiPhoneFindLine } from 'react-icons/ri'
 import { Link as RemixLink, useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
-import type { CoursesLoader } from '~/routes/courses'
-import { TableContext } from '~/routes/courses'
+import { TableContext, type CoursesLoader } from '~/routes/courses'
 
 export const ToolBar = () => {
   const { courses } = useLoaderData<CoursesLoader>()

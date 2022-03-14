@@ -2,7 +2,7 @@ import { RiLogoutBoxRLine } from 'react-icons/ri'
 import { useFetcher } from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { ListButton } from '~/components/common/ListButton'
-import type { MemberType, IResponse } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 
 export const Logout = () => {
   const fetcher = useFetcher<IResponse<MemberType>>()

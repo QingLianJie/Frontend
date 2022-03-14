@@ -1,5 +1,8 @@
-import { useToast as useChakraToast, UseToastOptions } from '@chakra-ui/react'
-import type { ResponseStatus } from '~/types'
+import {
+  useToast as useChakraToast,
+  type UseToastOptions,
+} from '@chakra-ui/react'
+import { type ResponseStatus } from '~/types'
 
 export const statusMap: {
   [key in ResponseStatus]: 'success' | 'error' | 'warning'

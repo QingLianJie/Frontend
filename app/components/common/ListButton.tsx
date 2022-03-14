@@ -1,5 +1,5 @@
-import { Button, ButtonProps, Icon, Text } from '@chakra-ui/react'
-import type { IconType } from 'react-icons'
+import { Button, Icon, Text, type ButtonProps } from '@chakra-ui/react'
+import { type IconType } from 'react-icons'
 
 interface ListButtonProps extends ButtonProps {
   text: string

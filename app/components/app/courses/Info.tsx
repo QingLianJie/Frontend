@@ -1,4 +1,3 @@
-import type { SystemProps } from '@chakra-ui/react'
 import {
   Heading,
   HStack,
@@ -10,6 +9,7 @@ import {
   VStack,
   Wrap,
   WrapItem,
+  type SystemProps,
 } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'

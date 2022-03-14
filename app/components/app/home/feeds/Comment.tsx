@@ -13,7 +13,7 @@ import {
 import { RiBookOpenLine, RiSpyLine, RiUserLine } from 'react-icons/ri'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/Card'
-import type { IComment, ICourse } from '~/types'
+import { type IComment, type ICourse } from '~/types'
 import { calcRate } from '~/utils/math'
 import { relativeTime } from '~/utils/time'
 

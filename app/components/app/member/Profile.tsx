@@ -1,10 +1,10 @@
 import { Avatar, HStack, Icon, Text, Tooltip, VStack } from '@chakra-ui/react'
-import type { IconType } from 'react-icons'
+import { type IconType } from 'react-icons'
 import { RiDiscussLine, RiMailLine, RiUserLine } from 'react-icons/ri'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
 import { AVATAT_BASE_URL } from '~/const'
-import type { MemberLoader } from '~/routes/member/index'
+import { type MemberLoader } from '~/routes/member/index'
 import { calcEmailMd5 } from '~/utils/math'
 
 export const Profile = () => {

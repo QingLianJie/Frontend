@@ -1,11 +1,11 @@
-import { VStack, Text, Center } from '@chakra-ui/react'
+import { Center, Text, VStack } from '@chakra-ui/react'
 import { useThrottleEffect } from 'ahooks'
 import { useState } from 'react'
 import { useLoaderData } from 'remix'
-import { Search } from '~/components/common/Search'
 import { Card } from '~/components/common/Card'
-import type { MemberLoader } from '~/routes/member/index'
-import { IMemberComment } from '~/types'
+import { Search } from '~/components/common/Search'
+import { type MemberLoader } from '~/routes/member/index'
+import { type IMemberComment } from '~/types'
 import { Comment } from './Comment'
 
 export const Comments = () => {

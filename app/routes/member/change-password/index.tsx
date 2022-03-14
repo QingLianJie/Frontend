@@ -1,7 +1,6 @@
-import type { ActionFunction, LoaderFunction } from 'remix'
-import { json, redirect } from 'remix'
+import { json, redirect, type ActionFunction, type LoaderFunction } from 'remix'
 import { commitSession, getSession } from '~/sessions'
-import type { IResponse, MemberType } from '~/types'
+import { type IResponse, type MemberType } from '~/types'
 import { listIt, PasswordRegex } from '~/utils/system'
 
 export const action: ActionFunction = async ({ request }) => {

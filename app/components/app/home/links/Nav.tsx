@@ -1,6 +1,5 @@
-import type { SystemProps } from '@chakra-ui/react'
-import { Flex, Icon, Link, Text } from '@chakra-ui/react'
-import type { IconType } from 'react-icons'
+import { Flex, Icon, Link, Text, type SystemProps } from '@chakra-ui/react'
+import { type IconType } from 'react-icons'
 import { Link as RemixLink } from 'remix'
 import { Card } from '~/components/common/Card'
 import { mobileLinks } from '~/contents/links/nav/mobile'

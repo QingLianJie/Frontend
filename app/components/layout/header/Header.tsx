@@ -1,4 +1,3 @@
-import type { SystemProps } from '@chakra-ui/react'
 import {
   Avatar as ChakraAvatar,
   Flex,
@@ -6,9 +5,10 @@ import {
   Icon,
   Link,
   Tooltip,
+  type SystemProps,
 } from '@chakra-ui/react'
 import { useScroll } from 'ahooks'
-import type { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { RiSpyLine, RiUserLine } from 'react-icons/ri'
 import {
   Link as RemixLink,

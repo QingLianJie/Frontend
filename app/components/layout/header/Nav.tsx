@@ -1,4 +1,3 @@
-import type { SystemProps } from '@chakra-ui/react'
 import {
   Box,
   Button,
@@ -10,8 +9,9 @@ import {
   MenuItem,
   MenuList,
   Tag,
+  type SystemProps,
 } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { NavLink as RemixLink } from 'remix'
 import { navLinks } from '~/contents/links/nav/nav'

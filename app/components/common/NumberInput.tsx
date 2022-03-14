@@ -6,8 +6,8 @@ import {
   NumberInput as ChakraNumberInput,
   NumberInputField,
   NumberInputStepper,
+  type NumberInputProps as ChakraNumberInputProps,
 } from '@chakra-ui/react'
-import type { NumberInputProps as ChakraNumberInputProps } from '@chakra-ui/react'
 
 interface NumberInputProps extends ChakraNumberInputProps {
   addon?: string

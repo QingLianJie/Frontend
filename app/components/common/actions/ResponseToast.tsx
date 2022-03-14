@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'remix'
-import type { BridgeType, IResponse, MemberType } from '~/types'
+import { type BridgeType, type IResponse, type MemberType } from '~/types'
 import { useResponseToast } from '~/utils/hooks'
 
 type ResponseType = MemberType | BridgeType

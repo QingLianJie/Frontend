@@ -2,8 +2,8 @@ import { RiDeleteBinLine } from 'react-icons/ri'
 import { useFetcher, useLoaderData } from 'remix'
 import { ResponseToast } from '~/components/common/actions/ResponseToast'
 import { ListButton } from '~/components/common/ListButton'
-import type { MemberLoader } from '~/routes/member/index'
-import type { IResponse, MemberType } from '~/types'
+import { type MemberLoader } from '~/routes/member/index'
+import { MemberType, type IResponse } from '~/types'
 
 export const DeleteMember = () => {
   const { member } = useLoaderData<MemberLoader>()

@@ -7,9 +7,14 @@ import {
   Tabs,
   VStack,
 } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
-import type { MetaFunction } from 'remix'
-import { Link, Outlet, useLocation, useSearchParams } from 'remix'
+import { type ReactNode } from 'react'
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useSearchParams,
+  type MetaFunction,
+} from 'remix'
 import { ColorfulBalls } from '~/components/common/backgrounds/ColorfulBalls'
 
 export const meta: MetaFunction = () => ({

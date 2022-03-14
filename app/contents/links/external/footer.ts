@@ -1,4 +1,4 @@
-import type { IconType } from 'react-icons'
+import { type IconType } from 'react-icons'
 import { RiAtLine, RiLinksLine, RiOpenSourceLine } from 'react-icons/ri'
 
 type FooterLink = {

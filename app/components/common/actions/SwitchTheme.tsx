@@ -1,4 +1,3 @@
-import type { SystemProps } from '@chakra-ui/react'
 import {
   HStack,
   Icon,
@@ -7,6 +6,7 @@ import {
   Text,
   Tooltip,
   useColorMode,
+  type SystemProps,
 } from '@chakra-ui/react'
 import { RiMoonLine, RiSunLine } from 'react-icons/ri'
 

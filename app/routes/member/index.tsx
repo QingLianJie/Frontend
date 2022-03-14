@@ -1,11 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/react'
-import type {
-  ActionFunction,
-  LinksFunction,
-  LoaderFunction,
-  MetaFunction,
+import {
+  json,
+  redirect,
+  type ActionFunction,
+  type LinksFunction,
+  type LoaderFunction,
+  type MetaFunction,
 } from 'remix'
-import { json, redirect } from 'remix'
 import { Notes } from '~/components/app/home/Notes'
 import { Comments } from '~/components/app/member/comments/Comments'
 import { Controls } from '~/components/app/member/Controls'
@@ -15,12 +16,12 @@ import comments from '~/contents/mocks/member/comments/comments.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
 import { commitSession, getSession } from '~/sessions'
-import type {
-  IMember,
-  IMemberComment,
-  INotes,
-  IResponse,
-  MemberType,
+import {
+  type IMember,
+  type IMemberComment,
+  type INotes,
+  type IResponse,
+  type MemberType,
 } from '~/types'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]

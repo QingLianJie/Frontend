@@ -1,9 +1,13 @@
-import { ChakraProvider, extendTheme, Heading } from '@chakra-ui/react'
+import {
+  ChakraProvider,
+  ColorModeScript,
+  extendTheme,
+  Heading,
+} from '@chakra-ui/react'
+import { withEmotionCache } from '@emotion/react'
 import NProgress from 'nprogress'
 import styles from 'nprogress/nprogress.css'
-import type { ReactNode } from 'react'
-import { useEffect } from 'react'
-import type { LinksFunction, LoaderFunction, MetaFunction } from 'remix'
+import React, { useContext, useEffect, type ReactNode } from 'react'
 import {
   json,
   Links,
@@ -15,11 +19,15 @@ import {
   useCatch,
   useLoaderData,
   useTransition,
+  type LinksFunction,
+  type LoaderFunction,
+  type MetaFunction,
 } from 'remix'
 import version from '~/version.json'
 import { Layout } from './components/layout/Layout'
+import { ClientStyleContext, ServerStyleContext } from './context'
 import { getSession } from './sessions'
-import type { IMember } from './types'
+import { type IMember } from './types'
 
 const fontSans = `Outfit, "HarmonyOS Sans SC", -apple-system, BlinkMacSystemFont,
     Roboto, "Source Han Sans SC", "Microsoft Yahei", "Noto Sans SC",
@@ -82,24 +90,53 @@ interface DocumentProps {
   children: ReactNode
 }
 
-const Document = ({ version, children }: DocumentProps) => {
-  return (
-    <html lang="zh-cn" data-version={version}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <ChakraProvider theme={chakraTheme}>{children}</ChakraProvider>
-        <ScrollRestoration />
-        <Scripts />
-        {process.env.NODE_ENV === 'development' && <LiveReload />}
-      </body>
-    </html>
-  )
-}
+const Document = withEmotionCache(
+  ({ version, children }: DocumentProps, emotionCache) => {
+    const serverSyleData = useContext(ServerStyleContext)
+    const clientStyleData = useContext(ClientStyleContext)
+
+    // Only executed on client
+    useEffect(() => {
+      // re-link sheet container
+      emotionCache.sheet.container = document.head
+      // re-inject tags
+      const tags = emotionCache.sheet.tags
+      emotionCache.sheet.flush()
+      tags.forEach(tag => {
+        ;(emotionCache.sheet as any)._insertTag(tag)
+      })
+      // reset cache to reapply global styles
+      clientStyleData?.reset()
+    }, [])
+
+    return (
+      <html lang="zh-cn" data-version={version}>
+        <head>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+          <Meta />
+          <Links />
+          {serverSyleData?.map(({ key, ids, css }) => (
+            <style
+              key={key}
+              data-emotion={`${key} ${ids.join(' ')}`}
+              dangerouslySetInnerHTML={{ __html: css }}
+            />
+          ))}
+        </head>
+        <body>
+          <ChakraProvider theme={chakraTheme}>{children}</ChakraProvider>
+          <ColorModeScript
+            initialColorMode={chakraTheme.config.initialColorMode}
+          />
+          <ScrollRestoration />
+          <Scripts />
+          {process.env.NODE_ENV === 'development' && <LiveReload />}
+        </body>
+      </html>
+    )
+  }
+)
 
 export default function App() {
   const transition = useTransition()

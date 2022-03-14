@@ -1,4 +1,4 @@
-import type { MetaFunction } from 'remix'
+import { type MetaFunction } from 'remix'
 
 export const meta: MetaFunction = () => ({
   title: '成绩 - 清廉街',

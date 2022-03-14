@@ -1,8 +1,12 @@
-import type { InputProps, SystemProps } from '@chakra-ui/react'
-import { Flex, Grid, GridItem, Input } from '@chakra-ui/react'
+import {
+  Flex,
+  Grid,
+  GridItem,
+  type InputProps,
+  type SystemProps,
+} from '@chakra-ui/react'
 import { groupBy, sortBy } from 'lodash'
-import type { LoaderFunction } from 'remix'
-import { Form, json } from 'remix'
+import { Form, json, type LoaderFunction } from 'remix'
 import { Bridge } from '~/components/app/bridge/Bridge'
 import { Feeds } from '~/components/app/home/feeds/Feeds'
 import { External } from '~/components/app/home/links/External'
@@ -14,7 +18,7 @@ import { Search } from '~/components/common/Search'
 import feeds from '~/contents/mocks/feeds/feeds.json'
 import notes from '~/contents/mocks/notes/notes.json'
 import styles from '~/libs/markdown.css'
-import type { IFeeds, INotes } from '~/types'
+import { type IFeeds, type INotes } from '~/types'
 
 export function links() {
   return [{ rel: 'stylesheet', href: styles }]

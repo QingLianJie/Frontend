@@ -1,14 +1,14 @@
 import {
   Divider,
   HStack,
-  SystemProps,
   Tag,
   Text,
   VStack,
+  type SystemProps,
 } from '@chakra-ui/react'
 import { useLoaderData } from 'remix'
 import { Card } from '~/components/common/Card'
-import type { INotes } from '~/types'
+import { type INotes } from '~/types'
 import { relativeTime } from '~/utils/time'
 
 interface NotesProps extends SystemProps {

@@ -1,14 +1,15 @@
-import type { SystemProps } from '@chakra-ui/react'
-import { ButtonGroup, Divider, Skeleton, Text, VStack } from '@chakra-ui/react'
+import {
+  ButtonGroup,
+  Skeleton,
+  Text,
+  VStack,
+  type SystemProps,
+} from '@chakra-ui/react'
 import localforage from 'localforage'
-import type { Dispatch } from 'react'
-import { createContext, useEffect, useState } from 'react'
-import { RiLoader2Line } from 'react-icons/ri'
-import { ClientOnly } from 'remix-utils'
+import { createContext, useEffect, useState, type Dispatch } from 'react'
 import { BindHEU } from '~/components/app/bridge/modals/BindHEU'
 import { Card } from '~/components/common/Card'
-import { IconButton } from '~/components/common/IconButton'
-import type { IAccount } from '~/types'
+import { type IAccount } from '~/types'
 import { decodeBase64 } from '~/utils/system'
 import { UnbindHEU } from './actions/UnbindHEU'
 import { UpdateBridge } from './actions/UpdateBridge'

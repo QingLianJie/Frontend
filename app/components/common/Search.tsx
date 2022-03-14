@@ -1,4 +1,3 @@
-import type { InputProps, SystemProps } from '@chakra-ui/react'
 import {
   Flex,
   Icon,
@@ -7,6 +6,8 @@ import {
   InputLeftElement,
   InputRightElement,
   Kbd,
+  type InputProps,
+  type SystemProps,
 } from '@chakra-ui/react'
 import { useKeyPress } from 'ahooks'
 import { useRef } from 'react'
