@@ -60,7 +60,6 @@ export const Table = () => {
                   fontSize="smd"
                   px="3"
                   py="4"
-                  transition="all 0.2s"
                   isNumeric={numeric}
                 >
                   {name}
@@ -115,7 +114,6 @@ const CellStyles: SystemProps & { sx: CSSObject } = {
   py: '4',
   sx: { fontVariantNumeric: 'normal' },
   fontSize: 'smd',
-  transition: 'all 0.2s',
 }
 
 interface ScoreCellProps {

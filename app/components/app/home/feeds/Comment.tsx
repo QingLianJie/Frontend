@@ -28,7 +28,7 @@ export const FeedComment = ({ comments }: FeedCommentProps) => {
     <Card>
       <VStack align="flex-start" w="full" px="4" pt="6" pb="6" spacing="5">
         <CourseInfo course={course} />
-        <Divider transition="all 0.2s" />
+        <Divider />
         <VStack align="flex-start" w="full" py="1" spacing="4">
           {comments.map(comment => (
             <CommentItem comment={comment} key={comment.id} />
@@ -45,7 +45,7 @@ interface CourseInfoProps {
 
 const CourseInfo = ({ course }: CourseInfoProps) => (
   <VStack align="flex-start" w="full" px="1" spacing="2">
-    <HStack w="full" pb="3" justify="space-between" transition="all 0.2s">
+    <HStack w="full" pb="3" justify="space-between">
       <Link
         as={RemixLink}
         to={`/courses/${course.id}`}
@@ -179,7 +179,6 @@ const CommentItem = ({ comment }: CommentItemProps) => (
         pl="5"
         mx="1px"
         borderLeftWidth="1px"
-        transition="all 0.2s"
       >
         {comment.content}
       </Text>

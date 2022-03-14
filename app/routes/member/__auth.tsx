@@ -43,7 +43,6 @@ export default function AuthPage() {
         bg="white"
         _dark={{ bg: 'gray.800' }}
         rounded="md"
-        transition="all 0.2s"
       >
         <Heading
           as="h2"
@@ -87,7 +86,7 @@ const TabBox = ({ index, children }: TabBoxProps) => {
 
   return (
     <Tabs w="full" variant="enclosed" zIndex="1" index={index}>
-      <TabList transition="border-color 0.2s" px={{ base: '6', sm: '8' }}>
+      <TabList px={{ base: '6', sm: '8' }}>
         <TabLink to={`/member/login${from}`} text="登录" />
         <TabLink to={`/member/signup${from}`} text="注册" />
         <Spacer />

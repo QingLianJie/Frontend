@@ -16,7 +16,6 @@ export const Card = ({ title, id, children, ...props }: CardProps) => (
     rounded="md"
     bg="white"
     _dark={{ bg: 'gray.800' }}
-    transition="all 0.2s"
     {...props}
   >
     {title && (

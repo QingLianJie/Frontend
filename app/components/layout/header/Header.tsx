@@ -16,7 +16,6 @@ import {
   useLocation,
   useSearchParams,
 } from 'remix'
-import { SwitchTheme } from '~/components/common/actions/SwitchTheme'
 import { AVATAT_BASE_URL } from '~/const'
 import { RootLoader } from '~/root'
 import { calcEmailMd5 } from '~/utils/math'
@@ -49,7 +48,7 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => {
       backdropFilter={{ base: 'none', md: 'blur(12px)' }}
       bg={{ base: 'transparent', md: '#EDF2F788' }}
       _dark={{ bg: { base: 'transparent', md: '#17192388' } }}
-      transition="all 0.2s"
+      transitionProperty="padding"
       pointerEvents={{ base: 'none', md: 'auto' }}
     >
       <Section align="left" d={{ base: 'flex', md: 'none' }}>
@@ -73,7 +72,6 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => {
             : 'none',
           md: 'none',
         }}
-        transition="all 0.2s"
       >
         <RemixLink to="/">
           <Heading
@@ -91,7 +89,6 @@ export const Header = ({ title = '清廉街' }: HeaderProps) => {
         <HeaderNav />
       </Section>
       <Section align="right">
-        <SwitchTheme hasTooltip d={{ base: 'none', md: 'flex' }} />
         <Avatar />
       </Section>
     </Flex>
@@ -167,7 +164,6 @@ const Avatar = () => {
             },
           }}
           cursor="pointer"
-          transition="all 0.2s"
         />
       </Link>
     </Tooltip>

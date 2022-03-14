@@ -53,8 +53,8 @@ export const Filter = ({ id }: FilterProps) => {
           _dark={{ bg: 'gray.800' }}
           fontSize="smd"
           h="9"
-          transition="all 0.2s"
           rounded="md"
+          transitionProperty="box-shadow"
         />
 
         <Select
@@ -65,7 +65,7 @@ export const Filter = ({ id }: FilterProps) => {
           fontSize="smd"
           h="9"
           rounded="md"
-          transition="all 0.2s"
+          transitionProperty="box-shadow"
         >
           {courseType.type.map((value, index) => (
             <option value={value} key={index}>
@@ -82,7 +82,7 @@ export const Filter = ({ id }: FilterProps) => {
           fontSize="smd"
           h="9"
           rounded="md"
-          transition="all 0.2s"
+          transitionProperty="box-shadow"
         >
           {courseType.test.map((value, index) => (
             <option value={value} key={index}>
@@ -99,7 +99,7 @@ export const Filter = ({ id }: FilterProps) => {
           fontSize="smd"
           h="9"
           rounded="md"
-          transition="all 0.2s"
+          transitionProperty="box-shadow"
         >
           {courseType.category.map((value, index) => (
             <option value={value} key={index}>

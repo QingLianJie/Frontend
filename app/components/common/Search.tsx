@@ -49,6 +49,7 @@ export const Search = (props: SearchProps) => {
             color: 'gray.500',
             _dark: 'gray.400',
           }}
+          transitionProperty="box-shadow"
           {...props}
         />
         <InputRightElement
@@ -60,12 +61,10 @@ export const Search = (props: SearchProps) => {
           color="gray.500"
           _dark={{ color: 'gray.400' }}
         >
-          <Kbd mr="1" rounded="sm" transition="all 0.2s">
+          <Kbd mr="1" rounded="sm">
             Ctrl
           </Kbd>
-          <Kbd rounded="sm" transition="all 0.2s">
-            K
-          </Kbd>
+          <Kbd rounded="sm">K</Kbd>
         </InputRightElement>
       </InputGroup>
     </Flex>

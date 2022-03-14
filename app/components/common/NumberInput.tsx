@@ -30,7 +30,7 @@ export const NumberInput = ({
           rounded={rounded}
           fontSize={fontSize}
           h={h}
-          transform="all 0.2s"
+          transitionProperty="box-shadow"
         >
           {addon}
         </InputLeftAddon>
@@ -44,7 +44,7 @@ export const NumberInput = ({
           roundedLeft="0"
           roundedRight={rounded}
           fontSize={fontSize}
-          transform="all 0.2s"
+          transitionProperty="box-shadow"
         />
         <NumberInputStepper h={h}>
           <NumberIncrementStepper />

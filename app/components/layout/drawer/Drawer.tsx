@@ -5,7 +5,6 @@ import {
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   Icon,
@@ -16,7 +15,6 @@ import {
 import { useEffect } from 'react'
 import { RiMenuLine } from 'react-icons/ri'
 import { useLocation } from 'remix'
-import { SwitchThemeText } from '~/components/common/actions/SwitchTheme'
 import { DrawerNav } from './Nav'
 
 export const Drawer = () => {
@@ -55,11 +53,7 @@ export const Drawer = () => {
           returnFocusOnClose={false}
         >
           <DrawerOverlay />
-          <DrawerContent
-            bg="white"
-            _dark={{ bg: 'gray.800' }}
-            transition="background 0.2s"
-          >
+          <DrawerContent bg="white" _dark={{ bg: 'gray.800' }}>
             <DrawerCloseButton
               top="5"
               right="7"
@@ -81,35 +75,17 @@ export const Drawer = () => {
               fontSize="lg"
               bg="gray.100"
               _dark={{ bg: 'gray.900' }}
-              transition="all 0.2s"
             >
               清廉街
             </DrawerHeader>
 
-            <DrawerBody
-              py="8"
-              px="5"
-              bg="white"
-              _dark={{ bg: 'gray.800' }}
-              transition="all 0.2s"
-            >
+            <DrawerBody py="8" px="5" bg="white" _dark={{ bg: 'gray.800' }}>
               <DrawerNav />
             </DrawerBody>
 
             <Box px="4">
-              <Divider transition="all 0.2s" />
+              <Divider />
             </Box>
-
-            <DrawerFooter
-              px="8"
-              py="5"
-              bg="white"
-              flexDir="column"
-              _dark={{ bg: 'gray.800' }}
-              transition="all 0.2s"
-            >
-              <SwitchThemeText />
-            </DrawerFooter>
           </DrawerContent>
         </CharkraDrawer>
       )}

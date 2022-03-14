@@ -1,4 +1,3 @@
-// entry.server.tsx
 import { CacheProvider } from '@emotion/react'
 import createEmotionServer from '@emotion/server/create-instance'
 import 'dotenv/config'

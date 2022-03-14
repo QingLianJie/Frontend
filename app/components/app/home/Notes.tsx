@@ -27,7 +27,7 @@ export const Notes = ({ id, ...props }: NotesProps) => {
         pb="6"
         pt="3"
         align="flex-start"
-        divider={<Divider transition="all 0.2s" />}
+        divider={<Divider />}
         spacing="4"
       >
         {isNoNotes ? (
@@ -45,12 +45,7 @@ export const Notes = ({ id, ...props }: NotesProps) => {
             >
               <HStack align="center" justify="flex-start" spacing="3" w="full">
                 {note.tag && (
-                  <Tag
-                    size="sm"
-                    colorScheme="green"
-                    mx="1px"
-                    transition="all 0.2s"
-                  >
+                  <Tag size="sm" colorScheme="green" mx="1px">
                     {note.tag}
                   </Tag>
                 )}

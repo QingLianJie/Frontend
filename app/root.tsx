@@ -1,13 +1,8 @@
-import {
-  ChakraProvider,
-  ColorModeScript,
-  extendTheme,
-  Heading,
-} from '@chakra-ui/react'
+import { ChakraProvider, extendTheme, Heading } from '@chakra-ui/react'
 import { withEmotionCache } from '@emotion/react'
 import NProgress from 'nprogress'
 import styles from 'nprogress/nprogress.css'
-import React, { useContext, useEffect, type ReactNode } from 'react'
+import { useContext, useEffect, type ReactNode } from 'react'
 import {
   json,
   Links,
@@ -45,8 +40,10 @@ const chakraTheme = extendTheme({
       'a:hover': { textDecoration: 'none' },
     },
   },
-  initialColorMode: 'system',
-  useSystemColorMode: true,
+  config: {
+    initialColorMode: 'system',
+    useSystemColorMode: true,
+  },
   components: {
     Link: {
       baseStyle: { _hover: { textDecoration: 'none' } },
@@ -95,17 +92,13 @@ const Document = withEmotionCache(
     const serverSyleData = useContext(ServerStyleContext)
     const clientStyleData = useContext(ClientStyleContext)
 
-    // Only executed on client
     useEffect(() => {
-      // re-link sheet container
       emotionCache.sheet.container = document.head
-      // re-inject tags
       const tags = emotionCache.sheet.tags
       emotionCache.sheet.flush()
       tags.forEach(tag => {
         ;(emotionCache.sheet as any)._insertTag(tag)
       })
-      // reset cache to reapply global styles
       clientStyleData?.reset()
     }, [])
 
@@ -126,9 +119,6 @@ const Document = withEmotionCache(
         </head>
         <body>
           <ChakraProvider theme={chakraTheme}>{children}</ChakraProvider>
-          <ColorModeScript
-            initialColorMode={chakraTheme.config.initialColorMode}
-          />
           <ScrollRestoration />
           <Scripts />
           {process.env.NODE_ENV === 'development' && <LiveReload />}

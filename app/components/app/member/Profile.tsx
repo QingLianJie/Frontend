@@ -52,7 +52,6 @@ export const Profile = () => {
                   color: 'gray.200',
                 },
               }}
-              transition="all 0.2s"
             />
           </Tooltip>
 

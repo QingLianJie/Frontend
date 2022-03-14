@@ -36,7 +36,6 @@ export const Input = forwardRef(
               _dark={{
                 color: 'gray.500',
               }}
-              transition="all 0.2s"
             />
           </InputLeftElement>
 
@@ -47,6 +46,7 @@ export const Input = forwardRef(
             }
             isRequired
             name={name}
+            transitionProperty="box-shadow"
             {...props}
           />
 
@@ -71,11 +71,7 @@ export const Input = forwardRef(
           )}
         </InputGroup>
 
-        {help && (
-          <FormHelperText px="2" transition="all 0.2s">
-            {help}
-          </FormHelperText>
-        )}
+        {help && <FormHelperText px="2">{help}</FormHelperText>}
       </FormControl>
     )
   }
