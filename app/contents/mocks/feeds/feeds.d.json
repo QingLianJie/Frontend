@@ -1,8 +1,0 @@
-{
-    "description": "获取主页信息流",
-    "method": "GET",
-    "path": "/feeds",
-    "response": {
-        "200": "获取成功"
-    }
-}

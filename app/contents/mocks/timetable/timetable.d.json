@@ -1,9 +1,0 @@
-{
-    "description": "获取当前登录用户最新课表",
-    "method": "GET",
-    "path": "/timetable",
-    "response": {
-        "200": "获取成功",
-        "401": "没有登录"
-    }
-}
