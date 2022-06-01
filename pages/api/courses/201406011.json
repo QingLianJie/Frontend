@@ -1,0 +1,14 @@
+{
+  "name": "程序设计基础",
+  "id": "201406011",
+  "type": "必修",
+  "category": "自然科学与技术基础必修课",
+  "test": "考查",
+  "credit": "3",
+  "period": "48",
+  "statistics": {
+    "excellent": 634,
+    "fail": 24,
+    "total": 2145
+  }
+}

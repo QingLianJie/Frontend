@@ -39,7 +39,7 @@ const links = [
       {
         name: '图书馆官网',
         href: 'https://lib.wvpn.hrbeu.edu.cn/',
-        isFavorite: true,
+        isFavorite: false,
       },
       {
         name: '云打印',
@@ -81,7 +81,6 @@ const links = [
       },
     ],
   },
-
   {
     name: '其他链接',
     isOpen: false,

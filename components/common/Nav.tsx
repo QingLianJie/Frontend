@@ -58,7 +58,13 @@ export const Nav = () => {
 
   useEffect(() => {
     const href = router.pathname
-    const page = pages.find(p => p.href === href)?.name || '主页'
+    if (href === '/') {
+      setCurrentPage('主页')
+      return
+    }
+    const page =
+      pages.filter(p => p.href !== '/').find(p => href.startsWith(p.href))
+        ?.name || '主页'
     setCurrentPage(page)
   }, [router.pathname])
 

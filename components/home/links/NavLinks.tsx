@@ -6,7 +6,6 @@ import {
   type SvgIconComponent,
 } from '@mui/icons-material'
 import {
-  Box,
   Card,
   CardActionArea,
   CardContent,
@@ -17,16 +16,16 @@ import {
 import { amber, blue, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { accountAtom } from '../../contexts/account'
-import { authAtom } from '../../contexts/models'
+import { accountAtom } from '../../../contexts/account'
+import { authAtom } from '../../../contexts/models'
 
-export const Apps = () => {
+export const NavLinks = () => {
   const [, setOpen] = useAtom(authAtom)
   const [account] = useAtom(accountAtom)
 
   return (
     <Grid container item xs={12} spacing={2}>
-      <App
+      <NavLink
         name="所有课程"
         description={`${0} 个课程`}
         icon={ClassRounded}
@@ -34,7 +33,7 @@ export const Apps = () => {
         isLink
         href="/courses"
       />
-      <App
+      <NavLink
         name="我的成绩"
         description={`未获取`}
         icon={InsertChartRounded}
@@ -42,7 +41,7 @@ export const Apps = () => {
         isLink
         href="/scores"
       />
-      <App
+      <NavLink
         name="我的课表"
         description={`未获取`}
         icon={TableChartRounded}
@@ -50,7 +49,7 @@ export const Apps = () => {
         isLink
         href="/schedules"
       />
-      <App
+      <NavLink
         name="账号管理"
         description={account ? `${account.name}` : '未登录'}
         icon={AccountCircleRounded}
@@ -61,7 +60,7 @@ export const Apps = () => {
   )
 }
 
-interface AppProps {
+interface NavLinkProps {
   name: string
   description: string
   icon: SvgIconComponent
@@ -71,7 +70,7 @@ interface AppProps {
   onClick?: () => void
 }
 
-const App = ({
+const NavLink = ({
   name,
   description,
   icon,
@@ -79,11 +78,11 @@ const App = ({
   isLink,
   href,
   onClick,
-}: AppProps) => {
+}: NavLinkProps) => {
   const router = useRouter()
 
   return (
-    <Grid item xs={6} sm={3} md={6} lg={3}>
+    <Grid item xs={6} sm={6} md={3} lg={3}>
       <Card variant="outlined" sx={{ height: '100%' }}>
         <CardActionArea
           onClick={isLink ? () => router.push(href || '/') : onClick}
@@ -107,11 +106,7 @@ const App = ({
               variant="body1"
               component="h2"
               whiteSpace="nowrap"
-              sx={{
-                fontSize: '0.925rem',
-                fontWeight: 'fontWeightBold',
-                pb: 0.25,
-              }}
+              sx={{ fontWeight: 'fontWeightBold', pb: 0.25 }}
             >
               {name}
             </Typography>
@@ -119,6 +114,7 @@ const App = ({
               variant="body2"
               color="textSecondary"
               whiteSpace="nowrap"
+              sx={{ fontSize: '0.925rem' }}
             >
               {description}
             </Typography>

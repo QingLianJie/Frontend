@@ -29,3 +29,16 @@ export interface Statistics {
   fail: number
   total: number
 }
+
+export type Groups = Group[]
+
+export interface Group {
+  course: Course
+  comments: Comment[]
+}
+
+export interface Note {
+  date: string
+  content: string
+  tag: string
+}

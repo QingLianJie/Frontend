@@ -9,7 +9,7 @@ export const Search = () => {
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault()
-    router.push(`/courses/?search=${search}`)
+    if (search) router.push(`/courses/?search=${search}`)
   }
 
   return (
@@ -31,7 +31,7 @@ export const Search = () => {
             placeholder="搜索课程数据"
             name="search"
             type="search"
-            sx={{ fontSize: '0.925rem', py: 0.75, flex: 1 }}
+            sx={{ py: 0.75, flex: 1 }}
             onChange={e => setSearch(e.target.value)}
           />
           <IconButton type="submit" aria-label="搜索">

@@ -1,0 +1,127 @@
+import {
+  BugReportOutlined,
+  CodeOutlined,
+  CopyAllOutlined,
+  GroupOutlined,
+  ScienceOutlined,
+  type SvgIconComponent,
+} from '@mui/icons-material'
+import {
+  Icon,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from '@mui/material'
+import { Tooltip } from '../../base/Tooltip'
+
+type LinkType = {
+  name: string
+  href: string
+  icon: SvgIconComponent
+  action?: {
+    name: string
+    icon: SvgIconComponent
+    click: () => void
+  }
+}
+
+interface ListProps {
+  hasHeader?: boolean
+}
+
+export const OtherLinks = ({ hasHeader }: ListProps) => (
+  <List
+    subheader={
+      hasHeader && <ListSubheader component="div">清廉街</ListSubheader>
+    }
+    dense
+    sx={{ width: '100%' }}
+  >
+    {links.map(link => (
+      <LinkItem link={link} key={link.name} />
+    ))}
+  </List>
+)
+
+const links = [
+  {
+    name: '问题反馈',
+    href: 'https://wj.qq.com/s2/9542270/79ad/',
+    icon: BugReportOutlined,
+  },
+  {
+    name: 'QQ 群',
+    href: 'https://jq.qq.com/?_wv=1027&k=Fj4xfeQE',
+    icon: GroupOutlined,
+    action: {
+      name: '复制群号',
+      icon: CopyAllOutlined,
+      click: () => navigator.clipboard.writeText('498047164'),
+    },
+  },
+  {
+    name: '开发版网站',
+    href: 'https://qing-dev.dist.run/',
+    icon: ScienceOutlined,
+  },
+  {
+    name: 'GitHub',
+    href: 'https://github.com/QingLianJie/',
+    icon: CodeOutlined,
+  },
+]
+
+interface LinkItemProps {
+  link: LinkType
+}
+
+export const LinkItem = ({ link }: LinkItemProps) => (
+  <ListItem
+    disablePadding
+    secondaryAction={
+      link.action && (
+        <Tooltip title={link.action.name} placement="top">
+          <IconButton
+            aria-label={link.action.name}
+            edge="end"
+            onClick={link.action.click}
+            sx={{ right: '2.5px' }}
+          >
+            <Icon
+              component={link.action.icon}
+              color="secondary"
+              fontSize="small"
+            />
+          </IconButton>
+        </Tooltip>
+      )
+    }
+  >
+    <ListItemButton
+      component="a"
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      sx={{ py: { xs: 0.75, sm: 0.5 } }}
+    >
+      <ListItemIcon sx={{ minWidth: 32 }}>
+        <Icon component={link.icon} color="secondary" fontSize="small" />
+      </ListItemIcon>
+      <ListItemText
+        primary={link.name}
+        sx={{
+          '& span': {
+            fontSize: '0.925rem',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          },
+        }}
+      />
+    </ListItemButton>
+  </ListItem>
+)

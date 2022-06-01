@@ -1,21 +1,16 @@
 import {
   AddOutlined,
-  BookmarkBorderOutlined,
   ExpandLess,
   ExpandMore,
-  FavoriteBorderOutlined,
   FolderOutlined,
   PublicOutlined,
   StarOutlineRounded,
   StarRounded,
+  SvgIconComponent,
   VpnLockOutlined,
 } from '@mui/icons-material'
-import { TabContext, TabList, TabPanel } from '@mui/lab'
 import {
-  Box,
-  Card,
   Collapse,
-  Grid,
   Icon,
   IconButton,
   List,
@@ -24,93 +19,27 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
-  Tab,
-  useMediaQuery,
-  useTheme,
 } from '@mui/material'
 import { amber } from '@mui/material/colors'
 import { useAtom } from 'jotai'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { TransitionGroup } from 'react-transition-group'
-import { linksAtom } from '../../contexts/links'
-import { Tooltip } from '../base/Tooltip'
+import { linksAtom } from '../../../contexts/links'
+import { Tooltip } from '../../base/Tooltip'
 
 type LinkType = {
   name: string
   href: string
-  isFavorite: boolean
+  icon?: SvgIconComponent
+  isFavorite?: boolean
   isLimited?: boolean
 }
 
-type TabType = '收藏' | '列表'
-
-export const Links = () => {
-  const [currentTab, setCurrentTab] = useState<TabType>('收藏')
-  const theme = useTheme()
-  const isXs = useMediaQuery(theme.breakpoints.down('sm'))
-  const isLg = useMediaQuery(theme.breakpoints.between('md', 'lg'))
-  const isTab = isXs || isLg
-
-  return (
-    <Fragment>
-      {isTab ? (
-        <Grid item xs={12}>
-          <Card variant="outlined" sx={{ width: '100%', height: '100%' }}>
-            <TabContext value={currentTab}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList
-                  onChange={(e, v) => setCurrentTab(v)}
-                  aria-label="收藏链接和链接列表的页面"
-                  sx={{ mb: '-1px', minHeight: 'unset' }}
-                >
-                  <Tab
-                    label="收藏"
-                    value="收藏"
-                    icon={<FavoriteBorderOutlined fontSize="small" />}
-                    iconPosition="start"
-                    sx={{ py: 1.5, minHeight: 'unset' }}
-                  />
-                  <Tab
-                    label="链接列表"
-                    value="列表"
-                    icon={<BookmarkBorderOutlined fontSize="small" />}
-                    iconPosition="start"
-                    sx={{ py: 1.5, minHeight: 'unset' }}
-                  />
-                </TabList>
-              </Box>
-
-              <TabPanel value="收藏" sx={{ p: 0 }}>
-                <FavoriteLink />
-              </TabPanel>
-              <TabPanel value="列表" sx={{ p: 0 }}>
-                <LinkList />
-              </TabPanel>
-            </TabContext>
-          </Card>
-        </Grid>
-      ) : (
-        <Fragment>
-          {[<FavoriteLink hasHeader />, <LinkList hasHeader />].map(
-            (component, index) => (
-              <Grid item xs={12} sm={6} md={12} lg={6} key={index}>
-                <Card variant="outlined" sx={{ width: '100%', height: '100%' }}>
-                  {component}
-                </Card>
-              </Grid>
-            )
-          )}
-        </Fragment>
-      )}
-    </Fragment>
-  )
-}
-
-interface LinkListProps {
+interface ListProps {
   hasHeader?: boolean
 }
 
-const FavoriteLink = ({ hasHeader }: LinkListProps) => {
+export const FavoriteLinks = ({ hasHeader }: ListProps) => {
   const [links] = useAtom(linksAtom)
   const favorites = links
     .map(group => group.children.filter(link => link.isFavorite))
@@ -125,9 +54,9 @@ const FavoriteLink = ({ hasHeader }: LinkListProps) => {
       sx={{ width: '100%' }}
     >
       <TransitionGroup>
-        {favorites.map(shortcut => (
-          <Collapse key={shortcut.name}>
-            <LinkItem link={shortcut} />
+        {favorites.map(favorite => (
+          <Collapse key={favorite.name}>
+            <LinkItem link={favorite} hasStar />
           </Collapse>
         ))}
       </TransitionGroup>
@@ -135,7 +64,7 @@ const FavoriteLink = ({ hasHeader }: LinkListProps) => {
   )
 }
 
-const LinkList = ({ hasHeader }: LinkListProps) => {
+export const ListLinks = ({ hasHeader }: ListProps) => {
   const [links, setLinks] = useAtom(linksAtom)
   const handleOpen = (name: string) =>
     setLinks(
@@ -174,16 +103,15 @@ const LinkList = ({ hasHeader }: LinkListProps) => {
           </ListItemButton>
           <Collapse in={group.isOpen}>
             {group.children.map(link => (
-              <LinkItem key={link.name} link={link} />
+              <LinkItem key={link.name} link={link} hasStar />
             ))}
           </Collapse>
         </Fragment>
       ))}
-
       <ListItem disablePadding>
         <ListItemButton
           component="a"
-          href=""
+          href="https://wj.qq.com/s2/10326005/669b/"
           target="_blank"
           rel="noopener noreferrer"
           sx={{ py: { xs: 0.75, sm: 0.5 } }}
@@ -203,9 +131,10 @@ const LinkList = ({ hasHeader }: LinkListProps) => {
 
 interface LinkItemProps {
   link: LinkType
+  hasStar?: boolean
 }
 
-const LinkItem = ({ link }: LinkItemProps) => {
+export const LinkItem = ({ link, hasStar }: LinkItemProps) => {
   const [links, setLinks] = useAtom(linksAtom)
 
   const handleStar = () =>
@@ -224,17 +153,24 @@ const LinkItem = ({ link }: LinkItemProps) => {
     <ListItem
       disablePadding
       secondaryAction={
-        <IconButton
-          aria-label="收藏链接"
-          edge="end"
-          onClick={handleStar}
-          sx={{ right: '2.5px' }}
-        >
-          <Icon
-            component={link.isFavorite ? StarRounded : StarOutlineRounded}
-            sx={{ color: amber[500] }}
-          />
-        </IconButton>
+        hasStar && (
+          <Tooltip
+            title={link.isFavorite ? '取消收藏' : '收藏'}
+            placement="top"
+          >
+            <IconButton
+              aria-label="收藏链接"
+              edge="end"
+              onClick={handleStar}
+              sx={{ right: '2.5px' }}
+            >
+              <Icon
+                component={link.isFavorite ? StarRounded : StarOutlineRounded}
+                sx={{ color: amber[500] }}
+              />
+            </IconButton>
+          </Tooltip>
+        )
       }
     >
       <ListItemButton
@@ -245,7 +181,9 @@ const LinkItem = ({ link }: LinkItemProps) => {
         sx={{ py: { xs: 0.75, sm: 0.5 } }}
       >
         <ListItemIcon sx={{ minWidth: 32 }}>
-          {link.isLimited ? (
+          {link.icon ? (
+            <Icon component={link.icon} color="secondary" fontSize="small" />
+          ) : link.isLimited ? (
             <Tooltip title="需要校园网" placement="top">
               <VpnLockOutlined color="secondary" fontSize="small" />
             </Tooltip>
@@ -261,8 +199,8 @@ const LinkItem = ({ link }: LinkItemProps) => {
             '& span': {
               fontSize: '0.925rem',
               overflow: 'hidden',
-              whiteSpace: 'nowrap',
               textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
             },
           }}
         />
