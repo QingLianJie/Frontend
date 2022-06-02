@@ -49,7 +49,7 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
     >
       <Meta />
       <Header title="清廉街" />
-      <Grid container spacing={{ xs: 2, xl: 4 }} alignItems="start">
+      <Grid container spacing={{ xs: 2, xl: 6 }} alignItems="start">
         <Grid container item xs={12} sm={6} md={8} lg={6} spacing={2}>
           <Search />
           <NavLinks />
@@ -125,7 +125,8 @@ const Links = ({ note }: LinksProps) => {
             <Stack spacing={2}>
               <Card variant="outlined">
                 <FavoriteLinks hasHeader />
-                <Divider />
+              </Card>
+              <Card variant="outlined">
                 <ListLinks hasHeader />
               </Card>
             </Stack>

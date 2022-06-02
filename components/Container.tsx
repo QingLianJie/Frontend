@@ -17,11 +17,11 @@ export const Container = ({ children }: ContainerProps) => {
 
   useEffect(() => {
     const links = localStorage.getItem('links')
-    if (!links) return
-
     try {
-      const data = JSON.parse(links)
-      setLinks(data)
+      if (links) {
+        const data = JSON.parse(links)
+        setLinks(data)
+      }
     } catch (error) {
       console.error(error)
     } finally {

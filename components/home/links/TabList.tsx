@@ -2,21 +2,35 @@ import {
   BookmarkBorderOutlined,
   FavoriteBorderOutlined,
   TagOutlined,
-  AlternateEmailOutlined,
+  BookmarkRounded,
+  FavoriteRounded,
+  TagRounded,
 } from '@mui/icons-material'
 import { TabContext, TabList as MUITabList, TabPanel } from '@mui/lab'
-import { Box, Card, Icon, Stack, Tab, Typography } from '@mui/material'
+import { Box, Card, Icon, Stack, Tab } from '@mui/material'
 import { useState } from 'react'
 import { FavoriteLinks, ListLinks } from './FavoriteLinks'
 import { OtherLinks } from './OtherLinks'
 
 const tabs = [
-  { name: '收藏', icon: FavoriteBorderOutlined, component: FavoriteLinks },
-  { name: '列表', icon: BookmarkBorderOutlined, component: ListLinks },
-  { name: '清廉街', icon: TagOutlined, component: OtherLinks },
+  {
+    name: '收藏',
+    icon: { base: FavoriteBorderOutlined, active: FavoriteRounded },
+    component: FavoriteLinks,
+  },
+  {
+    name: '列表',
+    icon: { base: BookmarkBorderOutlined, active: BookmarkRounded },
+    component: ListLinks,
+  },
+  {
+    name: '清廉街',
+    icon: { base: TagOutlined, active: TagRounded },
+    component: OtherLinks,
+  },
 ]
 
-type TabType = '收藏' | '列表'
+type TabType = '收藏' | '列表' | '清廉街'
 
 export const TabList = () => {
   const [currentTab, setCurrentTab] = useState<TabType>('收藏')
@@ -37,10 +51,19 @@ export const TabList = () => {
                   aria-label={tab.name}
                   value={tab.name}
                   key={tab.name}
-                  icon={<Icon component={tab.icon} fontSize="small" />}
+                  icon={
+                    <Icon
+                      component={
+                        currentTab === tab.name
+                          ? tab.icon.active
+                          : tab.icon.base
+                      }
+                      fontSize="small"
+                    />
+                  }
                   iconPosition="start"
                   sx={{
-                    py: 1.5,
+                    py: 1.2,
                     minHeight: 'unset',
                     height: '100%',
                     minWidth: 'unset',
