@@ -1,6 +1,6 @@
 import { Container } from '@mui/material'
 import type { NextPage } from 'next'
-import { Footer, Header } from '../components/common/Layout'
+import { Footer, Header } from '../components/base/Layout'
 import { Meta } from '../components/Container'
 
 const Scores: NextPage = () => (

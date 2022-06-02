@@ -38,12 +38,12 @@ export interface Group {
 }
 
 export interface Note {
+  type: '更新' | '公告'
   date: string
-  content: string
-  tag: string
-  banner?: {
+  title: string
+  html: string
+  action?: {
     title: string
-    description: string
-    type: '更新' | '公告'
+    href: string
   }
 }

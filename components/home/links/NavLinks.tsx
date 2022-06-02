@@ -92,8 +92,8 @@ const NavLink = ({
             <Icon
               component={icon}
               sx={{
-                color,
                 opacity: 1,
+                color,
                 position: 'absolute',
                 right: '-1rem',
                 top: '80%',
@@ -114,7 +114,6 @@ const NavLink = ({
               variant="body2"
               color="textSecondary"
               whiteSpace="nowrap"
-              // sx={{ fontSize: '0.925rem' }}
             >
               {description}
             </Typography>

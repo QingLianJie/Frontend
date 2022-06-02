@@ -25,7 +25,7 @@ type LinkType = {
   action?: {
     name: string
     icon: SvgIconComponent
-    click: () => void
+    onClick: () => void
   }
 }
 
@@ -60,7 +60,7 @@ const links = [
     action: {
       name: '复制群号',
       icon: CopyAllOutlined,
-      click: () => navigator.clipboard.writeText('498047164'),
+      onClick: () => navigator?.clipboard.writeText('498047164'),
     },
   },
   {
@@ -88,7 +88,7 @@ export const LinkItem = ({ link }: LinkItemProps) => (
           <IconButton
             aria-label={link.action.name}
             edge="end"
-            onClick={link.action.click}
+            onClick={link.action.onClick}
             sx={{ right: '2.5px' }}
           >
             <Icon

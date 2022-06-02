@@ -8,6 +8,7 @@ import Head from 'next/head'
 import { useMemo } from 'react'
 import { Container } from '../components/Container'
 import { fontFamily, palette } from '../utils/theme'
+import Progress from 'nextjs-progressbar'
 
 const createEmotionCache = () => createCache({ key: 'css', prepend: true })
 const clientSideEmotionCache = createEmotionCache()
@@ -39,6 +40,7 @@ const MyApp = ({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
+          <Progress color="#f687b3" height={2} />
           <Component {...pageProps} />
         </Container>
       </ThemeProvider>

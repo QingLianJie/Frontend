@@ -2,9 +2,10 @@ import {
   BookmarkBorderOutlined,
   FavoriteBorderOutlined,
   TagOutlined,
+  AlternateEmailOutlined,
 } from '@mui/icons-material'
 import { TabContext, TabList as MUITabList, TabPanel } from '@mui/lab'
-import { Box, Card, Icon, Stack, Tab } from '@mui/material'
+import { Box, Card, Icon, Stack, Tab, Typography } from '@mui/material'
 import { useState } from 'react'
 import { FavoriteLinks, ListLinks } from './FavoriteLinks'
 import { OtherLinks } from './OtherLinks'

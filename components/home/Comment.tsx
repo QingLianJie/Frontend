@@ -25,7 +25,7 @@ export const Comment = ({ group }: CommentProps) => {
     <Card variant="outlined" sx={{ display: 'flex', flexDirection: 'column' }}>
       <CardContent sx={{ p: 0, flex: 1 }}>
         {group.comments.map(comment => (
-          <Fragment>
+          <Fragment key={comment.id}>
             <Stack p={2} spacing={1} key={comment.id}>
               <Stack direction="row" spacing={1.5} alignItems="center">
                 <Typography variant="body2" color="textSecondary">
@@ -47,13 +47,13 @@ export const Comment = ({ group }: CommentProps) => {
           variant="text"
           fullWidth
           sx={{ justifyContent: 'start', px: 1.75, py: 1.25 }}
-          color="secondary"
+          color="primary"
           onClick={() => router.push(`/courses/${group.course.id}`)}
         >
           <BookOutlined fontSize="small" />
           <Typography
             variant="button"
-            sx={{ px: 1, flex: 1, textAlign: 'start' }}
+            sx={{ px: 1.5, flex: 1, textAlign: 'start' }}
           >
             {group.course.name}
           </Typography>

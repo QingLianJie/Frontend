@@ -2,7 +2,7 @@ import { Container } from '@mui/material'
 import type { GetServerSideProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { Footer, Header } from '../../components/common/Layout'
+import { Footer, Header } from '../../components/base/Layout'
 import { Meta } from '../../components/Container'
 import { Course as CourseType } from '../../types'
 
