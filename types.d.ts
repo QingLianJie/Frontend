@@ -41,4 +41,9 @@ export interface Note {
   date: string
   content: string
   tag: string
+  banner?: {
+    title: string
+    description: string
+    type: '更新' | '公告'
+  }
 }

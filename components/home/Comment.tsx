@@ -46,7 +46,7 @@ export const Comment = ({ group }: CommentProps) => {
           size="large"
           variant="text"
           fullWidth
-          sx={{ justifyContent: 'start', px: 1.75 }}
+          sx={{ justifyContent: 'start', px: 1.75, py: 1.25 }}
           color="secondary"
           onClick={() => router.push(`/courses/${group.course.id}`)}
         >

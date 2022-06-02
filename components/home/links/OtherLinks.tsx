@@ -106,7 +106,6 @@ export const LinkItem = ({ link }: LinkItemProps) => (
       href={link.href}
       target="_blank"
       rel="noopener noreferrer"
-      sx={{ py: { xs: 0.75, sm: 0.5 } }}
     >
       <ListItemIcon sx={{ minWidth: 32 }}>
         <Icon component={link.icon} color="secondary" fontSize="small" />
@@ -115,7 +114,7 @@ export const LinkItem = ({ link }: LinkItemProps) => (
         primary={link.name}
         sx={{
           '& span': {
-            fontSize: '0.925rem',
+            fontSize: 'body1.fontSize',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',

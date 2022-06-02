@@ -5,6 +5,7 @@ import {
   Divider,
   Grid,
   Stack,
+  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -13,7 +14,6 @@ import { type GetServerSideProps, type NextPage } from 'next'
 import { Fragment } from 'react'
 import { Footer, Header } from '../components/common/Layout'
 import { Meta } from '../components/Container'
-import { Banner } from '../components/home/Banner'
 import { Comment } from '../components/home/Comment'
 import {
   FavoriteLinks,
@@ -45,6 +45,11 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => (
         <Links note={note} />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={6}>
+        <Divider sx={{ mb: 2, display: { xs: 'flex', sm: 'none' } }}>
+          <Typography variant="body2" color="text.secondary">
+            最近课程评论
+          </Typography>
+        </Divider>
         <Masonry
           columns={{ xs: 1, sm: 1, md: 1, lg: 2 }}
           spacing={2}
@@ -94,9 +99,6 @@ const Links = ({ note }: LinksProps) => {
           <Grid item xs={12}>
             <Note note={note} />
           </Grid>
-          <Grid item xs={12}>
-            <Banner />
-          </Grid>
         </Fragment>
       ) : (
         <Grid item container xs={12} spacing={2}>
@@ -109,7 +111,6 @@ const Links = ({ note }: LinksProps) => {
           </Grid>
           <Grid item xs={12} md={6}>
             <Stack spacing={2}>
-              <Banner />
               <Note note={note} />
               <Card variant="outlined">
                 <OtherLinks hasHeader />

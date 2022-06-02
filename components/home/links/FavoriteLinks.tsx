@@ -84,16 +84,13 @@ export const ListLinks = ({ hasHeader }: ListProps) => {
     >
       {links.map(group => (
         <Fragment key={group.name}>
-          <ListItemButton
-            onClick={() => handleOpen(group.name)}
-            sx={{ py: { xs: 0.75, sm: 0.5 } }}
-          >
+          <ListItemButton onClick={() => handleOpen(group.name)}>
             <ListItemIcon sx={{ minWidth: 32 }}>
               <FolderOutlined color="secondary" fontSize="small" />
             </ListItemIcon>
             <ListItemText
               primary={group.name}
-              sx={{ '& span': { fontSize: '0.925rem' } }}
+              sx={{ '& span': { fontSize: 'body1.fontSize' } }}
             />
             {group.isOpen ? (
               <ExpandLess color="secondary" fontSize="small" />
@@ -114,14 +111,13 @@ export const ListLinks = ({ hasHeader }: ListProps) => {
           href="https://wj.qq.com/s2/10326005/669b/"
           target="_blank"
           rel="noopener noreferrer"
-          sx={{ py: { xs: 0.75, sm: 0.5 } }}
         >
           <ListItemIcon sx={{ minWidth: 32 }}>
             <AddOutlined color="secondary" fontSize="small" />
           </ListItemIcon>
           <ListItemText
             primary="想要添加其他链接？"
-            sx={{ '& span': { fontSize: '0.925rem' } }}
+            sx={{ '& span': { fontSize: 'body1.fontSize' } }}
           />
         </ListItemButton>
       </ListItem>
@@ -178,7 +174,6 @@ export const LinkItem = ({ link, hasStar }: LinkItemProps) => {
         href={link.href}
         target="_blank"
         rel="noopener noreferrer"
-        sx={{ py: { xs: 0.75, sm: 0.5 } }}
       >
         <ListItemIcon sx={{ minWidth: 32 }}>
           {link.icon ? (
@@ -197,7 +192,7 @@ export const LinkItem = ({ link, hasStar }: LinkItemProps) => {
           primary={link.name}
           sx={{
             '& span': {
-              fontSize: '0.925rem',
+              fontSize: 'body1.fontSize',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',

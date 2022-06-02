@@ -9,9 +9,9 @@ export const Header = ({ title }: HeaderProps) => (
     position="relative"
     color="transparent"
     elevation={0}
-    sx={{ py: { xs: 2, sm: 2, md: 4, lg: 6 } }}
+    sx={{ py: { xs: 3, sm: 2, md: 4, lg: 6 } }}
   >
-    <Toolbar>
+    <Toolbar sx={{ px: 2 }}>
       <Stack
         width="100%"
         direction="row"
@@ -23,9 +23,12 @@ export const Header = ({ title }: HeaderProps) => (
           component="h1"
           sx={{
             fontWeight: 'fontWeightBold',
-            fontSize: { xs: 'h6.fontSize', md: 'h5.fontSize' },
+            fontSize: {
+              xs: 'h5.fontSize',
+              sm: 'h6.fontSize',
+              md: 'h5.fontSize',
+            },
             width: '100%',
-            textAlign: { xs: 'center', sm: 'left' },
           }}
         >
           {title}
@@ -42,9 +45,9 @@ export const Footer = () => {
       alignItems="end"
       justifyContent="space-between"
       sx={{
-        px: 3,
-        pt: { xs: 2, sm: 3 },
-        pb: { xs: 9, sm: 5 },
+        px: 2,
+        pt: { xs: 0, sm: 3 },
+        pb: { xs: 9.5, sm: 5 },
         flex: 1,
       }}
     >

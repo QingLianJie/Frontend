@@ -114,7 +114,7 @@ const NavLink = ({
               variant="body2"
               color="textSecondary"
               whiteSpace="nowrap"
-              sx={{ fontSize: '0.925rem' }}
+              // sx={{ fontSize: '0.925rem' }}
             >
               {description}
             </Typography>
