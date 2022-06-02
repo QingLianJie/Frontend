@@ -40,7 +40,11 @@ const MyApp = ({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container>
-          <Progress color="#f687b3" height={2} />
+          <Progress
+            color="#f687b3"
+            height={2}
+            options={{ showSpinner: false }}
+          />
           <Component {...pageProps} />
         </Container>
       </ThemeProvider>

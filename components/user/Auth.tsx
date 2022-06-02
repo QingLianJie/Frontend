@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import { useAtom } from 'jotai'
 import { Fragment, useState } from 'react'
-import { authAtom } from '../../contexts/models'
+import { authAtom } from '../../contexts/switch'
 
 type TabType = '登录' | '注册' | '重置密码'
 
@@ -24,13 +24,16 @@ export const Auth = () => {
       maxWidth={false}
       open={isOpen}
       onClose={() => setOpen(false)}
-      sx={{ '& .MuiPaper-root': { maxWidth: '20rem' } }}
+      sx={{
+        '& .MuiPaper-root': { maxWidth: '20rem' },
+        '& .MuiDialogContent-root': { p: 0 },
+      }}
     >
       <DialogContent>
         <Typography
           component="h1"
           variant="h6"
-          sx={{ textAlign: 'center', py: 4 }}
+          sx={{ textAlign: 'center', pt: 6, pb: 4 }}
         >
           欢迎来到{' '}
           <Typography
@@ -47,7 +50,7 @@ export const Auth = () => {
               onChange={(e, v) => setCurrentTab(v)}
               aria-label="登录、注册和重置密码的页面"
               centered
-              sx={{ mb: '-1px', minHeight: 'unset' }}
+              sx={{ mb: '-1px', minHeight: 'unset', px: 3 }}
             >
               {tabs.map(tab => (
                 <Tab
@@ -70,10 +73,7 @@ export const Auth = () => {
               value={tab.name}
               color={tab.color}
               key={tab.name}
-              sx={{
-                px: 0,
-                py: 1,
-              }}
+              sx={{ px: 3, pt: 2, pb: 3 }}
             >
               {tab.component}
             </TabPanel>

@@ -1,5 +1,5 @@
-import { Masonry } from '@mui/lab'
 import {
+  Box,
   Button,
   Card,
   Container,
@@ -10,10 +10,9 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material'
-import { useAtom } from 'jotai'
 import { groupBy, sortBy } from 'lodash'
 import { type GetServerSideProps, type NextPage } from 'next'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Footer, Header } from '../components/base/Layout'
 import { Meta } from '../components/Container'
 import { Comment } from '../components/home/Comment'
@@ -26,8 +25,7 @@ import { OtherLinks } from '../components/home/links/OtherLinks'
 import { TabList } from '../components/home/links/TabList'
 import { Note } from '../components/home/Note'
 import { Search } from '../components/home/Search'
-import { linksAtom } from '../contexts/links'
-import { type Comments, type Groups, type Note as NoteType } from '../types'
+import { type Groups, type Note as NoteType } from '../types'
 
 interface HomeProps {
   groups: Groups
@@ -51,7 +49,7 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
     >
       <Meta />
       <Header title="清廉街" />
-      <Grid container spacing={2} alignItems="start">
+      <Grid container spacing={{ xs: 2, xl: 4 }} alignItems="start">
         <Grid container item xs={12} sm={6} md={8} lg={6} spacing={2}>
           <Search />
           <NavLinks />
@@ -63,11 +61,8 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
               最近课程评论
             </Typography>
           </Divider>
-          <Masonry
-            columns={{ xs: 1, sm: 1, md: 1, lg: 2 }}
-            spacing={2}
-            sx={{ minWidth: 'calc(100% + 16px)' }}
-          >
+
+          <Box sx={{ columns: { xs: 1, lg: 2 }, columnGap: 2 }}>
             {list.map(group => (
               <Comment group={group} key={group.course.id} />
             ))}
@@ -76,13 +71,12 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
                 variant="outlined"
                 color="primary"
                 fullWidth
-                sx={{ m: 2 }}
                 onClick={() => setExpand(true)}
               >
                 查看更多评论
               </Button>
             )}
-          </Masonry>
+          </Box>
         </Grid>
       </Grid>
       <Footer />
@@ -91,23 +85,6 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
 }
 
 export default Home
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const comments = (await import('./api/comments.json')).default as Comments
-  const note = (await import('./api/note.json')).default as NoteType
-
-  const objects = sortBy(
-    groupBy(comments, f => f.course.id),
-    g => g[0].id
-  ).reverse()
-
-  const groups = Object.entries(objects).map(([id, comments]) => ({
-    course: comments[0].course,
-    comments,
-  }))
-
-  return { props: { groups, note } }
-}
 
 interface LinksProps {
   note: NoteType
@@ -157,4 +134,40 @@ const Links = ({ note }: LinksProps) => {
       )}
     </Fragment>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const comments = await fetch('https://api.qinglianjie.cn/api/recent/comments')
+    .then(res => res.json())
+    .then(data =>
+      data.map((comment: any) => ({
+        id: comment.id,
+        content: comment.content,
+        date: comment.created,
+        author: comment.anonymous ? '匿名' : comment.user.username,
+        course: {
+          id: comment.course.course_id,
+          name: comment.course.name,
+          type: comment.course.attributes,
+          category: comment.course.kind,
+          test: comment.course.assessment_method,
+          credit: comment.course.credit,
+          period: comment.course.total_time,
+        },
+      }))
+    )
+
+  const objects = sortBy(
+    groupBy(comments, f => f.course.id),
+    g => g[0].id
+  ).reverse()
+
+  const groups = Object.values(objects).map(comments => ({
+    course: comments[0].course,
+    comments,
+  }))
+
+  const note = (await import('./api/note.json')).default as NoteType
+
+  return { props: { groups, note } }
 }

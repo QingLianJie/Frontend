@@ -19,12 +19,14 @@ import {
   ListItemIcon,
   ListItemText,
   ListSubheader,
+  Skeleton,
 } from '@mui/material'
 import { amber } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { Fragment } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { linksAtom } from '../../../contexts/links'
+import { loadAtom } from '../../../contexts/switch'
 import { Tooltip } from '../../base/Tooltip'
 
 type LinkType = {
@@ -40,6 +42,7 @@ interface ListProps {
 }
 
 export const FavoriteLinks = ({ hasHeader }: ListProps) => {
+  const [load] = useAtom(loadAtom)
   const [links] = useAtom(linksAtom)
   const favorites = links
     .map(group => group.children.filter(link => link.isFavorite))
@@ -56,7 +59,11 @@ export const FavoriteLinks = ({ hasHeader }: ListProps) => {
       <TransitionGroup>
         {favorites.map(favorite => (
           <Collapse key={favorite.name}>
-            <LinkItem link={favorite} hasStar />
+            {load ? (
+              <LinkItem link={favorite} hasStar />
+            ) : (
+              <PlaceholderItem key={favorite.name} />
+            )}
           </Collapse>
         ))}
       </TransitionGroup>
@@ -203,3 +210,26 @@ export const LinkItem = ({ link, hasStar }: LinkItemProps) => {
     </ListItem>
   )
 }
+
+const PlaceholderItem = () => (
+  <ListItem
+    disablePadding
+    secondaryAction={
+      <IconButton edge="end" sx={{ right: '2.5px' }}>
+        <StarRounded sx={{ color: amber[500] }} />
+      </IconButton>
+    }
+  >
+    <ListItemButton>
+      <ListItemIcon sx={{ minWidth: 32 }}>
+        <PublicOutlined color="secondary" fontSize="small" />
+      </ListItemIcon>
+      <Skeleton>
+        <ListItemText
+          primary="数据加载中"
+          sx={{ '& span': { fontSize: 'body1.fontSize' } }}
+        />
+      </Skeleton>
+    </ListItemButton>
+  </ListItem>
+)

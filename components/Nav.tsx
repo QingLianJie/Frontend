@@ -31,7 +31,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import logo from '../assets/logo-outline.svg'
 import { accountAtom } from '../contexts/account'
-import { authAtom } from '../contexts/models'
+import { authAtom } from '../contexts/switch'
 import { Link } from './base/Link'
 import { Tooltip } from './base/Tooltip'
 

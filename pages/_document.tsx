@@ -7,7 +7,7 @@ const createEmotionCache = () => createCache({ key: 'css', prepend: true })
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="zh-cn">
+      <Html lang="zh-cn" style={{ overflowY: 'scroll' }}>
         <Head>
           <meta name="theme-color" content="#F687B3" />
           <link rel="icon" href="/favicon.ico" />

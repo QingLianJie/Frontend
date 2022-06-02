@@ -3,6 +3,7 @@ import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { ReactNode, useEffect } from 'react'
 import { linksAtom } from '../contexts/links'
+import { loadAtom } from '../contexts/switch'
 import { Nav } from './Nav'
 import { Auth } from './user/Auth'
 
@@ -12,17 +13,19 @@ interface ContainerProps {
 
 export const Container = ({ children }: ContainerProps) => {
   const [, setLinks] = useAtom(linksAtom)
+  const [, setLoad] = useAtom(loadAtom)
 
   useEffect(() => {
     const links = localStorage.getItem('links')
-    console.log(1)
+    if (!links) return
 
     try {
-      if (!links) return
       const data = JSON.parse(links)
       setLinks(data)
     } catch (error) {
       console.error(error)
+    } finally {
+      setLoad(true)
     }
   }, [])
 

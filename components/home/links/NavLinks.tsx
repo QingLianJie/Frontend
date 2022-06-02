@@ -17,7 +17,7 @@ import { amber, blue, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { accountAtom } from '../../../contexts/account'
-import { authAtom } from '../../../contexts/models'
+import { authAtom } from '../../../contexts/switch'
 
 export const NavLinks = () => {
   const [, setOpen] = useAtom(authAtom)
