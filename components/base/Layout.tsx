@@ -46,8 +46,8 @@ export const Footer = () => {
       justifyContent="space-between"
       sx={{
         px: 2,
-        pt: { xs: 0, sm: 3 },
-        pb: { xs: 9.5, sm: 5 },
+        pt: { xs: 1, sm: 3 },
+        pb: { xs: 10, sm: 5 },
         flex: 1,
       }}
     >

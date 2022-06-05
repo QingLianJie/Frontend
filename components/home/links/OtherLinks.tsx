@@ -1,10 +1,13 @@
 import {
-  BugReportOutlined,
-  CodeOutlined,
+  FeedbackOutlined,
+  LocalCafeOutlined,
   CopyAllOutlined,
-  GroupOutlined,
-  ScienceOutlined,
+  PeopleAltOutlined,
+  AccessTimeOutlined,
+  EmailOutlined,
+  ForumOutlined,
   type SvgIconComponent,
+  InterestsOutlined,
 } from '@mui/icons-material'
 import {
   Icon,
@@ -51,12 +54,17 @@ const links = [
   {
     name: '问题反馈',
     href: 'https://wj.qq.com/s2/9542270/79ad/',
-    icon: BugReportOutlined,
+    icon: FeedbackOutlined,
+    action: {
+      name: '发送邮件',
+      icon: EmailOutlined,
+      onClick: () => window.open('mailto:bakedviolin@foxmail.com'),
+    },
   },
   {
     name: 'QQ 群',
     href: 'https://jq.qq.com/?_wv=1027&k=Fj4xfeQE',
-    icon: GroupOutlined,
+    icon: PeopleAltOutlined,
     action: {
       name: '复制群号',
       icon: CopyAllOutlined,
@@ -66,12 +74,30 @@ const links = [
   {
     name: '开发版网站',
     href: 'https://qing-dev.dist.run/',
-    icon: ScienceOutlined,
+    icon: InterestsOutlined,
+    action: {
+      name: '更新历史',
+      icon: AccessTimeOutlined,
+      onClick: () =>
+        window.open(
+          'https://github.com/QingLianJie/Frontend/commits/main',
+          '_blank'
+        ),
+    },
   },
   {
     name: 'GitHub',
     href: 'https://github.com/QingLianJie/',
-    icon: CodeOutlined,
+    icon: LocalCafeOutlined,
+    action: {
+      name: '提问或讨论',
+      icon: ForumOutlined,
+      onClick: () =>
+        window.open(
+          'https://github.com/QingLianJie/Frontend/discussions',
+          '_blank'
+        ),
+    },
   },
 ]
 
@@ -116,7 +142,6 @@ export const LinkItem = ({ link }: LinkItemProps) => (
           '& span': {
             fontSize: 'body1.fontSize',
             overflow: 'hidden',
-            textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
           },
         }}

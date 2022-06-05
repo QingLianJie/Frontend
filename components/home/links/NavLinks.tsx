@@ -16,6 +16,7 @@ import {
 import { amber, blue, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
+import { Fragment } from 'react'
 import { accountAtom } from '../../../contexts/account'
 import { authAtom } from '../../../contexts/switch'
 
@@ -24,7 +25,7 @@ export const NavLinks = () => {
   const [account] = useAtom(accountAtom)
 
   return (
-    <Grid container item xs={12} spacing={2}>
+    <Grid container item spacing={2}>
       <NavLink
         name="所有课程"
         description={`${0} 个课程`}
@@ -82,7 +83,7 @@ const NavLink = ({
   const router = useRouter()
 
   return (
-    <Grid item xs={6} sm={6} md={3} lg={3}>
+    <Grid item xs={6} sm={6} md={6} lg={6}>
       <Card variant="outlined" sx={{ height: '100%' }}>
         <CardActionArea
           onClick={isLink ? () => router.push(href || '/') : onClick}

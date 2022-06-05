@@ -29,9 +29,6 @@ export interface Note {
   type: '更新' | '公告'
   date: string
   title: string
-  html: string
-  action?: {
-    title: string
-    href: string
-  }
+  description: string
+  href: string
 }

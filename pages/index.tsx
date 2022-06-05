@@ -1,18 +1,16 @@
 import {
   Box,
-  Button,
   Card,
   Container,
   Divider,
   Grid,
-  Stack,
   Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
 import { groupBy, sortBy } from 'lodash'
 import { type GetServerSideProps, type NextPage } from 'next'
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Footer, Header } from '../components/base/Layout'
 import { Meta } from '../components/Container'
 import { Comment } from '../components/home/Comment'
@@ -34,13 +32,11 @@ interface HomeProps {
 
 const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
   const theme = useTheme()
-  const isMiddle = useMediaQuery(theme.breakpoints.between('md', 'lg'))
 
-  const [isExpand, setExpand] = useState(false)
-  const list =
-    isMiddle && !isExpand
-      ? groups.slice(0, Math.ceil(groups.length / 2))
-      : groups
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isSmall = useMediaQuery(theme.breakpoints.between('sm', 'md'))
+  const isMiddle = useMediaQuery(theme.breakpoints.between('md', 'lg'))
+  const isPad = useMediaQuery(theme.breakpoints.between('sm', 'lg'))
 
   return (
     <Container
@@ -49,34 +45,76 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
     >
       <Meta />
       <Header title="清廉街" />
-      <Grid container spacing={{ xs: 2, xl: 6 }} alignItems="start">
-        <Grid container item xs={12} sm={6} md={8} lg={6} spacing={2}>
-          <Search />
+      <Grid container spacing={2} alignItems="start">
+        <Grid container item xs={12} sm={6} md={4} lg={3} spacing={2}>
+          <Grid item xs={12}>
+            <Search />
+          </Grid>
           <NavLinks />
-          <Links note={note} />
+          {isSmall && (
+            <Fragment>
+              <Grid item xs={12}>
+                <Card variant="outlined">
+                  <FavoriteLinks hasHeader />
+                </Card>
+              </Grid>
+              <Grid item xs={12}>
+                <Card variant="outlined">
+                  <ListLinks hasHeader />
+                </Card>
+              </Grid>
+            </Fragment>
+          )}
+          {isMobile || isMiddle ? (
+            <Fragment>
+              <Grid item xs={12}>
+                <TabList />
+              </Grid>
+              <Grid item xs={12}>
+                <Note note={note} />
+              </Grid>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <Grid item xs={12}>
+                <Note note={note} />
+              </Grid>
+              <Grid item xs={12}>
+                <Card variant="outlined">
+                  <OtherLinks hasHeader />
+                </Card>
+              </Grid>
+            </Fragment>
+          )}
         </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={6}>
+        <Grid item xs={12} sm={6} md={8} lg={6}>
           <Divider sx={{ mb: 2, display: { xs: 'flex', sm: 'none' } }}>
             <Typography variant="body2" color="text.secondary">
               最近课程评论
             </Typography>
           </Divider>
 
-          <Box sx={{ columns: { xs: 1, lg: 2 }, columnGap: 2 }}>
-            {list.map(group => (
+          <Box sx={{ columns: { xs: 1, md: 2 }, columnGap: 2 }}>
+            {groups.map(group => (
               <Comment group={group} key={group.course.id} />
             ))}
-            {isMiddle && !isExpand && (
-              <Button
-                variant="outlined"
-                color="primary"
-                fullWidth
-                onClick={() => setExpand(true)}
-              >
-                查看更多评论
-              </Button>
-            )}
           </Box>
+        </Grid>
+        <Grid container spacing={2} item xs={0} sm={6} md={4} lg={3}>
+          {!isMobile && !isPad && (
+            <Fragment>
+              <Grid item xs={12}>
+                <Card variant="outlined">
+                  <FavoriteLinks hasHeader />
+                </Card>
+              </Grid>
+              <Grid item xs={12}>
+                <Card variant="outlined">
+                  <ListLinks hasHeader />
+                </Card>
+              </Grid>
+            </Fragment>
+          )}
         </Grid>
       </Grid>
       <Footer />
@@ -85,57 +123,6 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
 }
 
 export default Home
-
-interface LinksProps {
-  note: NoteType
-}
-
-const Links = ({ note }: LinksProps) => {
-  const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-
-  return (
-    <Fragment>
-      {isMobile ? (
-        <Fragment>
-          <Grid item xs={12}>
-            <TabList />
-          </Grid>
-          <Grid item xs={12}>
-            <Note note={note} />
-          </Grid>
-        </Fragment>
-      ) : (
-        <Grid
-          item
-          container
-          xs={12}
-          spacing={2}
-          sx={{ flexWrap: { xs: 'wrap-reverse', md: 'wrap' } }}
-        >
-          <Grid item xs={12} md={6}>
-            <Stack spacing={2}>
-              <Note note={note} />
-              <Card variant="outlined">
-                <OtherLinks hasHeader />
-              </Card>
-            </Stack>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Stack spacing={2}>
-              <Card variant="outlined">
-                <FavoriteLinks hasHeader />
-              </Card>
-              <Card variant="outlined">
-                <ListLinks hasHeader />
-              </Card>
-            </Stack>
-          </Grid>
-        </Grid>
-      )}
-    </Fragment>
-  )
-}
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const comments = await fetch('https://api.qinglianjie.cn/api/recent/comments')

@@ -2,9 +2,6 @@
   "type": "更新",
   "date": "2022-01-08T08:46:24.421Z",
   "title": "清廉街 2.0 更新",
-  "html": "新版清廉街网站已经发布，带来了新的界面和数据获取机制，同时优化了移动端的使用体验。",
-  "action": {
-    "title": "查看更新日志",
-    "href": "https://yuque.com/lifeni/qing/update-2.0"
-  }
+  "description": "带来了新的页面和数据获取逻辑",
+  "href": "https://yuque.com/lifeni/qing/update-2.0"
 }
