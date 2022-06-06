@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 import { Fragment, useState } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { type Comment as CommentType, type Group } from '../../types'
-import { ticTacToe } from '../../utils/background'
+import { ticTacToe } from '../../utils/patterns'
 import { relativeTime } from '../../utils/time'
 
 interface CommentProps {
@@ -32,7 +32,12 @@ export const Comment = ({ group }: CommentProps) => {
   return (
     <Card
       variant="outlined"
-      sx={{ display: 'flex', flexDirection: 'column', mb: 2 }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        mb: 2,
+        breakInside: 'avoid',
+      }}
     >
       <CardActionArea
         onClick={() => router.push(`/courses/${group.course.id}`)}

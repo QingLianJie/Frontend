@@ -1,13 +1,13 @@
 import {
-  FeedbackOutlined,
-  LocalCafeOutlined,
-  CopyAllOutlined,
-  PeopleAltOutlined,
-  AccessTimeOutlined,
+  CalendarMonthOutlined,
+  NumbersOutlined,
   EmailOutlined,
-  ForumOutlined,
-  type SvgIconComponent,
+  FeedbackOutlined,
+  LiquorOutlined,
   InterestsOutlined,
+  LocalCafeOutlined,
+  PeopleAltOutlined,
+  type SvgIconComponent,
 } from '@mui/icons-material'
 import {
   Icon,
@@ -67,7 +67,7 @@ const links = [
     icon: PeopleAltOutlined,
     action: {
       name: '复制群号',
-      icon: CopyAllOutlined,
+      icon: NumbersOutlined,
       onClick: () => navigator?.clipboard.writeText('498047164'),
     },
   },
@@ -76,8 +76,8 @@ const links = [
     href: 'https://qing-dev.dist.run/',
     icon: InterestsOutlined,
     action: {
-      name: '更新历史',
-      icon: AccessTimeOutlined,
+      name: '更新记录',
+      icon: CalendarMonthOutlined,
       onClick: () =>
         window.open(
           'https://github.com/QingLianJie/Frontend/commits/main',
@@ -91,7 +91,7 @@ const links = [
     icon: LocalCafeOutlined,
     action: {
       name: '提问或讨论',
-      icon: ForumOutlined,
+      icon: LiquorOutlined,
       onClick: () =>
         window.open(
           'https://github.com/QingLianJie/Frontend/discussions',

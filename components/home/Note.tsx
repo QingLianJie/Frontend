@@ -1,7 +1,7 @@
 import { Card, CardActionArea, Chip, Stack, Typography } from '@mui/material'
 import 'github-markdown-css/github-markdown.css'
 import { type Note as NoteType } from '../../types'
-import { circultBoard, texture, wiggle } from '../../utils/background'
+import { circultBoard, texture, wiggle } from '../../utils/patterns'
 import { relativeTime } from '../../utils/time'
 
 interface NoteProps {
