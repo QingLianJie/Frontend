@@ -45,6 +45,7 @@ export const Note = ({ note }: NoteProps) => {
               sx={{
                 height: 'auto',
                 fontSize: 'caption.fontSize',
+                lineHeight: 1.65,
                 backgroundColor: 'background.paper',
               }}
             />

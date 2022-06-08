@@ -37,6 +37,7 @@ export const Comment = ({ group }: CommentProps) => {
         flexDirection: 'column',
         mb: 2,
         breakInside: 'avoid',
+        '&:last-of-type': { mb: 0 },
       }}
     >
       <CardActionArea
@@ -69,6 +70,7 @@ export const Comment = ({ group }: CommentProps) => {
               sx={{
                 height: 'auto',
                 fontSize: 'caption.fontSize',
+                lineHeight: 1.65,
                 backgroundColor: 'background.paper',
               }}
             />

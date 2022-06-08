@@ -100,22 +100,21 @@ const Home: NextPage<HomeProps> = ({ groups, note }: HomeProps) => {
             ))}
           </Box>
         </Grid>
-        <Grid container spacing={2} item xs={0} sm={6} md={4} lg={3}>
-          {!isMobile && !isPad && (
-            <Fragment>
-              <Grid item xs={12}>
-                <Card variant="outlined">
-                  <FavoriteLinks hasHeader />
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Card variant="outlined">
-                  <ListLinks hasHeader />
-                </Card>
-              </Grid>
-            </Fragment>
-          )}
-        </Grid>
+
+        {!isMobile && !isPad && (
+          <Grid container spacing={2} item xs={0} sm={6} md={4} lg={3}>
+            <Grid item xs={12}>
+              <Card variant="outlined">
+                <FavoriteLinks hasHeader />
+              </Card>
+            </Grid>
+            <Grid item xs={12}>
+              <Card variant="outlined">
+                <ListLinks hasHeader />
+              </Card>
+            </Grid>
+          </Grid>
+        )}
       </Grid>
       <Footer />
     </Container>

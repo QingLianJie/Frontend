@@ -10,4 +10,5 @@
 
 ```
 git remote add --mirror=push gitlab https://gitlab.com/Lifeni/QingLianJie.git
+git push --mirror
 ```
