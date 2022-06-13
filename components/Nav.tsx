@@ -30,7 +30,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import logo from '../assets/logo-outline.svg'
 import { accountAtom } from '../contexts/account'
-import { authAtom } from '../contexts/switch'
+import { authModalAtom } from '../contexts/switch'
 import { Link } from './base/Link'
 import { Tooltip } from './base/Tooltip'
 
@@ -157,7 +157,7 @@ interface SideBarProps {
 
 const SideBar = ({ currentPage, pages, onPageChange }: SideBarProps) => {
   const [account] = useAtom(accountAtom)
-  const [isOpen, setOpen] = useAtom(authAtom)
+  const [isOpen, setOpen] = useAtom(authModalAtom)
 
   return (
     <Box

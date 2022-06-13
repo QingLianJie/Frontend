@@ -32,3 +32,13 @@ export interface Note {
   description: string
   href: string
 }
+
+type Fetcher = (options: FetcherOptions) => Promise<string>
+
+interface FetcherOptions {
+  url: string
+  method: 'GET' | 'POST'
+  referer?: string
+  headers?: { [key: string]: string }
+  form?: string
+}

@@ -1,12 +1,23 @@
 import { Button } from '@mui/material'
+import { useAtom } from 'jotai'
+import { useRef, useEffect } from 'react'
 import { FieldError } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
+import { authModalAtom } from '../../../contexts/switch'
 
 type ResetPasswordForm = {
   email: string
 }
 
 export const ResetPassword = () => {
+  const [isOpen] = useAtom(authModalAtom)
+  const inputRef = useRef<HTMLInputElement>()
+
+  useEffect(() => {
+    if (!inputRef || !isOpen) return
+    inputRef.current?.focus()
+  }, [isOpen])
+
   const handleSendEmail = (e: ResetPasswordForm) => {
     console.log(e)
   }
@@ -14,6 +25,7 @@ export const ResetPassword = () => {
   return (
     <FormContainer defaultValues={{ email: '' }} onSuccess={handleSendEmail}>
       <TextFieldElement
+        inputRef={inputRef}
         parseError={(e: FieldError) => {
           switch (e.type) {
             case 'required':

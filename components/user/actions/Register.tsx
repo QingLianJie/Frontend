@@ -1,8 +1,10 @@
 import { VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material'
 import { Button, IconButton, InputAdornment } from '@mui/material'
-import { useRef, useState } from 'react'
+import { useAtom } from 'jotai'
+import { useEffect, useRef, useState } from 'react'
 import { FieldError } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
+import { authModalAtom } from '../../../contexts/switch'
 
 type RegisterForm = {
   email: string
@@ -11,6 +13,14 @@ type RegisterForm = {
 }
 
 export const Register = () => {
+  const [isOpen] = useAtom(authModalAtom)
+  const inputRef = useRef<HTMLInputElement>()
+
+  useEffect(() => {
+    if (!inputRef || !isOpen) return
+    inputRef.current?.focus()
+  }, [isOpen])
+
   const [showPassword, setShowPassword] = useState(false)
   const [showRepeatPassword, setShowRepeatPassword] = useState(false)
   const password = useRef<HTMLInputElement>()
@@ -25,6 +35,7 @@ export const Register = () => {
       onSuccess={handleRegister}
     >
       <TextFieldElement
+        inputRef={inputRef}
         parseError={(e: FieldError) => {
           switch (e.type) {
             case 'required':

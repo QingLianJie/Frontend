@@ -1,8 +1,8 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Dialog, DialogContent, Tab, Typography } from '@mui/material'
 import { useAtom } from 'jotai'
-import { useState } from 'react'
-import { authAtom } from '../../contexts/switch'
+import { useEffect, useState } from 'react'
+import { authModalAtom } from '../../contexts/switch'
 import { Login } from './actions/Login'
 import { Register } from './actions/Register'
 import { ResetPassword } from './actions/ResetPassword'
@@ -10,13 +10,12 @@ import { ResetPassword } from './actions/ResetPassword'
 type TabType = '登录' | '注册' | '重置密码'
 
 export const Auth = () => {
-  const [isOpen, setOpen] = useAtom(authAtom)
+  const [isOpen, setOpen] = useAtom(authModalAtom)
   const [currentTab, setCurrentTab] = useState<TabType>('登录')
 
   return (
     <Dialog
       fullWidth
-      keepMounted
       maxWidth={false}
       open={isOpen}
       onClose={() => setOpen(false)}

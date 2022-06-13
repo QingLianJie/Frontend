@@ -1,8 +1,8 @@
 import {
-  AccountCircleRounded,
-  ClassRounded,
-  InsertChartRounded,
-  TableChartRounded,
+  AccountCircleOutlined,
+  ClassOutlined,
+  InsertChartOutlined,
+  TableChartOutlined,
   type SvgIconComponent,
 } from '@mui/icons-material'
 import {
@@ -16,12 +16,11 @@ import {
 import { amber, blue, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { Fragment } from 'react'
 import { accountAtom } from '../../../contexts/account'
-import { authAtom } from '../../../contexts/switch'
+import { authModalAtom } from '../../../contexts/switch'
 
 export const NavLinks = () => {
-  const [, setOpen] = useAtom(authAtom)
+  const [, setOpen] = useAtom(authModalAtom)
   const [account] = useAtom(accountAtom)
 
   return (
@@ -29,7 +28,7 @@ export const NavLinks = () => {
       <NavLink
         name="所有课程"
         description={`${0} 个课程`}
-        icon={ClassRounded}
+        icon={ClassOutlined}
         color={red[500]}
         isLink
         href="/courses"
@@ -37,7 +36,7 @@ export const NavLinks = () => {
       <NavLink
         name="我的成绩"
         description={`未获取`}
-        icon={InsertChartRounded}
+        icon={InsertChartOutlined}
         color={green[500]}
         isLink
         href="/scores"
@@ -45,7 +44,7 @@ export const NavLinks = () => {
       <NavLink
         name="我的课表"
         description={`未获取`}
-        icon={TableChartRounded}
+        icon={TableChartOutlined}
         color={blue[500]}
         isLink
         href="/schedules"
@@ -53,7 +52,7 @@ export const NavLinks = () => {
       <NavLink
         name="账号管理"
         description={account ? `${account.name}` : '未登录'}
-        icon={AccountCircleRounded}
+        icon={AccountCircleOutlined}
         color={amber[500]}
         onClick={() => setOpen(true)}
       />
@@ -96,10 +95,8 @@ const NavLink = ({
                 opacity: 1,
                 color,
                 position: 'absolute',
-                right: '-1rem',
-                top: '80%',
-                fontSize: '3.5rem',
-                transform: 'translateY(-50%)',
+                right: '12px',
+                bottom: '14px',
               }}
             />
 

@@ -1,4 +1,6 @@
 import { atom } from 'jotai'
 
-export const authAtom = atom(false)
-export const loadAtom = atom(false)
+export const authModalAtom = atom(false)
+export const bindModalAtom = atom(false)
+
+export const pageLoadedAtom = atom(false)

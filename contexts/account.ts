@@ -1,4 +1,5 @@
 import { atom } from 'jotai'
+import { atomLocal } from './utils'
 
 type Account =
   | false
@@ -10,3 +11,12 @@ type Account =
     }
 
 export const accountAtom = atom<Account>(false)
+
+type Bind =
+  | false
+  | {
+      id: string
+      password: string
+    }
+
+export const bindAtom = atomLocal<Bind>('bind', false)

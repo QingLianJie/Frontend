@@ -4,7 +4,7 @@ import { useAtom } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { FieldError } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
-import { authAtom } from '../../../contexts/switch'
+import { authModalAtom } from '../../../contexts/switch'
 
 type LoginForm = {
   name: string
@@ -12,7 +12,7 @@ type LoginForm = {
 }
 
 export const Login = () => {
-  const [isOpen] = useAtom(authAtom)
+  const [isOpen] = useAtom(authModalAtom)
   const [showPassword, setShowPassword] = useState(false)
   const inputRef = useRef<HTMLInputElement>()
 

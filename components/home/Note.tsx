@@ -10,9 +10,9 @@ interface NoteProps {
 
 export const Note = ({ note }: NoteProps) => {
   const image =
-    note.type === '更新'
+    note?.type === '更新'
       ? circultBoard
-      : note.type === '公告'
+      : note?.type === '公告'
       ? wiggle
       : texture
 

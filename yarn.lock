@@ -454,6 +454,11 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
   integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
 
+"@qing-dev/bridge@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@qing-dev/bridge/-/bridge-0.1.2.tgz#17f129d5bd74daae862c9980ed40e2bda7c62a32"
+  integrity sha512-513YNn52klsMyoNJSkqT5to/lE4xWzx3AWVZNMSlvDu2pnzYY4QUEXZ2pFwTiu7+s7QbOsid8Ap5TMjXjislwg==
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz#6801033be7ff87a6b7cadaf5b337c9f366a3c4b0"

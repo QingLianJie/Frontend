@@ -2,9 +2,12 @@ import { Stack } from '@mui/material'
 import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { ReactNode, useEffect } from 'react'
+import { bindAtom } from '../contexts/account'
+import { fetcherAtom } from '../contexts/bridge'
 import { linksAtom } from '../contexts/links'
-import { loadAtom } from '../contexts/switch'
+import { pageLoadedAtom } from '../contexts/switch'
 import { Nav } from './Nav'
+import { Bind } from './university/Bind'
 import { Auth } from './user/Auth'
 
 interface ContainerProps {
@@ -13,19 +16,23 @@ interface ContainerProps {
 
 export const Container = ({ children }: ContainerProps) => {
   const [, setLinks] = useAtom(linksAtom)
-  const [, setLoad] = useAtom(loadAtom)
+  const [, setPageLoaded] = useAtom(pageLoadedAtom)
+  const [, setBind] = useAtom(bindAtom)
+  const [, setFetcher] = useAtom(fetcherAtom)
 
   useEffect(() => {
     const links = localStorage.getItem('links')
+    const bind = localStorage.getItem('bind')
+
     try {
-      if (links) {
-        const data = JSON.parse(links)
-        setLinks(data)
-      }
+      if (links) setLinks(JSON.parse(links))
+      if (bind) setBind(JSON.parse(bind))
+      // @ts-ignore
+      if (window.Fetcher) setFetcher(window.Fetcher)
     } catch (error) {
       console.error(error)
     } finally {
-      setLoad(true)
+      setPageLoaded(true)
     }
   }, [])
 
@@ -34,6 +41,7 @@ export const Container = ({ children }: ContainerProps) => {
       {children}
       <Nav />
       <Auth />
+      <Bind />
     </Stack>
   )
 }

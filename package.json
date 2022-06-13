@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.8.2",
     "@mui/lab": "^5.0.0-alpha.84",
     "@mui/material": "^5.8.2",
+    "@qing-dev/bridge": "^0.1.2",
     "@types/lodash": "^4.14.182",
     "dayjs": "^1.11.2",
     "github-markdown-css": "^5.1.0",

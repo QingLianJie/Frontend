@@ -26,7 +26,7 @@ import { useAtom } from 'jotai'
 import { Fragment } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { linksAtom } from '../../../contexts/links'
-import { loadAtom } from '../../../contexts/switch'
+import { pageLoadedAtom } from '../../../contexts/switch'
 import { Tooltip } from '../../base/Tooltip'
 
 type LinkType = {
@@ -42,7 +42,7 @@ interface ListProps {
 }
 
 export const FavoriteLinks = ({ hasHeader }: ListProps) => {
-  const [load] = useAtom(loadAtom)
+  const [load] = useAtom(pageLoadedAtom)
   const [links] = useAtom(linksAtom)
   const favorites = links
     .map(group => group.children.filter(link => link.isFavorite))
