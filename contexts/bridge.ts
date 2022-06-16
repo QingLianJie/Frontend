@@ -1,4 +1,4 @@
 import { atom } from 'jotai'
 import { type Fetcher } from '../types'
 
-export const fetcherAtom = atom<Fetcher | false>(false)
+export const fetcherAtom = atom<boolean>(false)

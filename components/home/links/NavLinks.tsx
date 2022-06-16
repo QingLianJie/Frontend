@@ -16,7 +16,7 @@ import {
 import { amber, blue, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { accountAtom } from '../../../contexts/session'
+import { accountAtom } from '../../../contexts/sessions'
 import { authModalAtom } from '../../../contexts/toggle'
 
 export const NavLinks = () => {

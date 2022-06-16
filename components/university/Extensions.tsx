@@ -1,39 +1,34 @@
-import {
-  AndroidOutlined,
-  CodeOutlined,
-  FileDownloadOutlined,
-} from '@mui/icons-material'
+import { AndroidOutlined, FileDownloadOutlined } from '@mui/icons-material'
 import {
   Card,
   CardActionArea,
+  Chip,
   Divider,
   Icon,
   Stack,
   Typography,
-  Chip,
 } from '@mui/material'
-import { green, amber, pink } from '@mui/material/colors'
+import { amber, green } from '@mui/material/colors'
 import { useAtom } from 'jotai'
-import { bindAtom } from '../../contexts/session'
+import { bindAtom } from '../../contexts/sessions'
 import { bindModalAtom } from '../../contexts/toggle'
 import { graphPaper, linesInMotion } from '../../utils/patterns'
 
-export const Extension = () => {
+export const Extensions = () => {
   const [, setOpen] = useAtom(bindModalAtom)
   const [bindHEU] = useAtom(bindAtom)
 
   return (
     <Stack spacing={2}>
-      <Card variant="outlined">
+      <Card
+        variant="outlined"
+        sx={{
+          backgroundPosition: '-1rem -1rem',
+          backgroundImage: linesInMotion,
+        }}
+      >
         <CardActionArea onClick={() => setOpen(true)}>
-          <Stack
-            p={2}
-            spacing={0.5}
-            sx={{
-              backgroundPosition: '-1rem -1rem',
-              backgroundImage: linesInMotion,
-            }}
-          >
+          <Stack p={2} spacing={0.5}>
             <Stack
               direction="row"
               spacing={1}
@@ -72,7 +67,14 @@ export const Extension = () => {
         </CardActionArea>
       </Card>
 
-      <Card variant="outlined" sx={{ flex: 1 }}>
+      <Card
+        variant="outlined"
+        sx={{
+          flex: 1,
+          backgroundImage: graphPaper,
+          backgroundPosition: '-0.5rem -0.5rem',
+        }}
+      >
         <Stack
           divider={<Divider orientation="vertical" sx={{ height: 'auto' }} />}
           direction="row"
@@ -87,8 +89,6 @@ export const Extension = () => {
                 py: 1.5,
                 position: 'relative',
                 overflow: 'hidden',
-                backgroundImage: graphPaper,
-                backgroundPosition: '1rem 1rem',
               }}
               key={extension.name}
             >
@@ -132,7 +132,7 @@ const extensions = [
   {
     name: '用户脚本',
     description: '用于获取学校数据的浏览器脚本',
-    href: '',
+    href: 'https://greasyfork.org/zh-CN/scripts/441439-%E6%B8%85%E5%BB%89%E8%A1%97-bridge-userscript',
     icon: FileDownloadOutlined,
     color: amber[500],
   },

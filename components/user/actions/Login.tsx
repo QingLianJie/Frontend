@@ -17,7 +17,7 @@ export const Login = () => {
   const inputRef = useRef<HTMLInputElement>()
 
   useEffect(() => {
-    if (!inputRef || !isOpen) return
+    if (!inputRef.current || !isOpen) return
     inputRef.current?.focus()
   }, [isOpen])
 

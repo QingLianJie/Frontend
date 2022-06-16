@@ -1,15 +1,7 @@
-import {
-  Card,
-  Divider,
-  Grid,
-  Box,
-  Stack,
-  Typography,
-  useTheme,
-} from '@mui/material'
+import { Box, Card, Divider, Grid, Stack, Typography } from '@mui/material'
 import { range } from 'lodash'
 import { Fragment } from 'react'
-import { Extension } from './Extension'
+import { Extensions } from './Extensions'
 import { FAQ } from './FAQ'
 import { Guide } from './Guide'
 import { Important } from './Important'
@@ -38,7 +30,7 @@ export const Portal = ({ type }: PortalProps) => (
         justifyContent="start"
       >
         <Grid item xs={12} sm={6} md={12}>
-          <Extension />
+          <Extensions />
         </Grid>
         <Grid item xs={12} sm={6} md={12}>
           <Guide />

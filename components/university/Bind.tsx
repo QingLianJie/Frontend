@@ -13,7 +13,7 @@ import { useAtom } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { FieldError, useForm } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
-import { bindAtom } from '../../contexts/session'
+import { bindAtom } from '../../contexts/sessions'
 import { bindModalAtom } from '../../contexts/toggle'
 
 type BindForm = {
@@ -29,8 +29,9 @@ export const Bind = () => {
   const { reset } = useForm()
 
   useEffect(() => {
-    if (!inputRef || !isOpen) return
+    if (!inputRef.current || !isOpen) return
     inputRef.current?.focus()
+    console.log(inputRef.current)
   }, [isOpen])
 
   const handleBind = (e: BindForm) => {
@@ -50,6 +51,7 @@ export const Bind = () => {
       maxWidth={false}
       open={isOpen}
       onClose={() => setOpen(false)}
+      keepMounted
       sx={{
         '& .MuiPaper-root': { maxWidth: '18rem' },
         '& .MuiDialogContent-root': { p: 0 },

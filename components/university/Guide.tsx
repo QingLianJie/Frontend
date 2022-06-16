@@ -15,7 +15,7 @@ import {
 } from '@mui/material'
 import { green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
-import { bindAtom } from '../../contexts/session'
+import { bindAtom } from '../../contexts/sessions'
 import { fetcherAtom } from '../../contexts/bridge'
 import { texture } from '../../utils/patterns'
 

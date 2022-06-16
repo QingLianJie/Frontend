@@ -2,13 +2,14 @@ import { Stack } from '@mui/material'
 import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { ReactNode, useEffect } from 'react'
-import { bindAtom } from '../contexts/session'
+import { bindAtom } from '../contexts/sessions'
 import { fetcherAtom } from '../contexts/bridge'
 import { linksAtom } from '../contexts/links'
 import { pageLoadedAtom } from '../contexts/toggle'
 import { Nav } from './Nav'
 import { Bind } from './university/Bind'
 import { Auth } from './user/Auth'
+import { Fetcher } from '../types'
 
 interface ContainerProps {
   children: ReactNode
@@ -28,9 +29,10 @@ export const Container = ({ children }: ContainerProps) => {
       if (links) setLinks(JSON.parse(links))
       if (bind) setBind(JSON.parse(bind))
       // @ts-ignore
-      if (window.Fetcher) setFetcher(window.Fetcher)
+      const fetcher = window.Fetcher as Fetcher | undefined
+      if (fetcher) setFetcher(true)
     } catch (error) {
-      console.error(error)
+      console.error('页面加载失败', error)
     } finally {
       setPageLoaded(true)
     }
