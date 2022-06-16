@@ -7,7 +7,7 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useMemo } from 'react'
 import { Container } from '../components/Container'
-import { fontFamily, palette } from '../utils/theme'
+import { fontFamily, palette } from '../configs/theme'
 import Progress from 'nextjs-progressbar'
 
 const createEmotionCache = () => createCache({ key: 'css', prepend: true })

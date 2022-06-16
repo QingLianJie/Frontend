@@ -16,8 +16,8 @@ import {
 import { amber, blue, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { accountAtom } from '../../../contexts/account'
-import { authModalAtom } from '../../../contexts/switch'
+import { accountAtom } from '../../../contexts/session'
+import { authModalAtom } from '../../../contexts/toggle'
 
 export const NavLinks = () => {
   const [, setOpen] = useAtom(authModalAtom)
@@ -95,7 +95,7 @@ const NavLink = ({
                 opacity: 1,
                 color,
                 position: 'absolute',
-                right: '12px',
+                right: '14px',
                 bottom: '14px',
               }}
             />

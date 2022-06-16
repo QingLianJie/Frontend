@@ -4,7 +4,7 @@ import { useAtom } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { FieldError } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
-import { authModalAtom } from '../../../contexts/switch'
+import { authModalAtom } from '../../../contexts/toggle'
 
 type RegisterForm = {
   email: string

@@ -13,8 +13,8 @@ import { useAtom } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { FieldError, useForm } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
-import { bindAtom } from '../../contexts/account'
-import { bindModalAtom } from '../../contexts/switch'
+import { bindAtom } from '../../contexts/session'
+import { bindModalAtom } from '../../contexts/toggle'
 
 type BindForm = {
   id: string

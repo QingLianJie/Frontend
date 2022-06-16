@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import { atomLocal } from './utils'
+import { atomLocal } from './atom'
 
 type Account =
   | false

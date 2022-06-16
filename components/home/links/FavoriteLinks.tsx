@@ -26,7 +26,7 @@ import { useAtom } from 'jotai'
 import { Fragment } from 'react'
 import { TransitionGroup } from 'react-transition-group'
 import { linksAtom } from '../../../contexts/links'
-import { pageLoadedAtom } from '../../../contexts/switch'
+import { pageLoadedAtom } from '../../../contexts/toggle'
 import { Tooltip } from '../../base/Tooltip'
 
 type LinkType = {
