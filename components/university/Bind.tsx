@@ -40,6 +40,7 @@ export const Bind = () => {
   const handleBind = (e: BindForm) => {
     setBind(e)
     setOpen(false)
+    reset({ id: '', password: '' })
   }
 
   const handleUnbind = () => {

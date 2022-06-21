@@ -1,14 +1,12 @@
 import {
-  InsertChartOutlined,
   CheckOutlined,
   CloseOutlined,
+  InsertChartOutlined,
   TableChartOutlined,
 } from '@mui/icons-material'
 import {
   Card,
   CardActionArea,
-  CardActions,
-  CardContent,
   Chip,
   Divider,
   Icon,
@@ -20,7 +18,9 @@ import { useAtom } from 'jotai'
 import { fetcherModalAtom } from '../../contexts/boolean'
 import { schedulesAtom } from '../../contexts/schedules'
 import { scoresAtom } from '../../contexts/scores'
+import { timestampAtom } from '../../contexts/university'
 import { texture } from '../../utils/patterns'
+import { relativeTime } from '../../utils/time'
 
 interface StatisticsProps {
   type: '成绩' | '课表'
@@ -30,6 +30,12 @@ export const Statistics = ({ type }: StatisticsProps) => {
   const [, setOpen] = useAtom(fetcherModalAtom)
   const [scores] = useAtom(scoresAtom)
   const [schedules] = useAtom(schedulesAtom)
+  const [timestamp] = useAtom(timestampAtom)
+
+  const isFetched = scores || schedules
+  const scoresCount = scores
+    ? scores.reduce((pre, cur) => pre + cur.scores.length, 0)
+    : 0
 
   return (
     <Card variant="outlined">
@@ -53,7 +59,11 @@ export const Statistics = ({ type }: StatisticsProps) => {
               component="h2"
               fontWeight="fontWeightBold"
             >
-              未获取学校数据
+              {isFetched
+                ? timestamp
+                  ? `数据获取于 ${relativeTime(timestamp)}`
+                  : '已获取学校数据'
+                : '未获取学校数据'}
             </Typography>
             <Chip
               variant="outlined"
@@ -70,7 +80,9 @@ export const Statistics = ({ type }: StatisticsProps) => {
           </Stack>
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            点此从学校网站上获取数据
+            {isFetched
+              ? '点此重新获取学校网站数据'
+              : '点此从学校网站上获取数据'}
           </Typography>
         </Stack>
       </CardActionArea>
@@ -87,7 +99,7 @@ export const Statistics = ({ type }: StatisticsProps) => {
             fontWeight="fontWeightBold"
             sx={{ color: scores ? green[500] : red[500], flex: 1 }}
           >
-            {scores ? '已获取成绩数据' : '无成绩数据'}
+            {scores ? `已获取 ${scoresCount} 个成绩` : '无成绩数据'}
           </Typography>
           <Icon
             component={scores ? CheckOutlined : CloseOutlined}
@@ -105,7 +117,9 @@ export const Statistics = ({ type }: StatisticsProps) => {
             fontWeight="fontWeightBold"
             sx={{ color: schedules ? green[500] : red[500], flex: 1 }}
           >
-            {schedules ? '已获取课表数据' : '无课表数据'}
+            {schedules
+              ? `已获取 ${schedules.name || '未知'} 课表`
+              : '无课表数据'}
           </Typography>
           <Icon
             component={schedules ? CheckOutlined : CloseOutlined}

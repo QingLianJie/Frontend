@@ -1,6 +1,6 @@
 import createCache from '@emotion/cache'
 import { CacheProvider, EmotionCache } from '@emotion/react'
-import { ThemeProvider, useMediaQuery } from '@mui/material'
+import { Grow, ThemeProvider, useMediaQuery } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline'
 import { createTheme } from '@mui/material/styles'
 import { AppProps } from 'next/app'
@@ -9,6 +9,7 @@ import { useMemo } from 'react'
 import { Container } from '../components/Container'
 import { fontFamily, palette } from '../configs/theme'
 import Progress from 'nextjs-progressbar'
+import { SnackbarProvider } from 'notistack'
 
 const createEmotionCache = () => createCache({ key: 'css', prepend: true })
 const clientSideEmotionCache = createEmotionCache()
@@ -39,14 +40,22 @@ const MyApp = ({
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Container>
-          <Progress
-            color="#f687b3"
-            height={2}
-            options={{ showSpinner: false }}
-          />
-          <Component {...pageProps} />
-        </Container>
+        <SnackbarProvider
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          TransitionComponent={Grow}
+        >
+          <Container>
+            <Progress
+              color="#f687b3"
+              height={2}
+              options={{ showSpinner: false }}
+            />
+            <Component {...pageProps} />
+          </Container>
+        </SnackbarProvider>
       </ThemeProvider>
     </CacheProvider>
   )

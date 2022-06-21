@@ -65,6 +65,31 @@ interface TermScore {
 
 type TermScores = TermScore[]
 
-interface Schedule {}
+interface ScheduleWeek {
+  name: string
+  rows: ScheduleRow[]
+}
+export interface ScheduleRow {
+  name: string // 第几大节
+  cols: ScheduleCol[]
+}
+
+export interface ScheduleCol {
+  name: string // 星期几
+  courses: ScheduleCourse[]
+}
+
+export interface ScheduleCourse {
+  name: string
+  teacher: string[]
+  week: number[]
+  location?: string
+  section?: number[]
+}
+
+interface Schedule {
+  name: string
+  weeks: ScheduleWeek[]
+}
 
 type Schedules = Schedule[]

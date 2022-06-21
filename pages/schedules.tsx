@@ -31,7 +31,7 @@ const Schedule: NextPage = () => {
         <Loading color={blue[500]} />
       ) : isBind ? (
         <Grid container spacing={2}>
-          <Grid item spacing={2} xs={12} sm={12} md={8} lg={9}>
+          <Grid item xs={12} sm={12} md={8} lg={9}>
             <Stack spacing={2}>
               <SchedulesControls />
               <TimeTable />
