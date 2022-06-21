@@ -1,16 +1,7 @@
 import { atom } from 'jotai'
 import { atomLocal } from './atom'
 
-type Account =
-  | false
-  | {
-      id: number
-      avatar: string
-      name: string
-      email: string
-    }
-
-export const accountAtom = atom<Account>(false)
+export const fetcherAtom = atom<boolean>(false)
 
 type Bind =
   | false

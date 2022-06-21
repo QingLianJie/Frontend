@@ -3,7 +3,7 @@ import { useAtom } from 'jotai'
 import { useRef, useEffect } from 'react'
 import { FieldError } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
-import { authModalAtom } from '../../../contexts/toggle'
+import { authModalAtom } from '../../../contexts/boolean'
 
 type ResetPasswordForm = {
   email: string

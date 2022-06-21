@@ -2,14 +2,14 @@ import { Stack } from '@mui/material'
 import { useAtom } from 'jotai'
 import Head from 'next/head'
 import { ReactNode, useEffect } from 'react'
-import { bindAtom } from '../contexts/sessions'
-import { fetcherAtom } from '../contexts/bridge'
+import { pageLoadedAtom } from '../contexts/boolean'
 import { linksAtom } from '../contexts/links'
-import { pageLoadedAtom } from '../contexts/toggle'
+import { bindAtom, fetcherAtom } from '../contexts/university'
+import { type Fetcher as FetcherType } from '../types'
 import { Nav } from './Nav'
 import { Bind } from './university/Bind'
+import { Fetcher } from './university/Fetcher'
 import { Auth } from './user/Auth'
-import { Fetcher } from '../types'
 
 interface ContainerProps {
   children: ReactNode
@@ -29,7 +29,7 @@ export const Container = ({ children }: ContainerProps) => {
       if (links) setLinks(JSON.parse(links))
       if (bind) setBind(JSON.parse(bind))
       // @ts-ignore
-      const fetcher = window.Fetcher as Fetcher | undefined
+      const fetcher = window.Fetcher as FetcherType | undefined
       if (fetcher) setFetcher(true)
     } catch (error) {
       console.error('页面加载失败', error)
@@ -41,9 +41,10 @@ export const Container = ({ children }: ContainerProps) => {
   return (
     <Stack sx={{ minHeight: '100vh', pl: { xs: 0, sm: 10 } }}>
       {children}
-      <Nav />
       <Auth />
       <Bind />
+      <Fetcher />
+      <Nav />
     </Stack>
   )
 }

@@ -13,90 +13,70 @@ import {
   Typography,
 } from '@mui/material'
 import { useAtom } from 'jotai'
-import { faqsModalAtom } from '../../contexts/toggle'
+import { faqsModalAtom } from '../../contexts/boolean'
+import { Modal } from '../base/Modal'
 
 export const FAQ = () => {
   const [isOpen, setOpen] = useAtom(faqsModalAtom)
 
   return (
-    <Dialog
-      fullWidth
-      maxWidth={false}
-      open={isOpen}
+    <Modal
+      maxWidth="24rem"
+      isOpen={isOpen}
       onClose={() => setOpen(false)}
-      sx={{
-        '& .MuiDialog-paper': { maxWidth: '24rem', m: 0 },
-        '& .MuiDialogContent-root': { p: 0 },
-      }}
+      title="常见问题"
     >
-      <DialogTitle>
-        常见问题
-        <IconButton
-          aria-label="关闭"
-          onClick={() => setOpen(false)}
-          sx={{ position: 'absolute', right: 14, top: 10 }}
-        >
-          <CloseOutlined />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
-        <Stack>
-          <Divider />
-          {faqs.map(faq => (
-            <Accordion
-              disableGutters
-              square
-              key={faq.question}
+      <Stack>
+        {faqs.map(faq => (
+          <Accordion
+            disableGutters
+            square
+            key={faq.question}
+            sx={{
+              boxShadow: 'none',
+              backgroundColor: 'transparent',
+              backgroundImage: 'none',
+              width: '100%',
+              px: 1,
+              '&.Mui-expanded::before': { opacity: 1 },
+            }}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreOutlined fontSize="small" />}
               sx={{
-                boxShadow: 'none',
-                backgroundColor: 'transparent',
-                backgroundImage: 'none',
-                width: '100%',
-                px: 1,
-                '&.Mui-expanded::before': { opacity: 1 },
+                '& .MuiAccordionSummary-content': { overflow: 'hidden' },
+                '&.Mui-expanded p': { fontWeight: 'fontWeightBold' },
               }}
             >
-              <AccordionSummary
-                expandIcon={<ExpandMoreOutlined fontSize="small" />}
-                sx={{
-                  '& .MuiAccordionSummary-content': { overflow: 'hidden' },
-                  '&.Mui-expanded p': { fontWeight: 'fontWeightBold' },
-                }}
+              <Typography
+                variant="body1"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
               >
-                <Typography
-                  variant="body1"
-                  whiteSpace="nowrap"
-                  overflow="hidden"
-                  textOverflow="ellipsis"
-                >
-                  {faq.question}
-                </Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Typography variant="body1">{faq.answer}</Typography>
-              </AccordionDetails>
-            </Accordion>
-          ))}
-          <Divider />
-        </Stack>
-        <Typography
-          variant="body2"
-          color="text.secondary"
-          sx={{ py: 2, px: 3 }}
+                {faq.question}
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography variant="body1">{faq.answer}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+        <Divider />
+      </Stack>
+      <Typography variant="body2" color="text.secondary" sx={{ py: 2, px: 3 }}>
+        如果有其他的问题，欢迎{' '}
+        <Link
+          href="https://wj.qq.com/s2/9542270/79ad/"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{ fontWeight: 'fontWeightBold', textDecoration: 'none' }}
         >
-          如果有其他的问题，欢迎{' '}
-          <Link
-            href="https://wj.qq.com/s2/9542270/79ad/"
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{ fontWeight: 'fontWeightBold', textDecoration: 'none' }}
-          >
-            给我们反馈
-          </Link>
-          。
-        </Typography>
-      </DialogContent>
-    </Dialog>
+          给我们反馈
+        </Link>
+        。
+      </Typography>
+    </Modal>
   )
 }
 

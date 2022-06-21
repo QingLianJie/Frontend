@@ -1,12 +1,14 @@
 import {
-  CategoryOutlined,
+  InsertChartOutlined,
   CheckOutlined,
   CloseOutlined,
-  SchoolOutlined,
+  TableChartOutlined,
 } from '@mui/icons-material'
 import {
   Card,
   CardActionArea,
+  CardActions,
+  CardContent,
   Chip,
   Divider,
   Icon,
@@ -15,16 +17,23 @@ import {
 } from '@mui/material'
 import { green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
-import { bindAtom, fetcherAtom } from '../../contexts/university'
+import { fetcherModalAtom } from '../../contexts/boolean'
+import { schedulesAtom } from '../../contexts/schedules'
+import { scoresAtom } from '../../contexts/scores'
 import { texture } from '../../utils/patterns'
 
-export const Guide = () => {
-  const [fetcher] = useAtom(fetcherAtom)
-  const [bindHEU] = useAtom(bindAtom)
+interface StatisticsProps {
+  type: '成绩' | '课表'
+}
+
+export const Statistics = ({ type }: StatisticsProps) => {
+  const [, setOpen] = useAtom(fetcherModalAtom)
+  const [scores] = useAtom(scoresAtom)
+  const [schedules] = useAtom(schedulesAtom)
 
   return (
     <Card variant="outlined">
-      <CardActionArea>
+      <CardActionArea onClick={() => setOpen(true)}>
         <Stack
           spacing={0.5}
           sx={{
@@ -44,11 +53,11 @@ export const Guide = () => {
               component="h2"
               fontWeight="fontWeightBold"
             >
-              如何获取数据？
+              未获取学校数据
             </Typography>
             <Chip
               variant="outlined"
-              label="提示"
+              label="数据"
               size="small"
               color="primary"
               sx={{
@@ -61,7 +70,7 @@ export const Guide = () => {
           </Stack>
 
           <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            点此了解新版网站的数据获取方式
+            点此从学校网站上获取数据
           </Typography>
         </Stack>
       </CardActionArea>
@@ -69,39 +78,39 @@ export const Guide = () => {
       <Divider />
       <Stack spacing={1.5} sx={{ p: 2 }}>
         <Stack direction="row" spacing={1.5}>
-          <CategoryOutlined
+          <InsertChartOutlined
             fontSize="small"
-            sx={{ color: fetcher ? green[500] : red[500] }}
+            sx={{ color: scores ? green[500] : red[500] }}
           />
           <Typography
             variant="body2"
             fontWeight="fontWeightBold"
-            sx={{ color: fetcher ? green[500] : red[500], flex: 1 }}
+            sx={{ color: scores ? green[500] : red[500], flex: 1 }}
           >
-            {fetcher ? '已连接到插件' : '未发现可用插件'}
+            {scores ? '已获取成绩数据' : '无成绩数据'}
           </Typography>
           <Icon
-            component={fetcher ? CheckOutlined : CloseOutlined}
+            component={scores ? CheckOutlined : CloseOutlined}
             fontSize="small"
-            sx={{ color: fetcher ? green[500] : red[500] }}
+            sx={{ color: scores ? green[500] : red[500] }}
           />
         </Stack>
         <Stack direction="row" spacing={1.5}>
-          <SchoolOutlined
+          <TableChartOutlined
             fontSize="small"
-            sx={{ color: bindHEU ? green[500] : red[500] }}
+            sx={{ color: schedules ? green[500] : red[500] }}
           />
           <Typography
             variant="body2"
             fontWeight="fontWeightBold"
-            sx={{ color: bindHEU ? green[500] : red[500], flex: 1 }}
+            sx={{ color: schedules ? green[500] : red[500], flex: 1 }}
           >
-            {bindHEU ? '已添加 HEU 账号' : '未添加 HEU 账号'}
+            {schedules ? '已获取课表数据' : '无课表数据'}
           </Typography>
           <Icon
-            component={bindHEU ? CheckOutlined : CloseOutlined}
+            component={schedules ? CheckOutlined : CloseOutlined}
             fontSize="small"
-            sx={{ color: bindHEU ? green[500] : red[500] }}
+            sx={{ color: schedules ? green[500] : red[500] }}
           />
         </Stack>
       </Stack>

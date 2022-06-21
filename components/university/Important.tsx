@@ -1,7 +1,7 @@
 import { HelpOutlineOutlined } from '@mui/icons-material'
 import { Alert, IconButton, Stack, Typography } from '@mui/material'
 import { useAtom } from 'jotai'
-import { faqsModalAtom } from '../../contexts/toggle'
+import { faqsModalAtom } from '../../contexts/boolean'
 import { Tooltip } from '../base/Tooltip'
 
 export const Important = () => {

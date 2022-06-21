@@ -10,13 +10,16 @@ import {
 } from '@mui/material'
 import { amber, green } from '@mui/material/colors'
 import { useAtom } from 'jotai'
-import { bindAtom } from '../../contexts/sessions'
-import { bindModalAtom } from '../../contexts/toggle'
+import { bindModalAtom } from '../../contexts/boolean'
+import { bindAtom, fetcherAtom } from '../../contexts/university'
 import { graphPaper, linesInMotion } from '../../utils/patterns'
 
 export const Extensions = () => {
   const [, setOpen] = useAtom(bindModalAtom)
   const [bindHEU] = useAtom(bindAtom)
+  const [fetcher] = useAtom(fetcherAtom)
+
+  const isBind = fetcher && bindHEU
 
   return (
     <Stack spacing={2}>
@@ -66,64 +69,65 @@ export const Extensions = () => {
           </Stack>
         </CardActionArea>
       </Card>
-
-      <Card
-        variant="outlined"
-        sx={{
-          flex: 1,
-          backgroundImage: graphPaper,
-          backgroundPosition: '-0.5rem -0.5rem',
-        }}
-      >
-        <Stack
-          divider={<Divider orientation="vertical" sx={{ height: 'auto' }} />}
-          direction="row"
+      {!isBind && (
+        <Card
+          variant="outlined"
+          sx={{
+            flex: 1,
+            backgroundImage: graphPaper,
+            backgroundPosition: '-0.5rem -0.5rem',
+          }}
         >
-          {extensions.map(extension => (
-            <CardActionArea
-              href={extension.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                px: 2,
-                py: 1.5,
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-              key={extension.name}
-            >
-              <Stack spacing={1}>
-                <Typography
-                  variant="body1"
-                  fontWeight="fontWeightBold"
-                  whiteSpace="nowrap"
-                  overflow="hidden"
-                  textOverflow="ellipsis"
-                >
-                  {extension.name}
-                </Typography>
-
-                <Typography variant="body2" color="text.secondary">
-                  {extension.description}
-                </Typography>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Icon
-                    component={extension.icon}
-                    sx={{ color: extension.color, fontSize: 'h5.fontSize' }}
-                  />
+          <Stack
+            divider={<Divider orientation="vertical" sx={{ height: 'auto' }} />}
+            direction="row"
+          >
+            {extensions.map(extension => (
+              <CardActionArea
+                href={extension.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  px: 2,
+                  py: 1.5,
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+                key={extension.name}
+              >
+                <Stack spacing={1}>
                   <Typography
-                    variant="body2"
+                    variant="body1"
                     fontWeight="fontWeightBold"
-                    sx={{ color: extension.color }}
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
                   >
-                    下载
+                    {extension.name}
                   </Typography>
+
+                  <Typography variant="body2" color="text.secondary">
+                    {extension.description}
+                  </Typography>
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <Icon
+                      component={extension.icon}
+                      sx={{ color: extension.color, fontSize: 'h5.fontSize' }}
+                    />
+                    <Typography
+                      variant="body2"
+                      fontWeight="fontWeightBold"
+                      sx={{ color: extension.color }}
+                    >
+                      下载
+                    </Typography>
+                  </Stack>
                 </Stack>
-              </Stack>
-            </CardActionArea>
-          ))}
-        </Stack>
-      </Card>
+              </CardActionArea>
+            ))}
+          </Stack>
+        </Card>
+      )}
     </Stack>
   )
 }

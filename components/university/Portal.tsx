@@ -42,7 +42,7 @@ export const Portal = ({ type }: PortalProps) => (
 )
 const Placeholder = ({ type }: PortalProps) => (
   <Box sx={{ position: 'relative' }}>
-    {type === '成绩' ? <SocresSkeleton /> : <SchedulesSkeleton />}
+    {type === '成绩' ? <ScoresSkeleton /> : <SchedulesSkeleton />}
     <Stack
       spacing={{ xs: 1, sm: 0.5, lg: 0 }}
       sx={{
@@ -85,7 +85,7 @@ const Placeholder = ({ type }: PortalProps) => (
   </Box>
 )
 
-const SocresSkeleton = () => (
+const ScoresSkeleton = () => (
   <Stack sx={{ mt: 2, mb: { xs: 0, lg: 2 } }}>
     <Grid container spacing={2}>
       <Grid item xs={12} sm={4}>

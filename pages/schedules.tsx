@@ -1,15 +1,17 @@
-import { Container, Grid } from '@mui/material'
+import { Container, Grid, Stack } from '@mui/material'
 import { blue } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { type NextPage } from 'next'
 import { Footer, Header } from '../components/base/Layout'
 import { Loading } from '../components/base/Loading'
 import { Meta } from '../components/Container'
+import { SchedulesControls } from '../components/schedules/Controls'
+import { TimeTable } from '../components/schedules/TimeTable'
 import { Extensions } from '../components/university/Extensions'
 import { Portal } from '../components/university/Portal'
-import { fetcherAtom } from '../contexts/bridge'
-import { bindAtom } from '../contexts/sessions'
-import { pageLoadedAtom } from '../contexts/toggle'
+import { Statistics } from '../components/university/Statistics'
+import { pageLoadedAtom } from '../contexts/boolean'
+import { bindAtom, fetcherAtom } from '../contexts/university'
 
 const Schedule: NextPage = () => {
   const [fetcher] = useAtom(fetcherAtom)
@@ -29,7 +31,12 @@ const Schedule: NextPage = () => {
         <Loading color={blue[500]} />
       ) : isBind ? (
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={8} lg={9}></Grid>
+          <Grid item spacing={2} xs={12} sm={12} md={8} lg={9}>
+            <Stack spacing={2}>
+              <SchedulesControls />
+              <TimeTable />
+            </Stack>
+          </Grid>
           <Grid
             container
             item
@@ -43,7 +50,10 @@ const Schedule: NextPage = () => {
             justifyContent="start"
           >
             <Grid item xs={12} sm={6} md={12}>
-              <Extensions />
+              <Stack spacing={2}>
+                <Extensions />
+                <Statistics type="课表" />
+              </Stack>
             </Grid>
           </Grid>
         </Grid>

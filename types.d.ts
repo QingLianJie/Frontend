@@ -42,3 +42,29 @@ interface FetcherOptions {
   headers?: { [key: string]: string }
   form?: string
 }
+
+interface Score {
+  name: string
+  id: string
+  type: string
+  nature: string
+  test: string
+  credit: number
+  period: number
+  score: any
+  category?: string
+  mark?: string
+}
+
+type Scores = Score[]
+
+interface TermScore {
+  name: string
+  scores: Scores
+}
+
+type TermScores = TermScore[]
+
+interface Schedule {}
+
+type Schedules = Schedule[]

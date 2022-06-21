@@ -13,8 +13,10 @@ import { useAtom } from 'jotai'
 import { useEffect, useRef, useState } from 'react'
 import { FieldError, useForm } from 'react-hook-form'
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui'
-import { bindAtom } from '../../contexts/sessions'
-import { bindModalAtom } from '../../contexts/toggle'
+import { schedulesAtom } from '../../contexts/schedules'
+import { scoresAtom } from '../../contexts/scores'
+import { bindModalAtom } from '../../contexts/boolean'
+import { bindAtom } from '../../contexts/university'
 
 type BindForm = {
   id: string
@@ -24,6 +26,8 @@ type BindForm = {
 export const Bind = () => {
   const [isOpen, setOpen] = useAtom(bindModalAtom)
   const [bindHEU, setBind] = useAtom(bindAtom)
+  const [, setSchedules] = useAtom(schedulesAtom)
+  const [, setScores] = useAtom(scoresAtom)
   const [showPassword, setShowPassword] = useState(false)
   const inputRef = useRef<HTMLInputElement>()
   const { reset } = useForm()
@@ -31,7 +35,6 @@ export const Bind = () => {
   useEffect(() => {
     if (!inputRef.current || !isOpen) return
     inputRef.current?.focus()
-    console.log(inputRef.current)
   }, [isOpen])
 
   const handleBind = (e: BindForm) => {
@@ -41,6 +44,8 @@ export const Bind = () => {
 
   const handleUnbind = () => {
     setBind(false)
+    setSchedules(false)
+    setScores(false)
     reset({ id: '', password: '' })
     setOpen(false)
   }
