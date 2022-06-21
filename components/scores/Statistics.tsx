@@ -7,7 +7,9 @@ export const ScoresStatistics = () => {
 
   return (
     <Card variant="outlined">
-      <Stack spacing={2} sx={{ p: 2 }}></Stack>
+      <Stack spacing={2} sx={{ p: 2 }}>
+        成绩统计（TODO）
+      </Stack>
     </Card>
   )
 }

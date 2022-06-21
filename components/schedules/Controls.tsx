@@ -7,7 +7,9 @@ export const SchedulesControls = () => {
 
   return (
     <Card variant="outlined">
-      <Stack spacing={2} sx={{ p: 2 }}></Stack>
+      <Stack spacing={2} sx={{ p: 2 }}>
+        周数选择
+      </Stack>
     </Card>
   )
 }

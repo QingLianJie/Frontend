@@ -8,6 +8,7 @@ import { Meta } from '../components/Container'
 import { ScoresCalc } from '../components/scores/Calc'
 import { ScoresFilter } from '../components/scores/Filter'
 import { ScoresList } from '../components/scores/List'
+import { ScoresNote } from '../components/scores/Note'
 import { ScoresStatistics } from '../components/scores/Statistics'
 import { Extensions } from '../components/university/Extensions'
 import { Portal } from '../components/university/Portal'
@@ -63,6 +64,9 @@ const Scores: NextPage = () => {
                 <Extensions />
                 <Statistics type="成绩" />
               </Stack>
+            </Grid>
+            <Grid item xs={12} sm={6} md={12}>
+              <ScoresNote />
             </Grid>
           </Grid>
         </Grid>

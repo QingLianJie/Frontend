@@ -1,10 +1,8 @@
 import { ExpandMoreOutlined } from '@mui/icons-material'
 import {
   Accordion,
-  AccordionActions,
   AccordionDetails,
   AccordionSummary,
-  Box,
   Card,
   Checkbox,
   Chip,
@@ -12,15 +10,16 @@ import {
   List,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   Stack,
   Typography,
+  useTheme,
 } from '@mui/material'
 import { amber, green, red } from '@mui/material/colors'
 import { useAtom } from 'jotai'
 import { Fragment } from 'react'
 import { scoresAtom } from '../../contexts/scores'
 import { Score } from '../../types'
+import { texture } from '../../utils/patterns'
 
 const scoreMap = (score: string) => {
   const map = {
@@ -44,10 +43,13 @@ const colorMap = (score: string) => {
 
 export const ScoresList = () => {
   const [scores] = useAtom(scoresAtom)
+  const theme = useTheme()
+  const isMobile = theme.breakpoints.down('sm')
 
   const calcAverage = (scores: Score[]) =>
     (
-      scores.reduce((pre, cur) => pre + scoreMap(cur.score), 0) / scores.length
+      scores.reduce((pre, cur) => pre + scoreMap(cur.score) * cur.credit, 0) /
+      scores.reduce((pre, cur) => pre + cur.credit, 0)
     ).toFixed(2)
 
   return (
@@ -70,7 +72,14 @@ export const ScoresList = () => {
               >
                 <AccordionSummary
                   expandIcon={<ExpandMoreOutlined fontSize="small" />}
-                  sx={{ px: 3, '& .MuiAccordionSummary-content': { my: 1 } }}
+                  sx={{
+                    px: { xs: 2.5, sm: 3 },
+                    '&.Mui-expanded': {
+                      backgroundPosition: '-1rem -1rem',
+                      backgroundImage: texture,
+                    },
+                    '& .MuiAccordionSummary-content': { my: 1 },
+                  }}
                 >
                   <Stack
                     direction="row"
@@ -98,7 +107,9 @@ export const ScoresList = () => {
                       </Typography>
                       <Chip
                         variant="outlined"
-                        label={`平均分 ${calcAverage(term.scores)}`}
+                        label={`${
+                          isMobile ? '平均分' : '加权平均分'
+                        } ${calcAverage(term.scores)}`}
                         size="small"
                         color="primary"
                         sx={{
@@ -121,7 +132,9 @@ export const ScoresList = () => {
                       .map(score => (
                         <Fragment key={`${score.name}-${score.score}`}>
                           <Divider />
-                          <ListItemButton sx={{ px: 3, py: 0.75 }}>
+                          <ListItemButton
+                            sx={{ px: { xs: 2.5, sm: 3 }, py: 0.75 }}
+                          >
                             <ListItemIcon sx={{ minWidth: 'unset', pr: 1 }}>
                               <Checkbox
                                 aria-label="选择当前成绩"
@@ -155,20 +168,10 @@ export const ScoresList = () => {
                                   fontSize: 'caption.fontSize',
                                   lineHeight: 1.65,
                                   backgroundColor: 'background.paper',
+                                  display: { xs: 'none', sm: 'flex' },
                                 }}
                               />
-                              <Chip
-                                variant="outlined"
-                                label={`学时 ${score.period}`}
-                                size="small"
-                                color="primary"
-                                sx={{
-                                  height: 'fit-content',
-                                  fontSize: 'caption.fontSize',
-                                  lineHeight: 1.65,
-                                  backgroundColor: 'background.paper',
-                                }}
-                              />
+
                               <Chip
                                 variant="outlined"
                                 label={`学分 ${score.credit}`}
@@ -179,6 +182,7 @@ export const ScoresList = () => {
                                   fontSize: 'caption.fontSize',
                                   lineHeight: 1.65,
                                   backgroundColor: 'background.paper',
+                                  display: { xs: 'none', sm: 'flex' },
                                 }}
                               />
                             </Stack>

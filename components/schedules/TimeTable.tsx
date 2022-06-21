@@ -7,7 +7,9 @@ export const TimeTable = () => {
 
   return (
     <Card variant="outlined">
-      <Stack spacing={2} sx={{ p: 2 }}></Stack>
+      <Stack spacing={2} sx={{ p: 2 }}>
+        一周课表
+      </Stack>
     </Card>
   )
 }

@@ -84,7 +84,7 @@ export const Comment = ({ group }: CommentProps) => {
               overflow="hidden"
               textOverflow="ellipsis"
             >
-              {group.course.category}
+              {group.course.category || '无分类'}
             </Typography>
             <Typography
               variant="body2"

@@ -22,8 +22,9 @@ export const Search = () => {
         direction="row"
         px={1}
         onSubmit={handleSearch}
+        alignItems="center"
       >
-        <IconButton aria-label="课程列表">
+        <IconButton aria-label="搜索图标" sx={{ height: 40 }}>
           <SearchOutlined fontSize="small" color="secondary" />
         </IconButton>
         <InputBase
@@ -33,7 +34,7 @@ export const Search = () => {
           sx={{ py: 0.75, flex: 1 }}
           onChange={e => setSearch(e.target.value)}
         />
-        <IconButton type="submit" aria-label="搜索">
+        <IconButton type="submit" aria-label="搜索" sx={{ height: 40 }}>
           <ArrowForwardOutlined fontSize="small" color="secondary" />
         </IconButton>
       </Stack>
