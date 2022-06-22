@@ -16,7 +16,7 @@ export interface CalcRule {
 
 export interface TreeNode {
 	name?: string;
-	rule: CalcRule;
+	rule: CalcRule | CalcRule[];
 	children?: TreeNode[];
 	value?: number;
 	indexList?: number[];
@@ -35,6 +35,16 @@ const CreditChart = ({data}: ChartProps) => {
     const context = useContext(ScoresContext)
 
     data = JSON.parse(JSON.stringify(data));
+    
+    function checkNodeRule(score: IScore, rules: CalcRule | CalcRule[]): boolean {
+        if (!(rules instanceof Array)) {
+            rules = [rules]
+        }
+        return rules.find(
+            rule => rule.value.find(value => value===score[rule.key]) !== undefined
+        ) !== undefined
+    }
+
     function processData(node: TreeNode){
         let childrenCredits = 0;
         let childrenIndexList: number[] = [];
@@ -57,7 +67,7 @@ const CreditChart = ({data}: ChartProps) => {
             node.value = 0;
             node.indexList = [];
             scores.lists.filter(x =>
-                node.rule.value.find(value => value===x[node.rule.key]) !== undefined &&
+                checkNodeRule(x, node.rule) &&
                 x.grade !== "不及格" &&
                 x.grade !== "---" &&
                 (isNaN(Number(x.grade)) || Number(x.grade) >= 60)

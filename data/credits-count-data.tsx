@@ -1,4 +1,4 @@
-import {SUM_FROM_CHILDREN,TreeNode} from "../components/app/score/credit/Chart";
+import { SUM_FROM_CHILDREN, TreeNode } from "../components/app/score/credit/Chart";
 
 
 export const DATA_BEFORE_2019: TreeNode = {
@@ -11,10 +11,16 @@ export const DATA_BEFORE_2019: TreeNode = {
         }
     }, {
         "name": "专业选修",
-        "rule": {
-            "key": "kind",
-            "value": ["专业选修课程", "专业选修课", "19专业选修课程"],
-        }
+        "rule": [
+            {
+                "key": "kind",
+                "value": ["专业选修课程", "专业选修课", "19专业选修课程"],
+            },
+            {
+                "key": "general_category",
+                "value": ["19跨专业选修类（G）"],
+            },
+        ]
     }, {
         "name": "通识教育选修",
         "rule": SUM_FROM_CHILDREN,
@@ -147,7 +153,7 @@ export const DATA_AFTER_2019: TreeNode = {
             "name": "F 创新思维与创业实践",
             "rule": {
                 "key": "kind",
-                "value": ["19创新思维与创业实践（F）", "创新创业类", ],
+                "value": ["19创新思维与创业实践（F）", "创新创业类",],
             }
         }
         ]
