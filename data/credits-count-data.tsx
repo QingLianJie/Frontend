@@ -16,10 +16,6 @@ export const DATA_BEFORE_2019: TreeNode = {
                 "key": "kind",
                 "value": ["专业选修课程", "专业选修课", "19专业选修课程"],
             },
-            {
-                "key": "general_category",
-                "value": ["19跨专业选修类（G）"],
-            },
         ]
     }, {
         "name": "通识教育选修",
@@ -105,10 +101,16 @@ export const DATA_AFTER_2019: TreeNode = {
         }
     }, {
         "name": "专业选修",
-        "rule": {
-            "key": "kind",
-            "value": ["专业选修课程", "专业选修课", "19专业选修课程"],
-        }
+        "rule": [
+            {
+                "key": "kind",
+                "value": ["专业选修课程", "专业选修课", "19专业选修课程"],
+            },
+            {
+                "key": "general_category",
+                "value": ["19跨专业选修类（G）"],
+            },
+        ]
     }, {
         "name": "通识教育选修",
         "rule": SUM_FROM_CHILDREN,
